@@ -12,7 +12,7 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    background-image: url(solar-system-2939560_1280.jpg);
+    background-image: url(background_image.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -76,13 +76,13 @@ body{
 .principio{
     width: 45rem;
     height: 30rem;
-    border: 3px solid #fafafa10;
+    border: 3px solid #fafafa15;
     margin-top: 25px;
     border-radius: 1rem;
 }
 
 .target{
-    background-color: #fafafa10;
+    background-color: #fafafa15;
     backdrop-filter: blur(0.4rem);
     -webkit-backdrop-filter: blur(0.4rem);
     margin-left: 10px;
