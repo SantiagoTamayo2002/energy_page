@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap');
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -16,11 +18,10 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-
 }
 
 .cabecera{
-    background-color: #0a141d;
+    background-color: #133d62;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,7 +37,14 @@ body{
     text-decoration: none;
     font-weight: 600px;
     font-size: 30px;
+    font-family: 'Roboto', sans-serif;
 }
+
+.logo:hover{
+    color: cyan;
+    transition: 0.5s;
+}
+
 
 .logo img{
     height: 55px;
@@ -46,10 +54,17 @@ body{
     margin-left: 50px;
 }
 
+.logo img:hover{
+    height: 50px;
+    margin-right: 10px;
+    transition: 0.5s;
+}
+
 .navegacion a{
     margin-right: 25px;
     color: white;
     text-decoration: none;
+    font-family: 'Roboto', sans-serif;
 }
 
 .navegacion a:hover{
@@ -66,11 +81,6 @@ body{
 
 .login:hover{
     border-color: cyan;
-}
-
-.logo img:hover{
-    height: 50px;
-    margin-right: 10px;
 }
 
 .principio{
