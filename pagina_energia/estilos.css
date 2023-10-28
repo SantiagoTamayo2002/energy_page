@@ -104,9 +104,9 @@ body{
     backdrop-filter: blur(0.4rem);
     -webkit-backdrop-filter: blur(0.4rem);
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 900;
-    font-size: 25px;
+    font-size: 40px;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 20px;
@@ -115,7 +115,7 @@ body{
 }
 
 .parrafo{
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 500;
     text-align: justify;
     font-family: 'Brush Script MT', cursive;
@@ -127,3 +127,7 @@ body{
     height: 75px;
 }
 
+.footer_page{
+    color: white;
+    font-size: 35px;
+}
