@@ -14,20 +14,19 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    background-image: url(background_image.jpg);
+    background-image: url(page_background.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
 .cabecera{
-    background-color: #133d62;
+    background-color: #fafafa01;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: sans-serif;
     height: 70px;
-    
 }
 
 .logo{
@@ -41,7 +40,7 @@ body{
 }
 
 .logo:hover{
-    color: cyan;
+    color: black;
     transition: 0.5s;
 }
 
@@ -69,7 +68,7 @@ body{
 
 .navegacion a:hover{
 
-    color: rgb(0, 224, 240);
+    color: black;
     transition: 0.7s;
 }
 
@@ -80,54 +79,45 @@ body{
 }
 
 .login:hover{
-    border-color: cyan;
+    border-color: black;
 }
 
 .principio{
     width: 45rem;
     height: 30rem;
-    border: 3px solid #fafafa15;
+    border: 3px solid #fafafa10;
     margin-top: 25px;
     border-radius: 1rem;
 }
 
-.target{
-    background-color: #fafafa15;
-    backdrop-filter: blur(0.4rem);
-    -webkit-backdrop-filter: blur(0.4rem);
-    margin-left: 10px;
-    padding-top: 20px;
-}
-
-.initial_target{
-    background-color: #fafafa10;
-    backdrop-filter: blur(0.4rem);
-    -webkit-backdrop-filter: blur(0.4rem);
-    text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 900;
-    font-size: 40px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 20px;
-    margin-left: 10px;
-    
-}
-
-.parrafo{
-    font-size: 20px;
-    font-weight: 500;
-    text-align: justify;
-    font-family: 'Brush Script MT', cursive;
-}
-
-.final_page{
-    background-color: #0a141d;
-    margin-top: auto;
-    height: 75px;
-}
-
-.footer_page{
+.principal_div{
+    background-color: fafafa01;
+    position:absolute;
+    top: 250px;
+    left: 52%;
+    width: 620px;
+    height: 240px;
+    font-size: 46px;
     color: white;
-    font-size: 35px;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 30px;
 }
+
+.principal_logo{
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 100px;
+    left: 12%;
+    border-radius: 50%;
+    box-sizing: content-box;
+}
+
+.loguito{
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+}
+
+
+

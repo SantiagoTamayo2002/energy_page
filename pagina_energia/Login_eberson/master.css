@@ -9,7 +9,7 @@ body {
   
   .login-box {
     width: 320px;
-    height: 420px;
+    height: 445px;
     background: #000;
     color: #fff;
     top: 50%;
@@ -17,7 +17,9 @@ body {
     position: absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
-    padding: 70px 30px;
+    padding: 40px 30px;
+    border:black solid 3px;
+    border-radius: 10px;
   }
   
   .login-box .logo {
@@ -83,4 +85,8 @@ body {
   
   .login-box a:hover {
     color: #fff;
+  }
+
+  .credenciales{
+    text-align: center;
   }

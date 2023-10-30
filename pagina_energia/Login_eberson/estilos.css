@@ -27,7 +27,8 @@ body {
 h1{
     text-align: center;
     color: #1a2537;
-    font-size: 40px;
+    font-size: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 input[type="text"],
 input[type="password"]{
