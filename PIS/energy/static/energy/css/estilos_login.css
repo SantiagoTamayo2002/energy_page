@@ -1,0 +1,105 @@
+/* Estilos para el cuerpo de la página */
+body {
+  margin: 0;
+  padding: 0;
+  background: url('../img/page_background.jpeg') no-repeat center top; /* Fondo de imagen */
+  background-size: cover;
+  font-family: sans-serif;
+  height: 100vh;
+}
+
+/* Estilos para el contenedor principal del formulario de inicio de sesión */
+.login-box {
+  width: 320px;
+  height: 445px;
+  background: #000; /* Fondo del contenedor */
+  color: #fff; /* Color de texto */
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%); /* Centrar el contenedor en la pantalla */
+  box-sizing: border-box;
+  padding: 40px 30px;
+  border: black solid 3px; /* Borde */
+  border-radius: 10px;
+}
+
+/* Estilos para el logo dentro del contenedor */
+.login-box .logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  position: absolute;
+  top: -65px;
+  left: calc(50% - 50px); /* Centrar el logo horizontalmente */
+}
+
+/* Estilos para el encabezado del formulario */
+.login-box h1 {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center; /* Centrar el texto del encabezado */
+  font-size: 22px;
+}
+
+/* Estilos para las etiquetas */
+.login-box label {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  display: block;
+}
+
+/* Estilos para los campos de entrada */
+.login-box input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Estilos para los campos de entrada de tipo texto y contraseña */
+.login-box input[type="email"],
+.login-box input[type="password"] {
+  border: none;
+  border-bottom: 1px solid #fff; /* Línea inferior */
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+}
+
+/* Estilos para el botón de inicio de sesión */
+.login-box input[type="submit"] {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22; /* Color de fondo del botón */
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+/* Estilos para el botón de inicio de sesión al pasar el cursor por encima */
+.login-box input[type="submit"]:hover {
+  cursor: pointer;
+  background: #ffc107; /* Cambio de color al pasar el cursor por encima */
+  color: #000;
+}
+
+/* Estilos para los enlaces */
+.login-box a {
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 20px;
+  color: darkgrey;
+}
+
+/* Estilos para los enlaces al pasar el cursor por encima */
+.login-box a:hover {
+  color: #fff;
+}
+
+/* Estilos para el párrafo con clase "credenciales" */
+.credenciales {
+  text-align: center; /* Centrar el texto en el párrafo */
+}

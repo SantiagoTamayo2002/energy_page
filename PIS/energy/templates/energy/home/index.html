@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FORANIX</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'energy/css/estilos.css'%}">
+    <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="logo.jpeg">
+</head>
+<body>
+    <header class="cabecera">
+        <a href="" class="logo">
+            <img src="{% static 'energy/img/logo.jpeg' %}" alt="">
+            FORANIX
+        </a>
+        <nav class="navegacion">
+            <ul>
+                <a href="{% url 'home' %}">Inicio</a>
+                <a href="{% url 'nosotros' %}">Sobre </a>
+                <a href="{% url 'contactos' %}">Contactos</a>
+                <a href="{% url 'login' %}" class="login">Registrate</a>
+            </ul>
+        </nav>
+    </header>
+    <div class="principal_logo"><img src="{% static 'energy/img/si.png' %}" alt="" class="loguito"></div>
+    <div class="principal_div"><p>¿Problemas con tu consumo eléctrico?
+     nososotros nos encargamos, tu. conserva tu energía</p>
+    </div>
+</body>
+</html>

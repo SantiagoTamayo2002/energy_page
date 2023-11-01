@@ -1,0 +1,107 @@
+/* Estilos globales */
+body {
+    margin: 0;
+    padding: 0;
+    background: url('../img/fondo.jpeg') no-repeat center top;
+    background-size: cover;
+    font-family: sans-serif;
+    height: 100vh;
+    color: #fff; /* Agregar color de texto predeterminado */
+}
+
+/* Estilos del contenedor de inicio de sesión */
+.login-box {
+    width: 320px;
+    height: 534px;
+    background: #000;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    text-align: center; /* Alinear el contenido al centro */
+}
+
+/* Estilos del logotipo */
+.login-box .logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+    background: #b80f22; /* Agregar un fondo de color al logotipo */
+}
+
+/* Estilos para el título */
+.login-box h1 {
+    margin: 0;
+    padding: 0 0 20px;
+    font-size: 22px;
+}
+
+/* Estilos para las etiquetas de formulario */
+.login-box label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block;
+}
+
+/* Estilos para los campos de entrada */
+.login-box input {
+    width: 100%;
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 25px;
+    color: #fff;
+    font-size: 15px;
+}
+
+/* Estilos para el botón de inicio de sesión */
+.login-box input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #b80f22;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse sobre el botón */
+}
+
+.login-box input[type="submit"]:hover {
+    background: #ffc107;
+    color: #000;
+}
+
+/* Estilos para los enlaces */
+.login-box a {
+    text-decoration: none;
+    font-size: px;
+    line-height: 20px;
+    color: darkgrey;
+}
+
+.login-box a:hover {
+    color: #a4e60c;
+}
+
+/* Estilos para el elemento con clase "recuperacion" */
+.recuperacion {
+    background-color: aqua;
+    font-size: 25px; /* Cambiado de text-size-adjust a font-size */
+}
+
+/* Estilos para el elemento con clase "control" (vacío) */
+.control {
+    text-decoration: none;
+    font-size: 16px; /* Ajusta el tamaño de fuente a tu preferencia */
+    line-height: 20px;
+    color: darkgrey;
+}
