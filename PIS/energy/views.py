@@ -29,6 +29,7 @@ def registro(request):
                 user.save()
                 login(request, user)
                 return redirect('paginaUsuario')
+
             except IntegrityError:
                 return render(request, 'energy/home/registro.html', {
                     'form': UserCreationForm,
