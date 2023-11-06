@@ -1,43 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'energy/css/estilos_registro.css'%}">
-    <title>Título de tu página</title> <!-- Agrega un título a tu página -->
-</head>
-<body>
-    <div class="login-box">
-        <img src="{% static 'energy/img/logo.jpeg' %}" class="logo" alt="Logo de la aplicación">
-        <form class="formulario">
-            <h1>Regístrate</h1> <!-- Encabezado del formulario de registro -->
-            <div class="contenedor">
-                <!-- Campo de Nombres Completos -->
-                <div class="input-contenedor">
-                    <i class="fas fa-user icon"></i>
-                    <label for="nombres">Nombres Completos</label>
-                    <input type="text" id="nombres" placeholder="Nombre Completo" required>
-                </div>
-                <!-- Campo de Correo Electrónico -->
-                <div class="input-contenedor">
-                    <i class="fas fa-envelope icon"></i>
-                    <label for="correo">Correo Electrónico</label>
-                    <input type="email" id="correo" placeholder="Ingrese Correo Electrónico" required>
-                </div>
-                <!-- Campo de Contraseña -->
-                <div class="input-contenedor">
-                    <i class="fas fa-key icon"></i>
-                    <label for="contrasena">Contraseña:</label>
-                    <input type="password" id="contrasena" placeholder="Tu contraseña" required minlength="8" maxlength="20">
-                </div>
-                <!-- Botón de Registro -->
-                <input type="submit" value="Regístrate" class="button">
-                <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-                <p>¿Ya tienes una cuenta? <a class="link" href="index.html">Iniciar Sesión</a></p>
-            </div>
-        </form>
-    </div>
-</body>
-</html>
+<h1>Registrarse</h1>
+{{ error }}
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button>Registrarse</button>
+</form>
