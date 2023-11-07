@@ -1,0 +1,12 @@
+{% extends 'plantilla.html' %}
+{% block content %}
+<h1>Iniciar sesion</h1>
+
+{{error}}
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>Iniciar Sesion</button>
+    <a href="{% url 'registro' %}">Registrarse</a>
+</form>
+{% endblock %}

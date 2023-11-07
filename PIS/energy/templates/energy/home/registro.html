@@ -1,8 +1,13 @@
-<h1>Registrarse</h1>
+{% extends 'plantilla.html' %}
+{% block title %} Registrate {% endblock %}
+
+{% block content %}
+<h1>Registrate</h1>
 {{ error }}
 <form method="POST">
     {% csrf_token %}
     {{form.as_p}}
-
     <button>Registrarse</button>
+    <a href="{% url 'login' %}">Iniciar Sesion</a>
 </form>
+{% endblock %}
