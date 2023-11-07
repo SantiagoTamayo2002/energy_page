@@ -9,5 +9,5 @@ urlpatterns = [
     path('contactos/', contactos, name="contactos"),
     path('nosotros/', nosotros, name="nosotros"),
     path('paginaUsuario/', paginaUsuario, name="paginaUsuario"),
-    path('cerrarSesion/', cerrarSesion, name="cerrarSesion"),
+    path('/', cerrarSesion, name="cerrarSesion"),
 ]
