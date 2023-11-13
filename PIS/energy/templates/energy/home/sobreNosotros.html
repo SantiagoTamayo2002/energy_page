@@ -1,9 +1,12 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre nosotros</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'energy/css/estilo_sobreNosotros.css'%}">
+	<link rel="stylesheet" type="text/css" href="{%static 'energy/css/estilos_sobreNosotros.css'%}">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
         <nav class="navegacion">
@@ -15,7 +18,7 @@
             </ul>
         </nav>
 
-    <div  class="Contenido">
+    <div class="contenido">
         <h1>HISTORIA</h1>    
             <p>El nombre "Foranix" se deriva del término "foráneo" debido a que todos los miembros 
                 de nuestro grupo provienen de regiones fuera de la provincia. 
@@ -38,25 +41,15 @@
                 para los desafíos de nuestra sociedad. Conócenos más a fondo y únete a nuestra comunidad para ser parte de 
                 esta misión conjunta de crecimiento y contribución.
             </p>
-    </div>
-    <div class="perfil">
-        <div class="persona1">
-            <div class="boton-modal">
-                <label for="btn-modal">
-                    Conoce más
-                </label>
-            </div>
-            <!--Ventana Modal-->
-            <input type="checkbox" id="btn-modal">
-            <div class="container-modal">
-                <h2>Hola, soy christian Robles</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta</p>
-                <div class="btn-cerrar">
-                    <label for="btn-modal">Cerrar</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+	</div>
+
+	<div class="contenedor">
+        <div class="perfil">hola</div>
+        <div class="perfil">hola</div>
+        <div class="perfil">hola</div>
+        <div class="perfil">hola</div>
+        <div class="perfil">hola</div>
+	</div>
 </body>
+
 </html>
