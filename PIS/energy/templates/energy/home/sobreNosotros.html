@@ -1,8 +1,10 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Document</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,5 +53,54 @@
             <li>Bradley Poma</li>
         </ul>
     </div>
+=======
+    <title>Sobre nosotros</title>
+	<link rel="stylesheet" type="text/css" href="{%static 'energy/css/estilos_sobreNosotros.css'%}">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+        <nav class="navegacion">
+            <ul>
+                <a href="{% url 'home' %}">Inicio</a>
+                <a href="{% url 'nosotros' %}">Sobre </a>
+                <a href="{% url 'contactos' %}">Contactos</a>
+                <a href="{% url 'login' %}" class="login">Registrate</a>
+            </ul>
+        </nav>
+
+    <div class="contenido">
+        <h1>HISTORIA</h1>    
+            <p>El nombre "Foranix" se deriva del término "foráneo" debido a que todos los miembros 
+                de nuestro grupo provienen de regiones fuera de la provincia. 
+                Nuestro grupo de estudio se dedica a respaldar proyectos destinados a abordar cuestiones 
+                sociales relacionadas con el ámbito computacional. Nuestros valores fundamentales dentro 
+                del grupo son la Responsabilidad, Solidaridad, Respeto y Ética, ya que consideramos que 
+                estos valores son indispensables para formar profesionales comprometidos con el bienestar colectivo. <br><br>
+    
+                En la Universidad Nacional de Loja, nos unimos en torno a un propósito común: 
+                contribuir a la solución de los problemas que aquejan a la sociedad. 
+                Lo logramos a través de proyectos como el presente, que busca generar conciencia 
+                sobre el consumo de energía eléctrica y promover un cambio en nuestros hábitos de 
+                consumo con el fin de colaborar en la optimización de los recursos naturales y garantizar 
+                un planeta más saludable para las futuras. generaciones.<br><br>
+    
+                Te invitamos a explorar más acerca de la vida personal y experiencias individuales 
+                de cada uno de nuestros integrantes. Cada uno de nosotros aporta un bagaje único de conocimientos, 
+                habilidades y perspectivas que enriquecen nuestro grupo "Foranix". Descubrirás historias inspiradoras, 
+                intereses diversos y motivaciones personales que nos impulsan a trabajar juntos en la búsqueda de soluciones 
+                para los desafíos de nuestra sociedad. Conócenos más a fondo y únete a nuestra comunidad para ser parte de 
+                esta misión conjunta de crecimiento y contribución.
+            </p>
+	</div>
+
+	<div class="contenedor">
+        <div class="perfil">hola</div>
+        <div class="perfil">hola</div>
+        <div class="perfil">hola</div>
+        <div class="perfil">hola</div>
+        <div class="perfil">hola</div>
+	</div>
+>>>>>>> develop
 </body>
+
 </html>
