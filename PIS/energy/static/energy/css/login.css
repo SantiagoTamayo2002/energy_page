@@ -12,7 +12,7 @@ body {
   /* Estilo del contenedor principal */
   .login-box {
     width: 300px;
-    background-color: #ff0909; /* Color de fondo del contenedor */
+    background-color: rgba(123, 148, 166, 0.45); /* Color de fondo del contenedor */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
@@ -21,7 +21,7 @@ body {
   
   /* Estilo del encabezado */
   .login-box h1 {
-    color: #8a6868; /* Color del texto del encabezado */
+    color: #50ffda; /* Color del texto del encabezado */
   }
   
   /* Estilo del formulario */
@@ -46,7 +46,7 @@ body {
   
   /* Estilo del botón de envío del formulario */
   .login-box button {
-    background-color: #007bff; /* Color de fondo del botón */
+    background-color: #3e6998; /* Color de fondo del botón */
     color: #fff; /* Color del texto del botón */
     padding: 20px;
     border: 1px solid #000000;
@@ -56,7 +56,7 @@ body {
   
   /* Cambio de color del botón al pasar el ratón sobre él */
   .login-box button:hover {
-    background-color: #0056b3;
+    background-color: #5885b6;
   }
   
   /* Estilo del enlace para registrarse */
