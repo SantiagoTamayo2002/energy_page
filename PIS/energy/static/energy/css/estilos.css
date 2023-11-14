@@ -11,7 +11,7 @@ html{
 }
 
 body{
-    background-image: url('../img/pantalla1.png');
+    background-image: url("..energy/img/pantalla1.png");
     display: flex;
     flex-direction: column;
     min-height: 100%;
