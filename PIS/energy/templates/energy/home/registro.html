@@ -1,13 +1,33 @@
-{% extends 'plantilla.html' %}
-{% block title %} Registrate {% endblock %}
-
+{% load static %}
 {% block content %}
-<h1>Registrate</h1>
-{{ error }}
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>Registrarse</button>
-    <a href="{% url 'login' %}">Iniciar Sesion</a>
-</form>
+    <!-- Enlace a la hoja de estilos CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'energy/css/registro.css' %}">
+
+    <!-- Contenedor principal del registro -->
+    <div class="registro-box">
+        <!-- Sección de presentación con el logo -->
+        <div class="imagen_presentacion">
+            <img src="{% static 'energy/img/logo.jpeg' %}" alt="Logo de la empresa Energy">
+        </div>
+
+        <!-- Encabezado principal -->
+        <h1>Regístrate</h1>
+
+        <!-- Mensaje de error (si hay alguno) -->
+        {{ error }}
+
+        <!-- Formulario de registro -->
+        <form method="POST">
+            {% csrf_token %}
+            
+            <!-- Renderiza los campos del formulario como párrafos -->
+            {{ form.as_p }}
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="blue-button">Registrarse</button>
+            
+            <!-- Enlace para dirigirse a la página de inicio de sesión -->
+            <a href="{% url 'login' %}">Iniciar Sesión</a>
+        </form>
+    </div>
 {% endblock %}

@@ -1,0 +1,88 @@
+body {
+    font-family:sans-serif;
+    background: url(../img/bg.jpeg) center/cover #964141; /* Establecer la imagen de fondo y color de fondo */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Altura completa de la ventana */
+  }
+  
+  /* Estilo del contenedor principal */
+  .login-box {
+    width: 300px;
+    background-color: rgba(123, 148, 166, 0.45); /* Color de fondo del contenedor */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    text-align: center;
+  }
+  
+  /* Estilo del encabezado */
+  .login-box h1 {
+    color: #50ffda; /* Color del texto del encabezado */
+  }
+  
+  /* Estilo del formulario */
+  .login-box form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  
+  /* Estilo de las etiquetas del formulario */
+  .login-box label {
+    margin-bottom: 8px;
+  }
+  
+  /* Estilo de los campos de entrada del formulario */
+  .login-box input {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #290303;
+    border-radius: 4px;
+  }
+  
+  /* Estilo del botón de envío del formulario */
+  .login-box button {
+    background-color: #3e6998; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 40px;
+    cursor: pointer;
+  }
+  
+  /* Cambio de color del botón al pasar el ratón sobre él */
+  .login-box button:hover {
+    background-color: #5885b6;
+  }
+  
+  /* Estilo del enlace para registrarse */
+  .login-box a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  /* Cambio de estilo del enlace al pasar el ratón sobre él */
+  .login-box a:hover {
+    text-decoration: underline;
+  }
+
+  .imagen_presentacion{
+    position: relative;
+    background-color: black;
+    height: 70px;
+    width: 70px;
+    margin-left: 120px;
+    border-radius: 100%;
+  }
+
+  .imagen_presentacion img{
+    width: 65px;
+    height: 65PX;
+    border-radius: 100%;
+  }
+  
