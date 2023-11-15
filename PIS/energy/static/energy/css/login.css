@@ -12,7 +12,7 @@ body {
   /* Estilo del contenedor principal */
   .login-box {
     width: 300px;
-    background-color: rgba(123, 148, 166, 0.45); /* Color de fondo del contenedor */
+    background-color: rgba(129, 170, 199, 0.45); /* Color de fondo del contenedor */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
