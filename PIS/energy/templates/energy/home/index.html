@@ -1,37 +1,49 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>FORANIX</title>
+    <meta charset="UTF-8">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'energy/css/estilos.css'%}">
-    <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="logo.jpeg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'energy/css/apoyo.css'%}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Livvic&family=Roboto:ital,wght@0,700;1,900&display=swap');
+      </style>
+    <title>Data Analyzer</title>
 </head>
 <body>
-    <header class="cabecera">
-        <a href="" class="logo">
-            <img src="{% static 'energy/img/logo.jpeg' %}" alt="">
-            FORANIX
-        </a>
-        <nav class="navegacion">
-            <ul>
-                <a href="{% url 'home' %}">Inicio</a>
-                <a href="{% url 'nosotros' %}">Sobre </a>
-                <a href="{% url 'contactos' %}">Contactos</a>
-                {% if user.is_authenticated %}
-                    <a href="{% url 'cerrarSesion' %}"  class="login">Cerrar sesion</a>
-                {% else %}
-                    <a href="{% url 'login' %}" class="login">Iniciar Sesion</a>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
-
-    <div class="principal_logo"><img src="{% static 'energy/img/si.png' %}" alt="" class="loguito"></div>
-    <div class="principal_div"><p>¿Problemas con tu consumo eléctrico?
-     nososotros nos encargamos, tu. conserva tu energía</p>
+    <div class="contenedor">
+        <div class="contenido">
+            <img src="{% static 'energy/img/Foranix_SinFondo.png' %}" alt="">
+            <p>Data Analizer</p>
+        </div>
+        <div class="botones">
+            <a href="{% url 'login' %}" >
+                <span class="material-symbols-outlined">
+                login
+                </span>
+            </a>
+            <a href="{% url 'registro' %}" >
+                <span class="material-symbols-outlined">
+                    how_to_reg
+                </span>
+            </a>
+            <a href="{% url 'nosotros' %}">
+                <span class="material-symbols-outlined" >
+                    group
+                </span>
+            </a>
+        </div>
+        <div class="parrafos">
+            <p class="iniciar-sesion">Inicia sesión</p>
+            <p class="registrate">Regístrate</p>
+            <p class="quienes-somos">¿Quienes somos?</p>
+        </div>
     </div>
+    <div class="fondo2">
 
+    </div>
 </body>
 </html>
