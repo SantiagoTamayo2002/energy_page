@@ -1,9 +1,4 @@
 # energy_page
-this repository is for work in the proyect (PIS)
-
-Ignore this message is a experimente
-
-Que hace aqui o qué?
-
-nada xdxdxdxdxd
-hola amigos 
+Este proyecto se tartara de crar un sistema que nos permita:
+Ingresar el consumo electrico diariamente y con esto calcular 
+una aproximacion sobre el precio en el este y el siquiente mes
