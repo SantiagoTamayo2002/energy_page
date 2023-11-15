@@ -1,0 +1,83 @@
+/* Estilo general del cuerpo de la página */
+body {
+    font-family: sans-serif;
+    background: url(../img/bg.jpeg) center/cover #964141;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Cambiado a min-height para asegurar que el cuerpo tenga al menos la altura de la ventana */
+}
+
+/* Estilo del contenedor principal del registro */
+.registro-box {
+    width: 400px;
+    background-color: rgba(123, 148, 166, 0.45);
+    padding: 20px; /* Ajustado el valor del relleno para mejorar la apariencia */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Estilo de la sección de presentación con el logo */
+.imagen_presentacion {
+    position: relative;
+    background-color: black;
+    height: 70px;
+    width: 70px;
+    margin: 0 auto 20px; /* Ajustado para centrar horizontal y verticalmente */
+    border-radius: 100%;
+}
+
+/* Estilo de la imagen dentro de la sección de presentación */
+.imagen_presentacion img {
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+}
+
+/* Estilo del encabezado principal */
+h1 {
+    color: #fff; /* Cambiado a #fff para mayor claridad */
+    margin-bottom: 10px;
+}
+
+
+
+
+/* Estilo de los campos del formulario */
+form input {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #290303;
+    border-radius: 4px;
+}
+
+/* Estilo del botón de envío del formulario */
+.blue-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Cambio de color del botón al pasar el ratón sobre él */
+.blue-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo del enlace para dirigirse a la página de inicio de sesión */
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Cambio de estilo del enlace al pasar el ratón sobre él */
+a:hover {
+    text-decoration: underline;
+}
