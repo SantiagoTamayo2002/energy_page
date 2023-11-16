@@ -1,4 +1,3 @@
-/* Estilo general del cuerpo de la página */
 body {
     font-family: sans-serif;
     background: url(../img/bg.jpeg) center/cover #964141;
@@ -7,47 +6,57 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Cambiado a min-height para asegurar que el cuerpo tenga al menos la altura de la ventana */
+    height: 100vh;
 }
 
 /* Estilo del contenedor principal del registro */
 .registro-box {
-    width: 400px;
-    background-color: rgba(123, 148, 166, 0.45);
-    padding: 20px; /* Ajustado el valor del relleno para mejorar la apariencia */
+    width: 450px;
+    background-color: rgba(129, 170, 199, 0.45);
+    padding: 2px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin-top: 20px;
 }
 
 /* Estilo de la sección de presentación con el logo */
-.imagen_presentacion {
+.imagen-presentacion {
     position: relative;
     background-color: black;
     height: 70px;
     width: 70px;
-    margin: 0 auto 20px; /* Ajustado para centrar horizontal y verticalmente */
+    margin: 0 auto; /* Centra horizontalmente */
     border-radius: 100%;
 }
 
-/* Estilo de la imagen dentro de la sección de presentación */
-.imagen_presentacion img {
+/* Estilo de la imagen en la sección de presentación */
+.imagen-presentacion img {
     width: 65px;
     height: 65px;
     border-radius: 100%;
+    display: block; /* Asegura que la imagen sea un bloque para alinear correctamente con margin: 0 auto */
+    margin: 2.5px auto; /* Centra verticalmente (ajusta según sea necesario) */
 }
 
-/* Estilo del encabezado principal */
-h1 {
-    color: #fff; /* Cambiado a #fff para mayor claridad */
-    margin-bottom: 10px;
+/* Estilo del encabezado */
+.registro-box h1 {
+    color: #50ffda;
 }
 
+/* Estilo del formulario */
+.registro-box form {
+    display: flex;
+    flex-direction: column;
+}
 
+/* Estilo de las etiquetas del formulario */
+.registro-box label {
+    margin-bottom: 8px;
+}
 
-
-/* Estilo de los campos del formulario */
-form input {
+/* Estilo de los campos de entrada del formulario */
+.registro-box input {
     padding: 10px;
     margin-bottom: 16px;
     border: 1px solid #290303;
@@ -55,29 +64,30 @@ form input {
 }
 
 /* Estilo del botón de envío del formulario */
-.blue-button {
-    background-color: #007bff;
+.registro-box button {
+    background-color: #3e6998;
     color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 /* Cambio de color del botón al pasar el ratón sobre él */
-.blue-button:hover {
-    background-color: #0056b3;
+.registro-box button:hover {
+    background-color: #5885b6;
 }
 
-/* Estilo del enlace para dirigirse a la página de inicio de sesión */
-a {
+/* Estilo del enlace para registrarse */
+.registro-box a {
     color: #007bff;
     text-decoration: none;
     font-size: 14px;
 }
 
 /* Cambio de estilo del enlace al pasar el ratón sobre él */
-a:hover {
+.registro-box a:hover {
     text-decoration: underline;
 }
+
+  

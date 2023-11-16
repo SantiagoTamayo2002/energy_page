@@ -48,7 +48,7 @@ body {
   .login-box button {
     background-color: #3e6998; /* Color de fondo del botón */
     color: #fff; /* Color del texto del botón */
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #000000;
     border-radius: 40px;
     cursor: pointer;
