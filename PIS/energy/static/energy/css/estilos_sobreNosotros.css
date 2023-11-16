@@ -1,10 +1,22 @@
 * {
+<<<<<<< HEAD
+	font-family: 'rosarivo', Courier, monospace;
+    font-size: 20px;
+}
+
+h1 {
+	text-align: center;
+    font-size: 25px;
+}
+
+=======
 	font-weight: 70;
 	font-size: 20px;
 }
 h1 {
 	text-align: center;
 }
+>>>>>>> Frontend
 .contenido{
 	margin:auto;
 	margin-top: 20px;
@@ -12,6 +24,20 @@ h1 {
 	height: 80%;
 	padding: 10px;
 	text-align: justify;
+<<<<<<< HEAD
+    background-color:white;
+}
+
+.contenedor{
+    height: 600px;
+    background-color:white;
+}
+
+.perfil1,.perfil2,.perfil3,.perfil4,.perfil5{
+    background-image: url("../img/christian.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+=======
     background-color: aqua;
 	
 }
@@ -22,13 +48,48 @@ h1 {
 
 .perfil{
     background-color: #000;
+>>>>>>> Frontend
     color: #fafafa;
     display: inline-block;
     height: 250px;
     width: 250px;
     margin-left: 38px;
     align-items: center;
+<<<<<<< HEAD
+    border-radius: 5%;
+    box-shadow: 5px 5px 10px #969595;
+    contain: content;
+}
+.perfil1,.perfil2,.perfil3,.perfil4,.perfil5:hover{
+    cursor: pointer;
+}
+.imagenChiquita{
+    height: 35px;width: 35px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.texto{
+    height: 35px;
+    width: 250px;
+    margin-left: 35px;
+    margin-top: 86%;
+    padding-top: 5px;
+    padding-left: 5px;
+    background-color: #fafafa;
+    color: black;
+}
+
+.texto:hover{
+    color: #fafafa;
+    background-color: black;
+    transition: 0.8s;
+}
+=======
     border: 4px solid #fafafa;
     border-radius: 100%;
 
 }
+>>>>>>> Frontend

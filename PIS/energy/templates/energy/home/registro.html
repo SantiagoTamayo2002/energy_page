@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+{% extends 'plantilla.html' %}
+=======
+
+>>>>>>> Frontend
+{% block title %} Registrate {% endblock %}
+
+{% block content %}
+<h1>Registrate</h1>
+{{ error }}
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>Registrarse</button>
+    <a href="{% url 'login' %}">Iniciar Sesion</a>
+</form>
+=======
 
 {% block title %} Registrate {% endblock %}
 
@@ -10,4 +28,5 @@
     <button>Registrarse</button>
     <a href="{% url 'login' %}">Iniciar Sesion</a>
 </form>
+>>>>>>> Stashed changes
 {% endblock %}
