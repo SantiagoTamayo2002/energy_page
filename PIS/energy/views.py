@@ -48,6 +48,8 @@ def registro(request):
             'error': 'Las contraseñas no coinciden'
         })
 def inicioSesion(request):
+    if request.user.is_authenticated:
+        return redirect('paginaUsuario')
     if request.method == 'GET':
         return render(request, 'energy/home/login.html', {
             'form': AuthenticationForm
@@ -61,9 +63,6 @@ def inicioSesion(request):
             })
         else:
             login(request, user)
-            return render(request, 'energy/home/paginaUsuario.html', {
-                'page': paginaUsuario(request),
-            })
-
+            return redirect('paginaUsuario')
 
 
