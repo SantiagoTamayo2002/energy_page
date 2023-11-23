@@ -5,6 +5,7 @@
     <title>Inventario</title>
 </head>
 <body>
+<a href="{% url 'artefacto' %}">Artefactos</a>
 <form method="post" action="{% url 'inventario' %}">
   {% csrf_token %}
   {{ form.as_p }}

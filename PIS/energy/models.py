@@ -29,10 +29,10 @@ class Inventario(models.Model):
         return consumoTotal
 
 
-    def save(self, *args, **kwargs):
+    def guardar(self, *args, **kwargs):
         # Actualizar el valor de consumoTotal antes de guardar
         self.consumoTotal = self.CalcularConsumoTotal()
-        super().save(*args, **kwargs)
+        self.self
 
     # Eliminar Artefacto
     def delete(self, *args, **kwargs):
