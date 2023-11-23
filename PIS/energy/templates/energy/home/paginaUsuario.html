@@ -1,14 +1,50 @@
-<h1>Pagina para el usiario despues del inicio de sesion</h1>
-<a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'energy/css/estilo_inicio.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
+    <title>inicio</title>
 </head>
 <body>
-    <a href="{% url 'inventario' %}">Inventario</a>
+    <div class="contenedor">
+        <div class="slidevar">
+            <img src="{% static 'energy/img/Foranix_SinFondo.png' %}" alt="">
+            <ul>
+                <li><a href="{% url 'inventario' %}">Mi inventario</a></li>
+                <li><a href="nosotros.html">Ultimo consumo</a></li>
+                <li><a href="servicios.html">Proyecciones</a></li>
+                <li><a href="contacto.html">Reporte</a></li>
+            </ul>
+        </div>
+        <div class="navigation">
+            <div class="buscador">
+                <p>Data Analizer</p>
+                <input type="text" placeholder="Buscar">
+                <button type="submit">Buscar</button>
+            </div>
+            <div class="lista">
+                <ul>
+                    <li><a href="inicio.html">Consumo</a></li>
+                    <li><a href="nosotros.html">calcular</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="contacto.html">Mi cuenta</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="tarjeta">
+            <h1>Data Analizer</h1>
+        </div>
+        <div class="tarjeta">
+            <h1>Data Analizer</h1>
+        </div>
+    </div>
 </body>
 </html>
+
 
