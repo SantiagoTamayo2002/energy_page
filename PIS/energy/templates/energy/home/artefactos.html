@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>Artefactos</title>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+
+        }
+        table, th, td {
+            flex: fit-content;
+            text-align: center;
+            align-content: center;
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+
+        }
+        table{
+            margin: auto;
+        }
+        button{
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        button:hover{
+            background-color: #3e8e41;
+        }
+        h1{
+            text-align: center;
+        }
+        h2{
+            text-align: center;
+        }
+        form{
+            text-align: center;
+            display: block;
+            margin: auto;
+            width: 50%;
+            background-color: wheat;
+        }
+        form input{
+            margin-top: 5px;
+            text-align: center;
+        }
+        a{
+            text-align: center;
+            display: block;
+            margin: auto;
+            width: 10%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        a:hover{
+            background-color: #3e8e41;
+        }
+        th{
+            margin: 5px;
+            background-color: #0b1741;
+            color: white;
+        }
+        h3{
+            color: #ec2222;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>Artefactos</h1>
+<a href="{% url 'inventario' %}">Ver Inventario</a>
+
+<h2>Crear Nuevo Artefacto</h2>
+<form method="post" action="{% url 'artefacto' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Guardar Artefacto</button>
+</form>
+<h3>{{ error }}</h3>
+<h2>Artefactos</h2>
+<table>
+  <tr>
+    <th>Nombre del artefacto</th>
+    <th>Consumo del artefacto</th>
+    <th>Horas de consumo</th>
+    <th>Acciones</th>
+
+  </tr>
+  {% for artefacto in artefactos %}
+    <tr>
+        <td>{{ artefacto.nombreArtefacto }}</td>
+        <td>{{ artefacto.consumoKwH }}</td>
+        <td>{{ artefacto.horasDeUso }}</td>
+        <td>
+        <form method="post" action="{% url 'eliminarArtefacto' artefacto.id %}">
+          {% csrf_token %}
+          <button type="submit">Eliminar</button>
+        </form>
+        </td>
+  {% endfor %}
+</table>
+</body>
+</html>
