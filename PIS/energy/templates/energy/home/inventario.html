@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario</title>
+</head>
+<body>
+<form method="post" action="{% url 'inventario' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Agregar Artefacto</button>
+</form>
+
+
+
+
+
+<h1>Inventario</h1>
+<table>
+  <tr>
+    <th>Dia</th>
+    <th>Nombre del artefacto</th>
+    <th>Consumo del artefacto</th>
+    <th>Cantidad de Artefactos</th>
+    <th>Consumo de los artefactos</th>
+
+  </tr>
+  {% for inventario in inventarioArtefacto %}
+    <tr>
+        <td>{{ inventario.dia }}</td>
+        <td>{{ inventario.nombre }}</td>
+        <td>{{ inventario.cantidadArtefactos }}</td>
+        <td>{{ inventario.consumoTotalPorArtefacto }}</td>
+        <td>{{ inventario.consumoTotal }}</td>
+
+  {% endfor %}
+</table>
+</body>
+</html>
