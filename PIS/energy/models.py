@@ -2,6 +2,7 @@ from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Artefactos(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     nombreArtefacto = models.CharField(max_length=20)
@@ -9,16 +10,18 @@ class Artefactos(models.Model):
     horasDeUso = models.FloatField(default=0)
 
     def __str__(self):
-        return f"{self.user.username} Artefacto: {self.nombreArtefacto}"
+        return f"{self.nombreArtefacto}"
+
 
 class Inventario(models.Model):
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     artefacto = models.ManyToManyField(Artefactos)
-    dia = models.DateField(default=datetime.now().today())
+    dia = models.DateField(default=datetime.now)  # Usa datetime.now sin el .day
     nombre = models.CharField(max_length=20)
     cantidadArtefactos = models.IntegerField()
     consumoTotalPorArtefacto = models.FloatField(default=0)
     consumoTotal = models.FloatField(default=0)
+
     def CalcularConsumoTotal(self):
         # Inicializar el consumo total
         consumoTotal = 0
@@ -28,15 +31,15 @@ class Inventario(models.Model):
             consumoTotal += artefacto.consumoKwH * artefacto.horasDeUso
         return consumoTotal
 
-
     def guardar(self, *args, **kwargs):
         # Actualizar el valor de consumoTotal antes de guardar
         self.consumoTotal = self.CalcularConsumoTotal()
         self.self
 
     # Eliminar Artefacto
-    def delete(self, *args, **kwargs):
-        super().delete(*args, **kwargs)
+    def borrar(self, *args, **kwargs):
+        self.delete()
+
 
     def __str__(self):
         return f'Inventario para el artefacto: {self.nombre}'

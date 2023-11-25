@@ -3,15 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Inventario</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+
+        }
+
+        th {
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {background-color: #ddd;}
+
+
+
+    </style>
+
 </head>
+
 <body>
-<a href="{% url 'artefacto' %}">Artefactos</a>
+
+<a href="{% url 'cerrarSesion' %}">Cerrar Cesion</a>
 <form method="post" action="{% url 'inventario' %}">
   {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Agregar Artefacto</button>
-</form>
 
+  {{ form.as_p }}
+  <button type="submit">Guardar</button>
+</form>
+<button type="submit" ><a href="{% url 'artefacto' %}">Agregar Artefactos</a></button>
 
 
 
@@ -21,18 +47,27 @@
   <tr>
     <th>Dia</th>
     <th>Nombre del artefacto</th>
-    <th>Consumo del artefacto</th>
+
     <th>Cantidad de Artefactos</th>
+      <th>Consumo del artefacto</th>
     <th>Consumo de los artefactos</th>
+      <th>Acciones</th>
 
   </tr>
   {% for inventario in inventarioArtefacto %}
     <tr>
         <td>{{ inventario.dia }}</td>
-        <td>{{ inventario.nombre }}</td>
+        <td>{{ inventario.id }}</td>
+
         <td>{{ inventario.cantidadArtefactos }}</td>
         <td>{{ inventario.consumoTotalPorArtefacto }}</td>
         <td>{{ inventario.consumoTotal }}</td>
+        <td>
+        <form method="post" action="{% url 'eliminarDiaEnInventario' inventario.id %}">
+          {% csrf_token %}
+          <button type="submit">Eliminar</button>
+        </form>
+        </td>
 
   {% endfor %}
 </table>

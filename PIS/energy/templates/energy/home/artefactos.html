@@ -74,16 +74,17 @@
     </style>
 </head>
 <body>
-<h1>Artefactos</h1>
+
+    <h1>Artefactos</h1>
 <a href="{% url 'inventario' %}">Ver Inventario</a>
 
 <h2>Crear Nuevo Artefacto</h2>
+    <h3>{{ error }}</h3>
 <form method="post" action="{% url 'artefacto' %}">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Guardar Artefacto</button>
 </form>
-<h3>{{ error }}</h3>
 <h2>Artefactos</h2>
 <table>
   <tr>
@@ -106,5 +107,6 @@
         </td>
   {% endfor %}
 </table>
+
 </body>
 </html>
