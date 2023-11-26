@@ -37,8 +37,6 @@ class ArtefactosForm(forms.ModelForm):
 
 
 
-from django import forms
-from .models import Inventario, Artefactos
 
 class InventarioForm(forms.ModelForm):
     artefactos = forms.ModelChoiceField(
@@ -57,7 +55,7 @@ class InventarioForm(forms.ModelForm):
         }
 
         labels = {
-            'artefactos': 'Artefactos',
+            'artefactos': 'Artefacto',
             'cantidadArtefactos': 'Cantidad de Artefactos',
         }
 

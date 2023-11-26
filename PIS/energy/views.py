@@ -90,13 +90,14 @@ def artefacto(request):
             form = ArtefactosForm(request.POST)
             if form.is_valid():
                 artefacto = form.save(commit=False)
-                #artefacto ya existe
-                if Artefactos.objects.filter(nombreArtefacto=artefacto.nombreArtefacto).exists():
+                #artefacto ya existe dentro del usuario
+                if Artefactos.objects.filter(user=request.user, nombreArtefacto=artefacto).exists():
                     return render(request, 'energy/home/artefactos.html', {
                         'form': form,
                         'artefactos': artefactos,
-                        'error': 'El artefacto ya existe'
+                        'error': 'El artefacto ya existe',
                     })
+
                 artefacto.user = request.user
                 artefacto.save()
                 return redirect('artefacto')
@@ -132,15 +133,24 @@ def inventario(request):
 
         if request.method == 'GET':
             form = InventarioForm(user=request.user)
-            form.fields['artefactos'].queryset = Artefactos.objects.filter(user=request.user)
             return render(request, 'energy/home/inventario.html', {
                 'form': form,
                 'inventarioArtefacto': inventarioArtefacto,
             })
         elif request.method == 'POST':
-            form = InventarioForm(request.user,request.POST)
+            form = InventarioForm(request.user, request.POST)
             if form.is_valid():
                 inventario = form.save(commit=False)
+                #guardar los aributos del artefacto en los atributos del inventario
+                ############################
+                artefactoid = InventarioForm(request.user, request.POST).data['artefactos']
+                artefacto = Artefactos.objects.get(pk=artefactoid)
+
+                ############################
+                inventario.nombre = artefacto.nombreArtefacto
+                inventario.horasDeUso = artefacto.horasDeUso
+                inventario.consumoArtefacto = artefacto.consumoKwH
+                inventario.consumoTotal = consumoTotalArtefacto(inventario.consumoArtefacto, inventario.cantidadArtefactos, inventario.horasDeUso)
                 inventario.user = request.user
                 inventario.save()
                 return redirect('inventario')
@@ -156,7 +166,14 @@ def inventario(request):
             'eliminar': eliminarDiaEnInventario,
         })
 
+
 def eliminarDiaEnInventario(request, inventario_id):
     inventario = Inventario.objects.get(pk=inventario_id)
     inventario.delete()
     return redirect('inventario')
+
+
+
+def consumoTotalArtefacto(consumoTotalPorArtefacto, cantidadArtefactos, horasDeUso):
+    consumoTotal = consumoTotalPorArtefacto * cantidadArtefactos * horasDeUso
+    return consumoTotal

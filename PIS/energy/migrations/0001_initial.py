@@ -34,7 +34,6 @@ class Migration(migrations.Migration):
                 ('horasDeUso', models.FloatField(default=0)),
                 ('cantidadArtefactos', models.IntegerField()),
                 ('consumoTotalPorArtefacto', models.FloatField(default=0)),
-                ('consumoTotal', models.FloatField(default=energy.models.Inventario.CalcularConsumoTotal)),
                 ('aartefacto', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='energy.artefactos')),
             ],
         ),

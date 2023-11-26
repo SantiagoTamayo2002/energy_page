@@ -11,9 +11,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='inventario',
-            name='consumoTotal',
-            field=models.FloatField(default=energy.models.Inventario.CalcularConsumoTotal),
-        ),
+
     ]

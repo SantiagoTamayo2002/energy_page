@@ -2,29 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Inventario</title>
     <style>
-        table {
-            border-collapse: collapse;
+        body{
+            background-color: #0b1741;
+        }
+        h1{
+            color: white;
+            text-align: center;
+        }
+        table{
             width: 100%;
-        }
-
-        th, td {
-            text-align: center;
-            padding: 8px;
-
-        }
-
-        th {
-            text-align: center;
-            background-color: #4CAF50;
+            border: 1px solid white;
             color: white;
         }
-        tr:hover {background-color: #ddd;}
+        th{
+            contain: content;
+            background-color: #0b1741;
+            color: white;
+        }
+        td{
+            text-align: center;
+        }
+        button{
+            background-color: #0b1741;
+            color: white;
+            border: 1px solid white;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        a:hover{
+            color: #0b1741;
+            background-color: white;
+        }
 
+        form{
+            background-color: #7F65DB;
+            text-align: center;
+            display: block;
+            margin: auto;
+            width: 50%;
+        }
+        {#Esto hace poder modiicar el lo que se ingresa#}
+        form input{
+            background-color: black;
+            color: #007bff;
+            margin-top: 5px;
+            text-align: justify-all;
+        }
+        {#Esto hace poder modiicar el lo que se ingresa#}
+        form select{
+            background-color: black;
+            color: #5188c4;
+            margin-top: 5px;
+            text-align: justify-all;
+        }
+        {#Esto hace poder modiicar el boton#}
 
+        form button{
+            margin-top: 5px;
+            text-align: center;
+        }
+        {#Esto hace poder modiicar el label#}
+        form label{
+            color: white;
+            background-color: black;
+            margin-top: 5px;
+            text-align: center;
+        }
 
     </style>
+    <title>Inventario</title>
 
 </head>
 
@@ -42,26 +93,26 @@
 
 
 
-<h1>Inventario</h1>
+<h1>Consumo Diario</h1>
 <table>
   <tr>
-    <th>Dia</th>
-    <th>Nombre del artefacto</th>
-
-    <th>Cantidad de Artefactos</th>
+      <th>Dia</th>
+      <th>Nombre del artefacto</th>
+      <th>Cantidad de Artefactos</th>
+      <th>Horas de uso</th>
       <th>Consumo del artefacto</th>
-    <th>Consumo de los artefactos</th>
+      <th>Consumo de los artefactos</th>
       <th>Acciones</th>
 
   </tr>
   {% for inventario in inventarioArtefacto %}
     <tr>
         <td>{{ inventario.dia }}</td>
-        <td>{{ inventario.id }}</td>
-
+        <td>{{ inventario.nombre }}</td>
         <td>{{ inventario.cantidadArtefactos }}</td>
-        <td>{{ inventario.consumoTotalPorArtefacto }}</td>
-        <td>{{ inventario.consumoTotal }}</td>
+        <td>{{ inventario.horasDeUso }}</td>
+        <td>{{ inventario.consumoArtefacto }} kw/h</td>
+        <td>{{ inventario.consumoTotal }} Kw/h</td>
         <td>
         <form method="post" action="{% url 'eliminarDiaEnInventario' inventario.id %}">
           {% csrf_token %}
