@@ -124,6 +124,12 @@
   </tr>
   {% endfor %}
 </table>
+
+    <button type="submit" ><a href="{% url 'informe' %}">Generar Informe</a></button>
+
+
+
+
 <br> <br> <br>
 <h1>Datos del Consumo Mensual</h1>
     <table>
@@ -136,7 +142,7 @@
       {% for consumo in consumoDiarioDelMes %}
         <tr>
             <td>{{ consumo.dia }}</td>
-            <td>{{ consumo.consumoTotal }}</td>
+            <td>{{ consumo.consumoTotal }} Kw/h</td>
 
         </tr>
       {% endfor %}

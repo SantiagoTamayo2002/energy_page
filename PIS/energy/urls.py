@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import home, registro, contactos, nosotros, paginaUsuario, inicioSesion, cerrarSesion, inventario, artefacto, eliminarArtefacto, eliminarDiaEnInventario
+from .views import home, registro, contactos, nosotros, paginaUsuario, inicioSesion, cerrarSesion, inventario, artefacto, eliminarArtefacto, eliminarDiaEnInventario, informe, imprimirPDF
 
 urlpatterns = [
     path('', home, name="home"),
@@ -14,5 +14,7 @@ urlpatterns = [
     path('paginaUsuario/inventario/<int:inventario_id>/', eliminarDiaEnInventario, name='eliminarDiaEnInventario'),
     path('paginaUsuario/inventario/artefactos/', artefacto, name="artefacto"),
     path('paginaUsuario/inventario/artefactos/<int:artefacto_id>/', eliminarArtefacto, name='eliminarArtefacto'),
+    path('paginaUsuario/inventario/informe/', informe, name="informe"),
+    path('paginaUsuario/inventario/informe/pdf', imprimirPDF, name="imprimirPDF"),
 
 ]
