@@ -68,35 +68,49 @@ def inicioSesion(request):
             })
         else:
             login(request, user)
-            return redirect('paginaUsuario')
+            return render(request, 'energy/home/paginaUsuario.html')
+
+
+
+
+
+
 
 def artefacto(request):
-    artefactos = Artefactos.objects.filter(user=request.user)
-    if request.method == 'GET':
-        return render(request, 'energy/home/artefactos.html', {
-            'form': ArtefactosForm,
-            'artefactos': artefactos
-        })
-    else:
-        form = ArtefactosForm(request.POST)
-        if form.is_valid():
-            artefacto = form.save(commit=False)
-            artefactoExistente = artefactos.filter(nombreArtefacto=artefacto.nombreArtefacto).exists()
-            if artefactoExistente:
-                return render(request, 'energy/home/artefactos.html', {
-                    'form': ArtefactosForm(),
-                    'artefactos': artefactos,
-                    'error': 'El artefacto ya existe'
-                })
-            artefacto.user = request.user
-            artefacto.save()
-            return redirect('artefacto')
+    if request.user.is_authenticated:
+        form = ArtefactosForm()
+        artefactos = Artefactos.objects.filter(user=request.user)
+        if request.method == 'GET':
+            form = ArtefactosForm()
+            return render(request, 'energy/home/artefactos.html', {
+                'form': form,
+                'artefactos': artefactos,
+            })
+        elif request.method == 'POST':
+            form = ArtefactosForm(request.POST)
+            if form.is_valid():
+                artefacto = form.save(commit=False)
+                #artefacto ya existe dentro del usuario
+                if Artefactos.objects.filter(user=request.user, nombreArtefacto=artefacto).exists():
+                    return render(request, 'energy/home/artefactos.html', {
+                        'form': form,
+                        'artefactos': artefactos,
+                        'error': 'El artefacto ya existe',
+                    })
 
+                artefacto.user = request.user
+                artefacto.save()
+                return redirect('artefacto')
+            else:
+                # Manejar el caso de un formulario no válido
+                return render(request, 'energy/home/artefactos.html', {
+                    'form': form,
+                    'artefactos': artefactos,
+                })
     return render(request, 'energy/home/artefactos.html', {
-        'form': form,
-        'artefactos': artefactos,
         'eliminar': eliminarArtefacto,
-    })
+        })
+
 def eliminarArtefacto(request, artefacto_id):
     artefacto = Artefactos.objects.get(pk=artefacto_id)
     artefacto.delete()
@@ -115,17 +129,28 @@ def eliminarArtefacto(request, artefacto_id):
 
 def inventario(request):
     if request.user.is_authenticated:
-        inventarioArtefacto = Inventario.objects.all()
+        inventarioArtefacto = Inventario.objects.filter(user=request.user)
 
         if request.method == 'GET':
+            form = InventarioForm(user=request.user)
             return render(request, 'energy/home/inventario.html', {
-                'form': InventarioForm(),
+                'form': form,
                 'inventarioArtefacto': inventarioArtefacto,
             })
         elif request.method == 'POST':
-            form = InventarioForm(request.POST)
+            form = InventarioForm(request.user, request.POST)
             if form.is_valid():
                 inventario = form.save(commit=False)
+                #guardar los aributos del artefacto en los atributos del inventario
+                ############################
+                artefactoid = InventarioForm(request.user, request.POST).data['artefactos']
+                artefacto = Artefactos.objects.get(pk=artefactoid)
+
+                ############################
+                inventario.nombre = artefacto.nombreArtefacto
+                inventario.horasDeUso = artefacto.horasDeUso
+                inventario.consumoArtefacto = artefacto.consumoKwH
+                inventario.consumoTotal = consumoTotalArtefacto(inventario.consumoArtefacto, inventario.cantidadArtefactos, inventario.horasDeUso)
                 inventario.user = request.user
                 inventario.save()
                 return redirect('inventario')
@@ -137,4 +162,18 @@ def inventario(request):
                 })
     else:
         # Manejar el caso en que el usuario no está autenticado
-        return redirect('login')  # Redirigir a tu página de inicio de sesión
+        return render(request, 'energy/home/inventario.html', {
+            'eliminar': eliminarDiaEnInventario,
+        })
+
+
+def eliminarDiaEnInventario(request, inventario_id):
+    inventario = Inventario.objects.get(pk=inventario_id)
+    inventario.delete()
+    return redirect('inventario')
+
+
+
+def consumoTotalArtefacto(consumoTotalPorArtefacto, cantidadArtefactos, horasDeUso):
+    consumoTotal = consumoTotalPorArtefacto * cantidadArtefactos * horasDeUso
+    return consumoTotal
