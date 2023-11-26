@@ -82,6 +82,7 @@
 <body>
 
 <a href="{% url 'cerrarSesion' %}">Cerrar Cesion</a>
+<a href="{% url 'paginaUsuario' %}">Inicio</a>
 <form method="post" action="{% url 'inventario' %}">
   {% csrf_token %}
 
@@ -93,7 +94,7 @@
 
 
 
-<h1>Consumo Diario</h1>
+<h1>Datos del Consumo Diario</h1>
 <table>
   <tr>
       <th>Dia</th>
@@ -119,8 +120,26 @@
           <button type="submit">Eliminar</button>
         </form>
         </td>
-
+    </tr>
+  </tr>
   {% endfor %}
 </table>
+<br> <br> <br>
+<h1>Datos del Consumo Mensual</h1>
+    <table>
+      <tr>
+          <th>Dia</th>
+            <th>Consumo Total</th>
+
+
+      </tr>
+      {% for consumo in consumoDiarioDelMes %}
+        <tr>
+            <td>{{ consumo.dia }}</td>
+            <td>{{ consumo.consumoTotal }}</td>
+
+        </tr>
+      {% endfor %}
+    </table>
 </body>
 </html>
