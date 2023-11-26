@@ -80,23 +80,13 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-  <a href="{% url 'artefacto' %}">artefacto</a>
-=======
 
 <a href="{% url 'cerrarSesion' %}">Cerrar Cesion</a>
->>>>>>> main
 <form method="post" action="{% url 'inventario' %}">
   {% csrf_token %}
 
   {{ form.as_p }}
-<<<<<<< HEAD
-
-  <button type="submit">Agregar Artefacto</button>
-
-=======
   <button type="submit">Guardar</button>
->>>>>>> main
 </form>
 <button type="submit" ><a href="{% url 'artefacto' %}">Agregar Artefactos</a></button>
 
