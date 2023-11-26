@@ -1,30 +1,79 @@
-<h1>Registrate</h1>
-{{ error }}
-<form method="POST">
-    {% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'energy/css/apoyo.css'%}">
+    <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
+    <title>Registro</title>
+</head>
+<body>
+    <div class="navigator">
+        <div class="logo">
+            <img src="{% static 'energy/img/FORANIX-SinFondo2.png' %}" alt="logo">
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="{% url 'home' %}"><i class="fa-solid fa-right-from-bracket"></i>Salir</a></li>
+            </ul>
+        </div>
+    </div>
 
-  {{ form.username.label_tag }}
-  {{ form.username }}
-  <br>
-  {{ form.first_name.label_tag }}
-  {{ form.first_name }}
+    <div class="container">
+        <div class="content">
+            <div class="informacion">
+                <div class="informacion-childs">
+                    <h1>Registrate</h1>
+                    <p>Para poder acceder a la plataforma y utilizar nuestro asombroso servicio</p>
+                    <a href="{% url 'login' %}">Iniciar Sesion</a>
+                </div>   
+            </div>
+            <div class="form-information">
+                <div class="form-information-childs">
+                    <h1>Crear una cuenta</h1>
+                    <div class="icons">
+                        <i class="fa-brands fa-google"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                    </div>
 
-  <br>
-  {{ form.last_name.label_tag }}
-  {{ form.last_name }}
+                    <p class="usar">o usa tu email para registrarte</p>
+                    
+                    {{ error }}
+                    <form method="POST">
+                        {% csrf_token %}
 
-    <br>
-  {{ form.email.label_tag }}
-  {{ form.email }}
-  <br>
+                    <div class="lastname"  aria-placeholder="nombre de usuario">
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                    </div>
 
-  {{ form.password1.label_tag }}
-  {{ form.password1 }}
-  <br>
-
-  {{ form.password2.label_tag }}
-  {{ form.password2 }}
-  <br>
-    <button>Registrarse</button>
-    <a href="{% url 'login' %}">Iniciar Sesion</a>
-</form>
+                    <div class="lastname" aria-placeholder="nombre">
+                        {{ form.first_name.label_tag }}
+                        {{ form.first_name }}
+                    </div>
+                    <div class="lastname" aria-placeholder="apellido">
+                        {{ form.last_name.label_tag }}
+                        {{ form.last_name }}
+                    </div>
+                    <div class="lastname" aria-placeholder="email">
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                    </div>
+                    <div class="lastname" aria-placeholder="contrasenia">
+                        {{ form.password1.label_tag }}
+                        {{ form.password1 }}
+                    </div>
+                    <div class="lastname" aria-placeholder="conformar constrasenia">
+                        {{ form.password2.label_tag }}
+                        {{ form.password2 }}
+                    </div>
+                        <button>Registrarse</button>
+                    </form>
+                </div>   
+            </div>
+        </div>
+    </div>
+</body>
+</html>
