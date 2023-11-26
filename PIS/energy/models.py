@@ -43,19 +43,20 @@ from django.db.models import Sum
 class ConsumoDiarioMensual(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     inventario = models.ForeignKey(Inventario, on_delete=models.SET_NULL, null=True)
-    dia = models.DateField(default=datetime.now)
+    dia = models.DateField(auto_now_add=True)  # Cambiado a auto_now_add para obtener la fecha actual en la creación del objeto
     consumoTotal = models.FloatField(default=0)  # Valor predeterminado actualizado a 0
+    consumoTotalMensual = models.FloatField(default=0)
 
     @classmethod
     def actualizar_consumo_diario(cls, user, dia):
         # Obtener la suma total de consumoTotal para el usuario, inventario y día específicos
         consumo_total = Inventario.objects.filter(user=user, dia=dia).aggregate(Sum('consumoTotal'))['consumoTotal__sum'] or 0
-
+        consumo_total_mensual = ConsumoDiarioMensual.objects.filter(user=user, dia__month=dia.month).aggregate(Sum('consumoTotalMensual'))['consumoTotalMensual__sum'] or 0
         # Actualizar el campo consumoTotal con la suma
         cls.objects.update_or_create(
             user=user,
             dia=dia,
-            defaults={'consumoTotal': consumo_total}
+            defaults={'consumoTotal': consumo_total, 'consumoTotalMensual': consumo_total_mensual}
         )
 
     def __str__(self):

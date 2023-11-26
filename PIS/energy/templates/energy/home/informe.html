@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: black;
+        }
+        .datosUsuario {
+            text-align: left;
+            background-color: rgba(81, 136, 196, 0.76);
+            padding: 20px;
+            margin: 20px;
+            font-size: 10px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px;
+        }
+
+        td, th, .datosConsumo, tr {
+            border: 2px solid #070505;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        img {
+            float: left;
+            margin-right: 10px;
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            padding-block-end: 20px;
+        }
+
+        button {
+            background-color: rgba(81, 136, 196, 0.76);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Estilos específicos para la impresión */
+        @media print {
+            a {
+                display: none; /* Oculta los enlaces al imprimir */
+            }
+            button {
+                display: none; /* Oculta los botones al imprimir */
+            }
+            img {
+                float: left;
+                margin-right: 10px;
+                width: 100px;
+                height: 100px;
+                margin-top: 10px;
+                padding-block-end: 20px;
+            }
+        }
+    </style>
+    <title>Data Analyzer</title>
+</head>
+<body>
+    <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
+    <a href="{% url 'paginaUsuario' %}">Inicio</a>
+    <a href="{% url 'inventario' %}">Consumo Mensual</a>
+
+    <div class="datosUsuario">
+        <img src="{% static 'energy/img/FORANIX-sinFondo2.png' %}" alt="Logo">
+        <h1>Usuario: {{user.username}}</h1>
+        <h2>Nombre: {{user.first_name}}</h2>
+        <h2>Apellido: {{user.last_name}}</h2>
+        <h2>Correo: {{user.email}}</h2>
+    </div>
+
+    <table>
+        <h1 class="datosConsumo">Datos del Consumo Mensual</h1>
+        <tr>
+            <th>Dia</th>
+            <th>Consumo Total</th>
+        </tr>
+        {% for consumo in consumoDiarioDelMes %}
+            <tr>
+                <td>{{ consumo.dia }}</td>
+                <td>{{ consumo.consumoTotal }} Kw/h</td>
+            </tr>
+
+        {% endfor %}
+            <th>Consumo total del mes</th>
+            <th>{{ consumoTotalDelM }} Kw/h</th>
+    </table>
+
+        <button><a href="{% url 'imprimirPDF' %}">Exportar el consumo</a></button>
+
+
+</body>
+</html>
