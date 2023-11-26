@@ -1,0 +1,131 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Livvic, sans-serif;
+}
+
+body{
+    background: #FFF;
+}
+
+.navigator{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: #222222;
+}
+
+.navigator ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.navigator ul li a{
+    text-decoration: none;
+    color: #FFF;
+    font-size: 20px;
+}
+
+.container{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/pantalla2.png);
+    background-size: cover;
+}
+
+.content{
+    display: flex;
+    max-width: 900px;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+}
+
+.informacion{
+    display: flex;
+    width: 30%;
+    height: 100%;
+    background-color: #75d6d6;
+    align-items: center;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.informacion-childs{
+    width: 100%;
+}
+
+.informacion-childs h1{
+    font-size: 40px;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.informacion-childs p{
+    font-size: 15px;
+    color: #222;
+    margin: 0 20px;
+}
+
+.form-information{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+    text-align: center;
+    background-color: #FFF;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.form-information-childs{
+    padding: 0 20px;
+}
+
+.form-information-childs h1{
+    font-size: 40px;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.form-information-childs .icons{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.icons i{
+    margin: 0 20px;
+    border: 3px solid #75d6d6;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.form-information-childs .usar{
+    font-size: 20px;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.form-information-childs form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-information-childs form input{
+    width: 70%;
+    height: 30px;
+    margin-bottom: 20px;
+    border: 2px solid #222;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 15px;
+}
