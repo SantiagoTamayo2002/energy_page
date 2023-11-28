@@ -1,7 +1,14 @@
+
 * {
+<<<<<<< Updated upstream:PIS/energy/static/energy/css/estilos_sobrenosotros2.css
 	font-family: 'rosarivo', Courier, monospace;
     font-size: 20px;
     box-sizing: border-box;
+=======
+<<<<<<< Updated upstream:PIS/energy/static/energy/css/estilo_sobreNosotros.css
+	font-weight: 70;
+	font-size: 20px;
+>>>>>>> Stashed changes:PIS/energy/static/energy/css/estilo_sobreNosotros.css
 }
 
 h1 {
@@ -14,14 +21,53 @@ h1 {
 	margin-top: 20px;
 	width: 80%;
 	height: 80%;
+=======
+	font-family: 'Livvic', Courier, monospace;
+    margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+a {
+	text-decoration: none;
+	outline: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.contenedor2 {
+	max-width: 1000px;
+	width: 90%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+}
+main {
+	min-height: 100vh;
+}
+
+main .contenido p {
+	margin-bottom: 20px;
+	color: white;
+    line-height: 1.6;
+    font-size: 1.2rem;
+>>>>>>> Stashed changes:PIS/energy/static/energy/css/estilos_sobrenosotros2.css
 	padding: 10px;
 	text-align: justify;
     background-color:white;
 }
 
+<<<<<<< Updated upstream:PIS/energy/static/energy/css/estilos_sobrenosotros2.css
 .contenedor{
     height: 600px;
     background-color:white;
+=======
+<<<<<<< Updated upstream:PIS/energy/static/energy/css/estilo_sobreNosotros.css
+.boton-modal{
+	padding: 5px;
+	background-color:#fff ;
+>>>>>>> Stashed changes:PIS/energy/static/energy/css/estilo_sobreNosotros.css
 }
 
 .perfil1,.perfil2,.perfil3,.perfil4,.perfil5{
@@ -99,9 +145,290 @@ h1 {
 }
 
 .content-modal p{
+<<<<<<< Updated upstream:PIS/energy/static/energy/css/estilos_sobrenosotros2.css
     padding: 15px 0px;
     border-top: 1px solid #dbdbdb;
     border-bottom: 1px solid #dbdbdb;
+=======
+	padding: 15px 0px;
+	border-top: 1px solid #dbdbdb;
+	border-bottom: 1px solid #dbdbdb;
+=======
+main .contenido .titulo {
+    color: white;
+	font-weight: normal;
+	padding-top: 40px;
+    font-family: 'Livvic', Courier, monospace;
+    text-align: center;
+    font-size: 2.8rem;
+    line-height: 1.2em;
+}
+
+main .contenido .fecha {
+	font-size: 14px;
+	color: #ffe26d;
+}
+#correo {
+	font-size:14px;
+	font-family: 'Livvic';
+	color: #f2a60c;
+}
+
+/* * ============================== */
+/* * ============ ASIDE =========== */
+/* * ============================== */
+
+aside {
+	min-width: 30%;
+	margin: 40px 20px 20px 10px;
+	height: 0%;
+	opacity:0.8;
+	padding: 20px;
+	border-radius: 3px;
+    position: sticky;
+    top: 20PX;
+}
+
+aside .titulo {
+    font-family: 'Livvic', Courier, monospace;
+	font-weight: normal;
+	font-size: 24px;
+	margin-bottom: 20px;
+	color: white;
+}
+
+aside .indice a {
+	display: block;
+	margin-bottom: 10px;
+	color: black;
+}
+
+body {
+    background-color: black;
+    
+}
+
+
+
+
+
+
+
+
+/* * ============================== */
+/* * ========== INTEGRANTES ============ */
+/* * ============================== */
+.contenedor{
+    height: 90%;
+    background-color:#ffe26d;
+    padding: 50px 10%;
+    border-radius: 10px;
+}
+
+.perfil1,.perfil2,.perfil3,.perfil4,.perfil5{
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 250px;
+    width: 250px;
+    margin-left: 38px;
+    margin-top: 20px;
+    align-items: center;
+    border-radius: 5%;
+    box-shadow: 5px 5px 10px #232323d3;
+    contain: content;
+}
+.perfil1{
+    background-image: url(../img/christian.jpg);
+}
+.perfil2{
+	background-image: url(../img/esteban.jpg);
+}
+.perfil3{
+	background-image:url(../img/santiago.jpg) ;
+}
+.perfil1,.perfil2,.perfil3,.perfil4,.perfil5:hover{
+    cursor: pointer;
+}
+.imagenChiquita{
+    height: 35px;width: 35px;
+    background-color: #ffe26d;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.texto{
+    height: 35px;
+    width: 250px;
+    margin-left: 35px;
+    margin-top: 86%;
+    padding-top: 5px;
+    padding-left: 5px;
+    background-color: black;
+    color: #ffe26d;
+}
+
+.texto:hover{
+    color: black;
+    background-color: #ffe26d;
+    transition: 0.8s;
+}
+
+
+
+/*::: VENTANA FLOTANTE ::*/
+#btn-perfil1, #btn-perfil2, #btn-perfil3, #btn-perfil4, #btn-perfil5 {
+    display: none;
+}
+
+.container-modal,.container-modal2,.container-modal3, .container-modal4, .container-modal5{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0; 
+    left:0;
+    background-color: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+#btn-perfil1:checked ~ .container-modal{
+    display: flex;
+}
+#btn-perfil2:checked ~ .container-modal2{
+    display: flex;
+}
+#btn-perfil3:checked ~ .container-modal3{
+    display: flex;
+}
+#btn-perfil4:checked ~ .container-modal4{
+    display: flex;
+}
+#btn-perfil5:checked ~ .container-modal5{
+    display: flex;
+}
+
+
+
+
+.contenedor-logos{
+	margin: 0;
+	position:absolute;
+	width: 50%;
+	top: 70%;
+	z-index: 100;
+}
+
+i{
+	margin: 10px;
+	font-size: 20px;
+	color: white;
+	border-radius: 50%;
+	padding: 15px;
+	box-shadow: 0px 5px 10px rgb(0, 0, 0, .35);
+	transition: .3s ease;
+}
+
+.fa-twitter:hover{
+	background-color: #1DA1F2;
+	color: white;
+	box-shadow: 0 0 15px #1DA1F2,
+				0 0 45px #1DA1F2,
+				0 0 75px #1DA1F2,
+				0 0 115px #1DA1F2;
+}
+.fa-facebook:hover{
+	background-color: #3b5998;
+	color: white;
+	box-shadow: 0 0 15px #3b5998,
+				0 0 45px #3b5998 ,
+				0 0 75px #3b5998 ,
+				0 0 115px #3b5998;
+}
+.fa-instagram:hover{
+	background-color: #bc2a8d;
+	color: white;
+	box-shadow: 0 0 15px #bc2a8d,
+				0 0 45px #bc2a8d,
+				0 0 75px #bc2a8d,
+				0 0 115px #bc2a8d;
+}
+
+.fa-github:hover{
+	background-color: #bd2c00;
+	color: white;
+	box-shadow: 0 0 15px #bd2c00,
+				0 0 45px #bd2c00,
+				0 0 75px #bd2c00,
+				0 0 115px #bd2c00;
+}
+.fa-whatsapp:hover{
+	background-color: #25d366;
+	color: white;
+	box-shadow: 0 0 15px #25d366,
+				0 0 45px #25d366,
+				0 0 75px #25d366,
+				0 0 115px #25d366;
+}
+.fa-arrow-up:hover{
+	background-color:  #f2a60c;
+	color: white;
+	box-shadow: 0 0 15px  #f2a60c,
+				0 0 45px  #f2a60c,
+				0 0 75px  #f2a60c,
+				0 0 115px #f2a60c;
+}
+.fa-school:hover{
+	background-color:  #f2a60c;
+	color: white;
+	box-shadow: 0 0 15px  #f2a60c,
+				0 0 45px  #f2a60c,
+				0 0 75px  #f2a60c,
+				0 0 115px #f2a60c;
+}
+.fa-envelope:hover{
+	background-color:  #f2a60c;
+	color: white;
+	box-shadow: 0 0 15px  #f2a60c,
+				0 0 45px  #f2a60c,
+				0 0 75px  #f2a60c,
+				0 0 115px #f2a60c;
+}
+
+
+
+
+
+
+.content-modal{
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    z-index: 100;
+	opacity: 0.9;
+}
+.content-modal h2{
+    margin-bottom: 15px;
+	color: #ffe26d;
+	
+}
+
+.content-modal a{
+    display: block;
+	margin-bottom: 10px;
+	color: black;
+}
+.content-modal p{
+    padding: 15px 0px;
+    border-top: 1px solid #ffe26d;
+    border-bottom: 1px solid #ffe26d;
+    text-align: justify;
+>>>>>>> Stashed changes:PIS/energy/static/energy/css/estilos_sobrenosotros2.css
+>>>>>>> Stashed changes:PIS/energy/static/energy/css/estilo_sobreNosotros.css
 }
 
 .content-modal .btn-cerrar{
@@ -111,6 +438,7 @@ h1 {
     justify-content: flex-end;
 }
 
+<<<<<<< Updated upstream:PIS/energy/static/energy/css/estilos_sobrenosotros2.css
 .content-modal .btn-cerrar label{
     padding: 7px 10px;
     background-color: #5488a3;
@@ -122,16 +450,60 @@ h1 {
 
 .content-modal .btn-cerrar label:hover{
     background-color: #185E83;
+=======
+<<<<<<< Updated upstream:PIS/energy/static/energy/css/estilo_sobreNosotros.css
+.persona1, .persona2 {
+	margin: 10px;
+	width: 300px;
+	height: 200px;
+	
+	text-align: center;
+	padding: 10px;
+	background:#dddd;
+	display: inline-block;
+	}
+
+@media only screen and (min-width: 800px) {
+	div {
+		display: block;
+		width: 100%;
+=======
+.content-modal .btn-cerrar label{
+    padding: 7px 10px;
+    background-color: #ffe26d;
+    color: black;
+    border-radius: 4px;
+    cursor:pointer;
+    transition: all 300ms ease;
+}
+
+.content-modal .btn-cerrar label:hover{
+    background-color: black;
+	color: #ffe26d;
+    cursor: pointer;
+>>>>>>> Stashed changes:PIS/energy/static/energy/css/estilo_sobreNosotros.css
 }
 .cerrar-modal{
     width: 100%;
     height: 100vh;
     position: absolute;
     top:0; left:0;
+<<<<<<< Updated upstream:PIS/energy/static/energy/css/estilos_sobrenosotros2.css
     z-index: 1;
+=======
+    z-index: -1;
+>>>>>>> Stashed changes:PIS/energy/static/energy/css/estilo_sobreNosotros.css
 }
 @media screen and (max-width:800px) {
     .content-modal{
         width: 90%;
     }
+<<<<<<< Updated upstream:PIS/energy/static/energy/css/estilos_sobrenosotros2.css
+=======
+    
+	main .contenedor {
+		flex-direction: column;
+>>>>>>> Stashed changes:PIS/energy/static/energy/css/estilos_sobrenosotros2.css
+	}
+>>>>>>> Stashed changes:PIS/energy/static/energy/css/estilo_sobreNosotros.css
 }
