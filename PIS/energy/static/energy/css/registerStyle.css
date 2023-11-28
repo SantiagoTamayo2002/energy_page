@@ -1,0 +1,141 @@
+body {
+    font-family:sans-serif;
+    background: url(../img/fondo_login.jpg); /* Establecer la imagen de fondo y color de fondo */
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Altura completa de la ventana */
+  }
+
+  .navigator{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    height: 30px;
+}
+
+.logo{
+    height: 100%;
+}
+
+.logo img{
+    position: absolute;
+    transform: translate(-40%, -35%);
+    height: 130px;
+}
+
+.navigator ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 20px;
+    transition: all 0.9s ease;
+}
+
+.navigator ul li:hover{
+    transform: scale(1.2);
+}
+
+.navigator ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    margin-right: 10px;
+    font-weight: 600;
+    transition: all 0.9s ease;
+}
+
+.navigator ul li a i{
+    margin-right: 5px;
+}
+
+.contenedor-padre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 91.5vh;
+}
+  /* Estilo del contenedor principal */
+  .login-box {
+    width: 300px;
+    background-color: rgba(129, 170, 199, 0.45); /* Color de fondo del contenedor */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    text-align: center;
+  }
+  
+  /* Estilo del encabezado */
+  .login-box h1 {
+    color: #101010; /* Color del texto del encabezado */
+    font-weight: 600;
+  }
+  
+  /* Estilo del formulario */
+  .login-box form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  
+  /* Estilo de las etiquetas del formulario */
+  .login-box label {
+    margin-bottom: 8px;
+  }
+  
+  /* Estilo de los campos de entrada del formulario */
+  .login-box input {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #290303;
+    border-radius: 4px;
+  }
+  
+  /* Estilo del botón de envío del formulario */
+  .login-box button {
+    background-color: #101010; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  /* Cambio de color del botón al pasar el ratón sobre él */
+  .login-box button:hover {
+    background-color: #fafafa;
+    color: #101010;
+  }
+  
+  /* Estilo del enlace para registrarse */
+  .login-box a {
+    color: #101010;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  /* Cambio de estilo del enlace al pasar el ratón sobre él */
+  .login-box a:hover {
+    text-decoration: underline;
+  }
+
+  .imagen_presentacion{
+    position: relative;
+    background-color: black;
+    height: 70px;
+    width: 70px;
+    margin-left: 120px;
+    border-radius: 100%;
+  }
+
+  .imagen_presentacion img{
+    width: 65px;
+    height: 65PX;
+    border-radius: 100%;
+  }
