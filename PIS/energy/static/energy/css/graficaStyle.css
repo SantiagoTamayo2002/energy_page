@@ -1,32 +1,11 @@
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    color: white;
-    background-color: black;
-}
-.grafica {
+.graficaProyeccion {
     contain: content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 110vh;
+    width: auto; /*  ancho de la pantalla */
+    height: 45vh; /* Altura ajustada automáticamente */
     min-height: 350px;
     background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-    overflow: hidden;
-}
-
-
-.grafica h2 {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 10px;  /
-}
-
-.grafica-content {
-    padding: 10px;  /
 }

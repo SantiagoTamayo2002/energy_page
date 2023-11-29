@@ -9,16 +9,22 @@
 </head>
 <body>
 <h1>Proyecciones</h1>
-    <div class="container">
-        <div class="row my-4">
-            <div class="col-sm-12 col-md-6 mx-auto">
-                <div id="grafica" class="grafica"></div>
-            </div>
-        </div>
+
+    <div >
+        <div id="graficaConsumoDiario" class="graficaProyeccion"></div>
     </div>
+    <br><br>
+    <div>
+        <div id="graficaProyeccion" class="graficaProyeccion"></div>
+    </div>
+    <br><br>
+    <div>
+        <div id="gArtefactoMasUsado" class="graficaProyeccion"></div>
+    </div>
+
     <!-- Apache ECharts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
-    <!-- jQuery -->
+    <!-- Tu archivo de script para las gráficas -->
     <script src="{% static 'energy/js/grafica.js' %}"></script>
 </body>
 </html>
