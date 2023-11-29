@@ -1,0 +1,11 @@
+.graficaProyeccion {
+    contain: content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: auto; /*  ancho de la pantalla */
+    height: 45vh; /* Altura ajustada automáticamente */
+    min-height: 350px;
+    background: #fff;
+}
