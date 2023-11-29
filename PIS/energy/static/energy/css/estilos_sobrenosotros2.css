@@ -36,7 +36,7 @@ main .contenido p {
     font-size: 1.2rem;
 	padding: 10px;
 	text-align: justify;
-    background-color:white;
+    background-color: #000000;
 }
 
 .contenedor{
