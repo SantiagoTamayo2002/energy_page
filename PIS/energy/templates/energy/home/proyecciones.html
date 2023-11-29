@@ -8,18 +8,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Proyecciones</h1>
+<a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
+<a href="{% url 'paginaUsuario' %}">Inicio</a>
+<a href="{% url 'proyecciones' %}">Ver Consumo</a>
+<a href="{% url 'inventario' %}">Inventario</a>
+<a href="{% url 'informe' %}">Generar Informe</a>
 
+<h2>Consumo diario</h2>
     <div >
-        <div id="graficaConsumoDiario" class="graficaProyeccion"></div>
+        <div id="graficoConsumoActual" class="graficaProyeccion"></div>
     </div>
-    <br><br>
+<h2>Proyecciones</h2>
+<h3>Consumo semanal</h3>
     <div>
-        <div id="graficaProyeccion" class="graficaProyeccion"></div>
+        <div id="graficoProyeccionSemanal" class="graficaProyeccion"></div>
     </div>
-    <br><br>
+<h3>Consumo mensual</h3>
     <div>
-        <div id="gArtefactoMasUsado" class="graficaProyeccion"></div>
+        <div id="graficoProyeccionMensual" class="graficaProyeccion"></div>
+    </div>
+<h3>Los 5 artefactos más usados</h3>
+    <div>
+        <div id="graficoArtefactoMasUsado" class="circulo"></div>
     </div>
 
     <!-- Apache ECharts -->

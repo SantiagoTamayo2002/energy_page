@@ -1,47 +1,64 @@
-const graficoConsumoDiario = async () => {
+// Función genérica para inicializar gráficos
+const initChart = async (chartId, fetchDataFunction) => {
     try {
-        const response = await fetch('http://127.0.0.1:8000/paginaUsuario/proyecciones/graficoConsumoDiario');
-        return await response.json();
+        const myChart = echarts.init(document.getElementById(chartId));
+        const data = await fetchDataFunction();
+
+        if (!data) {
+            console.error(`No se recibieron datos para el gráfico ${chartId}`);
+            return;
+        }
+        myChart.setOption(data);
+        myChart.resize();
+    } catch (error) {
+        console.error(`Error al inicializar el gráfico ${chartId}:`, error);
+    }
+};
+
+const graficoConsumoActual = async () => {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/paginaUsuario/proyecciones/graficoConsumoActual');
+        const data = await response.json();
+        console.log(data);  // Añade esto para depurar
+        return data;
     } catch (ex) {
         alert(ex);
     }
 };
-
-const proyeccion = async () => {
+const graficoProyeccionSemanal = async () => {
     try {
-        const response = await fetch('http://127.0.0.1:8000/paginaUsuario/proyecciones/graficoProyeccion');
-        return await response.json();
+        const response = await fetch('http://127.0.0.1:8000/paginaUsuario/proyecciones/graficoProyeccionSemanal');
+        const data = await response.json();
+        console.log(data);  // Añade esto para depurar
+        return data;
     } catch (ex) {
         alert(ex);
     }
 }
-const graficaArtefactoMasUsado = async () => {
+const graficoProyeccionMensual = async () => {
     try {
-        const response = await fetch('http://127.0.0.1:8000/paginaUsuario/proyecciones/gArtefactoMasUsado');
-        return await response.json();
+        const response = await fetch('http://127.0.0.1:8000/paginaUsuario/proyecciones/graficoProyeccionMensual');
+        const data = await response.json();
+        console.log(data);  // Añade esto para depurar
+        return data;
     } catch (ex) {
         alert(ex);
     }
 }
-const initGraficaConsumoDiario = async () => {
-    const myChart = echarts.init(document.getElementById('graficaConsumoDiario'));
-    myChart.setOption(await graficoConsumoDiario());
-    myChart.resize();
-};
-
-const initGraficaProyeccion = async () => {
-    const myChart = echarts.init(document.getElementById('graficaProyeccion'));
-    myChart.setOption(await proyeccion());
-    myChart.resize();
-};
-const initGraficaArtefactoMasUsado = async () => {
-    const myChart = echarts.init(document.getElementById('gArtefactoMasUsado'));
-    myChart.setOption(await graficaArtefactoMasUsado());
-    myChart.resize();
+const graficoArtefactoMasUsado = async () => {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/paginaUsuario/proyecciones/graficoArtefactoMasUsado');
+        const data = await response.json();
+        console.log(data);  // Añade esto para depurar
+        return data;
+    } catch (ex) {
+        alert(ex);
+    }
 }
-
+// Inicializar gráficas al cargar la página en el navegador
 window.addEventListener('load', async () => {
-    await initGraficaConsumoDiario();
-    await initGraficaProyeccion();
-    await initGraficaArtefactoMasUsado();
+    await initChart('graficoConsumoActual', graficoConsumoActual);
+    await initChart('graficoProyeccionSemanal', graficoProyeccionSemanal);
+    await initChart('graficoProyeccionMensual', graficoProyeccionMensual);
+    await initChart('graficoArtefactoMasUsado', graficoArtefactoMasUsado);
 });

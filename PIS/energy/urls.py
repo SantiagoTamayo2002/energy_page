@@ -1,7 +1,7 @@
 
 from django.urls import path
 from .views import home, registro, contactos, nosotros, paginaUsuario, inicioSesion, cerrarSesion, inventario, artefacto, informe, imprimirPDF, proyecciones
-from .calculadora import eliminarDiaEnInventario, eliminarArtefacto, graficoConsumoDiario, graficoProyeccion, gArtefactoMasUsado
+from .calculadora import eliminarDiaEnInventario, eliminarArtefacto, graficoConsumoActual, graficoProyeccionMensual, graficoArtefactoMasUsado, graficoProyeccionSemanal
 urlpatterns = [
     path('', home, name="home"),
     path('login/', inicioSesion, name="login"),
@@ -17,9 +17,9 @@ urlpatterns = [
     path('paginaUsuario/inventario/informe/', informe, name="informe"),
     path('paginaUsuario/inventario/informe/pdf', imprimirPDF, name="imprimirPDF"),
     path('paginaUsuario/proyecciones/', proyecciones, name="proyecciones"),
-    path('paginaUsuario/proyecciones/graficoConsumoDiario', graficoConsumoDiario, name="generarGrafico"),
-    path('paginaUsuario/proyecciones/graficoProyeccion', graficoProyeccion, name="generarGraficoProyeccion"),
-    path('paginaUsuario/proyecciones/gArtefactoMasUsado', gArtefactoMasUsado, name="gArtefactoMasUsado"),
-
+    path('paginaUsuario/proyecciones/graficoConsumoActual', graficoConsumoActual, name="graficoConsumoActual"),
+    path('paginaUsuario/proyecciones/graficoProyeccionSemanal', graficoProyeccionSemanal, name="graficoProyeccionSemanal"),
+    path('paginaUsuario/proyecciones/graficoProyeccionMensual', graficoProyeccionMensual, name="graficoProyeccionMensual"),
+    path('paginaUsuario/proyecciones/graficoArtefactoMasUsado', graficoArtefactoMasUsado, name="graficoArtefactoMasUsado"),
 
 ]
