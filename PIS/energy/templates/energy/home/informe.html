@@ -68,6 +68,9 @@
             background-color: #4CAF50;
             color: white;
         }
+        tr:nth-child(even){
+            background-color: #c6b8f3;
+        }
 
         /* Estilos específicos para la impresión */
         @media print {
@@ -105,10 +108,10 @@
     <table>
         <h1 class="datosConsumo">Datos del Consumo Mensual</h1>
         <tr>
-            <th>Dia</th>
+            <th>Fecha</th>
             <th>Consumo Total</th>
         </tr>
-        {% for consumo in consumoDiarioDelMes %}
+        {% for consumo in consumoDiario %}
             <tr>
                 <td>{{ consumo.dia }}</td>
                 <td>{{ consumo.consumoTotal }} Kw/h</td>
@@ -116,7 +119,7 @@
 
         {% endfor %}
             <th>Consumo total del mes</th>
-            <th>{{ consumoTotalDelM }} Kw/h</th>
+            <th>{{ consumoTotalMensual }} Kw/h</th>
     </table>
 
         <button><a href="{% url 'imprimirPDF' %}">Exportar el consumo</a></button>

@@ -48,16 +48,21 @@ class ConsumoDiarioMensual(models.Model):
     consumoTotalMensual = models.FloatField(default=0)
 
     @classmethod
-    def actualizar_consumo_diario(cls, user, dia):
+    def actualizarConsumoDiario(cls, user, dia, total):
         # Obtener la suma total de consumoTotal para el usuario, inventario y día específicos
-        consumo_total = Inventario.objects.filter(user=user, dia=dia).aggregate(Sum('consumoTotal'))['consumoTotal__sum'] or 0
-        consumo_total_mensual = ConsumoDiarioMensual.objects.filter(user=user, dia__month=dia.month).aggregate(Sum('consumoTotalMensual'))['consumoTotalMensual__sum'] or 0
+        mesActual = datetime.now().month
+        consumo_total = Inventario.objects.filter(user=user, dia=dia, dia__month=mesActual).aggregate(Sum('consumoTotal'))['consumoTotal__sum'] or 0
+        consumo_mensual = total
         # Actualizar el campo consumoTotal con la suma
         cls.objects.update_or_create(
             user=user,
             dia=dia,
-            defaults={'consumoTotal': consumo_total, 'consumoTotalMensual': consumo_total_mensual}
+            defaults={
+                'consumoTotal': consumo_total,
+                'consumoTotalMensual': consumo_mensual
+            }
         )
+
 
     def __str__(self):
         return f'Consumo Diario {self.user}: {self.dia}'

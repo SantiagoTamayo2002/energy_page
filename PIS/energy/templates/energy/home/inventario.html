@@ -16,12 +16,17 @@
             color: white;
         }
         th{
+
             contain: content;
             background-color: #0b1741;
             color: white;
         }
         td{
+
             text-align: center;
+        }
+        tr:nth-child(even){
+            background-color: #7F65DB;
         }
         button{
             background-color: #0b1741;
@@ -122,23 +127,23 @@
 
 
 
-
-<br> <br> <br>
-<h1>Datos del Consumo Mensual</h1>
-    <table>
-      <tr>
-          <th>Dia</th>
-            <th>Consumo Total</th>
-
-
-      </tr>
-      {% for consumo in consumoDiarioDelMes %}
-        <tr>
-            <td>{{ consumo.dia }}</td>
-            <td>{{ consumo.consumoTotal }} Kw/h</td>
-
-        </tr>
-      {% endfor %}
-    </table>
+{##}
+{#<br> <br> <br>#}
+{#<h1>Datos del Consumo Mensual</h1>#}
+{#    <table>#}
+{#      <tr>#}
+{#          <th>Dia</th>#}
+{#            <th>Consumo Total</th>#}
+{##}
+{##}
+{#      </tr>#}
+{#        {#}
+{#      {% for consumo in consumoDiario %}#}
+{#        <tr>#}
+{#            <td>{{ consumo.dia }}</td>#}
+{#            <td>{{ consumo.consumoTotal }} Kw/h</td>#}
+{#        </tr>#}
+{#      {% endfor %}#}
+{#    </table>#}
 </body>
 </html>
