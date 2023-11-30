@@ -1,30 +1,4 @@
 * {
-<<<<<<< Updated upstream
-	font-weight: 70;
-	font-size: 20px;
-}
-h1 {
-	text-align: center;
-}
-.contenido{
-	margin:auto;
-	margin-top: 20px;
-	width: 80%;
-	height: 80%;
-	padding: 10px;
-	text-align: justify;
-    background-color: aqua;
-	
-}
-
-.contenedor{
-    height: 750px;
-}
-
-.perfil{
-    background-color: #000;
-    color: #fafafa;
-=======
 	font-family: 'Livvic', Courier, monospace;
     margin: 0;
 	padding: 0;
@@ -133,18 +107,10 @@ body {
 .perfil1,.perfil2,.perfil3,.perfil4,.perfil5{
     background-size: cover;
     background-repeat: no-repeat;
->>>>>>> Stashed changes
     display: inline-block;
     height: 250px;
     width: 250px;
     margin-left: 38px;
-<<<<<<< Updated upstream
-    align-items: center;
-    border: 4px solid #fafafa;
-    border-radius: 100%;
-
-}
-=======
     margin-top: 20px;
     align-items: center;
     border-radius: 5%;
@@ -152,13 +118,19 @@ body {
     contain: content;
 }
 .perfil1{
-    background-image: url("img/christian.jpg");
+    background-image: url(..img/christian.jpg);
 }
 .perfil2{
-	background-image: url("img/esteban.jpg");
+	background-image: url(..img/esteban.jpg);
 }
 .perfil3{
-	background-image:url("img/santiago.jpg") ;
+	background-image:url(..img/santiago.jpg);
+}
+.perfil4{
+    background-image:url(..img/bradley.jpg);
+}
+.perfil5{
+    background-image:url(..img/eber.jpg);
 }
 .perfil1,.perfil2,.perfil3,.perfil4,.perfil5:hover{
     cursor: pointer;
@@ -379,4 +351,3 @@ i{
 		flex-direction: column;
 	}
 }
->>>>>>> Stashed changes
