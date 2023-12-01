@@ -1,0 +1,27 @@
+/* FILEPATH: /c:/Users/ASUS/Desktop/Repositorio/energy_page/PIS/energy/static/energy/css/descripcionPaginaInicio.css */
+
+/* Estilo por defecto para el div */
+.description {
+    color: white;
+    font-family: Arial, sans-serif;
+    text-shadow: 2px 2px 4px rgb(0, 0, 0);
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .description {
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .description {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .description {
+        font-size: 18px;
+    }
+}
