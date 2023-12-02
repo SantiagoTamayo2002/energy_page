@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint.text.fonts import FontConfiguration
 from weasyprint import HTML
-from .calculadora import calcularConsumoTotal, eliminarDiaEnInventario, eliminarArtefacto, calcularConsumoTotalMensual
+from .calculadora import calcularConsumoTotal, eliminarDiaEnInventario, eliminarArtefacto, calcularConsumoTotalMensual , eliminarInventario
 
 
 # Create your views here.
@@ -126,6 +126,7 @@ def inventario(request):
                 'form': form,
                 'inventarioArtefacto': inventarioArtefacto,
                 'consumoDiario': consumoDiarioDelMes,
+                'eliminarInventario': eliminarInventario,
             })
         elif request.method == 'POST':
             form = InventarioForm(request.user, request.POST)
@@ -154,7 +155,7 @@ def inventario(request):
                     'form': form,
                     'inventarioArtefacto': inventarioArtefacto,
                     'consumoDiario': consumoDiarioDelMes,
-
+                    'eliminarInventario': eliminarInventario,
                 })
     else:
         # Manejar el caso en que el usuario no está autenticado

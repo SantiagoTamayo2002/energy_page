@@ -38,6 +38,13 @@ def eliminarDiaEnInventario(request, inventario_id):
     return redirect('inventario')
 
 
+def eliminarInventario(request):
+    inventario = Inventario.objects.filter(user=request.user)
+    consumo = ConsumoDiarioMensual.objects.filter(user=request.user)
+    consumo.delete()
+    inventario.delete()
+    return redirect('inventario')
+
 def calcularConsumoPolinomio(request, dias):
     resultado_actual = obtenerPolinomio(request)
     funcion = resultado_actual['funcion_polinomio']
@@ -470,3 +477,4 @@ def graficoArtefactoMasUsado(request):
     }
 
     return JsonResponse(grafica)
+
