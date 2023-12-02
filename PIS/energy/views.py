@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint.text.fonts import FontConfiguration
 from weasyprint import HTML
-from .calculadora import calcularConsumoTotal, eliminarDiaEnInventario, eliminarArtefacto, calcularConsumoTotalMensual
+from .calculadora import calcularConsumoTotal, eliminarDiaEnInventario, eliminarArtefacto, calcularConsumoTotalMensual , eliminarInventario
 
 
 # Create your views here.
@@ -126,35 +126,46 @@ def inventario(request):
                 'form': form,
                 'inventarioArtefacto': inventarioArtefacto,
                 'consumoDiario': consumoDiarioDelMes,
+                'eliminarInventario': eliminarInventario,
             })
         elif request.method == 'POST':
             form = InventarioForm(request.user, request.POST)
             if form.is_valid():
+
                 inventario = form.save(commit=False)
-                #guardar los aributos del artefacto en los atributos del inventario
-                ############################
+
+                # Obtén el ID del artefacto desde el formulario
                 artefactoid = InventarioForm(request.user, request.POST).data['artefactos']
                 artefacto = Artefactos.objects.get(pk=artefactoid)
 
-                ############################
-                inventario.nombre = artefacto.nombreArtefacto
-                inventario.horasDeUso = artefacto.horasDeUso
-                inventario.consumoArtefacto = artefacto.consumoKwH
-                inventario.consumoTotal = calcularConsumoTotal(inventario.consumoArtefacto, inventario.cantidadArtefactos, inventario.horasDeUso)
-                inventario.user = request.user
-                inventario.save()
+                # Verifica si ya existe un inventario para el usuario, el día y el artefacto
+                if Inventario.objects.filter(user=request.user, dia=inventario.dia, nombre=artefacto).exists():
+                    return render(request, 'energy/home/inventario.html', {
+                        'form': form,
+                        'inventarioArtefacto': inventarioArtefacto,
+                        'consumoDiario': consumoDiarioDelMes,
+                        'eliminarInventario': eliminarInventario,
+                        'error': 'El artefacto ya ha sido hagregado el dia de hoy, por favor si require cambiar la cantidad de su artefacto, elimine eh ingrese una nueva cantidad'
+                    })
+                else:
+                    inventario.nombre = artefacto.nombreArtefacto
+                    inventario.horasDeUso = artefacto.horasDeUso
+                    inventario.consumoArtefacto = artefacto.consumoKwH
+                    inventario.consumoTotal = calcularConsumoTotal(inventario.consumoArtefacto, inventario.cantidadArtefactos, inventario.horasDeUso)
+                    inventario.user = request.user
+                    inventario.save()
+                    ######################
+                    total = calcularConsumoTotalMensual(request.user)
+                    ConsumoDiarioMensual.actualizarConsumoDiario(request.user, inventario.dia, total)
                 ######################
-                total = calcularConsumoTotalMensual(request.user)
-                ConsumoDiarioMensual.actualizarConsumoDiario(request.user, inventario.dia, total)
-                ######################
-                return redirect('inventario')
+                    return redirect('inventario')
             else:
                 # Manejar el caso de un formulario no válido
                 return render(request, 'energy/home/inventario.html', {
                     'form': form,
                     'inventarioArtefacto': inventarioArtefacto,
                     'consumoDiario': consumoDiarioDelMes,
-
+                    'eliminarInventario': eliminarInventario,
                 })
     else:
         # Manejar el caso en que el usuario no está autenticado
