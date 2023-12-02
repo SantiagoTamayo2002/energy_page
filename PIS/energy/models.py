@@ -58,8 +58,8 @@ class ConsumoDiarioMensual(models.Model):
             user=user,
             dia=dia,
             defaults={
-                'consumoTotal': consumo_total,
-                'consumoTotalMensual': consumo_mensual
+                'consumoTotal': consumo_total.__round__(2),
+                'consumoTotalMensual': consumo_mensual.__round__(2)
             }
         )
 
