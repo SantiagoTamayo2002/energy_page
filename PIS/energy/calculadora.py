@@ -242,6 +242,7 @@ def baseProyeccion(consumo, dia):
             },
         },
         'series': [
+            
             {
 
                 'name': 'Consumo',
@@ -266,11 +267,7 @@ def baseProyeccion(consumo, dia):
                         "colorStops": [
                             {
                                 "offset": 0,
-<<<<<<< HEAD
-                                "color": "#1DA1F2"
-=======
                                 "color": "#3300FF"
->>>>>>> b7cd379c74cfd54b071e5ca32a8ece233af3764c
                             },
                             {
                                 "offset": 1,
@@ -483,26 +480,16 @@ def graficoArtefactoMasUsado(request):
             {
                 'type': 'pie',
                 'id': 'pie',
-<<<<<<< HEAD
-                'radius': '33%',
-                'center': ['50%', '35%'],  # Ajusta la posición del gráfico circular ('pie')
-=======
                 'radius': '30%',
                 'center': ['50%', '36%'],  # Ajusta la posición del gráfico circular ('pie')
->>>>>>> b7cd379c74cfd54b071e5ca32a8ece233af3764c
                 'emphasis': {'focus': 'self'},
                 'label': {
                     'color': 'white',
                     'formatter': '{b}: {@2023} ({d}%)',
                 },
                 'itemStyle': {
-<<<<<<< HEAD
-                    'borderColor': 'black',
-                    'borderWidth': 2,
-=======
                     'borderColor': 'white',
                     'borderWidth': 1,
->>>>>>> b7cd379c74cfd54b071e5ca32a8ece233af3764c
                 },
 
             },
