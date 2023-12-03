@@ -38,6 +38,13 @@ def eliminarDiaEnInventario(request, inventario_id):
     return redirect('inventario')
 
 
+def eliminarInventario(request):
+    inventario = Inventario.objects.filter(user=request.user)
+    consumo = ConsumoDiarioMensual.objects.filter(user=request.user)
+    consumo.delete()
+    inventario.delete()
+    return redirect('inventario')
+
 def calcularConsumoPolinomio(request, dias):
     resultado_actual = obtenerPolinomio(request)
     funcion = resultado_actual['funcion_polinomio']
@@ -259,7 +266,11 @@ def baseProyeccion(consumo, dia):
                         "colorStops": [
                             {
                                 "offset": 0,
+<<<<<<< HEAD
                                 "color": "#1DA1F2"
+=======
+                                "color": "#3300FF"
+>>>>>>> b7cd379c74cfd54b071e5ca32a8ece233af3764c
                             },
                             {
                                 "offset": 1,
@@ -361,26 +372,41 @@ def baseProyeccion(consumo, dia):
 
 
 def graficoArtefactoMasUsado(request):
-    dia = []
+    dias = []
     counter = 0
-    for i in ConsumoDiarioMensual.objects.filter(user=request.user):
-        dia.append(counter+1)
-        counter += 1
-    artefactos = Artefactos.objects.filter(user=request.user)
-    lista = [
-        ['Dias'] + dia,
-        ['Lavadora', 10, 20, 30, 40, 50, 51],
-        ['Nevera', 20, 30, 45, 50],
-        ['Televisor', 30, 40, 50, 60],
-        ['Computadora', 40, 50, 60],
-        ['Microondas', 50, 60, 70],
-    ]
 
+    for i in ConsumoDiarioMensual.objects.filter(user=request.user):
+        dias.append(counter+1)
+        counter += 1
+    artefactoSet = set()
+    artefactoList = []
+
+    for i in Inventario.objects.filter(user=request.user):
+        if i.nombre not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
+            artefactoSet.add(i.nombre)
+            artefactosMasUsados = [i.nombre]
+            consumoArtefacto = []
+            for j in Inventario.objects.filter(user=request.user, nombre=i.nombre):
+                consumoArtefacto.append(j.consumoTotal)
+            artefactosMasUsados.extend(consumoArtefacto)
+            artefactoList.append(artefactosMasUsados)
+    artefactoList.sort(key=lambda x: sum(x[1:]), reverse=True)
+    # artefactoList = [
+    #     ['Dias'] + dia,
+    #     ['Lavadora', 10, 20, 30, 40, 50, 51],
+    #     ['Nevera', 20, 30, 45, 50],
+    #     ['Televisor', 30, 40, 50, 60],
+    #     ['Computadora', 40, 50, 60],
+    #     ['Microondas', 50, 60, 70],
+    # ]
+    # print(lista)
+    print(artefactoList)
 
     grafica = {
         'max_width': '100%',
         'max_height': '100%',
         'backgroundColor': 'black',
+
         'title': {
             'left': 'center',
             'text': 'Artefactos mas usados',
@@ -393,9 +419,11 @@ def graficoArtefactoMasUsado(request):
             },
         },
         'legend': {
+
             'top': 50,
-            'itemGap': 5,   # Ajusta el espacio entre el circulo
+            'itemGap': 11,   # Ajusta el espacio entre el circulo
             'textStyle': {
+
                 'color': 'white',
                 'fontSize': 14,
             },
@@ -405,16 +433,19 @@ def graficoArtefactoMasUsado(request):
             'showContent': False,
         },
         'dataset': {
-            'source': lista,
+            'source': artefactoList,
             'properties': {
                 'pading': 60,
             }
         },
-        'xAxis': {'type': 'category'},
+        'xAxis': {
+            'type': 'category',
+            'data': dias,
+            },
         'yAxis': {'gridIndex': 0},
         'grid': {
             'position': 'top',
-            'top': '55%',  # Ajusta la posición del gráfico principal ('line')
+            'top': '60%',  # Ajusta la posición del gráfico principal ('line')
             'bottom': '15%',  # Ajusta la posición del gráfico circular ('pie')
         },
 
@@ -452,16 +483,26 @@ def graficoArtefactoMasUsado(request):
             {
                 'type': 'pie',
                 'id': 'pie',
+<<<<<<< HEAD
                 'radius': '33%',
                 'center': ['50%', '35%'],  # Ajusta la posición del gráfico circular ('pie')
+=======
+                'radius': '30%',
+                'center': ['50%', '36%'],  # Ajusta la posición del gráfico circular ('pie')
+>>>>>>> b7cd379c74cfd54b071e5ca32a8ece233af3764c
                 'emphasis': {'focus': 'self'},
                 'label': {
                     'color': 'white',
                     'formatter': '{b}: {@2023} ({d}%)',
                 },
                 'itemStyle': {
+<<<<<<< HEAD
                     'borderColor': 'black',
                     'borderWidth': 2,
+=======
+                    'borderColor': 'white',
+                    'borderWidth': 1,
+>>>>>>> b7cd379c74cfd54b071e5ca32a8ece233af3764c
                 },
 
             },
@@ -469,3 +510,4 @@ def graficoArtefactoMasUsado(request):
     }
 
     return JsonResponse(grafica)
+

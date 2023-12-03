@@ -71,7 +71,10 @@
             margin-top: 5px;
             text-align: center;
         }
-
+        h4{
+            color: #a21515;
+            text-align: center;
+        }
     </style>
     <title>Inventario</title>
 
@@ -91,8 +94,9 @@
   {{ form.as_p }}
   <button type="submit">Guardar</button>
 </form>
-<button type="submit" ><a href="{% url 'artefacto' %}">Agregar Artefactos</a></button>
-
+<h4>{{ error }}</h4>
+<button type="submit" ><a href="{% url 'artefacto' %}">Agregar Artefacto</a></button>
+<button type="submit"><a href="{% url 'eliminarInventario' %}"> Empezar de 0</a></button>
 
 <h1>Datos del Consumo Diario</h1>
 <table>
