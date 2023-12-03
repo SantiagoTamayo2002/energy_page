@@ -1,20 +1,25 @@
-body {
-    font-family:sans-serif;
-    background: url(../img/fondo_login.jpg); /* Establecer la imagen de fondo y color de fondo */
-    background-size: cover;
+*{
     margin: 0;
     padding: 0;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Altura completa de la ventana */
-  }
+    font-family: Livvic, sans-serif;
+}
 
-  .navigator{
+body{
+    background-image: url(../img/fondo_login.jpg);
+    background-size: cover;
+}
+
+.navigator{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
+    background-color: #ff000001;
     height: 30px;
+}
+
+.menu {
+    background-color: #fafafa01;
 }
 
 .logo{
@@ -50,92 +55,137 @@ body {
 .navigator ul li a i{
     margin-right: 5px;
 }
-
-.contenedor-padre{
+.container{
     display: flex;
+    width: 100%;
+    height: 91.5vh;
     justify-content: center;
     align-items: center;
-    height: 91.5vh;
+    background-size: cover;
 }
-  /* Estilo del contenedor principal */
-  .login-box {
-    width: 300px;
-    background-color: rgba(129, 170, 199, 0.45); /* Color de fondo del contenedor */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+
+.content{
+    display: flex;
+    max-width: 900px;
+    height: 560px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.informacion{
+    display: flex;
+    width: 30%;
+    height: 100%;
+    background-color: #75d6d6;
+    align-items: center;
     text-align: center;
-  }
-  
-  /* Estilo del encabezado */
-  .login-box h1 {
-    color: #101010; /* Color del texto del encabezado */
-    font-weight: 600;
-  }
-  
-  /* Estilo del formulario */
-  .login-box form {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.informacion-childs{
+    width: 100%;
+}
+
+.informacion-childs h1{
+    font-size: 40px;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.informacion-childs p{
+    font-size: 15px;
+    color: #222;
+    margin: 0 20px;
+    margin-bottom: 40px;
+}
+
+.informacion-childs a{
+    text-decoration: none;
+    color: #FFF;
+    font-size: 25px;
+    margin-top: 20px;
+    border: 4px solid #FFF;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.informacion-childs a:hover{
+    background-color: #FFF;
+    color: #75d6d6;
+}
+
+.form-information{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+    text-align: center;
+    background-color: #FFF;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.form-information-childs h1{
+    font-size: 40px;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.form-information-childs .icons{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.icons i{
+    margin: 0 20px;
+    border: 3px solid #75d6d6;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.icons i:hover{
+    scale: 1.2;
+    transition: all 0.9s ease;
+}
+
+.form-information-childs .usar{
+    font-size: 20px;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.form-information-childs form{
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-  }
-  
-  /* Estilo de las etiquetas del formulario */
-  .login-box label {
-    margin-bottom: 8px;
-  }
-  
-  /* Estilo de los campos de entrada del formulario */
-  .login-box input {
-    padding: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #290303;
-    border-radius: 4px;
-  }
-  
-  /* Estilo del botón de envío del formulario */
-  .login-box button {
-    background-color: #101010; /* Color de fondo del botón */
-    color: #fff; /* Color del texto del botón */
-    padding: 20px;
-    border: 1px solid #000000;
-    border-radius: 40px;
+    width: 100%;
+}
+
+.lastname{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+.lastname input{
+    border: 2px solid #101010;
+    border-radius: 5px;
+    height: 20px;
+}
+
+.form-information-childs form button{
+    height: 40px;
+    width: 90px;
+    margin-left: 40%;
+    margin-top: 10px;
+    background-color: #75d6d6;
+    border: none;
+    border-radius: 5px;
+    color: #101010;
+    font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
-    margin-bottom: 20px;
-    font-size: 14px;
-    font-weight: 600;
-  }
-  
-  /* Cambio de color del botón al pasar el ratón sobre él */
-  .login-box button:hover {
-    background-color: #fafafa;
-    color: #101010;
-  }
-  
-  /* Estilo del enlace para registrarse */
-  .login-box a {
-    color: #101010;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-  }
-  
-  /* Cambio de estilo del enlace al pasar el ratón sobre él */
-  .login-box a:hover {
-    text-decoration: underline;
-  }
-
-  .imagen_presentacion{
-    position: relative;
-    background-color: black;
-    height: 70px;
-    width: 70px;
-    margin-left: 120px;
-    border-radius: 100%;
-  }
-
-  .imagen_presentacion img{
-    width: 65px;
-    height: 65PX;
-    border-radius: 100%;
-  }
+}
