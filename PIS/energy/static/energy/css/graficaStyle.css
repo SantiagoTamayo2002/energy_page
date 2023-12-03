@@ -1,18 +1,105 @@
-body {
-    background: #181717;
-    font-family: "Roboto", sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
+* {
+	font-family: 'Livvic', Courier, monospace;
     margin: 0;
-    padding: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
-h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin: 0 0 1rem 0;
+
+body {
+    min-height: 100vh;
+    background: black;
 }
+nav{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: #222222ab;
+    border-radius:8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+nav a {
+    position: relative;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1da0f2c2;
+    text-decoration: none;
+    padding: 13px 35px;
+    margin: 5px;
+    z-index: 2;
+    transition: color .5s;   
+}
+nav a::after {
+    content: '';
+    background: linear-gradient(10deg, #222222ab, #1da0f2c2);
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    transition: top .5s, opacity .5s;
+}
+nav a:hover {
+    color: #fff;
+}
+nav a:hover::after{
+    top: 50%;
+    opacity: 1;
+}
+/* nav span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 100%;
+    background: linear-gradient(60deg, #222222ab, #1da0f2c2);
+    opacity: 0.5;
+    border-radius: 8px;
+    transition: .5s;
+}
+
+nav a:nth-child(1):hover~span {
+    left: 27%;
+    width: 8%;
+}
+
+nav a:nth-child(2):hover~span {
+    left: 37%;
+    width: 5%;
+}
+nav a:nth-child(3):hover~span {
+    left: 43%;
+    width: 10%;
+}
+nav a:nth-child(4):hover~span {
+    left: 53%;
+    width: 9%;
+}
+nav a:nth-child(5):hover~span {
+    left: 62%;
+    width: 11%;
+} */
+
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+footer {
+    background-color: #1DA1F2;
+    padding: 10px;
+    text-align: center;
+}
+
 .graficaProyeccion {
     contain: content;
     display: flex;
@@ -22,17 +109,13 @@ h1 {
     width: auto; /*  ancho de la pantalla */
     height: 46vh; /* Altura ajustada automáticamente */
     min-height: 350px;
-    background: #fff;
 }
 .circulo {
-    top: 10%;
     width: 100%;
-    height: 120vh;
+    height: 100vh;
     contain: content;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 350px;
-    background: #fff;
 }

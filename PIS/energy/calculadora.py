@@ -174,7 +174,7 @@ def baseProyeccion(consumo, dia):
             'axisPointer': {
                 'type': 'cross',
                 'label': {
-                    'backgroundColor': '#455A64',  # Color del fondo del tooltip
+                    'backgroundColor': '#1DA1F2',  # Color del fondo del tooltip
                     'color': 'white',  # Color del texto del tooltip
                 }
             }
@@ -186,15 +186,15 @@ def baseProyeccion(consumo, dia):
                 },
                 'axisLine': {
                     'lineStyle': {
-                        'color': 'white',  # Color de la línea
+                        'color': '#1DA1F2',  # Color de la línea
                     }
                 },
                 'name': 'Días',  # Título del eje x
                 'nameTextStyle': {
                     'fontSize': 12,
-                    'color': 'white',  # Color del texto
+                    'color': 'black',  # Color del texto
                 },
-                'nameGap': 27,  # Espacio entre el nombre y el eje
+                'nameGap': 10,  # Espacio entre el nombre y el eje
                 'nameLocation': 'middle',  # Ubicación del nombre del eje ('start', 'middle', 'end')
                 'boundaryGap': False,
                 'type': "category",
@@ -206,12 +206,12 @@ def baseProyeccion(consumo, dia):
                 'type': 'value',
                 'axisLine': {
                     'lineStyle': {
-                        'color': 'white',  # Color de la línea
+                        'color': '#1DA1F2',  # Color de la línea
                     }
                 },
                 'axisLabel': {
                     'backgroundColor': 'black',
-                    'color': 'white'  # Color del texto
+                    'color': '#1DA1F2'  # Color del texto
                 },
                 'name': 'Consumo (kWh)',  # Título del eje y
                 'textStyle': {
@@ -219,7 +219,7 @@ def baseProyeccion(consumo, dia):
                 },
                 'nameTextStyle': {
                     'fontSize': 12,
-                    'color': 'white',  # Color del texto
+                    'color': '#1DA1F2',  # Color del texto
                 },
                 'min': 0,  # Establecer el mínimo en 0 o en otro valor adecuado
             }
@@ -227,11 +227,11 @@ def baseProyeccion(consumo, dia):
         'title': {
             'left': 'center',
             'padding': 6,
-            'top': 5,
+            'top': 10,
             'text': 'Consumo de Energía',
             'textStyle': {
                 'color': 'white',  # Color del texto del título
-                'fontSize': 16,  # Tamaño del texto del título
+                'fontSize': 25,  # Tamaño del texto del título
             },
         },
         'series': [
@@ -241,16 +241,15 @@ def baseProyeccion(consumo, dia):
                 'smooth': True,
                 'data': consumo,
                 'itemStyle': {
-                    'color': 'red',
-                    'borderColor': 'white',
+                    'color': '#1DA1F2', # Color del título
+                    'borderColor': '#1DA1F2',
                     'borderWidth': 2,
-                    'shadowColor': 'rgba(0, 0, 0, 0.5)',
+                    'shadowColor': '#1DA1F2',
                 },
                 'type': 'line',
                 'lineStyle': {
-                    'width': 6,  # Ancho de la línea
-                    'color': '#0000FF',
-                    'shadowColor': 'rgba(0, 0, 0, 0.5)',
+                    'width': 3,  # Ancho de la línea
+                    'color': 'white',
                 },
                 "areaStyle": {
                     "color": {
@@ -260,11 +259,11 @@ def baseProyeccion(consumo, dia):
                         "colorStops": [
                             {
                                 "offset": 0,
-                                "color": "rgb(255, 158, 68)"
+                                "color": "#1DA1F2"
                             },
                             {
                                 "offset": 1,
-                                "color": "rgb(255, 70, 131)"
+                                "color": "black"
                             }
                         ]
                     }
@@ -384,9 +383,9 @@ def graficoArtefactoMasUsado(request):
         'backgroundColor': 'black',
         'title': {
             'left': 'center',
-            'text': 'Los 5 artefactos mas usados',
+            'text': 'Artefactos mas usados',
             'padding': 10,
-            'margin': 20,
+            'margin': 0,
             'textStyle': {
                 'color': 'white',
                 'fontSize': 25,
@@ -453,7 +452,7 @@ def graficoArtefactoMasUsado(request):
             {
                 'type': 'pie',
                 'id': 'pie',
-                'radius': '30%',
+                'radius': '33%',
                 'center': ['50%', '35%'],  # Ajusta la posición del gráfico circular ('pie')
                 'emphasis': {'focus': 'self'},
                 'label': {
@@ -462,7 +461,7 @@ def graficoArtefactoMasUsado(request):
                 },
                 'itemStyle': {
                     'borderColor': 'black',
-                    'borderWidth': 1,
+                    'borderWidth': 2,
                 },
 
             },
