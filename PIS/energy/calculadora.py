@@ -1,3 +1,4 @@
+
 from datetime import datetime
 
 import sympy as sym
@@ -50,7 +51,7 @@ def calcularConsumoPolinomio(request, dias):
     funcion = resultado_actual['funcion_polinomio']
     consumo = []
     for i in range(dias):
-        consumo.append(round(funcion(i+1), 2))
+        consumo.append(round(funcion(i), 2))
     return consumo
 
 #############################No Topar
@@ -62,7 +63,7 @@ def graficoConsumoActual(request):
         counter = 0
         for i in ConsumoDiarioMensual.objects.filter(user=request.user):
             consumo.append(i.consumoTotal)
-            dia.append(counter + 1)
+            dia.append((counter + 1).__str__())
             counter += 1
 
         return baseProyeccion(consumo, dia)
@@ -71,13 +72,6 @@ def graficoConsumoActual(request):
 
 
 ##################
-def graficoProyeccionSemanal(request):
-    if request.user.is_authenticated:
-        dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
-        consumo = calcularConsumoPolinomio(request, dias.__len__())
-
-        return baseProyeccion(consumo, dias)
-
 def graficoProyeccionMensual(request):
     if request.user.is_authenticated:
         mes = 30
@@ -88,7 +82,11 @@ def graficoProyeccionMensual(request):
             dia.append(counter + 1)
             counter += 1
         return baseProyeccion(consumo, dia)
-
+def graficoProyeccionSemanal(request):
+    if request.user.is_authenticated:
+        dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
+        consumo = calcularConsumoPolinomio(request, dias.__len__())
+        return baseProyeccion(consumo, dias)
 
 
 
@@ -245,7 +243,6 @@ def baseProyeccion(consumo, dia):
             },
         },
         'series': [
-            
             {
 
                 'name': 'Consumo',
@@ -270,7 +267,7 @@ def baseProyeccion(consumo, dia):
                         "colorStops": [
                             {
                                 "offset": 0,
-                                "color": "#3300FF"
+                                "color": "#1da0f2c2"
                             },
                             {
                                 "offset": 1,
@@ -376,26 +373,21 @@ def graficoArtefactoMasUsado(request):
     counter = 0
 
     for i in ConsumoDiarioMensual.objects.filter(user=request.user):
-        dias.append((counter+1).__str__())
+        dias.append(counter+1)
         counter += 1
     artefactoSet = set()
-
     artefactoList = []
-    lista = [['Dias'] + dias,]
-
 
     for i in Inventario.objects.filter(user=request.user):
         if i.nombre not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
             artefactoSet.add(i.nombre)
-            artefactosMasUsados = [i.nombre] # Agregar el nombre del artefacto a la lista
+            artefactosMasUsados = [i.nombre]
             consumoArtefacto = []
             for j in Inventario.objects.filter(user=request.user, nombre=i.nombre):
                 consumoArtefacto.append(j.consumoTotal)
-            artefactosMasUsados.extend(consumoArtefacto) # Agregar el consumo del artefacto a la lista
-            artefactoList.append(artefactosMasUsados) # Agregar la lista a la lista de artefactos
+            artefactosMasUsados.extend(consumoArtefacto)
+            artefactoList.append(artefactosMasUsados)
     artefactoList.sort(key=lambda x: sum(x[1:]), reverse=True)
-    lista.extend(artefactoList)
-    print(lista)
     # artefactoList = [
     #     ['Dias'] + dia,
     #     ['Lavadora', 10, 20, 30, 40, 50, 51],
@@ -405,7 +397,7 @@ def graficoArtefactoMasUsado(request):
     #     ['Microondas', 50, 60, 70],
     # ]
     # print(lista)
-    #print(artefactoList)
+    print(artefactoList)
 
     grafica = {
         'max_width': '100%',
@@ -426,7 +418,7 @@ def graficoArtefactoMasUsado(request):
         'legend': {
 
             'top': 50,
-            'itemGap': 10,   # Ajusta el espacio entre el circulo
+            'itemGap': 11,   # Ajusta el espacio entre el circulo
             'textStyle': {
 
                 'color': 'white',
@@ -438,13 +430,14 @@ def graficoArtefactoMasUsado(request):
             'showContent': False,
         },
         'dataset': {
-            'source': lista,
+            'source': artefactoList,
             'properties': {
                 'pading': 60,
             }
         },
         'xAxis': {
             'type': 'category',
+            'data': dias,
             },
         'yAxis': {'gridIndex': 0},
         'grid': {
@@ -458,12 +451,6 @@ def graficoArtefactoMasUsado(request):
                 'type': 'line',
                 'smooth': True,
                 'seriesLayoutBy': 'row',
-                'emphasis': {'focus': 'series'},
-            },
-            {
-                'type': 'line',
-                'smooth': True,
-                'seriesLayoutBy': 'row',
                 'emphasis': {'focus': 'series'}
             },
             {
@@ -475,7 +462,6 @@ def graficoArtefactoMasUsado(request):
             {
                 'type': 'line',
                 'smooth': True,
-
                 'seriesLayoutBy': 'row',
                 'emphasis': {'focus': 'series'}
             },
@@ -511,4 +497,3 @@ def graficoArtefactoMasUsado(request):
     }
 
     return JsonResponse(grafica)
-
