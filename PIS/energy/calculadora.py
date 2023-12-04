@@ -5,7 +5,7 @@ from django.db.models import Sum
 from django.http import Http404, JsonResponse
 from django.shortcuts import render, redirect
 import numpy as np
-from .models import Artefactos, Inventario, ConsumoDiarioMensual
+from .models import Artefactos, Inventario, Informe
 
 
 def calcularConsumoTotal(consumoTotalPorArtefacto, cantidadArtefactos, horasDeUso):
@@ -14,7 +14,7 @@ def calcularConsumoTotal(consumoTotalPorArtefacto, cantidadArtefactos, horasDeUs
 
 def calcularConsumoTotalMensual(user):
     mesActual = datetime.now().month
-    consumoMensual = ConsumoDiarioMensual.objects.filter(user=user, dia__month=mesActual).aggregate(Sum('consumoTotal'))['consumoTotal__sum'] or 0
+    consumoMensual = Informe.objects.filter(user=user, dia__month=mesActual).aggregate(Sum('consumoTotal'))['consumoTotal__sum'] or 0
     return consumoMensual
 
 def eliminarArtefacto(request, artefacto_id):
@@ -34,13 +34,13 @@ def eliminarDiaEnInventario(request, inventario_id):
     inventario.delete()
     # Actualizar el consumo diario mensual para el día eliminado
     total = calcularConsumoTotalMensual(request.user)
-    ConsumoDiarioMensual.actualizarConsumoDiario(request.user, dia_eliminado, total)
+    Informe.actualizarConsumoDiario(request.user, dia_eliminado, total)
     return redirect('inventario')
 
 
 def eliminarInventario(request):
     inventario = Inventario.objects.filter(user=request.user)
-    consumo = ConsumoDiarioMensual.objects.filter(user=request.user)
+    consumo = Informe.objects.filter(user=request.user)
     consumo.delete()
     inventario.delete()
     return redirect('inventario')
@@ -60,7 +60,7 @@ def graficoConsumoActual(request):
         consumo = []
         dia = []
         counter = 0
-        for i in ConsumoDiarioMensual.objects.filter(user=request.user):
+        for i in Informe.objects.filter(user=request.user):
             consumo.append(i.consumoTotal)
             dia.append(counter + 1)
             counter += 1
@@ -106,7 +106,7 @@ def obtenerPolinomio(request):
     grado_del_polinomio = 0
     fx = 0
 
-    for i in ConsumoDiarioMensual.objects.filter(user=request.user):
+    for i in Informe.objects.filter(user=request.user):
         consumo.append(i.consumoTotal)
         dias.append(counter + 1)
         counter += 1
@@ -204,8 +204,8 @@ def baseProyeccion(consumo, dia):
                     'fontSize': 12,
                     'color': 'black',  # Color del texto
                 },
-                'nameGap': 10,  # Espacio entre el nombre y el eje
-                'nameLocation': 'middle',  # Ubicación del nombre del eje ('start', 'middle', 'end')
+                'nameGap': 10,  # Espacio entre el nombreArtefacto y el eje
+                'nameLocation': 'middle',  # Ubicación del nombreArtefacto del eje ('start', 'middle', 'end')
                 'boundaryGap': False,
                 'type': "category",
                 'data': dia,
@@ -375,7 +375,7 @@ def graficoArtefactoMasUsado(request):
     dias = []
     counter = 0
 
-    for i in ConsumoDiarioMensual.objects.filter(user=request.user):
+    for i in Informe.objects.filter(user=request.user):
         dias.append((counter+1).__str__())
         counter += 1
     artefactoSet = set()
@@ -385,11 +385,11 @@ def graficoArtefactoMasUsado(request):
 
 
     for i in Inventario.objects.filter(user=request.user):
-        if i.nombre not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
-            artefactoSet.add(i.nombre)
-            artefactosMasUsados = [i.nombre] # Agregar el nombre del artefacto a la lista
+        if i.nombreArtefacto not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
+            artefactoSet.add(i.nombreArtefacto)
+            artefactosMasUsados = [i.nombreArtefacto] # Agregar el nombreArtefacto del artefacto a la lista
             consumoArtefacto = []
-            for j in Inventario.objects.filter(user=request.user, nombre=i.nombre):
+            for j in Inventario.objects.filter(user=request.user, nombreArtefacto=i.nombreArtefacto):
                 consumoArtefacto.append(j.consumoTotal)
             artefactosMasUsados.extend(consumoArtefacto) # Agregar el consumo del artefacto a la lista
             artefactoList.append(artefactosMasUsados) # Agregar la lista a la lista de artefactos
