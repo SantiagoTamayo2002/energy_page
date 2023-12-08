@@ -5,7 +5,7 @@ from django.db.models import Sum
 from django.http import Http404, JsonResponse
 from django.shortcuts import render, redirect
 import numpy as np
-from .models import Artefactos, Inventario, ConsumoDiarioMensual
+from .models import Artefactos, Inventario, Informe
 
 
 def calcularConsumoTotal(consumoTotalPorArtefacto, cantidadArtefactos, horasDeUso):
@@ -14,7 +14,7 @@ def calcularConsumoTotal(consumoTotalPorArtefacto, cantidadArtefactos, horasDeUs
 
 def calcularConsumoTotalMensual(user):
     mesActual = datetime.now().month
-    consumoMensual = ConsumoDiarioMensual.objects.filter(user=user, dia__month=mesActual).aggregate(Sum('consumoTotal'))['consumoTotal__sum'] or 0
+    consumoMensual = Informe.objects.filter(user=user, dia__month=mesActual).aggregate(Sum('consumoTotal'))['consumoTotal__sum'] or 0
     return consumoMensual
 
 def eliminarArtefacto(request, artefacto_id):
@@ -34,16 +34,23 @@ def eliminarDiaEnInventario(request, inventario_id):
     inventario.delete()
     # Actualizar el consumo diario mensual para el día eliminado
     total = calcularConsumoTotalMensual(request.user)
-    ConsumoDiarioMensual.actualizarConsumoDiario(request.user, dia_eliminado, total)
+    Informe.actualizarConsumoDiario(request.user, dia_eliminado, total)
     return redirect('inventario')
 
+
+def eliminarInventario(request):
+    inventario = Inventario.objects.filter(user=request.user)
+    consumo = Informe.objects.filter(user=request.user)
+    consumo.delete()
+    inventario.delete()
+    return redirect('inventario')
 
 def calcularConsumoPolinomio(request, dias):
     resultado_actual = obtenerPolinomio(request)
     funcion = resultado_actual['funcion_polinomio']
     consumo = []
     for i in range(dias):
-        consumo.append(round(funcion(i), 2))
+        consumo.append(round(funcion(i+1), 2))
     return consumo
 
 #############################No Topar
@@ -53,9 +60,9 @@ def graficoConsumoActual(request):
         consumo = []
         dia = []
         counter = 0
-        for i in ConsumoDiarioMensual.objects.filter(user=request.user):
+        for i in Informe.objects.filter(user=request.user):
             consumo.append(i.consumoTotal)
-            dia.append((counter + 1).__str__())
+            dia.append(counter + 1)
             counter += 1
 
         return baseProyeccion(consumo, dia)
@@ -64,6 +71,13 @@ def graficoConsumoActual(request):
 
 
 ##################
+def graficoProyeccionSemanal(request):
+    if request.user.is_authenticated:
+        dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
+        consumo = calcularConsumoPolinomio(request, dias.__len__())
+
+        return baseProyeccion(consumo, dias)
+
 def graficoProyeccionMensual(request):
     if request.user.is_authenticated:
         mes = 30
@@ -74,11 +88,7 @@ def graficoProyeccionMensual(request):
             dia.append(counter + 1)
             counter += 1
         return baseProyeccion(consumo, dia)
-def graficoProyeccionSemanal(request):
-    if request.user.is_authenticated:
-        dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
-        consumo = calcularConsumoPolinomio(request, dias.__len__())
-        return baseProyeccion(consumo, dias)
+
 
 
 
@@ -96,7 +106,7 @@ def obtenerPolinomio(request):
     grado_del_polinomio = 0
     fx = 0
 
-    for i in ConsumoDiarioMensual.objects.filter(user=request.user):
+    for i in Informe.objects.filter(user=request.user):
         consumo.append(i.consumoTotal)
         dias.append(counter + 1)
         counter += 1
@@ -174,7 +184,7 @@ def baseProyeccion(consumo, dia):
             'axisPointer': {
                 'type': 'cross',
                 'label': {
-                    'backgroundColor': '#455A64',  # Color del fondo del tooltip
+                    'backgroundColor': '#1DA1F2',  # Color del fondo del tooltip
                     'color': 'white',  # Color del texto del tooltip
                 }
             }
@@ -186,16 +196,16 @@ def baseProyeccion(consumo, dia):
                 },
                 'axisLine': {
                     'lineStyle': {
-                        'color': 'white',  # Color de la línea
+                        'color': '#1DA1F2',  # Color de la línea
                     }
                 },
                 'name': 'Días',  # Título del eje x
                 'nameTextStyle': {
                     'fontSize': 12,
-                    'color': 'white',  # Color del texto
+                    'color': 'black',  # Color del texto
                 },
-                'nameGap': 27,  # Espacio entre el nombre y el eje
-                'nameLocation': 'middle',  # Ubicación del nombre del eje ('start', 'middle', 'end')
+                'nameGap': 10,  # Espacio entre el nombreArtefacto y el eje
+                'nameLocation': 'middle',  # Ubicación del nombreArtefacto del eje ('start', 'middle', 'end')
                 'boundaryGap': False,
                 'type': "category",
                 'data': dia,
@@ -206,12 +216,12 @@ def baseProyeccion(consumo, dia):
                 'type': 'value',
                 'axisLine': {
                     'lineStyle': {
-                        'color': 'white',  # Color de la línea
+                        'color': '#1DA1F2',  # Color de la línea
                     }
                 },
                 'axisLabel': {
                     'backgroundColor': 'black',
-                    'color': 'white'  # Color del texto
+                    'color': '#1DA1F2'  # Color del texto
                 },
                 'name': 'Consumo (kWh)',  # Título del eje y
                 'textStyle': {
@@ -219,7 +229,7 @@ def baseProyeccion(consumo, dia):
                 },
                 'nameTextStyle': {
                     'fontSize': 12,
-                    'color': 'white',  # Color del texto
+                    'color': '#1DA1F2',  # Color del texto
                 },
                 'min': 0,  # Establecer el mínimo en 0 o en otro valor adecuado
             }
@@ -227,30 +237,30 @@ def baseProyeccion(consumo, dia):
         'title': {
             'left': 'center',
             'padding': 6,
-            'top': 5,
+            'top': 10,
             'text': 'Consumo de Energía',
             'textStyle': {
                 'color': 'white',  # Color del texto del título
-                'fontSize': 16,  # Tamaño del texto del título
+                'fontSize': 25,  # Tamaño del texto del título
             },
         },
         'series': [
+            
             {
 
                 'name': 'Consumo',
                 'smooth': True,
                 'data': consumo,
                 'itemStyle': {
-                    'color': 'red',
-                    'borderColor': 'white',
+                    'color': '#1DA1F2', # Color del título
+                    'borderColor': '#1DA1F2',
                     'borderWidth': 2,
-                    'shadowColor': 'rgba(0, 0, 0, 0.5)',
+                    'shadowColor': '#1DA1F2',
                 },
                 'type': 'line',
                 'lineStyle': {
-                    'width': 6,  # Ancho de la línea
-                    'color': '#0000FF',
-                    'shadowColor': 'rgba(0, 0, 0, 0.5)',
+                    'width': 3,  # Ancho de la línea
+                    'color': 'white',
                 },
                 "areaStyle": {
                     "color": {
@@ -260,11 +270,11 @@ def baseProyeccion(consumo, dia):
                         "colorStops": [
                             {
                                 "offset": 0,
-                                "color": "rgb(255, 158, 68)"
+                                "color": "#3300FF"
                             },
                             {
                                 "offset": 1,
-                                "color": "rgb(255, 70, 131)"
+                                "color": "black"
                             }
                         ]
                     }
@@ -362,31 +372,51 @@ def baseProyeccion(consumo, dia):
 
 
 def graficoArtefactoMasUsado(request):
-    dia = []
+    dias = []
     counter = 0
-    for i in ConsumoDiarioMensual.objects.filter(user=request.user):
-        dia.append(counter+1)
-        counter += 1
-    artefactos = Artefactos.objects.filter(user=request.user)
-    lista = [
-        ['Dias'] + dia,
-        ['Lavadora', 10, 20, 30, 40, 50, 51],
-        ['Nevera', 20, 30, 45, 50],
-        ['Televisor', 30, 40, 50, 60],
-        ['Computadora', 40, 50, 60],
-        ['Microondas', 50, 60, 70],
-    ]
 
+    for i in Informe.objects.filter(user=request.user):
+        dias.append((counter+1).__str__())
+        counter += 1
+    artefactoSet = set()
+
+    artefactoList = []
+    lista = [['Dias'] + dias,]
+
+
+    for i in Inventario.objects.filter(user=request.user):
+        if i.nombreArtefacto not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
+            artefactoSet.add(i.nombreArtefacto)
+            artefactosMasUsados = [i.nombreArtefacto] # Agregar el nombreArtefacto del artefacto a la lista
+            consumoArtefacto = []
+            for j in Inventario.objects.filter(user=request.user, nombreArtefacto=i.nombreArtefacto):
+                consumoArtefacto.append(j.consumoTotal)
+            artefactosMasUsados.extend(consumoArtefacto) # Agregar el consumo del artefacto a la lista
+            artefactoList.append(artefactosMasUsados) # Agregar la lista a la lista de artefactos
+    artefactoList.sort(key=lambda x: sum(x[1:]), reverse=True)
+    lista.extend(artefactoList)
+    print(lista)
+    # artefactoList = [
+    #     ['Dias'] + dia,
+    #     ['Lavadora', 10, 20, 30, 40, 50, 51],
+    #     ['Nevera', 20, 30, 45, 50],
+    #     ['Televisor', 30, 40, 50, 60],
+    #     ['Computadora', 40, 50, 60],
+    #     ['Microondas', 50, 60, 70],
+    # ]
+    # print(lista)
+    #print(artefactoList)
 
     grafica = {
         'max_width': '100%',
         'max_height': '100%',
         'backgroundColor': 'black',
+
         'title': {
             'left': 'center',
-            'text': 'Los 5 artefactos mas usados',
+            'text': 'Artefactos mas usados',
             'padding': 10,
-            'margin': 20,
+            'margin': 0,
             'textStyle': {
                 'color': 'white',
                 'fontSize': 25,
@@ -394,9 +424,11 @@ def graficoArtefactoMasUsado(request):
             },
         },
         'legend': {
+
             'top': 50,
-            'itemGap': 5,   # Ajusta el espacio entre el circulo
+            'itemGap': 10,   # Ajusta el espacio entre el circulo
             'textStyle': {
+
                 'color': 'white',
                 'fontSize': 14,
             },
@@ -411,11 +443,13 @@ def graficoArtefactoMasUsado(request):
                 'pading': 60,
             }
         },
-        'xAxis': {'type': 'category'},
+        'xAxis': {
+            'type': 'category',
+            },
         'yAxis': {'gridIndex': 0},
         'grid': {
             'position': 'top',
-            'top': '55%',  # Ajusta la posición del gráfico principal ('line')
+            'top': '60%',  # Ajusta la posición del gráfico principal ('line')
             'bottom': '15%',  # Ajusta la posición del gráfico circular ('pie')
         },
 
@@ -424,6 +458,12 @@ def graficoArtefactoMasUsado(request):
                 'type': 'line',
                 'smooth': True,
                 'seriesLayoutBy': 'row',
+                'emphasis': {'focus': 'series'},
+            },
+            {
+                'type': 'line',
+                'smooth': True,
+                'seriesLayoutBy': 'row',
                 'emphasis': {'focus': 'series'}
             },
             {
@@ -435,6 +475,7 @@ def graficoArtefactoMasUsado(request):
             {
                 'type': 'line',
                 'smooth': True,
+
                 'seriesLayoutBy': 'row',
                 'emphasis': {'focus': 'series'}
             },
@@ -454,14 +495,14 @@ def graficoArtefactoMasUsado(request):
                 'type': 'pie',
                 'id': 'pie',
                 'radius': '30%',
-                'center': ['50%', '35%'],  # Ajusta la posición del gráfico circular ('pie')
+                'center': ['50%', '36%'],  # Ajusta la posición del gráfico circular ('pie')
                 'emphasis': {'focus': 'self'},
                 'label': {
                     'color': 'white',
                     'formatter': '{b}: {@2023} ({d}%)',
                 },
                 'itemStyle': {
-                    'borderColor': 'black',
+                    'borderColor': 'white',
                     'borderWidth': 1,
                 },
 
@@ -470,3 +511,4 @@ def graficoArtefactoMasUsado(request):
     }
 
     return JsonResponse(grafica)
+

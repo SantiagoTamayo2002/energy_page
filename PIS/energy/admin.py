@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Artefactos, Inventario, ConsumoDiarioMensual
+from .models import Artefactos, Inventario, Informe
 
 # Register your models here.
 admin.site.register(Artefactos)
 admin.site.register(Inventario)
-admin.site.register(ConsumoDiarioMensual)
+admin.site.register(Informe)
