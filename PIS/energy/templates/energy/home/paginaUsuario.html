@@ -8,19 +8,80 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
+<script src="{% static 'energy/js/botonResponsive.js'%}"></script>
     <title>inicio</title>
+    <style>
+        /* Estilos para el cuadro */
+        #cuadroLista {
+          position: absolute;
+          left: 20px;
+          top: 20px;
+          width: 200px;
+          background-color: #050d18;
+          border: 1px solid #050d18;
+          padding: 10px;
+          display: none; /* Inicialmente oculto */
+          z-index: 9999;
+          left: 25%; /* Posicionamiento en la mitad de la página */
+          top: 35%; /* Posicionamiento en la mitad de la página */
+          transform: translate(-50%, -50%); /* Centrado con respecto al 50% de la página */
+          backdrop-filter: blur(10px);
+          color: #46295e;
+        }
+
+        #cuadroLista ul {
+            list-style: none; /* Eliminar viñetas */
+            padding: 0; /* Eliminar padding */
+        }
+
+        #cuadroLista ul li {
+            margin-bottom: 5px; /* Espaciado entre elementos de la lista */
+        }
+
+        #cuadroLista ul li a {
+            text-decoration: none; /* Eliminar subrayado */
+            color: #46295e; /* Cambiar el color del texto de los enlaces a blanco */
+        }
+      </style>
 </head>
 <body>
     <div class="contenedor">
         <div class="slidevar">
             <img src="{% static 'energy/img/Foranix_SinFondo.png' %}" alt="">
+            
+                <label class="toggle-button" onclick="mostrarOcultarLista()">☰</label>
+                
+                <script>
+                    function mostrarOcultarLista() {
+                    var cuadro = document.getElementById('cuadroLista');
+                        if (cuadro.style.display === 'block') {
+                            cuadro.style.display = 'none'; // Oculta el cuadro si está visible
+                        } else {
+                            cuadro.style.display = 'block'; // Muestra el cuadro si está oculto
+                        }                 
+                    }
+                </script>
+            
             <ul>
                 <li><a href="{% url 'inventario' %}">Mi inventario</a></li>
                 <li><a href="nosotros.html">Ultimo consumo</a></li>
                 <li><a href="{% url 'proyecciones' %}">Proyecciones</a></li>
                 <li><a href="contacto.html">Reporte</a></li>
+                
             </ul>
-        </div>
+            
+        
+    </div>
+
+    <div id="cuadroLista">
+        <ul>
+            <li><a href="{% url 'inventario' %}">Mi inventario</a></li>
+            <li><a href="nosotros.html">Ultimo consumo</a></li>
+            <li><a href="{% url 'proyecciones' %}">Proyecciones</a></li>
+            <li><a href="contacto.html">Reporte</a></li>
+        </ul>
+    </div>
+
         <div class="navigation">
             <div class="buscador">
                 <p>Data Analizer</p>

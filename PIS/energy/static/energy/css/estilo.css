@@ -199,16 +199,16 @@ body{
 
 @media screen and (max-width: 768px) {
     .descripcion-footer {
-      max-width: 80%; /* Reducir el ancho máximo para dispositivos móviles */
-      padding-left: 0px; /* Ajustar el relleno izquierdo */
-      padding-right: 20px; /* Ajustar el relleno derecho */
-      font-size: 13px; /* Reducir el tamaño de fuente para dispositivos móviles */
+      max-width: 80%; 
+      padding-left: 0px; 
+      padding-right: 20px;
+      font-size: 13px; 
     }
 
     .redes-footer ul li{
         
-        display: flex; /* Usar Flexbox */
-        flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+        display: flex;
+        flex-wrap: wrap; 
     }
   }
 
