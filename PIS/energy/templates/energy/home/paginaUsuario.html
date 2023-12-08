@@ -5,17 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<<<<<<< HEAD
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
-<script src="{% static 'energy/js/botonResponsive.js'%}"></script>
-=======
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'energy/css/pagina-USER.css'%}">
     <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
->>>>>>> main
     <title>inicio</title>
     <style>
         /* Estilos para el cuadro */
@@ -52,60 +46,6 @@
       </style>
 </head>
 <body>
-<<<<<<< HEAD
-    <div class="contenedor">
-        <div class="slidevar">
-            <img src="{% static 'energy/img/Foranix_SinFondo.png' %}" alt="">
-            
-                <label class="toggle-button" onclick="mostrarOcultarLista()">☰</label>
-                
-                <script>
-                    function mostrarOcultarLista() {
-                    var cuadro = document.getElementById('cuadroLista');
-                        if (cuadro.style.display === 'block') {
-                            cuadro.style.display = 'none'; // Oculta el cuadro si está visible
-                        } else {
-                            cuadro.style.display = 'block'; // Muestra el cuadro si está oculto
-                        }                 
-                    }
-                </script>
-            
-            <ul>
-                <li><a href="{% url 'inventario' %}">Mi inventario</a></li>
-                <li><a href="nosotros.html">Ultimo consumo</a></li>
-                <li><a href="{% url 'proyecciones' %}">Proyecciones</a></li>
-                <li><a href="contacto.html">Reporte</a></li>
-                
-            </ul>
-            
-        
-    </div>
-
-    <div id="cuadroLista">
-        <ul>
-            <li><a href="{% url 'inventario' %}">Mi inventario</a></li>
-            <li><a href="nosotros.html">Ultimo consumo</a></li>
-            <li><a href="{% url 'proyecciones' %}">Proyecciones</a></li>
-            <li><a href="contacto.html">Reporte</a></li>
-        </ul>
-    </div>
-
-        <div class="navigation">
-            <div class="buscador">
-                <p>Data Analizer</p>
-                <input type="text" placeholder="Buscar">
-                <button type="submit">Buscar</button>
-            </div>
-            <div class="lista">
-                <ul>
-                    <li><a href="inicio.html">Consumo</a></li>
-                    <li><a href="nosotros.html">calcular</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="contacto.html">Mi cuenta</a></li>
-                </ul>
-            </div>
-
-=======
     <div class="header">
         <div class="logo">
             <div class="presentation">
@@ -126,7 +66,6 @@
     <div class="information">
         <div>
             <a href="{% url 'artefacto' %}"><i class="fa-solid fa-circle-plus" style="color: #d3e2ff;"></i>Agregar artefacto</a>
->>>>>>> main
         </div>
         <div>
             <a href="{% url 'inventario' %}"><i class="fa-solid fa-list-check" style="color: #d3e2ff;"></i>Gestionar inventario</a>

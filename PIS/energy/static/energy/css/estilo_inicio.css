@@ -5,14 +5,14 @@
 }
 
 body{
-    background-color: #00caf8;
+    background-color: #050d18;
 }
 
 .contenedor{
     position: relative;
     width: 100%;
     height: 100vh;
-    background-color: #00caf8;
+    background-color: #050d18;
 
 }
 
@@ -48,6 +48,30 @@ body{
     width: 100%;
 }
 
+.cuadro ul{
+    position: relative;
+    display: inline-block;
+    list-style: none;
+}
+
+.cuadro ul li{
+    line-height: 75px;
+    font-weight: 600;
+    color: #d4e3ff;
+    cursor: pointer;
+}
+
+.cuadro ul li a{
+    display: block;
+    text-decoration: none;
+    color: #6571DB;
+    padding: 10px 25px;
+    font-weight: 600;
+    font-size: 20px;
+    border-bottom: 3px solid #65BCDB;
+    width: 100%;
+}
+
 .slidevar img{
     position: relative;
     display: inline-block;
@@ -58,6 +82,8 @@ body{
     left: 10%;
     filter: drop-shadow(0 0 0.75rem #cdc2c2);
 }
+
+
 
 .slidevar img :hover{
     filter: drop-shadow(0 0 0.75rem #cdc2c2);

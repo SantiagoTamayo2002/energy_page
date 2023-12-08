@@ -11,17 +11,48 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
-        <nav> 
+        
+        <nav class="menu"> 
             <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
             <a href="{% url 'paginaUsuario' %}">Inicio</a>
             <a href="{% url 'proyecciones' %}">Ver Consumo</a>
             <a href="{% url 'inventario' %}">Inventario</a>
             <a href="{% url 'informe' %}">Generar Informe</a>
+            <li id="mostrarLista"> Mostrar Menu </li>
+            
             <span></span>
         </nav>
+
+        <div id="listaOculta" style="display: none;">
+            <ul id="listaNumeros">
+                <li><a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a></li>
+                <li>.</li>
+                <li><a href="{% url 'paginaUsuario' %}">Inicio</a></li>
+                <li>.</li>
+                <li><a href="{% url 'proyecciones' %}">Ver Consumo</a></li>
+                <li>.</li>
+                <li><a href="{% url 'inventario' %}">Inventario</a></li>
+                <li>.</li>
+                <li><a href="{% url 'informe' %}">Generar Informe</a></li>
+                <li>.</li>
+            </ul>
+        </div>
+
+        <script>
+            document.getElementById('mostrarLista').addEventListener('click', function() {
+            var lista = document.getElementById('listaOculta');
+            if (lista.style.display === 'none') {
+                lista.style.display = 'block';
+            } else {
+                lista.style.display = 'none';
+            }
+            });
+        </script>
+        
 
     <div class="contenedor">
         <div id="graficoConsumoActual" class="graficaProyeccion"></div>
