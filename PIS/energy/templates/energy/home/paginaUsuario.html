@@ -11,6 +11,39 @@
     <link rel="stylesheet" href="{% static 'energy/css/pagina-USER.css'%}">
     <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
     <title>inicio</title>
+    <style>
+        /* Estilos para el cuadro */
+        #cuadroLista {
+          position: absolute;
+          left: 20px;
+          top: 20px;
+          width: 200px;
+          background-color: #050d18;
+          border: 1px solid #050d18;
+          padding: 10px;
+          display: none; /* Inicialmente oculto */
+          z-index: 9999;
+          left: 25%; /* Posicionamiento en la mitad de la página */
+          top: 35%; /* Posicionamiento en la mitad de la página */
+          transform: translate(-50%, -50%); /* Centrado con respecto al 50% de la página */
+          backdrop-filter: blur(10px);
+          color: #46295e;
+        }
+
+        #cuadroLista ul {
+            list-style: none; /* Eliminar viñetas */
+            padding: 0; /* Eliminar padding */
+        }
+
+        #cuadroLista ul li {
+            margin-bottom: 5px; /* Espaciado entre elementos de la lista */
+        }
+
+        #cuadroLista ul li a {
+            text-decoration: none; /* Eliminar subrayado */
+            color: #46295e; /* Cambiar el color del texto de los enlaces a blanco */
+        }
+      </style>
 </head>
 <body>
     <div class="header">
