@@ -8,7 +8,7 @@ class Artefactos(models.Model):
     nombreArtefacto = models.CharField(max_length=20)
     consumoKwH = models.FloatField(default=0)
     horasDeUso = models.FloatField(default=0)
-    inventario = models.ForeignKey('Inventario', related_name='artefsactoList', on_delete=models.SET_NULL, null=True)
+    inventario = models.OneToOneField('Inventario', related_name='artefsactoList', on_delete=models.SET_NULL, null=True)
     def __str__(self):
         return f"{self.nombreArtefacto}"
 
@@ -35,11 +35,11 @@ class Informe(models.Model):
     consumoTotalMensual = models.FloatField(default=0)
 
     @classmethod
-    def actualizarConsumoDiario(cls, user, dia, total):
+    def actualizarConsumoDiario(cls, user, dia, consumoTotalMensual):
         # Obtener la suma total de consumoTotal para el usuario, inventario y día específicos
         mesActual = datetime.now().month
         consumo_total = Inventario.objects.filter(user=user, dia=dia, dia__month=mesActual).aggregate(Sum('consumoTotal'))['consumoTotal__sum'] or 0
-        consumo_mensual = total
+        consumo_mensual = consumoTotalMensual
         # Actualizar el campo consumoTotal con la suma
         cls.objects.update_or_create(
             user=user,

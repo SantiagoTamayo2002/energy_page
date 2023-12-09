@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import home, registro, contactos, nosotros, paginaUsuario, inicioSesion, cerrarSesion, inventario, artefacto, informe, imprimirPDF, proyecciones
+from .views import home, registro, contactos, nosotros, paginaUsuario, inicioSesion, cerrarSesion, gestionarInventario, artefacto, informe, imprimirPDF, proyecciones
 from .calculadora import eliminarDiaEnInventario, eliminarArtefacto, eliminarInventario,graficoConsumoActual, graficoProyeccionMensual, graficoArtefactoMasUsado, graficoProyeccionSemanal
 urlpatterns = [
     path('', home, name="home"),
@@ -10,7 +10,7 @@ urlpatterns = [
     path('nosotros/', nosotros, name="nosotros"),
     path('paginaUsuario/', paginaUsuario, name="paginaUsuario"),
     path('c', cerrarSesion, name="cerrarSesion"),
-    path('paginaUsuario/inventario/', inventario, name="inventario"),
+    path('paginaUsuario/inventario/', gestionarInventario, name="inventario"),
     path('paginaUsuario/inventario/<int:inventario_id>/', eliminarDiaEnInventario, name='eliminarDiaEnInventario'),
     path('paginaUsuario/inventario/eliminarInventario/', eliminarInventario, name='eliminarInventario'),
     path('paginaUsuario/inventario/artefactos/', artefacto, name="artefacto"),

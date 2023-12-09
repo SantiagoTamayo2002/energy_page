@@ -115,7 +115,7 @@ def artefacto(request):
 
 
 
-def inventario(request):
+def gestionarInventario(request):
     if request.user.is_authenticated:
         inventarioArtefacto = Inventario.objects.filter(user=request.user)
         consumoDiarioDelMes = Informe.objects.filter(user=request.user)
@@ -131,9 +131,7 @@ def inventario(request):
         elif request.method == 'POST':
             form = InventarioForm(request.user, request.POST)
             if form.is_valid():
-
                 inventario = form.save(commit=False)
-
                 # Obtén el ID del artefacto desde el formulario
                 artefactoid = InventarioForm(request.user, request.POST).data['artefactos']
                 artefacto = Artefactos.objects.get(pk=artefactoid)

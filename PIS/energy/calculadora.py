@@ -12,9 +12,9 @@ def calcularConsumoTotal(consumoTotalPorArtefacto, cantidadArtefactos, horasDeUs
     consumoTotal = (consumoTotalPorArtefacto * cantidadArtefactos * horasDeUso).__round__(2)
     return consumoTotal
 
-def calcularConsumoTotalMensual(user):
+def calcularConsumoTotalMensual(usuario):
     mesActual = datetime.now().month
-    consumoMensual = Informe.objects.filter(user=user, dia__month=mesActual).aggregate(Sum('consumoTotal'))['consumoTotal__sum'] or 0
+    consumoMensual = Informe.objects.filter(user=usuario, dia__month=mesActual).aggregate(Sum('consumoTotal'))['consumoTotal__sum'] or 0
     return consumoMensual
 
 def eliminarArtefacto(request, artefacto_id):
@@ -158,7 +158,7 @@ def obtenerPolinomio(request):
     print('------------------------\n Tabla de datos')
     print('--------------------------------------')
     print(f'ymedia = {ym}\n')
-    print(f'f = {funcion_polinomio}\n')
+    print(f'f(x) = {funcion_polinomio.__str__()}\n')
     print(f'coef_determinacion r2 = {r2}\n')
     print(str(r2_porcentaje) + '% de los datos se describe con el modelo')
     print('--------------------------------------')
