@@ -1,102 +1,49 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <style>
-        body{
-            background-color: #0b1741;
-        }
-        h1{
-            color: white;
-            text-align: center;
-        }
-        table{
-            width: 100%;
-            border: 1px solid white;
-            color: white;
-        }
-        th{
-
-            contain: content;
-            background-color: #0b1741;
-            color: white;
-        }
-        td{
-
-            text-align: center;
-        }
-        tr:nth-child(even){
-            background-color: #7F65DB;
-        }
-        button{
-            background-color: #0b1741;
-            color: white;
-            border: 1px solid white;
-            border-radius: 5px;
-            padding: 5px;
-        }
-        a {
-            text-decoration: none;
-            color: white;
-        }
-        a:hover{
-            color: #0b1741;
-            background-color: white;
-        }
-
-        form{
-            background-color: #7F65DB;
-            text-align: center;
-            display: block;
-            margin: auto;
-            width: 50%;
-        }
-        {#Esto hace poder modiicar el lo que se ingresa#}
-        form input{
-            background-color: black;
-            color: #007bff;
-            margin-top: 5px;
-            text-align: justify-all;
-        }
-        {#Esto hace poder modiicar el boton#}
-
-        form button{
-            margin-top: 5px;
-            text-align: center;
-        }
-        {#Esto hace poder modiicar el label#}
-        form label{
-            color: white;
-            background-color: black;
-            margin-top: 5px;
-            text-align: center;
-        }
-        h4{
-            color: #a21515;
-            text-align: center;
-        }
-    </style>
     <title>Inventario</title>
+    <link rel="stylesheet" href="{% static 'energy/css/inventario.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
-<a href="{% url 'paginaUsuario' %}">Inicio</a>
-<a href="{% url 'proyecciones' %}">Ver Consumo</a>
-<a href="{% url 'informe' %}">Generar Informe</a>
+    <nav class="menu"> 
+        <a href="{% url 'paginaUsuario' %}">Inicio</a>
+        <a href="{% url 'proyecciones' %}">Ver Consumo</a>
+        <a href="{% url 'informe' %}">Generar Informe</a>
+        <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
+        
+        <span></span>
+    </nav>
 
+    <div class="contenedor">
+        <div class="formulario">
+            <div class="form_content">
+                <form method="post" action="{% url 'inventario' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Guardar</button>
+                  </form>
+                  <h4>{{ error }}</h4>
+            </div>
+            <div class="form_buttons">
+                <button type="submit" ><a href="{% url 'artefacto' %}">Agregar Artefacto</a></button>
+                <button type="submit"><a href="{% url 'eliminarInventario' %}"> Empezar de 0</a></button>
+            </div>
+        </div>
+    </div>
+    
 
-<form method="post" action="{% url 'inventario' %}">
-  {% csrf_token %}
-
-  {{ form.as_p }}
-  <button type="submit">Guardar</button>
-</form>
-<h4>{{ error }}</h4>
-<button type="submit" ><a href="{% url 'artefacto' %}">Agregar Artefacto</a></button>
-<button type="submit"><a href="{% url 'eliminarInventario' %}"> Empezar de 0</a></button>
 
 <h1>Datos del Consumo Diario</h1>
 <table>
