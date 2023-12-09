@@ -63,7 +63,6 @@
         table{
             margin-top: 30px;
             width: 100%;
-            height: 50vh;
             border: 1px solid white;
             color: white;
         }
@@ -87,7 +86,6 @@
         }
 
         td{
-
             text-align: center;
         }
 

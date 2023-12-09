@@ -1,13 +1,14 @@
 from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
 
 
 class Artefactos(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     nombreArtefacto = models.CharField(max_length=20)
-    consumoKwH = models.FloatField(default=0)
-    horasDeUso = models.FloatField(default=0)
+    consumoKwH = models.PositiveBigIntegerField(default = 0)
+    horasDeUso = models.PositiveIntegerField(default=0)
     inventario = models.OneToOneField('Inventario', related_name='artefsactoList', on_delete=models.SET_NULL, null=True)
     def __str__(self):
         return f"{self.nombreArtefacto}"
@@ -17,10 +18,10 @@ class Inventario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     dia = models.DateField(default=datetime.now)
     nombreArtefacto = models.CharField(max_length=30)
-    horasDeUso = models.IntegerField(default=0)
-    cantidadArtefactos = models.IntegerField()
-    consumoArtefacto = models.FloatField(default=0)
-    consumoTotal = models.FloatField(default=0)
+    horasDeUso = models.PositiveIntegerField(default=0)
+    cantidadArtefactos = models.PositiveIntegerField(default=0)
+    consumoArtefacto = models.DecimalField(max_digits=10, decimal_places=2, default=0, validators=[MinValueValidator(0)])
+    consumoTotal = models.DecimalField(max_digits=10, decimal_places=2, default=0, validators=[MinValueValidator(0)])
     def __str__(self):
         return f'Inventario {self.user}: {self.nombreArtefacto}'
 
@@ -31,8 +32,8 @@ class Informe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, null=True)
     dia = models.DateField(auto_now_add=True)  # Cambiado a auto_now_add para obtener la fecha actual en la creación del objeto
-    consumoTotal = models.FloatField(default=0)  # Valor predeterminado actualizado a 0
-    consumoTotalMensual = models.FloatField(default=0)
+    consumoTotal = models.DecimalField(max_digits=10, decimal_places=2, default=0, validators=[MinValueValidator(0)])  # Valor predeterminado actualizado a 0
+    consumoTotalMensual = models.DecimalField(max_digits=10, decimal_places=2, default=0, validators=[MinValueValidator(0)])
 
     @classmethod
     def actualizarConsumoDiario(cls, user, dia, consumoTotalMensual):
