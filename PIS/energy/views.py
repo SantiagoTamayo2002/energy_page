@@ -74,7 +74,7 @@ def inicioSesion(request):
 
 
 
-def artefacto(request):
+def gestionarArtefato(request):
     if request.user.is_authenticated:
         artefactos = Artefactos.objects.filter(user=request.user)
         if request.method == 'GET':
