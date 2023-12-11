@@ -159,6 +159,10 @@ footer {
 }
 /* Estilos específicos para la impresión */
 @media print {
+    body{
+        background-color: rgba(255, 255, 255, 0);
+        
+    }
     a,i {
         display: none;
         /* Oculta los enlaces al imprimir */
@@ -168,5 +172,6 @@ footer {
         display: none;
         /* Oculta los botones al imprimir */
     }
+
 }
 

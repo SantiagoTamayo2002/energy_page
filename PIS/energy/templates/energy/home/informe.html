@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     {% load static %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'energy/css/informe.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'energy/css/informe.css' %}"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"
@@ -15,7 +15,196 @@
 </head>
 
 <body>
-    <nav>
+    <style>
+        * {
+	font-family: 'Livvic', Courier, monospace;
+    margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #050d18;
+    align-items: center;
+    justify-content: center;
+}
+nav{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: #222222ab;
+    border-radius:8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+nav a {
+    position: relative;
+    display: inline-block;
+    font-size: 19px;
+    font-weight: 500;
+    color: #1da0f2c2;
+    text-decoration: none;
+    padding: 13px 35px;
+    margin: 5px;
+    z-index: 2;
+    transition: color .5s;   
+}
+nav a::after {
+    content: '';
+    background: linear-gradient(10deg, #222222ab, #1da0f2c2);
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    transition: top .5s, opacity .5s;
+}
+nav a:hover {
+    color: #fff;
+}
+nav a:hover::after{
+    top: 50%;
+    opacity: 1;
+}
+
+hi, h2 {
+    color: white;
+    font-size: 19;
+}
+.datosUsuario {
+    text-align: left;
+    background-color: #1DA1F2;
+    opacity: 0.8;
+    width: 100%;
+    padding: 20px;
+    border-radius: 0 0 30px 30px;
+    font-size: 12px;
+    display: flex;
+}
+img {
+    display: flex;
+    margin-right: 10px;
+    width: 100px;
+    height: 100%;
+}
+.datosUsuario .description h2 p {
+    display: inline-block;
+    padding-left: 20px;
+}
+
+i{
+	margin: 20px;
+	font-size: 20px;
+	color: white;
+    width: 220px;
+	border-radius: 10%;
+	padding: 15px;
+	box-shadow: 0px 10px 15px #0a324ac2;
+	transition: .3s ease;
+    display: inline-block;
+    cursor: pointer;
+}
+a{
+    color: white;
+	font-size: 15px;
+    text-decoration: none;
+}
+.fa-file-export:hover{
+	background-color: #1DA1F2;
+	color: white;
+	box-shadow: 0 0 5px #1DA1F2,
+				0 0 15px #1DA1F2,
+				0 0 25px #1DA1F2,
+				0 0 45px #1DA1F2;
+}
+
+table {
+    font-family: 'Livvic', Courier, monospace;
+    color: white;
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px;
+}
+th{
+    font-weight: bolder;
+    text-align: left;
+    background-color: #0a324ac2;
+    
+	
+}
+
+td,
+th,
+.datosConsumo,
+
+tr {
+    border: 2px solid #1da0f2c2; /*lineas de la tabla*/
+    text-align: center;
+    padding: 8px;
+}
+.datosConsumo{
+    color: #fff;
+    background-color:#1DA1F2;
+    opacity: 0.8;
+    font-size: 20px;
+    width: 90%;
+    margin: 20px;
+}
+tr:hover td {
+    background-color: #1DA1F2;
+    box-shadow: 0 0 5px #1DA1F2,
+				0 0 10px #1DA1F2,
+				0 0 15px #1DA1F2,
+				0 0 25px #1DA1F2;
+    
+}
+tbody tr:nth-child(odd){
+    background-color: #0a324ac2;
+}
+
+footer {
+    background-color: #1DA1F2;
+    padding: 10px;
+    text-align: center;
+}
+/* Estilos específicos para la impresión */
+@media print {
+    body{
+        background-color: rgba(255, 255, 255, 0);
+        
+    }
+    a,i {
+        display: none;
+        /* Oculta los enlaces al imprimir */
+    }
+
+    button {
+        display: none;
+        /* Oculta los botones al imprimir */
+    }
+    .navegar{
+        display: none;
+    }
+    tbody tr:nth-child(odd){
+    color: white;
+    }
+    tbody tr:nth-child(2n){
+    color: black;
+     }
+
+}
+
+
+    </style>
+    <nav class="navegar">
         <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
         <a href="{% url 'paginaUsuario' %}">Inicio</a>
         <a href="{% url 'proyecciones' %}">Ver Consumo</a>
