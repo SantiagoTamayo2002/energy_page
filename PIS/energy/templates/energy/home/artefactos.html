@@ -1,93 +1,34 @@
-<html>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Artefactos</title>
-    <style>
-        body{
-            background-color: black;
-            color: white;
+    <meta charset="UTF-8">
 
-        }
-        table, th, td {
-            flex: fit-content;
-            text-align: center;
-            align-content: center;
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 5px;
-
-        }
-        table{
-            margin: auto;
-        }
-        button{
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 12px;
-        }
-        button:hover{
-            background-color: #3e8e41;
-        }
-        h1{
-            text-align: center;
-        }
-        h2{
-            text-align: center;
-        }
-        form{
-            text-align: center;
-            display: block;
-            margin: auto;
-            width: 50%;
-            background-color: #0b1741;
-        }
-        form input{
-            margin-top: 5px;
-            text-align: center;
-        }
-        a{
-            text-align: center;
-            display: block;
-            margin: auto;
-            width: 10%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            font-size: 12px;
-        }
-        a:hover{
-            background-color: #3e8e41;
-        }
-        th{
-            margin: 5px;
-            background-color: #0b1741;
-            color: white;
-        }
-        h3{
-            color: #ec2222;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'energy/css/artefacto.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
+    <title>Title</title>
 </head>
 <body>
-<a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
-<a href="{% url 'paginaUsuario' %}">Inicio</a>
-<a href="{% url 'proyecciones' %}">Ver Consumo</a>
-<a href="{% url 'informe' %}">Generar Informe</a>
-    <h1>Artefactos</h1>
-<a href="{% url 'inventario' %}">Ver Inventario</a>
-
-<h2>Crear Nuevo Artefacto</h2>
+     <nav class="menu">
+                <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
+                <a href="{% url 'paginaUsuario' %}">Inicio</a>
+                <a href="{% url 'proyecciones' %}">Ver Consumo</a>
+                <a href="{% url 'inventario' %}">Inventario</a>
+     </nav>
+ <h1>Artefactos</h1>
+<section class="formCrearArtefactos">
+    <h2>Crear Nuevo Artefacto</h2>
     <h3>{{ error }}</h3>
-<form method="post" action="{% url 'artefacto' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Guardar Artefacto</button>
-</form>
+    <form method="post" action="{% url 'artefacto' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Guardar Artefacto</button>
+    </form>
+</section>
+
+
+<section class="tablaDeLosArtefactos">
 <h2>Artefactos</h2>
 <table>
   <tr>
@@ -102,7 +43,7 @@
         <td>{{ artefacto.nombreArtefacto }}</td>
         <td>{{ artefacto.consumoKwH }}</td>
         <td>{{ artefacto.horasDeUso }}</td>
-        <td>
+        <td class="acciones">
         <form method="post" action="{% url 'eliminarArtefacto' artefacto.id %}">
           {% csrf_token %}
           <button type="submit">Eliminar</button>
@@ -110,6 +51,9 @@
         </td>
   {% endfor %}
 </table>
+
+</section>
+
 
 </body>
 </html>

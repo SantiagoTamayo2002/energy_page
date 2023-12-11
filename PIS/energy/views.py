@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import ArtefactosForm, InventarioForm, CrearUsuario
-from .models import Artefactos, Inventario, ConsumoDiarioMensual
+from .models import Artefactos, Inventario, Informe
 import datetime
 from django.http import HttpResponse
 from django.template.loader import render_to_string
@@ -74,7 +74,7 @@ def inicioSesion(request):
 
 
 
-def artefacto(request):
+def gestionarArtefato(request):
     if request.user.is_authenticated:
         artefactos = Artefactos.objects.filter(user=request.user)
         if request.method == 'GET':
@@ -115,10 +115,10 @@ def artefacto(request):
 
 
 
-def inventario(request):
+def gestionarInventario(request):
     if request.user.is_authenticated:
         inventarioArtefacto = Inventario.objects.filter(user=request.user)
-        consumoDiarioDelMes = ConsumoDiarioMensual.objects.filter(user=request.user)
+        consumoDiarioDelMes = Informe.objects.filter(user=request.user)
 
         if request.method == 'GET':
             form = InventarioForm(user=request.user)
@@ -131,15 +131,13 @@ def inventario(request):
         elif request.method == 'POST':
             form = InventarioForm(request.user, request.POST)
             if form.is_valid():
-
                 inventario = form.save(commit=False)
-
                 # Obtén el ID del artefacto desde el formulario
                 artefactoid = InventarioForm(request.user, request.POST).data['artefactos']
                 artefacto = Artefactos.objects.get(pk=artefactoid)
 
                 # Verifica si ya existe un inventario para el usuario, el día y el artefacto
-                if Inventario.objects.filter(user=request.user, dia=inventario.dia, nombre=artefacto).exists():
+                if Inventario.objects.filter(user=request.user, dia=inventario.dia, nombreArtefacto=artefacto).exists():
                     return render(request, 'energy/home/inventario.html', {
                         'form': form,
                         'inventarioArtefacto': inventarioArtefacto,
@@ -148,7 +146,7 @@ def inventario(request):
                         'error': 'El artefacto ya ha sido hagregado el dia de hoy, por favor si require cambiar la cantidad de su artefacto, elimine eh ingrese una nueva cantidad'
                     })
                 else:
-                    inventario.nombre = artefacto.nombreArtefacto
+                    inventario.nombreArtefacto = artefacto.nombreArtefacto
                     inventario.horasDeUso = artefacto.horasDeUso
                     inventario.consumoArtefacto = artefacto.consumoKwH
                     inventario.consumoTotal = calcularConsumoTotal(inventario.consumoArtefacto, inventario.cantidadArtefactos, inventario.horasDeUso)
@@ -156,7 +154,7 @@ def inventario(request):
                     inventario.save()
                     ######################
                     total = calcularConsumoTotalMensual(request.user)
-                    ConsumoDiarioMensual.actualizarConsumoDiario(request.user, inventario.dia, total)
+                    Informe.actualizarConsumoDiario(request.user, inventario.dia, total)
                 ######################
                     return redirect('inventario')
             else:
@@ -177,7 +175,7 @@ def inventario(request):
 
 def informe(request):
     if request.user.is_authenticated:
-        consumoDiarioDelMes = ConsumoDiarioMensual.objects.filter(user=request.user)
+        consumoDiarioDelMes = Informe.objects.filter(user=request.user)
         totalMensual = calcularConsumoTotalMensual(request.user)
         return render(request, 'energy/home/informe.html', {
             'consumoDiario': consumoDiarioDelMes,
@@ -190,7 +188,7 @@ def informe(request):
 
 def imprimirPDF(request):
     context = {
-        'consumoDiario': ConsumoDiarioMensual.objects.filter(user=request.user),
+        'consumoDiario': Informe.objects.filter(user=request.user),
         'user': request.user,
         'consumoTotalMensual': calcularConsumoTotalMensual(request.user),
     }
