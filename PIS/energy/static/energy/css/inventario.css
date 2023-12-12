@@ -5,6 +5,12 @@
 
     }
 
+.section{
+    margin-top: 70px;
+}
+.error{
+    color: red;
+}
     body{
         background-color: #050d05;
     }
@@ -173,7 +179,8 @@
         .form_buttons button a{
             text-decoration: none;
             color: #fff;
-            width: 600;
+            width: 600px;
         }
+
 
         

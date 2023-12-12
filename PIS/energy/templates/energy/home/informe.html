@@ -1,129 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     {% load static %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: black;
-        }
-        .datosUsuario {
-            text-align: left;
-            background-color: rgba(81, 136, 196, 0.76);
-            padding: 20px;
-            margin: 20px;
-            font-size: 10px;
-        }
-
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-            margin: 20px;
-        }
-
-        td, th, .datosConsumo, tr {
-            border: 2px solid #070505;
-            text-align: center;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-
-        img {
-            float: left;
-            margin-right: 10px;
-            width: 100px;
-            height: 100px;
-            margin-top: 10px;
-            padding-block-end: 20px;
-        }
-
-        button {
-            background-color: rgba(81, 136, 196, 0.76);
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 20px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        a {
-            color: black;
-            text-decoration: none;
-        }
-        a:hover {
-            background-color: #4CAF50;
-            color: white;
-        }
-        tr:nth-child(even){
-            background-color: #c6b8f3;
-        }
-
-        /* Estilos específicos para la impresión */
-        @media print {
-            a {
-                display: none; /* Oculta los enlaces al imprimir */
-            }
-            button {
-                display: none; /* Oculta los botones al imprimir */
-            }
-            img {
-                float: left;
-                margin-right: 10px;
-                width: 100px;
-                height: 100px;
-                margin-top: 10px;
-                padding-block-end: 20px;
-            }
-        }
-    </style>
+    <!-- <link rel="stylesheet" href="{% static 'energy/css/informe.css' %}"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Data Analyzer</title>
 </head>
+
 <body>
-    <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
-    <a href="{% url 'paginaUsuario' %}">Inicio</a>
-    <a href="{% url 'proyecciones' %}">Ver Consumo</a>
-    <a href="{% url 'inventario' %}">Inventario</a>
+    <style>
+        * {
+	font-family: 'Livvic', Courier, monospace;
+    margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #050d18;
+    align-items: center;
+    justify-content: center;
+}
+nav{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: #222222ab;
+    border-radius:8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+nav a {
+    position: relative;
+    display: inline-block;
+    font-size: 19px;
+    font-weight: 500;
+    color: #1da0f2c2;
+    text-decoration: none;
+    padding: 13px 35px;
+    margin: 5px;
+    z-index: 2;
+    transition: color .5s;
+}
+nav a::after {
+    content: '';
+    background: linear-gradient(10deg, #222222ab, #1da0f2c2);
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    transition: top .5s, opacity .5s;
+}
+nav a:hover {
+    color: #fff;
+}
+nav a:hover::after{
+    top: 50%;
+    opacity: 1;
+}
+
+hi, h2 {
+    color: white;
+    font-size: 19px;
+}
+.datosUsuario {
+    text-align: left;
+    background-color: #1DA1F2;
+    opacity: 0.8;
+    width: 100%;
+    padding: 20px;
+    border-radius: 0 0 30px 30px;
+    font-size: 12px;
+    display: flex;
+}
+img {
+    display: flex;
+    margin-right: 10px;
+    width: 100px;
+    height: 100%;
+}
+.datosUsuario .description h2 p {
+    display: inline-block;
+    padding-left: 20px;
+}
+
+i{
+	margin: 20px;
+	font-size: 20px;
+	color: white;
+    width: 220px;
+	border-radius: 10%;
+	padding: 15px;
+	box-shadow: 0px 10px 15px #0a324ac2;
+	transition: .3s ease;
+    display: inline-block;
+    cursor: pointer;
+}
+a{
+    color: white;
+	font-size: 15px;
+    text-decoration: none;
+}
+.fa-file-export:hover{
+	background-color: #1DA1F2;
+	color: white;
+	box-shadow: 0 0 5px #1DA1F2,
+				0 0 15px #1DA1F2,
+				0 0 25px #1DA1F2,
+				0 0 45px #1DA1F2;
+}
+
+table {
+    font-family: 'Livvic', Courier, monospace;
+    color: white;
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px;
+}
+th{
+    font-weight: bolder;
+    text-align: left;
+    background-color: #0a324ac2;
+
+
+}
+
+td,
+th,
+.datosConsumo,
+
+tr {
+    border: 2px solid #1da0f2c2; /*lineas de la tabla*/
+    text-align: center;
+    padding: 8px;
+}
+.datosConsumo{
+    color: #fff;
+    background-color:#1DA1F2;
+    opacity: 0.8;
+    font-size: 20px;
+    width: 90%;
+    margin: 20px;
+}
+tr:hover td {
+    background-color: #1DA1F2;
+    box-shadow: 0 0 5px #1DA1F2,
+				0 0 10px #1DA1F2,
+				0 0 15px #1DA1F2,
+				0 0 25px #1DA1F2;
+
+}
+tbody tr:nth-child(odd){
+    background-color: #0a324ac2;
+}
+
+footer {
+    background-color: #1DA1F2;
+    padding: 10px;
+    text-align: center;
+}
+/* Estilos específicos para la impresión */
+@media print {
+    body{
+        background-color: rgba(255, 255, 255, 0);
+
+    }
+    a,i {
+        display: none;
+        /* Oculta los enlaces al imprimir */
+    }
+
+    button {
+        display: none;
+        /* Oculta los botones al imprimir */
+    }
+    .navegar{
+        display: none;
+    }
+    tbody tr:nth-child(odd){
+    color: white;
+    }
+    tbody tr:nth-child(2n){
+    color: black;
+     }
+
+}
+
+
+    </style>
+    <nav class="navegar">
+        <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
+        <a href="{% url 'paginaUsuario' %}">Inicio</a>
+        <a href="{% url 'proyecciones' %}">Ver Consumo</a>
+        <a href="{% url 'inventario' %}">Inventario</a>
+    </nav>
+
     <div class="datosUsuario">
-        <img src="{% static 'energy/img/FORANIX-sinFondo2.png' %}" alt="Logo">
-        <h1>Usuario: {{user.username}}</h1>
-        <h2>Nombre: {{user.first_name}}</h2>
-        <h2>Apellido: {{user.last_name}}</h2>
-        <h2>Correo: {{user.email}}</h2>
+        <img src="{% static 'energy/img/FORANIX-sinFondo2.png' %}" alt="">
+        <div class="description">
+            <h2>Cliente:<p>{{user.first_name}} {{user.last_name}}</p>
+            </h2>
+            <h2>Correo:<p>{{user.email}}</p>
+            </h2>
+        </div>
     </div>
 
-    <table>
-        <h1 class="datosConsumo">Datos del Consumo Mensual</h1>
-        <tr>
-            <th>Fecha</th>
-            <th>Consumo Total</th>
-        </tr>
-        {% for consumo in consumoDiario %}
+    <div class="contenedorTabla">
+        <h1 class="datosConsumo">INFORME CONSUMO POR MES</h1>
+        <table>
+            <tr>
+                <th>FECHA</th>
+                <th>CONSUMO (Kw/h)</th>
+            </tr>
+            {% for consumo in consumoDiario %}
             <tr>
                 <td>{{ consumo.dia }}</td>
                 <td>{{ consumo.consumoTotal }} Kw/h</td>
             </tr>
 
-        {% endfor %}
-            <th>Consumo total del mes</th>
-            <th>{{ consumoTotalMensual }} Kw/h</th>
-    </table>
-
-        <button><a href="{% url 'imprimirPDF' %}">Exportar el consumo</a></button>
-
-
+            {% endfor %}
+            <th>TOTAL CONSUMO </th>
+            <th>{{ consumoTotalMensual }} Kw</th>
+        </table>
+    </div>
+    <i class="fa-solid fa-file-export"> <a href="{% url 'imprimirPDF' %}">Exportar el informe</a></i>
+    <footer>
+        <p>&copy; 2023 - Todos los derechos reservados</p>
+    </footer>
 </body>
+
 </html>

@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 class Artefactos(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     nombreArtefacto = models.CharField(max_length=20)
-    consumoKwH = models.FloatField(default=0)
-    horasDeUso = models.FloatField(default=0)
+    consumoWH = models.FloatField(default=0)
+    horasDeUso = models.PositiveIntegerField(default=0)
     inventario = models.OneToOneField('Inventario', related_name='artefsactoList', on_delete=models.SET_NULL, null=True)
     def __str__(self):
         return f"{self.nombreArtefacto}"
@@ -17,8 +17,8 @@ class Inventario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     dia = models.DateField(default=datetime.now)
     nombreArtefacto = models.CharField(max_length=30)
-    horasDeUso = models.IntegerField(default=0)
-    cantidadArtefactos = models.IntegerField()
+    horasDeUso = models.PositiveIntegerField(default=0)
+    cantidadArtefactos = models.PositiveIntegerField()
     consumoArtefacto = models.FloatField(default=0)
     consumoTotal = models.FloatField(default=0)
     def __str__(self):

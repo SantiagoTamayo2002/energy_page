@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!--<link rel="stylesheet" type="text/css" href="styles.css"-->>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
@@ -34,7 +35,9 @@
                     {{ form.as_p }}
                     <button type="submit">Guardar</button>
                   </form>
+                <div>
                   <h4>{{ error }}</h4>
+                </div>
             </div>
             <div class="form_buttons">
                 <button type="submit" ><a href="{% url 'artefacto' %}">Agregar Artefacto</a></button>
@@ -44,8 +47,8 @@
     </div>
     
 
-
-<h1>Datos del Consumo Diario</h1>
+<section class="section">
+    <h1>Datos del Consumo Diario</h1>
 <table>
   <tr>
       <th>Dia</th>
@@ -62,9 +65,9 @@
         <td>{{ inventario.dia }}</td>
         <td>{{ inventario.nombreArtefacto }}</td>
         <td>{{ inventario.cantidadArtefactos }}</td>
-        <td>{{ inventario.horasDeUso }}</td>
-        <td>{{ inventario.consumoArtefacto }} kw/h</td>
-        <td>{{ inventario.consumoTotal }} Kw/h</td>
+        <td>{{ inventario.horasDeUso }} hrs</td>
+        <td>{{ inventario.consumoArtefacto }} W/h</td>
+        <td>{{ inventario.consumoTotal }} W/h</td>
         <td>
         <form method="post" action="{% url 'eliminarDiaEnInventario' inventario.id %}">
           {% csrf_token %}
@@ -75,6 +78,8 @@
   </tr>
   {% endfor %}
 </table>
+
+</section>
 
 
 
