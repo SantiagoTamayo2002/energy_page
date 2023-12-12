@@ -148,7 +148,7 @@ def gestionarInventario(request):
                 else:
                     inventario.nombreArtefacto = artefacto.nombreArtefacto
                     inventario.horasDeUso = artefacto.horasDeUso
-                    inventario.consumoArtefacto = artefacto.consumoKwH
+                    inventario.consumoArtefacto = artefacto.consumoWH
                     inventario.consumoTotal = calcularConsumoTotal(inventario.consumoArtefacto, inventario.cantidadArtefactos, inventario.horasDeUso)
                     inventario.user = request.user
                     inventario.save()

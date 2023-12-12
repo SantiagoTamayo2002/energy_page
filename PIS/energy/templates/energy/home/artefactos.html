@@ -41,8 +41,8 @@
   {% for artefacto in artefactos %}
     <tr>
         <td>{{ artefacto.nombreArtefacto }}</td>
-        <td>{{ artefacto.consumoKwH }}</td>
-        <td>{{ artefacto.horasDeUso }}</td>
+        <td>{{ artefacto.consumoWH }} W/h</td>
+        <td>{{ artefacto.horasDeUso }} hrs</td>
         <td class="acciones">
         <form method="post" action="{% url 'eliminarArtefacto' artefacto.id %}">
           {% csrf_token %}
