@@ -372,27 +372,21 @@ def graficoArtefactoMasUsado(request):
     dias = []
     counter = 0
 
-<<<<<<< HEAD
     for i in ConsumoDiarioMensual.objects.filter(user=request.user):
         dias.append(counter+1)
-=======
     for i in Informe.objects.filter(user=request.user):
         dias.append((counter+1).__str__())
->>>>>>> 5d1ce20a356e2cee957b121f4b1b903c5eb1510c
         counter += 1
     artefactoSet = set()
     artefactoList = []
 
     for i in Inventario.objects.filter(user=request.user):
-<<<<<<< HEAD
         if i.nombre not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
             artefactoSet.add(i.nombre)
             artefactosMasUsados = [i.nombre]
-=======
         if i.nombreArtefacto not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
             artefactoSet.add(i.nombreArtefacto)
             artefactosMasUsados = [i.nombreArtefacto] # Agregar el nombreArtefacto del artefacto a la lista
->>>>>>> 5d1ce20a356e2cee957b121f4b1b903c5eb1510c
             consumoArtefacto = []
             for j in Inventario.objects.filter(user=request.user, nombreArtefacto=i.nombreArtefacto):
                 consumoArtefacto.append(j.consumoTotal)
