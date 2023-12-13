@@ -16,6 +16,8 @@ def calcularConsumoTotal(consumoTotalPorArtefacto, cantidadArtefactos, horasDeUs
 def calcularConsumoTotalMensual(usuario):
     mesActual = datetime.now().month
     consumoMensual = Informe.objects.filter(user=usuario, dia__month=mesActual).aggregate(Sum('consumoTotal'))['consumoTotal__sum'] or 0
+    if consumoMensual != 0:
+        consumoMensual = consumoMensual /1000
     return consumoMensual
 
 def eliminarArtefacto(request, artefacto_id):

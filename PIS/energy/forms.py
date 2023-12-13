@@ -7,7 +7,7 @@ class ArtefactosForm(forms.ModelForm):
     class Meta:
         model = Artefactos
 
-        fields = ('nombreArtefacto', 'consumoKwH', 'horasDeUso')
+        fields = ('nombreArtefacto', 'consumoWH', 'horasDeUso')
 
         widgets = {
             'nombreArtefacto': forms.TextInput(
@@ -15,9 +15,9 @@ class ArtefactosForm(forms.ModelForm):
                     'placeholder': 'Nombre del Artefacto'
                 }
             ),
-            'consumoKwH': forms.NumberInput(
+            'consumoWH': forms.NumberInput(
                 attrs={
-                    'placeholder': 'Consumo en KwH'
+                    'placeholder': 'Consumo en W/h'
                 }
             ),
             'horasDeUso': forms.NumberInput(
@@ -29,7 +29,7 @@ class ArtefactosForm(forms.ModelForm):
 
         labels = {
             'nombreArtefacto': 'Nombre del Artefacto',
-            'consumoKwH': 'Consumo en KwH',
+            'consumoWH': 'Consumo en W/h',
             'horasDeUso': 'Horas de uso',
         }
 
