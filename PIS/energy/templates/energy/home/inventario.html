@@ -63,11 +63,11 @@
   {% for inventario in inventarioArtefacto %}
     <tr>
         <td>{{ inventario.dia }}</td>
-        <td>{{ inventario.nombreArtefacto }}</td>
+        <td>{{ inventario.artefacto.nombreArtefacto }}</td>
         <td>{{ inventario.cantidadArtefactos }}</td>
-        <td>{{ inventario.horasDeUso }} hrs</td>
+        <td>{{ inventario.artefacto.horasDeUso }} hrs</td>
+        <td>{{ inventario.artefacto.consumoWH }} W/h</td>
         <td>{{ inventario.consumoArtefacto }} W/h</td>
-        <td>{{ inventario.consumoTotal }} W/h</td>
         <td>
         <form method="post" action="{% url 'eliminarDiaEnInventario' inventario.id %}">
           {% csrf_token %}

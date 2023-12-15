@@ -387,12 +387,12 @@ def graficoArtefactoMasUsado(request):
 
 
     for i in Inventario.objects.filter(user=request.user):
-        if i.nombreArtefacto not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
-            artefactoSet.add(i.nombreArtefacto)
-            artefactosMasUsados = [i.nombreArtefacto] # Agregar el nombreArtefacto del artefacto a la lista
+        if i.artefacto.nombreArtefacto not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
+            artefactoSet.add(i.artefacto.nombreArtefacto)
+            artefactosMasUsados = [i.artefacto.nombreArtefacto]    # Agregar el nombreArtefacto del artefacto a la lista
             consumoArtefacto = []
-            for j in Inventario.objects.filter(user=request.user, nombreArtefacto=i.nombreArtefacto):
-                consumoArtefacto.append(j.consumoTotal)
+            for j in Inventario.objects.filter(user=request.user, artefacto__nombreArtefacto=i.artefacto.nombreArtefacto):
+                consumoArtefacto.append(j.consumoArtefacto)
             artefactosMasUsados.extend(consumoArtefacto) # Agregar el consumo del artefacto a la lista
             artefactoList.append(artefactosMasUsados) # Agregar la lista a la lista de artefactos
     artefactoList.sort(key=lambda x: sum(x[1:]), reverse=True)

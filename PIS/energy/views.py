@@ -74,27 +74,26 @@ def inicioSesion(request):
 
 
 
-def gestionarArtefato(request):
+def artefacto(request):
     if request.user.is_authenticated:
         artefactos = Artefactos.objects.filter(user=request.user)
         if request.method == 'GET':
             form = ArtefactosForm()
             return render(request, 'energy/home/artefactos.html', {
                 'form': form,
-                'artefactos': artefactos,
+                'artefactos': artefactos
             })
         elif request.method == 'POST':
             form = ArtefactosForm(request.POST)
             if form.is_valid():
                 artefacto = form.save(commit=False)
                 #artefacto ya existe dentro del usuario
-                if Artefactos.objects.filter(user=request.user, nombreArtefacto=artefacto).exists():
+                if Artefactos.objects.filter(user=request.user, nombreArtefacto=artefacto.nombreArtefacto).exists():
                     return render(request, 'energy/home/artefactos.html', {
                         'form': form,
                         'artefactos': artefactos,
                         'error': 'El artefacto ya existe',
                     })
-
                 artefacto.user = request.user
                 artefacto.save()
                 return redirect('artefacto')
@@ -115,7 +114,7 @@ def gestionarArtefato(request):
 
 
 
-def gestionarInventario(request):
+def inventario(request):
     if request.user.is_authenticated:
         inventarioArtefacto = Inventario.objects.filter(user=request.user)
         consumoDiarioDelMes = Informe.objects.filter(user=request.user)
@@ -128,33 +127,26 @@ def gestionarInventario(request):
                 'consumoDiario': consumoDiarioDelMes,
                 'eliminarInventario': eliminarInventario,
             })
+
         elif request.method == 'POST':
             form = InventarioForm(request.user, request.POST)
             if form.is_valid():
                 inventario = form.save(commit=False)
                 # Obtén el ID del artefacto desde el formulario
-                artefactoid = InventarioForm(request.user, request.POST).data['artefactos']
-                artefacto = Artefactos.objects.get(pk=artefactoid)
-
+                artefacto = InventarioForm(request.user, request.POST).data['artefactos']
+                print(artefacto)
                 # Verifica si ya existe un inventario para el usuario, el día y el artefacto
-                if Inventario.objects.filter(user=request.user, dia=inventario.dia, nombreArtefacto=artefacto).exists():
-                    return render(request, 'energy/home/inventario.html', {
-                        'form': form,
-                        'inventarioArtefacto': inventarioArtefacto,
-                        'consumoDiario': consumoDiarioDelMes,
-                        'eliminarInventario': eliminarInventario,
-                        'error': 'El artefacto ya ha sido hagregado el dia de hoy, por favor si require cambiar la cantidad de su artefacto, elimine eh ingrese una nueva cantidad'
-                    })
+                if Inventario.objects.filter(user=request.user, dia=inventario.dia, artefacto_id=artefacto).exists():
+                    return redirect('inventario')
                 else:
-                    inventario.nombreArtefacto = artefacto.nombreArtefacto
-                    inventario.horasDeUso = artefacto.horasDeUso
-                    inventario.consumoArtefacto = artefacto.consumoWH
-                    inventario.consumoTotal = calcularConsumoTotal(inventario.consumoArtefacto, inventario.cantidadArtefactos, inventario.horasDeUso)
                     inventario.user = request.user
-                    inventario.save()
+                    inventario.artefacto = Artefactos.objects.get(id=artefacto)
                     ######################
-                    total = calcularConsumoTotalMensual(request.user)
-                    Informe.actualizarConsumoDiario(request.user, inventario.dia, total)
+                    inventario.consumoTotal = calcularConsumoTotalMensual(request.user)
+                    inventario.consumoArtefacto = calcularConsumoTotal(inventario.artefacto.consumoWH, inventario.artefacto.horasDeUso, inventario.cantidadArtefactos)
+                    inventario.save()
+                    Informe.actualizarConsumoDiario(request.user, inventario.dia, inventario.consumoTotal)
+
                 ######################
                     return redirect('inventario')
             else:
