@@ -1,26 +1,26 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Artefactos, Inventario
+from .models import Artefacto, Inventario
 
-class ArtefactosForm(forms.ModelForm):
+class ArtefactoForm(forms.ModelForm):
     class Meta:
-        model = Artefactos
+        model = Artefacto
 
-        fields = ('nombreArtefacto', 'consumoWH', 'horasDeUso')
+        fields = ('nombre_artefacto', 'consumo_wh', 'horas_de_uso')
 
         widgets = {
-            'nombreArtefacto': forms.TextInput(
+            'nombre_artefacto': forms.TextInput(
                 attrs={
                     'placeholder': 'Nombre del Artefacto'
                 }
             ),
-            'consumoWH': forms.NumberInput(
+            'consumo_wh': forms.NumberInput(
                 attrs={
                     'placeholder': 'Consumo en W/h'
                 }
             ),
-            'horasDeUso': forms.NumberInput(
+            'horas_de_uso': forms.NumberInput(
                 attrs={
                     'placeholder': 'Horas de uso'
                 }
@@ -28,9 +28,9 @@ class ArtefactosForm(forms.ModelForm):
         }
 
         labels = {
-            'nombreArtefacto': 'Nombre del Artefacto',
-            'consumoWH': 'Consumo en W/h',
-            'horasDeUso': 'Horas de uso',
+            'nombre_artefacto': 'Nombre del Artefacto',
+            'consumo_wh': 'Consumo en W/h',
+            'horas_de_uso': 'Horas de uso',
         }
 
 
@@ -40,29 +40,29 @@ class ArtefactosForm(forms.ModelForm):
 
 
 class InventarioForm(forms.ModelForm):
-    artefactos = forms.ModelChoiceField(
-        widget=forms.Select(attrs={'placeholder': 'Artefactos'}),
-        queryset=Artefactos.objects.all(),  # Inicialmente todos los artefactos, se actualizará en el __init__
+    artefacto = forms.ModelChoiceField(
+        widget=forms.Select(attrs={'placeholder': 'Artefacto'}),
+        queryset=Artefacto.objects.all(),  # Inicialmente todos los artefacto, se actualizará en el __init__
         empty_label='Seleccione un Artefacto',
         required=True,
     )
 
     class Meta:
         model = Inventario
-        fields = ('artefactos', 'cantidadArtefactos')
+        fields = ('artefacto', 'cantidad_artefacto')
 
         widgets = {
-            'cantidadArtefactos': forms.NumberInput(attrs={'placeholder': 'Cantidad de Artefactos'}),
+            'cantidad_artefacto': forms.NumberInput(attrs={'placeholder': 'Cantidad de Artefacto'}),
         }
 
         labels = {
-            'artefactos': 'Artefacto',
-            'cantidadArtefactos': 'Cantidad de Artefactos',
+            'artefacto': 'Artefacto',
+            'cantidad_artefacto': 'Cantidad de Artefacto',
         }
 
     def __init__(self, user, *args, **kwargs):
         super(InventarioForm, self).__init__(*args, **kwargs)
-        self.fields['artefactos'].queryset = Artefactos.objects.filter(user=user)
+        self.fields['artefacto'].queryset = Artefacto.objects.filter(user=user)
 
 
 #crear usuario

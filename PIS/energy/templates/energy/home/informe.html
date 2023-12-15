@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     {% load static %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="{% static 'energy/css/informe.css' %}"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"
@@ -15,7 +14,7 @@
 </head>
 
 <body>
-    <style>
+<style>
         * {
 	font-family: 'Livvic', Courier, monospace;
     margin: 0;
@@ -75,7 +74,7 @@ nav a:hover::after{
     opacity: 1;
 }
 
-hi, h2 {
+h1, h2 {
     color: white;
     font-size: 19px;
 }
@@ -201,9 +200,7 @@ footer {
      }
 
 }
-
-
-    </style>
+</style>
     <nav class="navegar">
         <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
         <a href="{% url 'paginaUsuario' %}">Inicio</a>
@@ -231,7 +228,7 @@ footer {
             {% for consumo in consumoDiario %}
             <tr>
                 <td>{{ consumo.dia }}</td>
-                <td>{{ consumo.consumoTotal }} W</td>
+                <td>{{ consumo.consumo_total }} W</td>
             </tr>
 
             {% endfor %}

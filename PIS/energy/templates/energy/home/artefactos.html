@@ -38,13 +38,13 @@
     <th>Acciones</th>
 
   </tr>
-  {% for artefacto in artefactos %}
+  {% for artefactoList in artefacto %}
     <tr>
-        <td>{{ artefacto.nombreArtefacto}}</td>
-        <td>{{ artefacto.consumoWH }} W/h</td>
-        <td>{{ artefacto.horasDeUso }} hrs</td>
+        <td>{{ artefactoList.nombre_artefacto }}</td>
+        <td>{{ artefactoList.consumo_wh }} W/h</td>
+        <td>{{ artefactoList.horas_de_uso }} hrs</td>
         <td class="acciones">
-        <form method="post" action="{% url 'eliminarArtefacto' artefacto.id %}">
+        <form method="post" action="{% url 'eliminarArtefacto' artefactoList.id %}">
           {% csrf_token %}
           <button type="submit">Eliminar</button>
         </form>
