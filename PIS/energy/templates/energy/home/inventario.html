@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'energy/css/inventario.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap" rel="stylesheet">
     <!--<link rel="stylesheet" type="text/css" href="styles.css"-->>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,14 +60,14 @@
       <th>Acciones</th>
 
   </tr>
-  {% for inventario in inventarioArtefacto %}
+  {% for inventario in inventario_artefacto %}
     <tr>
         <td>{{ inventario.dia }}</td>
-        <td>{{ inventario.nombreArtefacto }}</td>
-        <td>{{ inventario.cantidadArtefactos }}</td>
-        <td>{{ inventario.horasDeUso }} hrs</td>
-        <td>{{ inventario.consumoArtefacto }} W/h</td>
-        <td>{{ inventario.consumoTotal }} W/h</td>
+        <td>{{ inventario.artefacto.nombre_artefacto }}</td>
+        <td>{{ inventario.cantidad_artefacto }}</td>
+        <td>{{ inventario.artefacto.horas_de_uso }} hrs</td>
+        <td>{{ inventario.artefacto.consumo_wh }} W/h</td>
+        <td>{{ inventario.consumo_artefacto }} W/h</td>
         <td>
         <form method="post" action="{% url 'eliminarDiaEnInventario' inventario.id %}">
           {% csrf_token %}
@@ -75,7 +75,6 @@
         </form>
         </td>
     </tr>
-  </tr>
   {% endfor %}
 </table>
 
