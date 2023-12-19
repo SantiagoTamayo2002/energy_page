@@ -58,14 +58,39 @@ body{
     margin-right: 10px;
 }
 
-.information{
-    margin-top: 20px;
+/*botones y grafica de consumo, pa no olvidarme*/ 
+
+.background{
     display: flex;
-    justify-content: space-between;
     width: 100%;
+    justify-content: center;
 }
 
-.information div{
+.box{
+    display: flex;
+    margin-top: 30px;
+    width: 90%;
+}
+
+.botones{
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+
+.contenedor_botones{
+    width: 90%;
+    height: 100%;
+}
+
+.botones .contenedor_botones div{
+    width: 100%;
+    height: 100px;
+    border: 2px solid #d3e2ff;
+    margin: 70px 0;
+}
+
+.contenedor_botones div{
     display: flex;
     border: 2px solid #fafafa01;
     padding: 10px;
@@ -73,9 +98,7 @@ body{
     height: 100px;
     text-align: center;
     color: #d3e2ff;
-    font-weight: 600;
-    margin: 10px 45px;
-    margin-bottom: 20px;  
+    font-weight: 600; 
     border-radius: 15px;
     align-items: center;
     justify-content: center;
@@ -83,124 +106,41 @@ body{
     box-shadow: inset 0px 0px 10px 0 #d3e2ff;
 }
 
-.information div a{
+.contenedor_botones div a{
     text-decoration: none;
     color: #d3e2ff;
 }
 
-.information div i{
+.contenedor_botones div i{
     margin-right: 10px;
 }
 
-.information div a:hover{
+.contenedor_botones div a:hover{
     color: #1f5fdf;
     font-size: 18px;
     transition: 0.2s;
 }
 
-.container{
-    height: 900px;
-    justify-content: center;
-}
-
 .consumo_hoy{
-    display: block;
-    width: 60%;
-    text-align: center;
-    margin-top: 10px;
-    background-color: #6c7c8c;
-    color: #050d18;
-    height: 450px;
-    margin: 0 auto;
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
     border-radius: 8px;
     contain: content;
 }
 
 .graficaProyeccion {
-    contain: content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: auto; /*  ancho de la pantalla */
-    height: 46vh; /* Altura ajustada automáticamente */
-    min-height: 350px;
-    background: #fff;
+    width: 90%;
+    height: 80%;
+    margin-right: 20px;
+    border: 2px solid #d3e2ff;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+    padding: 4px;
 }
 
-.consumo_hoy .titulo_grafica{
-    width: 100%;
-    height: 100%;
-}
-
-.consumo_hoy .titulo_grafica h2{
-    font-weight: 600;
-    font-size: 30px;
-    color: #050d18;
-    padding: 10px 0 ;
-}
-
-.consumo_hoy .titulo_grafica img{
-    width: 100%;
-    height: 100%;
-}
-.secondaries{
-    display: flex;
-    width: 60%;
-    margin: 20px auto;
-    justify-content: space-between;
-}
-
-.secondaries div{
-    display: flex;
-    border-radius: 15px;
-    width: 300px;
-    height: 150px;
-    color: #d3e2ff;
-    align-items: center;
-    justify-content: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 250;
-    box-shadow: inset 0px 0px 10px 0 #d3e2ff;
-}
-
-.secondaries div:hover{
-    color: #1f5fdf;
-    font-size: 18px;
-    transition: 0.2s;
-    background-image: url(../img/logo_casa.jpeg);
-    background-size: auto;
-}
-
-.proyecciones{ 
-    border: 3px solid #d3e2ff;
-    color: #050d18;
-    text-align: center;
-    background-size: cover;
-}
-
-.proyecciones .glass_effect{
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(2.5px);
-    color: #d3e2ff;
-    font-weight: 600;
-}
-
-.consumo_general{
-    border: 3px solid #d3e2ff;
-    color: #d3e2ff;
-    text-align: center;
-    background-size: cover;
-}
-
-.consumo_general .glass_effect{
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(2.5px);
-    color: #d3e2ff;
-    font-weight: 600;
-}
 
 @media screen and (max-width: 780px) {
     .information div{

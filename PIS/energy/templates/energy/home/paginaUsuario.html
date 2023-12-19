@@ -62,42 +62,26 @@
             </ul>
         </div>
     </div>
-    <div class="information">
-        <div>
-            <a href="{% url 'artefacto' %}"><i class="fa-solid fa-circle-plus" style="color: #d3e2ff;"></i>Agregar artefacto</a>
-        </div>
-        <div>
-            <a href="{% url 'inventario' %}"><i class="fa-solid fa-list-check" style="color: #d3e2ff;"></i>Gestionar inventario</a>
-        </div>
-        <div>
-            <a href="{% url 'informe' %}"><i class="fa-solid fa-file-export" style="color: #d2e2ff;"></i>Generar reporte</a>
-        </div>
-    </div>
-    <div class="container">
-        <div class="consumo_hoy">
-            <div class="titulo_grafica">
-                <h2>Consumo hoy</h2>
-                <div >
-                    <div id="graficoConsumoActual" class="graficaProyeccion"></div>
+    <div class="background">
+        <div class="box">
+            <div class="botones">
+                <div class="contenedor_botones">
+                    <div class="loco_1">
+                        <a href="{% url 'artefacto' %}"><i class="fa-solid fa-circle-plus" style="color: #d3e2ff;"></i>Agregar artefacto</a>
+                    </div>
+                    <div class="loco_2">
+                        <a href="{% url 'inventario' %}"><i class="fa-solid fa-list-check" style="color: #d3e2ff;"></i>Gestionar inventario</a>
+                    </div>
+                    <div class="loco_3">
+                        <a href="{% url 'informe' %}"><i class="fa-solid fa-file-export" style="color: #d2e2ff;"></i>Generar reporte</a>
+                    </div>
+                </div>
+            </div>
+            <div class="consumo_hoy">
+                <div id="graficoConsumoActual" class="graficaProyeccion">
                 </div>
             </div>
         </div>
-        <div class="secondaries">
-            <div class="proyecciones">
-                <div class="glass_effect">
-                    <h1>
-                        Proyecciones
-                    </h1>
-                </div> 
-            </div>
-            <div class="consumo_general">
-                <div class="glass_effect">
-                    <h1>
-                        Consumo general
-                    </h1>
-                </div> 
-            </div>
-        </div> 
     </div>
     <!-- Apache ECharts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
