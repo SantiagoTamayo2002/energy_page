@@ -1,51 +1,21 @@
-from datetime import datetime
-
 import sympy as sym
-from django.db.models import Sum
 from django.http import Http404, JsonResponse
 from django.shortcuts import render, redirect
 import numpy as np
 from .models import Artefacto, Inventario, Informe
 
 
-def calcular_consumo_total(consumo_totalPorArtefacto, cantidadArtefacto, horasDeUso):
-    consumo_total = (consumo_totalPorArtefacto * cantidadArtefacto * horasDeUso).__round__(2)
-    return consumo_total
-
-def calcular_consumo_total_mensual(usuario):
-    mesActual = datetime.now().month
-    consumoMensual = Informe.objects.filter(user=usuario, dia__month=mesActual).aggregate(Sum('consumo_total'))['consumo_total__sum'] or 0
-    if consumoMensual != 0:
-        consumoMensual = consumoMensual / 1000
-    return consumoMensual
-
-def eliminar_artefacto(request, artefacto_id):
-    artefacto = Artefacto.objects.get(pk=artefacto_id)
-    artefacto.delete()
-    return redirect('artefacto')
 
 
 
-def eliminar_dia_en_inventario(request, inventario_id):
-    try:
-        inventario = Inventario.objects.get(pk=inventario_id)
-    except Inventario.DoesNotExist:
-        raise Http404("El Inventario no existe")
-    # Guardar el día antes de eliminar el inventario
-    dia_eliminado = inventario.dia
-    inventario.delete()
-    # Actualizar el consumo diario mensual para el día eliminado
-    total = calcular_consumo_total_mensual(request.user)
-    Informe.actualizar_consumo_diario(request.user, dia_eliminado, total)
-    return redirect('inventario')
 
 
-def eliminar_inventario(request):
-    inventario = Inventario.objects.filter(user=request.user)
-    consumo = Informe.objects.filter(user=request.user)
-    consumo.delete()
-    inventario.delete()
-    return redirect('inventario')
+
+
+
+
+
+
 
 def calcular_consumo_polinomio(request, dias):
     resultado_actual = obtener_polinomio(request)
@@ -416,7 +386,7 @@ def grafico_artefacto_mas_usado(request):
 
         'title': {
             'left': 'center',
-            'text': 'Artefacto mas usados',
+            'text': 'Artefacto que más consumen',
             'padding': 10,
             'margin': 0,
             'textStyle': {

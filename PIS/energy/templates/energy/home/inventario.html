@@ -69,7 +69,7 @@
         <td>{{ inventario.artefacto.consumo_wh }} W/h</td>
         <td>{{ inventario.consumo_artefacto }} W/h</td>
         <td>
-        <form method="post" action="{% url 'eliminarDiaEnInventario' inventario.id %}">
+        <form method="post" action="{% url 'eliminarArtefactoInventario' inventario.id %}">
           {% csrf_token %}
           <button type="submit">Eliminar</button>
         </form>

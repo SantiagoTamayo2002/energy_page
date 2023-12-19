@@ -1,7 +1,12 @@
 
 from django.urls import path
+
+from .metodoList.metodoListInventario.inventario import eliminar_inventario, eliminar_artefacto_inventario
+from .metodoList.metodoListArtefactos.artefacto import eliminar_artefacto
 from .views import home, registro, contactos, nosotros, pagina_usuario, inicio_sesion, cerrar_sesion, inventario, artefacto, informe, imprimir_pdf, proyecciones
-from .calculadora import eliminar_dia_en_inventario, eliminar_artefacto, eliminar_inventario, grafico_consumo_actual, grafico_proyeccion_mensual, grafico_artefacto_mas_usado, grafico_proyeccion_semanal
+from .calculadora import grafico_consumo_actual, \
+    grafico_proyeccion_mensual, grafico_artefacto_mas_usado, grafico_proyeccion_semanal
+
 urlpatterns = [
     path('', home, name="home"),
     path('login/', inicio_sesion, name="login"),
@@ -11,7 +16,7 @@ urlpatterns = [
     path('paginaUsuario/', pagina_usuario, name="paginaUsuario"),
     path('c', cerrar_sesion, name="cerrarSesion"),
     path('paginaUsuario/inventario/', inventario, name="inventario"),
-    path('paginaUsuario/inventario/<int:inventario_id>/', eliminar_dia_en_inventario, name='eliminarDiaEnInventario'),
+    path('paginaUsuario/inventario/<int:inventario_id>/', eliminar_artefacto_inventario, name='eliminarArtefactoInventario'),
     path('paginaUsuario/inventario/eliminarInventario/', eliminar_inventario, name='eliminarInventario'),
     path('paginaUsuario/inventario/artefactos/', artefacto, name="artefacto"),
     path('paginaUsuario/inventario/artefactos/<int:artefacto_id>/', eliminar_artefacto, name='eliminarArtefacto'),
