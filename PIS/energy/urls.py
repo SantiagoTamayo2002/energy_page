@@ -5,7 +5,7 @@ from .metodoList.metodoListInventario.inventario import eliminar_inventario, eli
 from .metodoList.metodoListArtefactos.artefacto import eliminar_artefacto
 from .views import home, registro, contactos, nosotros, pagina_usuario, inicio_sesion, cerrar_sesion, inventario, artefacto, informe, imprimir_pdf, proyecciones
 from .calculadora import grafico_consumo_actual, \
-    grafico_proyeccion_mensual, grafico_artefacto_mas_usado, grafico_proyeccion_semanal
+    grafico_proyeccion_mensual, grafico_artefacto_list_mayor_consumo, grafico_proyeccion_semanal
 
 urlpatterns = [
     path('', home, name="home"),
@@ -26,6 +26,6 @@ urlpatterns = [
     path('paginaUsuario/proyecciones/graficoConsumoActual', grafico_consumo_actual, name="graficoConsumoActual"),
     path('paginaUsuario/proyecciones/graficoProyeccionSemanal', grafico_proyeccion_semanal, name="grafico_proyeccion_semanal"),
     path('paginaUsuario/proyecciones/graficoProyeccionMensual', grafico_proyeccion_mensual, name="grafico_proyeccion_semanal"),
-    path('paginaUsuario/proyecciones/graficoArtefactoMasUsado', grafico_artefacto_mas_usado, name="grafico_proyeccion_semanal"),
+    path('paginaUsuario/proyecciones/graficoArtefactoMasUsado', grafico_artefacto_list_mayor_consumo, name="grafico_proyeccion_semanal"),
 
 ]

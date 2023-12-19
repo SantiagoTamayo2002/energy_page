@@ -1,20 +1,8 @@
 import sympy as sym
-from django.http import Http404, JsonResponse
-from django.shortcuts import render, redirect
+from django.http import  JsonResponse
+from django.shortcuts import render
 import numpy as np
-from .models import Artefacto, Inventario, Informe
-
-
-
-
-
-
-
-
-
-
-
-
+from .models import Inventario, Informe
 
 
 def calcular_consumo_polinomio(request, dias):
@@ -54,12 +42,12 @@ def grafico_proyeccion_mensual(request):
     if request.user.is_authenticated:
         mes = 30
         consumo = calcular_consumo_polinomio(request, mes)
-        dia = []
+        dias = []
         counter = 0
         for i in range(mes):
-            dia.append(counter + 1)
+            dias.append(counter + 1)
             counter += 1
-        return base_proyeccion(consumo, dia)
+        return base_proyeccion(consumo, dias)
 
 
 
@@ -83,7 +71,7 @@ def obtener_polinomio(request):
         dias.append(counter + 1)
         counter += 1
 
-    for grado_del_polinomio in range(10):
+    while grado_del_polinomio < 10:
         # PROCEDIMIENTO
         dias = np.array(dias)
         consumo = np.array(consumo)
@@ -124,12 +112,14 @@ def obtener_polinomio(request):
         except np.linalg.LinAlgError:
             # La matriz A es singular, manejar la excepción según sea necesario
             break
+        grado_del_polinomio += 1
 
         # SALIDA
     # SALIDA
     print('------------------------\n Tabla de datos')
     print('--------------------------------------')
     print(f'ymedia = {ym}\n')
+    print(f'grado del polinomio = {grado_del_polinomio}\n')
     print(f'f(x) = {funcion_polinomio.__str__()}\n')
     print(f'coef_determinacion r2 = {r2}\n')
     print(str(r2_porcentaje) + '% de los datos se describe con el modelo')
@@ -343,7 +333,7 @@ def base_proyeccion(consumo, dia):
 
 
 
-def grafico_artefacto_mas_usado(request):
+def grafico_artefacto_list_mayor_consumo(request):
     dias = []
     counter = 0
 
@@ -481,6 +471,5 @@ def grafico_artefacto_mas_usado(request):
             },
         ]
     }
-
     return JsonResponse(grafica)
 

@@ -46,6 +46,6 @@ def eliminar_inventario(request):
     inventario.delete()
     return redirect('inventario')
 
-def calcular_consumo_total(consumo_totalPorArtefacto, cantidadArtefacto, horasDeUso):
-    consumo_total = (consumo_totalPorArtefacto * cantidadArtefacto * horasDeUso).__round__(2)
+def calcular_consumo_total(consumo_wh, cantidadArtefacto, horasDeUso):
+    consumo_total = (consumo_wh * cantidadArtefacto * horasDeUso).__round__(2)
     return consumo_total
