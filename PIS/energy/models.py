@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
 
 
 class Artefacto(models.Model):
@@ -14,7 +15,7 @@ class Artefacto(models.Model):
 
 class Inventario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    artefacto = models.ForeignKey(Artefacto, on_delete=models.SET_NULL, null=True, related_name="artefactoList")
+    artefacto = models.ForeignKey(Artefacto, on_delete=models.SET_NULL, null=True, related_name="artefacto_list")
     dia = models.DateField(default=datetime.now)
     cantidad_artefacto = models.PositiveIntegerField()
     consumo_artefacto = models.FloatField(default=0)

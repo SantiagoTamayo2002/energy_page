@@ -10,8 +10,9 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint.text.fonts import FontConfiguration
 from weasyprint import HTML
-from .calculadora import calcular_consumo_total, eliminar_dia_en_inventario, eliminar_artefacto, calcular_consumo_total_mensual , eliminar_inventario
-
+from .metodoList.metodoListInforme.informe import calcular_consumo_total_mensual
+from .metodoList.metodoListInventario.inventario import guardar_inventario_artefacto, eliminar_inventario, eliminar_artefacto_inventario
+from .metodoList.metodoListArtefactos.artefacto import guardar_artefacto, eliminar_artefacto
 
 # Create your views here.
 def home(request):
@@ -25,8 +26,6 @@ def pagina_usuario(request):
 
 def cerrar_sesion(request):
     return render(request, 'energy/home/index.html', {'cS': logout(request)})
-
-
 
 
 def registro(request):
@@ -68,12 +67,6 @@ def inicio_sesion(request):
             login(request, user)
             return render(request, 'energy/home/paginaUsuario.html')
 
-
-
-
-
-
-
 def artefacto(request):
     if request.user.is_authenticated:
         artefacto = Artefacto.objects.filter(user=request.user)
@@ -83,19 +76,11 @@ def artefacto(request):
                 'form': form,
                 'artefacto': artefacto
             })
+
         elif request.method == 'POST':
             form = ArtefactoForm(request.POST)
             if form.is_valid():
-                artefacto = form.save(commit=False)
-                #artefacto ya existe dentro del usuario
-                if Artefacto.objects.filter(user=request.user, nombre_artefacto=artefacto.nombre_artefacto).exists():
-                    return render(request, 'energy/home/artefactos.html', {
-                        'form': form,
-                        'artefacto': artefacto,
-                        'error': 'El artefacto ya existe',
-                    })
-                artefacto.user = request.user
-                artefacto.save()
+                guardar_artefacto(request, form)
                 return redirect('artefacto')
             else:
                 # Manejar el caso de un formulario no válido
@@ -105,13 +90,8 @@ def artefacto(request):
                 })
     return render(request, 'energy/home/artefactos.html', {
         'eliminar': eliminar_artefacto,
+
         })
-
-
-
-
-
-
 
 
 def inventario(request):
@@ -131,35 +111,20 @@ def inventario(request):
         elif request.method == 'POST':
             form = InventarioForm(request.user, request.POST)
             if form.is_valid():
-                inventario = form.save(commit=False)
-                # Obtén el ID del artefacto desde el formulario
-                artefacto = InventarioForm(request.user, request.POST).data['artefacto']
-                print(artefacto)
-                # Verifica si ya existe un inventario para el usuario, el día y el artefacto
-                if Inventario.objects.filter(user=request.user, dia=inventario.dia, artefacto_id=artefacto).exists():
-                    return redirect('inventario')
-                else:
-                    inventario.user = request.user
-                    inventario.artefacto = Artefacto.objects.get(id=artefacto)
-                    ######################
-                    inventario.consumo_artefacto = calcular_consumo_total(inventario.artefacto.consumo_wh, inventario.artefacto.horas_de_uso, inventario.cantidad_artefacto)
-                    inventario.save()
-                    Informe.actualizar_consumo_diario(request.user, inventario.dia, inventario.consumo_artefacto)
-
-                ######################
-                    return redirect('inventario')
+                guardar_inventario_artefacto(request, form)
+                return redirect('inventario')
             else:
                 # Manejar el caso de un formulario no válido
                 return render(request, 'energy/home/inventario.html', {
                     'form': form,
                     'inventario_artefacto': inventario_artefacto,
-                    'consumoDiario': consumo_diario_del_mes,
-                    'eliminarInventario': eliminar_inventario,
+                    'consumo_diario': consumo_diario_del_mes,
+                    'eliminar_inventario': eliminar_inventario,
                 })
     else:
         # Manejar el caso en que el usuario no está autenticado
         return render(request, 'energy/home/inventario.html', {
-            'eliminar': eliminar_dia_en_inventario,
+            'eliminar': eliminar_artefacto_inventario,
         })
 
 

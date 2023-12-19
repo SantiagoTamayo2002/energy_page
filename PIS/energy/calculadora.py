@@ -1,52 +1,9 @@
-
-from datetime import datetime
-
 import sympy as sym
-from django.db.models import Sum
-from django.http import Http404, JsonResponse
-from django.shortcuts import render, redirect
+from django.http import  JsonResponse
+from django.shortcuts import render
 import numpy as np
-from .models import Artefacto, Inventario, Informe
+from .models import Inventario, Informe
 
-
-def calcular_consumo_total(consumo_totalPorArtefacto, cantidadArtefacto, horasDeUso):
-    consumo_total = (consumo_totalPorArtefacto * cantidadArtefacto * horasDeUso).__round__(2)
-    return consumo_total
-
-def calcular_consumo_total_mensual(usuario):
-    mesActual = datetime.now().month
-    consumoMensual = Informe.objects.filter(user=usuario, dia__month=mesActual).aggregate(Sum('consumo_total'))['consumo_total__sum'] or 0
-    if consumoMensual != 0:
-        consumoMensual = consumoMensual / 1000
-    return consumoMensual
-
-def eliminar_artefacto(request, artefacto_id):
-    artefacto = Artefacto.objects.get(pk=artefacto_id)
-    artefacto.delete()
-    return redirect('artefacto')
-
-
-
-def eliminar_dia_en_inventario(request, inventario_id):
-    try:
-        inventario = Inventario.objects.get(pk=inventario_id)
-    except Inventario.DoesNotExist:
-        raise Http404("El Inventario no existe")
-    # Guardar el día antes de eliminar el inventario
-    dia_eliminado = inventario.dia
-    inventario.delete()
-    # Actualizar el consumo diario mensual para el día eliminado
-    total = calcular_consumo_total_mensual(request.user)
-    Informe.actualizar_consumo_diario(request.user, dia_eliminado, total)
-    return redirect('inventario')
-
-
-def eliminar_inventario(request):
-    inventario = Inventario.objects.filter(user=request.user)
-    consumo = Informe.objects.filter(user=request.user)
-    consumo.delete()
-    inventario.delete()
-    return redirect('inventario')
 
 def calcular_consumo_polinomio(request, dias):
     resultado_actual = obtener_polinomio(request)
@@ -64,13 +21,8 @@ def grafico_consumo_actual(request):
         dia = []
         counter = 0
         for i in Informe.objects.filter(user=request.user):
-<<<<<<< HEAD
-            consumo.append(i.consumoTotal)
-            dia.append((counter + 1).__str__())
-=======
             consumo.append(i.consumo_total)
             dia.append(counter + 1)
->>>>>>> origin/forEsteban
             counter += 1
 
         return base_proyeccion(consumo, dia)
@@ -79,9 +31,6 @@ def grafico_consumo_actual(request):
 
 
 ##################
-<<<<<<< HEAD
-def graficoProyeccionMensual(request):
-=======
 def grafico_proyeccion_semanal(request):
     if request.user.is_authenticated:
         dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
@@ -90,27 +39,15 @@ def grafico_proyeccion_semanal(request):
         return base_proyeccion(consumo, dias)
 
 def grafico_proyeccion_mensual(request):
->>>>>>> origin/forEsteban
     if request.user.is_authenticated:
         mes = 30
         consumo = calcular_consumo_polinomio(request, mes)
-        dia = []
+        dias = []
         counter = 0
         for i in range(mes):
-            dia.append(counter + 1)
+            dias.append(counter + 1)
             counter += 1
-<<<<<<< HEAD
-        return baseProyeccion(consumo, dia)
-def graficoProyeccionSemanal(request):
-    if request.user.is_authenticated:
-        dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
-        consumo = calcularConsumoPolinomio(request, dias.__len__())
-        return baseProyeccion(consumo, dias)
-=======
-        return base_proyeccion(consumo, dia)
-
->>>>>>> origin/forEsteban
-
+        return base_proyeccion(consumo, dias)
 
 
 
@@ -132,7 +69,7 @@ def obtener_polinomio(request):
         dias.append(counter + 1)
         counter += 1
 
-    for grado_del_polinomio in range(10):
+    while grado_del_polinomio < 10:
         # PROCEDIMIENTO
         dias = np.array(dias)
         consumo = np.array(consumo)
@@ -173,12 +110,14 @@ def obtener_polinomio(request):
         except np.linalg.LinAlgError:
             # La matriz A es singular, manejar la excepción según sea necesario
             break
+        grado_del_polinomio += 1
 
         # SALIDA
     # SALIDA
     print('------------------------\n Tabla de datos')
     print('--------------------------------------')
     print(f'ymedia = {ym}\n')
+    print(f'grado del polinomio = {grado_del_polinomio}\n')
     print(f'f(x) = {funcion_polinomio.__str__()}\n')
     print(f'coef_determinacion r2 = {r2}\n')
     print(str(r2_porcentaje) + '% de los datos se describe con el modelo')
@@ -391,7 +330,7 @@ def base_proyeccion(consumo, dia):
 
 
 
-def grafico_artefacto_mas_usado(request):
+def grafico_artefacto_list_mayor_consumo(request):
     dias = []
     counter = 0
 
@@ -400,28 +339,11 @@ def grafico_artefacto_mas_usado(request):
     for i in Informe.objects.filter(user=request.user):
         dias.append((counter+1).__str__())
         counter += 1
-<<<<<<< HEAD
-    artefactoSet = set()
-=======
     artefactoet = set()
 
->>>>>>> origin/forEsteban
     artefactoList = []
 
     for i in Inventario.objects.filter(user=request.user):
-<<<<<<< HEAD
-        if i.nombre not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
-            artefactoSet.add(i.nombre)
-            artefactosMasUsados = [i.nombre]
-        if i.nombreArtefacto not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
-            artefactoSet.add(i.nombreArtefacto)
-            artefactosMasUsados = [i.nombreArtefacto] # Agregar el nombreArtefacto del artefacto a la lista
-            consumoArtefacto = []
-            for j in Inventario.objects.filter(user=request.user, nombreArtefacto=i.nombreArtefacto):
-                consumoArtefacto.append(j.consumoTotal)
-            artefactosMasUsados.extend(consumoArtefacto)
-            artefactoList.append(artefactosMasUsados)
-=======
         if i.artefacto.nombre_artefacto not in artefactoet:  # Verificar si el artefacto ya está en el conjunto
             artefactoet.add(i.artefacto.nombre_artefacto)
             artefactoMasUsados = [i.artefacto.nombre_artefacto]    # Agregar el nombre_artefacto del artefacto a la lista
@@ -430,7 +352,6 @@ def grafico_artefacto_mas_usado(request):
                 consumo_artefacto.append(j.consumo_artefacto)
             artefactoMasUsados.extend(consumo_artefacto) # Agregar el consumo del artefacto a la lista
             artefactoList.append(artefactoMasUsados) # Agregar la lista a la lista de artefacto
->>>>>>> origin/forEsteban
     artefactoList.sort(key=lambda x: sum(x[1:]), reverse=True)
     # artefactoList = [
     #     ['Dias'] + dia,
@@ -450,7 +371,7 @@ def grafico_artefacto_mas_usado(request):
 
         'title': {
             'left': 'center',
-            'text': 'Artefacto mas usados',
+            'text': 'Artefacto que más consumen',
             'padding': 10,
             'margin': 0,
             'textStyle': {
@@ -539,5 +460,4 @@ def grafico_artefacto_mas_usado(request):
             },
         ]
     }
-
     return JsonResponse(grafica)
