@@ -21,13 +21,8 @@ def grafico_consumo_actual(request):
         dia = []
         counter = 0
         for i in Informe.objects.filter(user=request.user):
-<<<<<<< HEAD
-            consumo.append(i.consumoTotal)
-            dia.append((counter + 1).__str__())
-=======
             consumo.append(i.consumo_total)
             dia.append(counter + 1)
->>>>>>> origin/forEsteban
             counter += 1
 
         return base_proyeccion(consumo, dia)
@@ -36,9 +31,6 @@ def grafico_consumo_actual(request):
 
 
 ##################
-<<<<<<< HEAD
-def graficoProyeccionMensual(request):
-=======
 def grafico_proyeccion_semanal(request):
     if request.user.is_authenticated:
         dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
@@ -47,7 +39,6 @@ def grafico_proyeccion_semanal(request):
         return base_proyeccion(consumo, dias)
 
 def grafico_proyeccion_mensual(request):
->>>>>>> origin/forEsteban
     if request.user.is_authenticated:
         mes = 30
         consumo = calcular_consumo_polinomio(request, mes)
@@ -57,9 +48,6 @@ def grafico_proyeccion_mensual(request):
             dias.append(counter + 1)
             counter += 1
         return base_proyeccion(consumo, dias)
-
->>>>>>> origin/forEsteban
-
 
 
 
@@ -351,28 +339,11 @@ def grafico_artefacto_list_mayor_consumo(request):
     for i in Informe.objects.filter(user=request.user):
         dias.append((counter+1).__str__())
         counter += 1
-<<<<<<< HEAD
-    artefactoSet = set()
-=======
     artefactoet = set()
 
->>>>>>> origin/forEsteban
     artefactoList = []
 
     for i in Inventario.objects.filter(user=request.user):
-<<<<<<< HEAD
-        if i.nombre not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
-            artefactoSet.add(i.nombre)
-            artefactosMasUsados = [i.nombre]
-        if i.nombreArtefacto not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
-            artefactoSet.add(i.nombreArtefacto)
-            artefactosMasUsados = [i.nombreArtefacto] # Agregar el nombreArtefacto del artefacto a la lista
-            consumoArtefacto = []
-            for j in Inventario.objects.filter(user=request.user, nombreArtefacto=i.nombreArtefacto):
-                consumoArtefacto.append(j.consumoTotal)
-            artefactosMasUsados.extend(consumoArtefacto)
-            artefactoList.append(artefactosMasUsados)
-=======
         if i.artefacto.nombre_artefacto not in artefactoet:  # Verificar si el artefacto ya está en el conjunto
             artefactoet.add(i.artefacto.nombre_artefacto)
             artefactoMasUsados = [i.artefacto.nombre_artefacto]    # Agregar el nombre_artefacto del artefacto a la lista
@@ -381,7 +352,6 @@ def grafico_artefacto_list_mayor_consumo(request):
                 consumo_artefacto.append(j.consumo_artefacto)
             artefactoMasUsados.extend(consumo_artefacto) # Agregar el consumo del artefacto a la lista
             artefactoList.append(artefactoMasUsados) # Agregar la lista a la lista de artefacto
->>>>>>> origin/forEsteban
     artefactoList.sort(key=lambda x: sum(x[1:]), reverse=True)
     # artefactoList = [
     #     ['Dias'] + dia,
