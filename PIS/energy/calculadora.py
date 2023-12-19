@@ -1,5 +1,5 @@
 import sympy as sym
-from django.http import  JsonResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 import numpy as np
 from .models import Inventario, Informe
@@ -10,8 +10,9 @@ def calcular_consumo_polinomio(request, dias):
     funcion = resultado_actual['funcion_polinomio']
     consumo = []
     for i in range(dias):
-        consumo.append(round(funcion(i), 2))
+        consumo.append(round(funcion(i + 1), 2))
     return consumo
+
 
 #############################No Topar
 
@@ -38,6 +39,7 @@ def grafico_proyeccion_semanal(request):
 
         return base_proyeccion(consumo, dias)
 
+
 def grafico_proyeccion_mensual(request):
     if request.user.is_authenticated:
         mes = 30
@@ -50,9 +52,7 @@ def grafico_proyeccion_mensual(request):
         return base_proyeccion(consumo, dias)
 
 
-
 def obtener_polinomio(request):
-
     consumo = []
     dias = []
     counter = 0
@@ -135,8 +135,6 @@ def obtener_polinomio(request):
     return resultado_actual
 
 
-
-
 def base_proyeccion(consumo, dia):
     proyeccion = {
         'tooltip': {
@@ -205,13 +203,14 @@ def base_proyeccion(consumo, dia):
             },
         },
         'series': [
+
             {
 
                 'name': 'Consumo',
                 'smooth': True,
                 'data': consumo,
                 'itemStyle': {
-                    'color': '#1DA1F2', # Color del título
+                    'color': '#1DA1F2',  # Color del título
                     'borderColor': '#1DA1F2',
                     'borderWidth': 2,
                     'shadowColor': '#1DA1F2',
@@ -229,7 +228,7 @@ def base_proyeccion(consumo, dia):
                         "colorStops": [
                             {
                                 "offset": 0,
-                                "color": "#1da0f2c2"
+                                "color": "#3300FF"
                             },
                             {
                                 "offset": 1,
@@ -274,7 +273,7 @@ def base_proyeccion(consumo, dia):
                         "stack": "Apilado",
                     },
                     "iconStyle": {
-                        "fontSize": 20 #Ajusta el tamaño del texto de los botones,
+                        "fontSize": 20  # Ajusta el tamaño del texto de los botones,
                     },
                 },
                 "dataZoom": {
@@ -292,7 +291,7 @@ def base_proyeccion(consumo, dia):
                         "restore": "Restaurar",
                     },
                     "iconStyle": {
-                        "fontSize": 16, # Ajusta el tamaño del texto del botón "Restaurar",
+                        "fontSize": 16,  # Ajusta el tamaño del texto del botón "Restaurar",
                         "size": 20,
                     }
                 },
@@ -327,32 +326,31 @@ def base_proyeccion(consumo, dia):
     return JsonResponse(proyeccion)
 
 
-
-
-
 def grafico_artefacto_list_mayor_consumo(request):
     dias = []
     counter = 0
 
-    for i in ConsumoDiarioMensual.objects.filter(user=request.user):
-        dias.append(counter+1)
     for i in Informe.objects.filter(user=request.user):
-        dias.append((counter+1).__str__())
+        dias.append((counter + 1).__str__())
         counter += 1
     artefactoet = set()
 
     artefactoList = []
+    lista = [['Dias'] + dias, ]
 
     for i in Inventario.objects.filter(user=request.user):
         if i.artefacto.nombre_artefacto not in artefactoet:  # Verificar si el artefacto ya está en el conjunto
             artefactoet.add(i.artefacto.nombre_artefacto)
-            artefactoMasUsados = [i.artefacto.nombre_artefacto]    # Agregar el nombre_artefacto del artefacto a la lista
+            artefactoMasUsados = [i.artefacto.nombre_artefacto]  # Agregar el nombre_artefacto del artefacto a la lista
             consumo_artefacto = []
-            for j in Inventario.objects.filter(user=request.user, artefacto__nombre_artefacto=i.artefacto.nombre_artefacto):
+            for j in Inventario.objects.filter(user=request.user,
+                                               artefacto__nombre_artefacto=i.artefacto.nombre_artefacto):
                 consumo_artefacto.append(j.consumo_artefacto)
-            artefactoMasUsados.extend(consumo_artefacto) # Agregar el consumo del artefacto a la lista
-            artefactoList.append(artefactoMasUsados) # Agregar la lista a la lista de artefacto
+            artefactoMasUsados.extend(consumo_artefacto)  # Agregar el consumo del artefacto a la lista
+            artefactoList.append(artefactoMasUsados)  # Agregar la lista a la lista de artefacto
     artefactoList.sort(key=lambda x: sum(x[1:]), reverse=True)
+    lista.extend(artefactoList)
+    print(lista)
     # artefactoList = [
     #     ['Dias'] + dia,
     #     ['Lavadora', 10, 20, 30, 40, 50, 51],
@@ -362,7 +360,7 @@ def grafico_artefacto_list_mayor_consumo(request):
     #     ['Microondas', 50, 60, 70],
     # ]
     # print(lista)
-    print(artefactoList)
+    # print(artefactoList)
 
     grafica = {
         'max_width': '100%',
@@ -383,7 +381,7 @@ def grafico_artefacto_list_mayor_consumo(request):
         'legend': {
 
             'top': 50,
-            'itemGap': 11,   # Ajusta el espacio entre el circulo
+            'itemGap': 10,  # Ajusta el espacio entre el circulo
             'textStyle': {
 
                 'color': 'white',
@@ -395,15 +393,14 @@ def grafico_artefacto_list_mayor_consumo(request):
             'showContent': False,
         },
         'dataset': {
-            'source': artefactoList,
+            'source': lista,
             'properties': {
                 'pading': 60,
             }
         },
         'xAxis': {
             'type': 'category',
-            'data': dias,
-            },
+        },
         'yAxis': {'gridIndex': 0},
         'grid': {
             'position': 'top',
@@ -416,6 +413,12 @@ def grafico_artefacto_list_mayor_consumo(request):
                 'type': 'line',
                 'smooth': True,
                 'seriesLayoutBy': 'row',
+                'emphasis': {'focus': 'series'},
+            },
+            {
+                'type': 'line',
+                'smooth': True,
+                'seriesLayoutBy': 'row',
                 'emphasis': {'focus': 'series'}
             },
             {
@@ -427,6 +430,7 @@ def grafico_artefacto_list_mayor_consumo(request):
             {
                 'type': 'line',
                 'smooth': True,
+
                 'seriesLayoutBy': 'row',
                 'emphasis': {'focus': 'series'}
             },
