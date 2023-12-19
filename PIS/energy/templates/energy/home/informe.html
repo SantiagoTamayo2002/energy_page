@@ -50,7 +50,11 @@ nav a {
     padding: 13px 35px;
     margin: 5px;
     z-index: 2;
+<<<<<<< HEAD
+    transition: color .5s;   
+=======
     transition: color .5s;
+>>>>>>> forEsteban
 }
 nav a::after {
     content: '';
@@ -76,7 +80,11 @@ nav a:hover::after{
 
 h1, h2 {
     color: white;
+<<<<<<< HEAD
+    font-size: 19;
+=======
     font-size: 19px;
+>>>>>>> forEsteban
 }
 .datosUsuario {
     text-align: left;
@@ -136,8 +144,13 @@ th{
     font-weight: bolder;
     text-align: left;
     background-color: #0a324ac2;
+<<<<<<< HEAD
+    
+	
+=======
 
 
+>>>>>>> forEsteban
 }
 
 td,
@@ -163,7 +176,11 @@ tr:hover td {
 				0 0 10px #1DA1F2,
 				0 0 15px #1DA1F2,
 				0 0 25px #1DA1F2;
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> forEsteban
 }
 tbody tr:nth-child(odd){
     background-color: #0a324ac2;
@@ -178,7 +195,11 @@ footer {
 @media print {
     body{
         background-color: rgba(255, 255, 255, 0);
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> forEsteban
     }
     a,i {
         display: none;
@@ -209,7 +230,11 @@ footer {
     </nav>
 
     <div class="datosUsuario">
+<<<<<<< HEAD
+        <img src="{% static 'energy/img/Foranix_SinFondo2.png' %}" alt="">
+=======
         <img src="{% static 'energy/img/FORANIX-sinFondo2.png' %}" alt="">
+>>>>>>> forEsteban
         <div class="description">
             <h2>Cliente:<p>{{user.first_name}} {{user.last_name}}</p>
             </h2>
@@ -233,10 +258,17 @@ footer {
 
             {% endfor %}
             <th>TOTAL CONSUMO </th>
+<<<<<<< HEAD
+            <th>{{ consumoTotalMensual }} Kw/h</th>
+        </table>
+    </div>
+    <i class="fa-solid fa-file-export"> <a href="{% url 'imprimirPDF' %}">Exportar el informe</a></i> 
+=======
             <th>{{ consumoTotalMensual }} Kw</th>
         </table>
     </div>
     <i class="fa-solid fa-file-export"> <a href="{% url 'imprimirPDF' %}">Exportar el informe</a></i>
+>>>>>>> forEsteban
     <footer>
         <p>&copy; 2023 - Todos los derechos reservados</p>
     </footer>

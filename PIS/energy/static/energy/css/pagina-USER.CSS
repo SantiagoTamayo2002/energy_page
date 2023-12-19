@@ -112,8 +112,7 @@ body{
     color: #050d18;
     height: 450px;
     margin: 0 auto;
-    border: 3px solid #d3e2ff;
-    border-radius: 5px;
+    border-radius: 8px;
     contain: content;
 }
 
@@ -155,13 +154,13 @@ body{
 .secondaries div{
     display: flex;
     border-radius: 15px;
-    width: 350px;
+    width: 300px;
     height: 150px;
     color: #d3e2ff;
     align-items: center;
     justify-content: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 600;
+    font-weight: 250;
     box-shadow: inset 0px 0px 10px 0 #d3e2ff;
 }
 
