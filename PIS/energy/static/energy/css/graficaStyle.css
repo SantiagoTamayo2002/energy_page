@@ -119,8 +119,6 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<<<<<<< HEAD
-=======
 }
 /*-------------------------------------------------------------------------------------*/
 .menu {
@@ -187,5 +185,4 @@ li a{
     transition: color .5s;
     margin-bottom: 10px;
 
->>>>>>> 5d1ce20a356e2cee957b121f4b1b903c5eb1510c
 }

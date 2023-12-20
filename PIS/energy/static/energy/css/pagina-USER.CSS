@@ -135,10 +135,28 @@ body{
     width: 90%;
     height: 80%;
     margin-right: 20px;
-    border: 2px solid #d3e2ff;
+    border: 2px solid #0055ff;
     border-bottom-right-radius: 15px;
     border-top-left-radius: 15px;
     padding: 4px;
+}
+
+/*aqui voy a empezar el modo oscuro, no se 
+asusten si esta muy largo solo es repetir
+las etiquetas con otros colores*/
+
+.switch{
+    width: 60px;
+    height: 30px;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    border-radius: 100px;
+    border: #fff solid 2px;
+    background-color: #132b41;
+
 }
 
 
@@ -157,4 +175,6 @@ body{
 
     }
 }   
+
+
 
