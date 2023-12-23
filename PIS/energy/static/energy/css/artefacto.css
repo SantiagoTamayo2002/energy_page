@@ -153,6 +153,103 @@ tr:nth-child(even){background-color: black}
     background-color: #1da0f2;
 }
 
+ /*aqui voy a empezar el modo oscuro, no se 
+asusten si esta muy largo solo es repetir
+las etiquetas con otros colores*/
+
+.switch{
+    display: flex;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    padding: 0 5px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 100px;
+    border: #fff solid 2px;
+    background-color: #132b41;
+    }
+    
+    
+    .switch i{
+    font-size: 1rem;
+    color: #fdc21c;
+    }
+    
+    .listado li:last-child::before{
+    content: "";
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: solid thin #000;
+    left: 0;
+    right: unset;
+    }
+    
+    .listado li:last-child.active::before{
+    left: unset;
+    right: 0;
+    border: solid thin #fff;
+    }
+    
+    .listado li:last-child.active i:first-child{
+    color: #000;
+    }
+    
+    .listado li:last-child.active{
+    background-color: #ffc800;
+    }
+    
+    
+    /*fin de la estructura del boton*/
+    
+    body.dark{
+    background-color:  #82e95b;
+    }
+    
+    body.dark .header{
+    color: #132b41;
+    border-bottom: 3px solid #132b41;
+    }
+    
+    body.dark .presentation .description h1{
+    color: #132b41;
+    }
+    
+    body.dark .nav ul li a{
+    color: #132b41;
+    }
+    
+    body.dark .nav ul li a i{
+    color: #132b41;
+    }
+    
+    body.dark .background{
+    background-color: #eaeaea;
+    }
+    
+    body.dark .box{
+    background-color: #82e95b;
+    border: 3px solid #132b41;
+    }
+    
+    body.dark .contenedor_botones div{
+    border: 2px solid #132b41;
+    color: #132b41;
+    background-color: #2dba78;
+    box-shadow: inset 0px 0px 10px 0 #132b41;
+    }
+    
+    body.dark .contenedor_botones div a{
+    color: #132b41;
+    }
+    
+    body.dark .contenedor_botones div a i{
+    color: #132b41;
+    }
+
 
 
 

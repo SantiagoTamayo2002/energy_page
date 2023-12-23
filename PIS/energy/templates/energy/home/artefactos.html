@@ -4,17 +4,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <link rel="stylesheet" href="{% static 'energy/css/artefacto.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/apoyo_artefacto.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
-    <title>Title</title>
+    <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
+    <title>Artefactos</title>
 </head>
 <body>
      <nav class="menu">
-                <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
-                <a href="{% url 'paginaUsuario' %}">Inicio</a>
-                <a href="{% url 'proyecciones' %}">Ver Consumo</a>
-                <a href="{% url 'inventario' %}">Inventario</a>
+              <a href="{% url 'paginaUsuario' %}">Inicio</a>
+              <a href="{% url 'proyecciones' %}">Ver Consumo</a>
+              <a href="{% url 'inventario' %}">Inventario</a>
+              <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
+              <ul class="listado">
+                <li class="switch">
+                    <i class="fa-solid fa-sun"></i>
+                    <i class="fa-solid fa-moon"></i>
+                </li>
+              </ul>
      </nav>
  <h1>Artefactos</h1>
 <section class="formCrearArtefactos">
@@ -53,5 +59,6 @@
 </table>
 
 </section>
+<script src="{% static 'energy/js/app.js' %}"></script>
 </body>
 </html>

@@ -1,14 +1,12 @@
-
 * {
-	font-family: 'Livvic', Courier, monospace;
+    font-family: 'livvic', sans-serif;
     margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
-
 body {
     min-height: 100vh;
-    background: black;
+    background-color: #000000;color: white;
 }
 nav{
     position: relative;
@@ -20,6 +18,7 @@ nav{
     justify-content: center;
     align-items: center;
     z-index: 2;
+
 }
 
 nav a {
@@ -32,7 +31,7 @@ nav a {
     padding: 13px 35px;
     margin: 5px;
     z-index: 2;
-    transition: color .5s;   
+    transition: color .5s;
 }
 nav a::after {
     content: '';
@@ -55,136 +54,103 @@ nav a:hover::after{
     top: 50%;
     opacity: 1;
 }
-/* nav span {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 150px;
-    height: 100%;
-    background: linear-gradient(60deg, #222222ab, #1da0f2c2);
-    opacity: 0.5;
-    border-radius: 8px;
-    transition: .5s;
-}
-
-nav a:nth-child(1):hover~span {
-    left: 27%;
-    width: 8%;
-}
-
-nav a:nth-child(2):hover~span {
-    left: 37%;
-    width: 5%;
-}
-nav a:nth-child(3):hover~span {
-    left: 43%;
-    width: 10%;
-}
-nav a:nth-child(4):hover~span {
-    left: 53%;
-    width: 9%;
-}
-nav a:nth-child(5):hover~span {
-    left: 62%;
-    width: 11%;
-} */
-
-main {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-}
-
-footer {
-    background-color: #1DA1F2;
-    padding: 10px;
+a{
+    text-decoration: none;
+    margin-bottom: 50px;
+    color: white;
     text-align: center;
 }
-
-.graficaProyeccion {
-    contain: content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: auto; /*  ancho de la pantalla */
-    height: 46vh; /* Altura ajustada automáticamente */
-    min-height: 350px;
-}
-.circulo {
-    width: 100%;
-    height: 100vh;
-    contain: content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-/*-------------------------------------------------------------------------------------*/
-.menu {
-    position: relative;
+h1{text-align: center;
+    margin-top: 25px;
+    color: white;
 
 }
-.menu li {
-    display: none;
-}
-@media screen and (max-width: 768px) {
-    .menu a{
-        display: none;
-        /* Oculta el contenido del menú en pantallas más pequeñas */
-    }
-
-    .menu li{
-        display: block;
-        /* Oculta el contenido del menú en pantallas más pequeñas */
-    }
-    
-}
-
-nav li {
-    position: relative;
-    display: inline-block;
-    font-size: 15px;
-    font-weight: 500;
-    color: #1da0f2c2;
-    text-decoration: none;
-    padding: 13px 35px;
-    margin: 5px;
-    z-index: 2;
-    transition: color .5s;   
-}
-nav li::after {
-    content: '';
-    background: linear-gradient(10deg, #222222ab, #1da0f2c2);
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    opacity: 0;
-    transition: top .5s, opacity .5s;
-}
-nav li:hover {
-    color: #fff;
-}
-nav li:hover::after{
-    top: 50%;
-    opacity: 1;
-}
-
-li a{
-    font-family: 'Livvic', Courier, monospace;
-    text-decoration: none; /* Sin subrayado */
-    color: #1da0f2c2; /* Color de los enlaces */
-    padding: 13px 35px;
-    margin: 5px;
-    z-index: 2;
-    transition: color .5s;
+h3{
+    margin-top: 10px;
+    text-align: center;
     margin-bottom: 10px;
+    color: #ff0000;
 
+}
+
+/* Tabla*/
+table{
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+th{
+    background-color: #1da0f2c2;
+    color: white;
+    text-align: center;
+    align-content: center;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+td{
+    color: white;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #000000;
+}
+tr:nth-child(even){background-color: black}
+
+
+
+
+
+
+
+/* form */
+
+.formCrearArtefactos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: #222222ab;
+    width: 50%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.formCrearArtefactos input{
+    margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    font-size: 15px;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+
+}
+.formCrearArtefactos label{
+    margin: 20px;
+
+
+}
+.formCrearArtefactos button{
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 15px;
+    background-color: #1da0f2c2;
+    margin: 10px;
+}
+.formCrearArtefactos button:hover{
+    background-color: #1da0f2;
 }
 
 /*aqui voy a empezar el modo oscuro, no se 
@@ -283,3 +249,72 @@ las etiquetas con otros colores*/
     body.dark .contenedor_botones div a i{
     color: #132b41;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* tabla de los artefactos*/
+.tablaDeLosArtefactos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #222222ab;
+    width: 98%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+
+
+
+
+
+.acciones{
+  contain: content;
+  align-content: center;
+  text-align: center;
+  padding: 0px;
+}
+.acciones form button {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    background: rgba(11,51,255,0);
+    padding: 5px;
+    color: #ffffff;
+    font-size: 15px;
+    border-style: none;
+}
+.acciones:hover{
+    background-color: rgba(29, 160, 242, 0.32);
+}

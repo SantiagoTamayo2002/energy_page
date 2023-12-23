@@ -5,27 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecciones de Consumo</title>
-    <link rel="stylesheet" href="{% static 'energy/css/graficaStyle.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/apoyo_graficaStyle.css' %}">
     <!-- Bootstrap CSS -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-        
-        <nav class="menu"> 
-            <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
-            <a href="{% url 'paginaUsuario' %}">Inicio</a>
-            <a href="{% url 'proyecciones' %}">Ver Consumo</a>
-            <a href="{% url 'inventario' %}">Inventario</a>
-            <a href="{% url 'informe' %}">Generar Informe</a>
-            <li id="mostrarLista"> Mostrar Menu </li>
-            
-            <span></span>
-        </nav>
+    <nav class="menu"> 
+        <a href="{% url 'paginaUsuario' %}">Inicio</a>
+        <a href="{% url 'inventario' %}">Inventario</a>
+        <a href="{% url 'informe' %}">Generar Informe</a>
+        <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
+        <span></span>
+        <ul class="listado">
+            <li class="switch">
+                <i class="fa-solid fa-sun"></i>
+                <i class="fa-solid fa-moon"></i>
+            </li>
+        </ul>
+    </nav>
 
         <div id="listaOculta" style="display: none;">
             <ul id="listaNumeros">

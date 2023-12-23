@@ -4,29 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Inventario</title>
-    <link rel="stylesheet" href="{% static 'energy/css/inventario.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/apoyo_inventario.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap" rel="stylesheet">
     <!--<link rel="stylesheet" type="text/css" href="styles.css"-->>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-
     <nav class="menu"> 
         <a href="{% url 'paginaUsuario' %}">Inicio</a>
         <a href="{% url 'proyecciones' %}">Ver Consumo</a>
         <a href="{% url 'informe' %}">Generar Informe</a>
         <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
-        
         <span></span>
+        <ul class="listado">
+            <li class="switch">
+                <i class="fa-solid fa-sun"></i>
+                <i class="fa-solid fa-moon"></i>
+            </li>
+        </ul>
     </nav>
-
     <div class="contenedor">
         <div class="formulario">
             <div class="form_content">
@@ -80,9 +82,6 @@
 
 </section>
 
-
-
-
-
+<script src="{% static 'energy/js/app.js' %}"></script>
 </body>
 </html>
