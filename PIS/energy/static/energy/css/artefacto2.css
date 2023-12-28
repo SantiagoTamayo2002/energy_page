@@ -74,32 +74,51 @@ h3{
 }
 
 /* Tabla*/
-table{
-    border-collapse: collapse;
+table {
+    font-family: 'Livvic', Courier, monospace;
     width: 100%;
     font-size: 15px;
     text-align: left;
-    margin-bottom: 10px;
-}
-th{
-    background-color: #1da0f2c2;
     color: white;
+    border-collapse: collapse;
+    margin: 20px;
+}
+
+th{
+    font-weight: bolder;
+    text-align: left;
+    background-color: #1da0f2c2;
+
+
+}
+
+tr {
+    border: 2px solid #1da0f2c2; /*lineas de la tabla*/
+    text-align: center;
+    padding: 8px;
+}
+
+tr:hover td {
+    background-color: #1DA1F2;
+    box-shadow: 0 0 5px #1DA1F2,
+				0 0 10px #1DA1F2,
+				0 0 15px #1DA1F2,
+				0 0 25px #1DA1F2;
+}
+tbody tr:nth-child(odd){
+    background-color: #0a324ac2;
+}
+
+th{
     text-align: center;
     align-content: center;
     padding: 10px;
-    border: 2px solid yellow;
 }
 
 td{
-    color: white;
     text-align: center;
-    align-content: center;
-    align-items: center;
     padding: 10px;
-    border: 2px solid yellow;
 }
-tr:nth-child(even){background-color: yellow}
-
 
 
 /* form */
@@ -139,6 +158,7 @@ tr:nth-child(even){background-color: yellow}
     color: white;
     padding: 10px;
     border: none;
+    cursor: pointer;
     border-radius: 5px;
     height: 30px;
     font-size: 15px;
@@ -146,7 +166,7 @@ tr:nth-child(even){background-color: yellow}
     margin: 10px;
 }
 .formCrearArtefactos button:hover{
-    background-color: #1da0f2;
+    background-color: #1DA1F2;;
 }
 
 
@@ -201,10 +221,12 @@ tr:nth-child(even){background-color: yellow}
   align-content: center;
   text-align: center;
   padding: 0px;
+  cursor: pointer;
 }
 .acciones form button {
     width: 100%;
     height: 100%;
+    cursor: pointer;
     text-align: center;
     align-content: center;
     align-items: center;
@@ -215,5 +237,5 @@ tr:nth-child(even){background-color: yellow}
     border-style: none;
 }
 .acciones:hover{
-    background-color: rgba(29, 160, 242, 0.32);
+    background-color: #1da0f2c2;
 }

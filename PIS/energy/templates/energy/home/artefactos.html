@@ -5,18 +5,17 @@
 <head>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="{% static 'energy/css/artefacto.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/artefacto2.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
      <nav class="menu">
-                <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
                 <a href="{% url 'paginaUsuario' %}">Inicio</a>
-                <a href="{% url 'proyecciones' %}">Ver Consumo</a>
                 <a href="{% url 'inventario' %}">Inventario</a>
+                <a href="{% url 'proyecciones' %}">Ver Consumo</a>
+                <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
      </nav>
- <h1>Artefactos</h1>
 <section class="formCrearArtefactos">
     <h2>Crear Nuevo Artefacto</h2>
     <h3>{{ error }}</h3>
@@ -29,7 +28,7 @@
 
 
 <section class="tablaDeLosArtefactos">
-<h2>Artefactos</h2>
+<h2>Inventario de Artefactos</h2>
 <table>
   <tr>
     <th>Nombre del artefacto</th>
