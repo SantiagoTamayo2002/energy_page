@@ -1,0 +1,342 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Mejora el modelo de caja */
+  font-family: Livvic, sans-serif;
+}
+
+body {
+  background: #FFF;
+  margin: 0;
+}
+
+.navigator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 50px;
+  background: #75d6d6;
+  height: 50px;
+}
+
+.logo {
+  height: 100%;
+}
+
+.logo img {
+  position: absolute;
+  transform: translate(-40%, -35%);
+  height: 130px;
+}
+
+.navigator ul li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 20px;
+  transition: all 0.3s ease; /* Added transition for smoother effect */
+}
+
+.navigator ul li a {
+  text-decoration: none;
+  color: #101010;
+  font-size: 20px;
+  margin-right: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease; /* Added transition for smoother effect */
+}
+
+.navigator ul li a i {
+  margin-right: 5px;
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(../img/fondo_login.jpg);
+  background-size: cover;
+  margin: 0 auto;
+  padding: 3.20%;
+}
+
+/* Contenido interno */
+.content {
+  max-width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Sección de información */
+.informacion {
+  width: 90%;
+  background-color: #75d6d6;
+  text-align: center;
+  border-radius: 15px;
+  height: 100%;
+}
+
+.informacion-childs {
+  padding: 20px;
+}
+
+.informacion-childs h1 {
+  font-size: 28px;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.informacion-childs p {
+  font-size: 14px;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.informacion-childs a {
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  transition: background-color 0.3s ease; /* Added transition for smoother effect */
+}
+
+.informacion-childs a:hover {
+  background-color: #5aa5a5; /* Change on hover */
+}
+
+/* Sección de formulario e información */
+.form-information {
+  width: 90%;
+  text-align: center;
+  background-color: #FFF;
+  border-radius: 15px;
+  margin-top: 20px;
+  overflow: hidden; /* Agregado para evitar que el contenido sobresalga */
+}
+
+.form-information-childs {
+  padding: 20px;
+  overflow: hidden; /* Agregado para evitar que el contenido sobresalga */
+  max-width: 100%; /* Puedes ajustar el valor según tus necesidades */
+  margin: 0 auto; /* Centrar el contenido */
+}
+
+.form-information-childs h1 {
+  font-size: 28px;
+  color: #222;
+  margin-bottom: 10px;
+  overflow: hidden; /* Agregado para evitar que el contenido sobresalga */
+}
+
+.form-information-childs .icons {
+  margin-bottom: 10px;
+}
+
+.form-information-childs .usar {
+  font-size: 16px;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.form-information-childs form {
+  width: 100%;
+}
+
+.lastname {
+  margin: 10px 0;
+}
+
+.lastname input {
+  width: 100%;
+  border: 2px solid #101010;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.form-information-childs form button {
+  width: 100%;
+  height: 40px;
+  background-color: #75d6d6;
+  border: none;
+  border-radius: 15px;
+  color: #101010;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Added transition for smoother effect */
+}
+
+.form-information-childs form button:hover {
+  background-color: #5aa5a5; /* Change on hover */
+}
+
+/* Campos del formulario */
+.form-fields {
+  margin-bottom: 1em;
+}
+
+.form-fields label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.form-fields input {
+  width: 100%; /* Ajusta el ancho al 100% para ocupar todo el contenedor */
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box; /* Asegura que el ancho incluye el padding y el borde */
+}
+
+/* Botón de inicio de sesión */
+.login-button {
+  width: 100%;
+  height: 40px;
+  background-color: #75d6d6;
+  border: none;
+  border-radius: 15px;
+  color: #101010;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Added transition for smoother effect */
+}
+
+.login-button:hover {
+  background-color: #5aa5a5; /* Change on hover */
+}
+
+.join-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: #75d6d6;
+  color: #101010;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 15px;
+  transition: background-color 0.3s ease; /* Added transition for smoother effect */
+}
+
+.join-link:hover {
+  background-color: #5aa5a5; /* Change on hover */
+}
+
+/* Estilos para pantallas con ancho máximo de 785px */
+@media (max-width: 785px) {
+  .navigator {
+    padding: 10px;
+  }
+
+  .navigator ul li a {
+    font-size: 12px;
+  }
+  .container {
+    height: 100%;
+    width: 100%;
+    padding: 12%;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .informacion-childs h1 {
+    font-size: 24px;
+    overflow: hidden;
+  }
+
+  .informacion-childs p {
+    font-size: 12px;
+    overflow: hidden;
+  }
+
+  .informacion-childs a {
+    font-size: 14px;
+    overflow: hidden;
+  }
+
+  .form-information-childs h1 {
+    font-size: 24px;
+    overflow: hidden;
+  }
+
+  .form-information-childs .usar {
+    font-size: 14px;
+    overflow: hidden;
+  }
+
+  .form-information-childs form button {
+    font-size: 14px;
+  }
+
+  .form-fields label {
+    font-size: 14px;
+  }
+
+  .form-fields input {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  .login-button {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 786px) {
+  .navigator {
+    padding: 30px 50px; /* Ajusta el relleno para pantallas más grandes */
+  }
+
+  .navigator ul li a {
+    font-size: 22px;
+  }
+
+  .logo img {
+    height: 80px; /* Ajusta la altura del logo para pantallas más grandes */
+    transform: translate(-50%, -50%); /* Ajusta la posición del logo */
+  }
+
+  .informacion-childs h1 {
+    font-size: 32px;
+    overflow: hidden;
+  }
+
+  .informacion-childs p {
+    font-size: 16px;
+    overflow: hidden;
+  }
+
+  .informacion-childs a {
+    font-size: 18px;
+    overflow: hidden;
+  }
+
+  .form-information-childs h1 {
+    font-size: 32px;
+    overflow: hidden;
+  }
+
+  .form-information-childs .usar {
+    font-size: 18px;
+    overflow: hidden;
+  }
+
+  .form-information-childs form button {
+    font-size: 18px;
+  }
+
+  .form-fields label {
+    font-size: 16px;
+  }
+
+  .form-fields input {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .login-button {
+    font-size: 18px;
+  }
+}

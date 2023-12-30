@@ -4,42 +4,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="{% static 'energy/css/login.css' %}"> <!-- Enlace a la hoja de estilos CSS -->
-  <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'energy/css/apoyo1.css' %}">
+
+
   <title>Login</title>
 </head>
+
 <body>
   <div class="navigator">
-        <div class="logo">
-            <img src="{% static 'energy/img/foranix_SinFondo.png' %}" alt="logo">
-        </div>
-        <div class="menu">
-            <ul>
-                <li><a href="{% url 'home' %}"><i class="fa-solid fa-right-from-bracket"></i>Salir</a></li>
-            </ul>
-        </div>
+    <div class="logo">
+      <img src="{% static 'energy/img/FORANIX-SinFondo2.png' %}" alt="logo">
+    </div>
+    <div class="menu">
+      <ul>
+        <li><a href="{% url 'home' %}"><i class="fa-solid fa-right-from-bracket"></i>Salir</a></li>
+      </ul>
+    </div>
   </div>
-  
-  <div class="contenedor-padre">
-    <div class="login-box">
-      <div class="imagen_presentacion">
-          <img src="{% static 'energy/img/logo.jpeg' %}" alt="">
+
+  <div class="container">
+    <div class="content">
+      <div class="informacion">
+        <div class="informacion-childs">
+          <h1>Regístrate</h1>
+          <p>Para poder acceder a la plataforma y utilizar nuestro asombroso servicio</p>
+          <a href="{% url 'registro' %}" class="join-link">Únete a nosotros</a>
+
+        </div>
       </div>
-      <h1>Iniciar sesión</h1> <!-- Encabezado del formulario de inicio de sesión -->
-      
-      {{ error }} <!-- Mostrar mensajes de error, si los hay -->
-      
-      <form method="POST"> <!-- Inicio del formulario con método POST -->
-        {% csrf_token %} <!-- Token de seguridad para proteger contra CSRF -->
-        
-        {{ form.as_p }} <!-- Renderizar el formulario como párrafos -->
-        
-        <button type="submit">Iniciar Sesión</button> <!-- Botón de inicio de sesión -->
-        <a href="{% url 'registro' %}">Registrarse</a> <!-- Enlace para dirigirse a la página de registro -->
-      </form>
+      <div class="form-information">
+        <div class="form-information-childs">
+          <h1>Iniciar sesión</h1>
+
+          {{ error }}
+          <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-fields">
+              {{ form.username.label_tag }}
+              {{ form.username }}
+              <br>
+              {{ form.password.label_tag }}
+              {{ form.password }}
+            </div>
+
+            <button type="submit" class="login-button">Iniciar Sesión</button>
+          </form>
+
+        </div>
+      </div>
     </div>
   </div>
 </body>
-</html>
 
+</html>
 
