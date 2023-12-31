@@ -8,7 +8,7 @@ def guardar_artefacto(request, form):
     if Artefacto.objects.filter(user=request.user, nombre_artefacto=artefacto.nombre_artefacto).exists():
         return render(request, 'energy/home/artefactos.html', {
             'form': form,
-            'artefacto': artefacto,
+            'artefacto': Artefacto.objects.filter(user=request.user),
             'error': 'El artefacto ya existe',
         })
     artefacto.user = request.user
