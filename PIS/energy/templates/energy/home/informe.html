@@ -174,11 +174,14 @@ footer {
     text-align: center;
 }
 /* Estilos específicos para la impresión */
+/* Estilos específicos para la impresión */
 @media print {
-    body{
+    body {
         background-color: rgba(255, 255, 255, 0);
     }
-    a,i {
+
+    a,
+    i {
         display: none;
         /* Oculta los enlaces al imprimir */
     }
@@ -187,17 +190,89 @@ footer {
         display: none;
         /* Oculta los botones al imprimir */
     }
-    .navegar{
+
+    .navegar {
         display: none;
     }
-    tbody tr:nth-child(odd){
-    color: white;
-    }
-    tbody tr:nth-child(2n){
-    color: black;
-     }
 
+    tbody tr:nth-child(odd) {
+        color: white;
+    }
+
+    tbody tr:nth-child(2n) {
+        color: black;
+    }
 }
+
+/* Media queries para pantallas pequeñas */
+@media only screen and (max-width: 785px) {
+    .navegar {
+        max-width: 100%; /* Evitar que se salga del ancho de la pantalla */
+        overflow-x: auto; /* Agregar barra de desplazamiento horizontal si es necesario */
+    }
+
+    nav a:first-child {
+        display: flex;
+        flex-direction: column; /* Asegura que los enlaces estén en columna */
+        align-items: center; /* Centra los enlaces */
+        margin-right: 10px; /* Ajusta el margen derecho del primer enlace (botón de inicio) */
+    }
+
+    nav a {
+        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+        margin: 5px 0; /* Agrega espacio entre los enlaces */
+        padding: 13px 5px; /* Ajusta el padding para pantallas pequeñas */
+    }
+
+    h1,
+    h2 {
+        font-size: 16px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+    }
+
+    .datosUsuario {
+        overflow: auto;
+        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+    }
+    datosUsuario .description h2 p {
+        padding-left: 10px; /* Ajusta el espacio a la izquierda del párrafo */
+    }
+
+    img {
+        width: 50px; /* Ajusta el tamaño de la imagen para pantallas pequeñas */
+    }
+
+    i {
+        font-size: 16px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+        width: 150px; /* Ajusta el ancho para pantallas pequeñas */
+        padding: 10px; /* Ajusta el padding para pantallas pequeñas */
+    }
+
+    table {
+        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+        margin: 20px; /* Ajusta el margen para pantallas pequeñas */
+    }
+
+    th {
+        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+    }
+
+    td,
+    th,
+    .datosConsumo,
+    tr {
+        padding: 5px; /* Ajusta el padding para pantallas pequeñas */
+    }
+
+    .datosConsumo {
+        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+        margin: 10px; /* Ajusta el margen para pantallas pequeñas */
+    }
+
+    footer {
+        padding: 5px; /* Ajusta el padding para pantallas pequeñas */
+    }
+}
+
 </style>
     <nav class="navegar">
         <a href="{% url 'paginaUsuario' %}">Inicio</a>

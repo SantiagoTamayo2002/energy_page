@@ -33,7 +33,7 @@ nav a {
     padding: 13px 35px;
     margin: 5px;
     z-index: 2;
-    transition: color .5s;   
+    transition: color .5s;
 }
 nav a::after {
     content: '';
@@ -57,9 +57,9 @@ nav a:hover::after{
     opacity: 1;
 }
 
-hi, h2 {
+h1, h2 {
     color: white;
-    font-size: 19;
+    font-size: 19px;
 }
 .datosUsuario {
     text-align: left;
@@ -119,8 +119,8 @@ th{
     font-weight: bolder;
     text-align: left;
     background-color: #0a324ac2;
-    
-	
+
+
 }
 
 td,
@@ -146,7 +146,6 @@ tr:hover td {
 				0 0 10px #1DA1F2,
 				0 0 15px #1DA1F2,
 				0 0 25px #1DA1F2;
-    
 }
 tbody tr:nth-child(odd){
     background-color: #0a324ac2;
@@ -161,7 +160,6 @@ footer {
 @media print {
     body{
         background-color: rgba(255, 255, 255, 0);
-        
     }
     a,i {
         display: none;
@@ -172,6 +170,13 @@ footer {
         display: none;
         /* Oculta los botones al imprimir */
     }
-
+    .navegar{
+        display: none;
+    }
+    tbody tr:nth-child(odd){
+    color: white;
+    }
+    tbody tr:nth-child(2n){
+    color: black;
+     }
 }
-
