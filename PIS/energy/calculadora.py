@@ -17,6 +17,8 @@ def calcular_consumo_polinomio(request, dias):
 #############################No Topar
 
 def grafico_consumo_actual(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     if request.user.is_authenticated:
         consumo = []
         dia = []
@@ -33,6 +35,8 @@ def grafico_consumo_actual(request):
 
 ##################
 def grafico_proyeccion_semanal(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     if request.user.is_authenticated:
         dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
         consumo = calcular_consumo_polinomio(request, dias.__len__())
@@ -42,6 +46,8 @@ def grafico_proyeccion_semanal(request):
         return redirect('home')
 
 def grafico_proyeccion_mensual(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     if request.user.is_authenticated:
         mes = 30
         consumo = calcular_consumo_polinomio(request, mes)
@@ -332,6 +338,10 @@ def base_proyeccion(consumo, dia):
 def grafico_artefacto_list_mayor_consumo(request):
     if request.user.is_anonymous:
         return redirect('home')
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
     dias = []
     counter = 0
 

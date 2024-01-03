@@ -22,10 +22,16 @@ def contactos(request):
 def nosotros(request):
     return render(request, 'energy/home/sobreNosotros.html')
 def pagina_usuario(request):
+<<<<<<< HEAD
     if request.user.is_authenticated:
         return render(request, 'energy/home/paginaUsuario.html')
     else:
         return redirect('home')
+=======
+    if request.user.is_anonymous:
+        return redirect('home')
+    return render(request, 'energy/home/paginaUsuario.html')
+>>>>>>> main
 
 def cerrar_sesion(request):
 
@@ -78,6 +84,8 @@ def inicio_sesion(request):
             return render(request, 'energy/home/paginaUsuario.html')
 
 def artefacto(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     if request.user.is_authenticated:
         artefacto = Artefacto.objects.filter(user=request.user)
         if request.method == 'GET':
@@ -106,6 +114,8 @@ def artefacto(request):
 
 
 def inventario(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     if request.user.is_authenticated:
         inventario_artefacto = Inventario.objects.filter(user=request.user)
         consumo_diario_del_mes = Informe.objects.filter(user=request.user)
@@ -138,6 +148,8 @@ def inventario(request):
 
 
 def informe(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     if request.user.is_authenticated:
         consumo_diario_del_mes = Informe.objects.filter(user=request.user)
         total_mensual = calcular_consumo_total_mensual(request.user)
@@ -152,12 +164,22 @@ def informe(request):
 
 
 def imprimir_pdf(request):
+<<<<<<< HEAD
     if request.user.is_authenticated:
         context = {
             'consumoDiario': Informe.objects.filter(user=request.user),
             'user': request.user,
             'consumoTotalMensual': calcular_consumo_total_mensual(request.user),
         }
+=======
+    if request.user.is_anonymous:
+        return redirect('home')
+    context = {
+        'consumoDiario': Informe.objects.filter(user=request.user),
+        'user': request.user,
+        'consumoTotalMensual': calcular_consumo_total_mensual(request.user),
+    }
+>>>>>>> main
 
         html = render_to_string('energy/home/informe.html', context)
         response = HttpResponse(content_type='application/pdf')
@@ -177,8 +199,17 @@ def imprimir_pdf(request):
 
 
 def proyecciones(request):
+<<<<<<< HEAD
 
     if request.user.is_authenticated:
         return render(request, 'energy/home/proyecciones.html')
     else:
         return redirect('home')
+=======
+    if request.user.is_anonymous:
+        return redirect('home')
+    if request.user.is_authenticated:
+        return render(request, 'energy/home/proyecciones.html')
+
+
+>>>>>>> main
