@@ -1,0 +1,32 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    background-color: #FFA500; /* Detalles en naranja */
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  .content {
+    border: 1px solid #FFA500; /* Detalles en naranja */
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #FFA500; /* Detalles en naranja */
+  }
+  

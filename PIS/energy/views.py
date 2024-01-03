@@ -26,6 +26,8 @@ def paginaUsuario(request):
 def cerrarSesion(request):
     return render(request, 'energy/home/index.html', {'cS': logout(request)})
 
+def diagramaUML(request):
+    return render(request, 'energy/home/diagramaUML.html')
 
 
 

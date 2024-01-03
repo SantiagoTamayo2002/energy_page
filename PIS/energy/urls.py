@@ -1,10 +1,11 @@
 
 from django.urls import path
-from .views import home, registro, contactos, nosotros, paginaUsuario, inicioSesion, cerrarSesion, inventario, artefacto, informe, imprimirPDF, proyecciones
+from .views import home, registro, contactos, nosotros, paginaUsuario, inicioSesion, cerrarSesion, inventario, artefacto, informe, imprimirPDF, proyecciones, diagramaUML
 from .calculadora import eliminarDiaEnInventario, eliminarArtefacto, eliminarInventario,graficoConsumoActual, graficoProyeccionMensual, graficoArtefactoMasUsado, graficoProyeccionSemanal
 urlpatterns = [
     path('', home, name="home"),
     path('login/', inicioSesion, name="login"),
+    path('diagramaUML/', diagramaUML, name='diagramaUML'),
     path('registro/', registro, name="registro"),
     path('contactos/', contactos, name="contactos"),
     path('nosotros/', nosotros, name="nosotros"),
