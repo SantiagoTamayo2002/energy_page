@@ -22,13 +22,19 @@ def contactos(request):
 def nosotros(request):
     return render(request, 'energy/home/sobreNosotros.html')
 def pagina_usuario(request):
-    return render(request, 'energy/home/paginaUsuario.html')
+    if request.user.is_authenticated:
+        return render(request, 'energy/home/paginaUsuario.html')
+    else:
+        return redirect('home')
 
 def cerrar_sesion(request):
+
     return render(request, 'energy/home/index.html', {'cS': logout(request)})
 
 
 def registro(request):
+    if request.user.is_authenticated:
+        return redirect('paginaUsuario')
     if request.method == 'GET':
         return render(request, 'energy/home/registro.html', {
             'form': CrearUsuario
@@ -50,6 +56,8 @@ def registro(request):
             'error': 'Las contraseñas no coinciden'
         })
 def inicio_sesion(request):
+
+
     if request.user.is_authenticated:
         return redirect('paginaUsuario')
     if request.method == 'GET':
@@ -74,7 +82,8 @@ def artefacto(request):
             form = ArtefactoForm()
             return render(request, 'energy/home/artefactos.html', {
                 'form': form,
-                'artefacto': artefacto
+                'artefacto': artefacto,
+                'eliminar': eliminar_artefacto,
             })
 
         elif request.method == 'POST':
@@ -87,11 +96,11 @@ def artefacto(request):
                 return render(request, 'energy/home/artefactos.html', {
                     'form': form,
                     'artefacto': artefacto,
+                    'eliminar': eliminar_artefacto,
                 })
-    return render(request, 'energy/home/artefactos.html', {
-        'eliminar': eliminar_artefacto,
-
-        })
+    else:
+        # Manejar el caso en que el usuario no está autenticado
+        return redirect('home')
 
 
 def inventario(request):
@@ -107,7 +116,6 @@ def inventario(request):
                 'consumo_diario': consumo_diario_del_mes,
                 'eliminar_inventario': eliminar_inventario,
             })
-
         elif request.method == 'POST':
             form = InventarioForm(request.user, request.POST)
             if form.is_valid():
@@ -123,9 +131,7 @@ def inventario(request):
                 })
     else:
         # Manejar el caso en que el usuario no está autenticado
-        return render(request, 'energy/home/inventario.html', {
-            'eliminar': eliminar_artefacto_inventario,
-        })
+        return redirect('home')
 
 
 
@@ -138,35 +144,39 @@ def informe(request):
             'user': request.user,
             'consumoTotalMensual': total_mensual
         })
-    return render(request, 'energy/home/informe.html')
+    else:
+        return redirect('home')
 
 
 
 def imprimir_pdf(request):
-    context = {
-        'consumoDiario': Informe.objects.filter(user=request.user),
-        'user': request.user,
-        'consumoTotalMensual': calcular_consumo_total_mensual(request.user),
-    }
+    if request.user.is_authenticated:
+        context = {
+            'consumoDiario': Informe.objects.filter(user=request.user),
+            'user': request.user,
+            'consumoTotalMensual': calcular_consumo_total_mensual(request.user),
+        }
 
-    html = render_to_string('energy/home/informe.html', context)
-    response = HttpResponse(content_type='application/pdf')
+        html = render_to_string('energy/home/informe.html', context)
+        response = HttpResponse(content_type='application/pdf')
 
-    # Incluir la fecha actual en el nombre del archivo
-    fecha_actual = datetime.date.today().strftime("%Y-%m-%d")
-    nombre_archivo = f"Inform_de_{request.user.username}_{fecha_actual}.pdf"
+        # Incluir la fecha actual en el nombre del archivo
+        fecha_actual = datetime.date.today().strftime("%Y-%m-%d")
+        nombre_archivo = f"Inform_de_{request.user.username}_{fecha_actual}.pdf"
 
-    # Sanitizar el nombre del archivo para manejar caracteres especiales
-    response['Content-Disposition'] = 'filename="{}"'.format(nombre_archivo)
+        # Sanitizar el nombre del archivo para manejar caracteres especiales
+        response['Content-Disposition'] = 'filename="{}"'.format(nombre_archivo)
 
-    font_config = FontConfiguration()
-    HTML(string=html).write_pdf(response, font_config=font_config)
-    return response
-
+        font_config = FontConfiguration()
+        HTML(string=html).write_pdf(response, font_config=font_config)
+        return response
+    else:
+        redirect('home')
 
 
 def proyecciones(request):
+
     if request.user.is_authenticated:
         return render(request, 'energy/home/proyecciones.html')
     else:
-      return render(request, 'energy/home/paginaUsuario.html')
+        return redirect('home')

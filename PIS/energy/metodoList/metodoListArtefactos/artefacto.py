@@ -19,6 +19,9 @@ def guardar_artefacto(request, form):
 
 
 def eliminar_artefacto(request, artefacto_id):
-    artefacto = Artefacto.objects.get(pk=artefacto_id)
-    artefacto.delete()
-    return redirect('artefacto')
+    if request.user.is_authenticated:
+        artefacto = Artefacto.objects.get(pk=artefacto_id)
+        artefacto.delete()
+        return redirect('artefacto')
+    else:
+        return redirect('login')

@@ -38,11 +38,15 @@ def eliminar_artefacto_inventario(request, inventario_id):
 
 
 def eliminar_inventario(request):
-    inventario = Inventario.objects.filter(user=request.user)
-    consumo = Informe.objects.filter(user=request.user)
-    consumo.delete()
-    inventario.delete()
-    return redirect('inventario')
+    if request.user.is_authenticated:
+
+        inventario = Inventario.objects.filter(user=request.user)
+        consumo = Informe.objects.filter(user=request.user)
+        consumo.delete()
+        inventario.delete()
+        return redirect('inventario')
+    else:
+        return redirect('home')
 
 def calcular_consumo_total(consumo_wh, cantidadArtefacto, horasDeUso):
     consumo_total = (consumo_wh * cantidadArtefacto * horasDeUso).__round__(2)

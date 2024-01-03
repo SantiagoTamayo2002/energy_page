@@ -1,6 +1,6 @@
 import sympy as sym
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import numpy as np
 from .models import Inventario, Informe
 
@@ -28,7 +28,7 @@ def grafico_consumo_actual(request):
 
         return base_proyeccion(consumo, dia)
     else:
-        return render(request, 'energy/home/paginaUsuario.html')
+        return redirect('home')
 
 
 ##################
@@ -38,7 +38,8 @@ def grafico_proyeccion_semanal(request):
         consumo = calcular_consumo_polinomio(request, dias.__len__())
 
         return base_proyeccion(consumo, dias)
-
+    else:
+        return redirect('home')
 
 def grafico_proyeccion_mensual(request):
     if request.user.is_authenticated:
@@ -50,6 +51,8 @@ def grafico_proyeccion_mensual(request):
             dias.append(counter + 1)
             counter += 1
         return base_proyeccion(consumo, dias)
+    else:
+        return redirect('home')
 
 
 def obtener_polinomio(request):
@@ -327,6 +330,8 @@ def base_proyeccion(consumo, dia):
 
 
 def grafico_artefacto_list_mayor_consumo(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     dias = []
     counter = 0
 
