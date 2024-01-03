@@ -1,94 +1,33 @@
-<html>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Artefactos</title>
-    <style>
-        body{
-            background-color: black;
-            color: white;
+    <meta charset="UTF-8">
 
-        }
-        table, th, td {
-            flex: fit-content;
-            text-align: center;
-            align-content: center;
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 5px;
-
-        }
-        table{
-            margin: auto;
-        }
-        button{
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 12px;
-        }
-        button:hover{
-            background-color: #3e8e41;
-        }
-        h1{
-            text-align: center;
-        }
-        h2{
-            text-align: center;
-        }
-        form{
-            text-align: center;
-            display: block;
-            margin: auto;
-            width: 50%;
-            background-color: #0b1741;
-        }
-        form input{
-            margin-top: 5px;
-            text-align: center;
-        }
-        a{
-            text-align: center;
-            display: block;
-            margin: auto;
-            width: 10%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            font-size: 12px;
-        }
-        a:hover{
-            background-color: #3e8e41;
-        }
-        th{
-            margin: 5px;
-            background-color: #0b1741;
-            color: white;
-        }
-        h3{
-            color: #ec2222;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'energy/css/artefacto2.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
+    <title>Title</title>
 </head>
 <body>
-<a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
-<a href="{% url 'paginaUsuario' %}">Inicio</a>
-<a href="{% url 'proyecciones' %}">Ver Consumo</a>
-<a href="{% url 'informe' %}">Generar Informe</a>
-    <h1>Artefactos</h1>
-<a href="{% url 'inventario' %}">Ver Inventario</a>
+     <nav class="menu">
+                <a href="{% url 'paginaUsuario' %}">Inicio</a>
+                <a href="{% url 'inventario' %}">Inventario</a>
+                <a href="{% url 'proyecciones' %}">Ver Consumo</a>
+                <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
+     </nav>
+<section class="formCrearArtefactos">
+    <h2>Crear Nuevo Artefacto</h2>
 
-<h2>Crear Nuevo Artefacto</h2>
-    <h3>{{ error }}</h3>
-<form method="post" action="{% url 'artefacto' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Guardar Artefacto</button>
-</form>
-<h2>Artefactos</h2>
+    <form method="post" action="{% url 'artefacto' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Guardar Artefacto</button>
+    </form>
+</section>
+
+<section class="tablaDeLosArtefactos">
+<h2>Inventario de Artefactos</h2>
 <table>
   <tr>
     <th>Nombre del artefacto</th>
@@ -97,19 +36,53 @@
     <th>Acciones</th>
 
   </tr>
-  {% for artefacto in artefactos %}
+  {% for artefactoList in artefacto %}
     <tr>
-        <td>{{ artefacto.nombreArtefacto }}</td>
-        <td>{{ artefacto.consumoKwH }}</td>
-        <td>{{ artefacto.horasDeUso }}</td>
-        <td>
-        <form method="post" action="{% url 'eliminarArtefacto' artefacto.id %}">
+        <td>{{ artefactoList.nombre_artefacto }}</td>
+        <td>{{ artefactoList.consumo_wh }} W/h</td>
+        <td>{{ artefactoList.horas_de_uso }} hrs</td>
+        <td class="acciones">
+        <form method="post" action="{% url 'eliminarArtefacto' artefactoList.id %}">
           {% csrf_token %}
           <button type="submit">Eliminar</button>
         </form>
         </td>
   {% endfor %}
 </table>
+</section>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+{% if messages %}
 
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        {% for message in messages %}
+          {% if message.tags == 'success' %}
+            Swal.fire({
+              title: 'Mensaje',
+              html: '{{ message|safe }}',
+              icon: 'success',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              confirmButtonText: 'Aceptar',
+                customClass: {
+                popup: 'warning-popup',
+                content: 'warning-content',
+                confirmButton: 'warning-confirm-button'
+              }
+            });
+          {% elif message.tags == 'error' %}
+            Swal.fire({
+
+              title: 'Mensaje',
+              html: '{{ message|safe }}',
+              icon: 'error',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              confirmButtonText: 'Aceptar'
+            });
+          {% endif %}
+        {% endfor %}
+      });
+    </script>
+
+
+{% endif %}
 </body>
 </html>

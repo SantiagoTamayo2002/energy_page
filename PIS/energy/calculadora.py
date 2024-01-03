@@ -1,100 +1,58 @@
-from datetime import datetime
-
 import sympy as sym
-from django.db.models import Sum
-from django.http import Http404, JsonResponse
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.shortcuts import render
 import numpy as np
-from .models import Artefactos, Inventario, Informe
+from .models import Inventario, Informe
 
 
-def calcularConsumoTotal(consumoTotalPorArtefacto, cantidadArtefactos, horasDeUso):
-    consumoTotal = (consumoTotalPorArtefacto * cantidadArtefactos * horasDeUso).__round__(2)
-    return consumoTotal
-
-def calcularConsumoTotalMensual(user):
-    mesActual = datetime.now().month
-    consumoMensual = Informe.objects.filter(user=user, dia__month=mesActual).aggregate(Sum('consumoTotal'))['consumoTotal__sum'] or 0
-    return consumoMensual
-
-def eliminarArtefacto(request, artefacto_id):
-    artefacto = Artefactos.objects.get(pk=artefacto_id)
-    artefacto.delete()
-    return redirect('artefacto')
-
-
-
-def eliminarDiaEnInventario(request, inventario_id):
-    try:
-        inventario = Inventario.objects.get(pk=inventario_id)
-    except Inventario.DoesNotExist:
-        raise Http404("El Inventario no existe")
-    # Guardar el día antes de eliminar el inventario
-    dia_eliminado = inventario.dia
-    inventario.delete()
-    # Actualizar el consumo diario mensual para el día eliminado
-    total = calcularConsumoTotalMensual(request.user)
-    Informe.actualizarConsumoDiario(request.user, dia_eliminado, total)
-    return redirect('inventario')
-
-
-def eliminarInventario(request):
-    inventario = Inventario.objects.filter(user=request.user)
-    consumo = Informe.objects.filter(user=request.user)
-    consumo.delete()
-    inventario.delete()
-    return redirect('inventario')
-
-def calcularConsumoPolinomio(request, dias):
-    resultado_actual = obtenerPolinomio(request)
+def calcular_consumo_polinomio(request, dias):
+    resultado_actual = obtener_polinomio(request)
     funcion = resultado_actual['funcion_polinomio']
     consumo = []
     for i in range(dias):
-        consumo.append(round(funcion(i+1), 2))
+        consumo.append(round(funcion(i + 1), 2))
     return consumo
+
 
 #############################No Topar
 
-def graficoConsumoActual(request):
+def grafico_consumo_actual(request):
     if request.user.is_authenticated:
         consumo = []
         dia = []
         counter = 0
         for i in Informe.objects.filter(user=request.user):
-            consumo.append(i.consumoTotal)
+            consumo.append(i.consumo_total)
             dia.append(counter + 1)
             counter += 1
 
-        return baseProyeccion(consumo, dia)
+        return base_proyeccion(consumo, dia)
     else:
         return render(request, 'energy/home/paginaUsuario.html')
 
 
 ##################
-def graficoProyeccionSemanal(request):
+def grafico_proyeccion_semanal(request):
     if request.user.is_authenticated:
         dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
-        consumo = calcularConsumoPolinomio(request, dias.__len__())
+        consumo = calcular_consumo_polinomio(request, dias.__len__())
 
-        return baseProyeccion(consumo, dias)
+        return base_proyeccion(consumo, dias)
 
-def graficoProyeccionMensual(request):
+
+def grafico_proyeccion_mensual(request):
     if request.user.is_authenticated:
         mes = 30
-        consumo = calcularConsumoPolinomio(request, mes)
-        dia = []
+        consumo = calcular_consumo_polinomio(request, mes)
+        dias = []
         counter = 0
         for i in range(mes):
-            dia.append(counter + 1)
+            dias.append(counter + 1)
             counter += 1
-        return baseProyeccion(consumo, dia)
+        return base_proyeccion(consumo, dias)
 
 
-
-
-
-def obtenerPolinomio(request):
-
+def obtener_polinomio(request):
     consumo = []
     dias = []
     counter = 0
@@ -107,11 +65,11 @@ def obtenerPolinomio(request):
     fx = 0
 
     for i in Informe.objects.filter(user=request.user):
-        consumo.append(i.consumoTotal)
+        consumo.append(i.consumo_total)
         dias.append(counter + 1)
         counter += 1
 
-    for grado_del_polinomio in range(10):
+    while grado_del_polinomio < 10:
         # PROCEDIMIENTO
         dias = np.array(dias)
         consumo = np.array(consumo)
@@ -152,13 +110,15 @@ def obtenerPolinomio(request):
         except np.linalg.LinAlgError:
             # La matriz A es singular, manejar la excepción según sea necesario
             break
+        grado_del_polinomio += 1
 
         # SALIDA
     # SALIDA
     print('------------------------\n Tabla de datos')
     print('--------------------------------------')
     print(f'ymedia = {ym}\n')
-    print(f'f = {funcion_polinomio}\n')
+    print(f'grado del polinomio = {grado_del_polinomio}\n')
+    print(f'f(x) = {funcion_polinomio.__str__()}\n')
     print(f'coef_determinacion r2 = {r2}\n')
     print(str(r2_porcentaje) + '% de los datos se describe con el modelo')
     print('--------------------------------------')
@@ -175,9 +135,7 @@ def obtenerPolinomio(request):
     return resultado_actual
 
 
-
-
-def baseProyeccion(consumo, dia):
+def base_proyeccion(consumo, dia):
     proyeccion = {
         'tooltip': {
             'trigger': 'axis',
@@ -204,8 +162,8 @@ def baseProyeccion(consumo, dia):
                     'fontSize': 12,
                     'color': 'black',  # Color del texto
                 },
-                'nameGap': 10,  # Espacio entre el nombreArtefacto y el eje
-                'nameLocation': 'middle',  # Ubicación del nombreArtefacto del eje ('start', 'middle', 'end')
+                'nameGap': 10,  # Espacio entre el nombre_artefacto y el eje
+                'nameLocation': 'middle',  # Ubicación del nombre_artefacto del eje ('start', 'middle', 'end')
                 'boundaryGap': False,
                 'type': "category",
                 'data': dia,
@@ -245,14 +203,14 @@ def baseProyeccion(consumo, dia):
             },
         },
         'series': [
-            
+
             {
 
                 'name': 'Consumo',
                 'smooth': True,
                 'data': consumo,
                 'itemStyle': {
-                    'color': '#1DA1F2', # Color del título
+                    'color': '#1DA1F2',  # Color del título
                     'borderColor': '#1DA1F2',
                     'borderWidth': 2,
                     'shadowColor': '#1DA1F2',
@@ -315,7 +273,7 @@ def baseProyeccion(consumo, dia):
                         "stack": "Apilado",
                     },
                     "iconStyle": {
-                        "fontSize": 20 #Ajusta el tamaño del texto de los botones,
+                        "fontSize": 20  # Ajusta el tamaño del texto de los botones,
                     },
                 },
                 "dataZoom": {
@@ -333,7 +291,7 @@ def baseProyeccion(consumo, dia):
                         "restore": "Restaurar",
                     },
                     "iconStyle": {
-                        "fontSize": 16, # Ajusta el tamaño del texto del botón "Restaurar",
+                        "fontSize": 16,  # Ajusta el tamaño del texto del botón "Restaurar",
                         "size": 20,
                     }
                 },
@@ -368,31 +326,28 @@ def baseProyeccion(consumo, dia):
     return JsonResponse(proyeccion)
 
 
-
-
-
-def graficoArtefactoMasUsado(request):
+def grafico_artefacto_list_mayor_consumo(request):
     dias = []
     counter = 0
 
     for i in Informe.objects.filter(user=request.user):
-        dias.append((counter+1).__str__())
+        dias.append((counter + 1).__str__())
         counter += 1
-    artefactoSet = set()
+    artefactoet = set()
 
     artefactoList = []
-    lista = [['Dias'] + dias,]
-
+    lista = [['Dias'] + dias, ]
 
     for i in Inventario.objects.filter(user=request.user):
-        if i.nombreArtefacto not in artefactoSet:  # Verificar si el artefacto ya está en el conjunto
-            artefactoSet.add(i.nombreArtefacto)
-            artefactosMasUsados = [i.nombreArtefacto] # Agregar el nombreArtefacto del artefacto a la lista
-            consumoArtefacto = []
-            for j in Inventario.objects.filter(user=request.user, nombreArtefacto=i.nombreArtefacto):
-                consumoArtefacto.append(j.consumoTotal)
-            artefactosMasUsados.extend(consumoArtefacto) # Agregar el consumo del artefacto a la lista
-            artefactoList.append(artefactosMasUsados) # Agregar la lista a la lista de artefactos
+        if i.artefacto.nombre_artefacto not in artefactoet:  # Verificar si el artefacto ya está en el conjunto
+            artefactoet.add(i.artefacto.nombre_artefacto)
+            artefactoMasUsados = [i.artefacto.nombre_artefacto]  # Agregar el nombre_artefacto del artefacto a la lista
+            consumo_artefacto = []
+            for j in Inventario.objects.filter(user=request.user,
+                                               artefacto__nombre_artefacto=i.artefacto.nombre_artefacto):
+                consumo_artefacto.append(j.consumo_artefacto)
+            artefactoMasUsados.extend(consumo_artefacto)  # Agregar el consumo del artefacto a la lista
+            artefactoList.append(artefactoMasUsados)  # Agregar la lista a la lista de artefacto
     artefactoList.sort(key=lambda x: sum(x[1:]), reverse=True)
     lista.extend(artefactoList)
     print(lista)
@@ -405,7 +360,7 @@ def graficoArtefactoMasUsado(request):
     #     ['Microondas', 50, 60, 70],
     # ]
     # print(lista)
-    #print(artefactoList)
+    # print(artefactoList)
 
     grafica = {
         'max_width': '100%',
@@ -414,7 +369,7 @@ def graficoArtefactoMasUsado(request):
 
         'title': {
             'left': 'center',
-            'text': 'Artefactos mas usados',
+            'text': 'Artefacto que más consumen',
             'padding': 10,
             'margin': 0,
             'textStyle': {
@@ -426,7 +381,7 @@ def graficoArtefactoMasUsado(request):
         'legend': {
 
             'top': 50,
-            'itemGap': 10,   # Ajusta el espacio entre el circulo
+            'itemGap': 10,  # Ajusta el espacio entre el circulo
             'textStyle': {
 
                 'color': 'white',
@@ -445,7 +400,7 @@ def graficoArtefactoMasUsado(request):
         },
         'xAxis': {
             'type': 'category',
-            },
+        },
         'yAxis': {'gridIndex': 0},
         'grid': {
             'position': 'top',
@@ -509,6 +464,4 @@ def graficoArtefactoMasUsado(request):
             },
         ]
     }
-
     return JsonResponse(grafica)
-

@@ -1,205 +1,268 @@
 *{
-    margin: 0;
+    margin: 0; 
     padding: 0;
+    box-sizing: border-box;
     font-family: 'Livvic', sans-serif;
 }
 
 body{
-    background-color: #050d18;
+    background-color:  #050d18;
 }
 
-.contenedor{
-    position: relative;
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #e0daf7;
     width: 100%;
-    height: 100vh;
-    background-color: #050d18;
-
+    height: 100px;
+    border-bottom: 3px solid #d3e2ff;
 }
 
-.slidevar{
-    position: fixed;
+.presentation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.presentation img{
+    display: flex;
+    height: 100%;
+    width: 150px;
+    margin-right: 20px;
+}
+
+.presentation .description h1{
     display: inline-block;
-    height: 100vh;
-    width: 19%;
-    background-color: #050d18;
+    color: #d3e2ff;
 }
 
-.slidevar ul{
-    position: relative;
+.apoyo{
     display: inline-block;
-    list-style: none;
+    margin-right: 20px;
 }
 
-.slidevar ul li{
-    line-height: 75px;
-    font-weight: 600;
-    color: #d4e3ff;
-    cursor: pointer;
+.listado{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 10px;
 }
 
-.slidevar ul li a{
-    display: block;
+.nav ul li :hover{
+    color: #1f5fdf;
+    transition: 0.2s;
+}
+
+.nav ul li a{
     text-decoration: none;
-    color: #6571DB;
-    padding: 10px 25px;
-    font-weight: 600;
+    color: #d3e2ff;
     font-size: 20px;
-    border-bottom: 3px solid #65BCDB;
+    font-weight: 600;
+}
+
+.nav ul li a i{
+    margin-right: 10px;
+}
+
+/*botones y grafica de consumo, pa no olvidarme*/ 
+
+.background{
+    display: flex;
     width: 100%;
-}
-
-.cuadro ul{
-    position: relative;
-    display: inline-block;
-    list-style: none;
-}
-
-.cuadro ul li{
-    line-height: 75px;
-    font-weight: 600;
-    color: #d4e3ff;
-    cursor: pointer;
-}
-
-.cuadro ul li a{
-    display: block;
-    text-decoration: none;
-    color: #6571DB;
-    padding: 10px 25px;
-    font-weight: 600;
-    font-size: 20px;
-    border-bottom: 3px solid #65BCDB;
-    width: 100%;
-}
-
-.slidevar img{
-    position: relative;
-    display: inline-block;
-    width: 75%;
-    margin-top: 15px;
-    border: 4px solid #65BCDB;
-    border-radius: 50%;
-    left: 10%;
-    filter: drop-shadow(0 0 0.75rem #cdc2c2);
-}
-
-
-
-.slidevar img :hover{
-    filter: drop-shadow(0 0 0.75rem #cdc2c2);
-}
-
-
-.navigation{
-    position: relative;
-    display: inline-block;
-    background-color: #050d18;
-    width: 79.8%;
-    height: 85px;
-    text-align: right;
-    left: 19.5%;
-    border: 3px solid #27292a;
-    border-radius: 20px;
-    contain: content;
-}
-
-.lista{
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-.navigation ul{
-    display: inline-block;
-    list-style: none;
-}
-
-.buscador{
-    display: inline-block;
-    text-align: center;
-    margin-right: 175px;
-    margin-bottom: 50px;
-}
-
-.buscador p{
-    display: inline-block;
-    font-weight: 600;
-    color: #65BCDB;
-    margin-right: 15px;
-}
-
-.buscador input{
-    width: 250px;
-    height: 30px;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    padding-left: 20px;
-    background-color: #7F65DB;
-    counter-reset: #fafafa;
-    font-weight: 600;
-}
-
-::placeholder{
-    color: #050d18;
-    font-weight: 600;
-}
-
-.buscador button{
-    width: 60px;
-    height: 30px;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    background-color: #65BCDB;
-    cursor: pointer;
-}
-
-.navigation ul li{
-    display: inline-block;
-    line-height: 75px;
-    font-weight: bold;
-    color: #d4e3ff;
-    cursor: pointer;
-}
-
-.navigation ul li a{
-    text-decoration: none;
-    color: #6571DB;
-    padding: 10px 25px;
-    display: block;
-    font-weight: 600;
-}
-
-.tarjeta{
-    position: relative;
-    display: inline-block;
-    width: 80%;
-    height: 800px;
-    background-color: #050d18;
-    margin-left: 19.5%;
-    border: 3px solid #27292a;
-    border-radius: 20px;
-    contain: content;
+    height: 615px;
     justify-content: center;
+
 }
 
-.toggle-button{
-    display: none;
+.box{
+    display: flex;
+    margin-top: 30px;
+    width: 90%;
+    height: 555px;
+    border-radius: 25px;
 }
+
+.botones{
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+
+.contenedor_botones{
+    width: 90%;
+    height: 100%;
+}
+
+.botones .contenedor_botones div{
+    width: 100%;
+    height: 100px;
+    border: 2px solid #d3e2ff;
+    margin: 70px 0;
+}
+
+.contenedor_botones div{
+    display: flex;
+    border: 2px solid #fafafa01;
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    color: #d3e2ff;
+    font-weight: 600; 
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    background-color: #060d21;
+    box-shadow: inset 0px 0px 10px 0 #d3e2ff;
+}
+
+.contenedor_botones div a{
+    text-decoration: none;
+    color: #d3e2ff;
+}
+
+.contenedor_botones div i{
+    margin-right: 10px;
+}
+
+.contenedor_botones div a:hover{
+    color: #1f5fdf;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.consumo_hoy{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    border-radius: 8px;
+    contain: content;
+}
+
+.graficaProyeccion {
+    width: 90%;
+    height: 80%;
+    margin-right: 20px;
+    border: 2px solid #0055ff;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+    contain: content;
+}
+
 
 @media screen and (max-width: 780px) {
-    .slidevar ul {
-        display: none; /* Oculta la lista */
+    .information div{
+        margin: 5px 22px;
+    }
+    .secondaries{
+        margin: 10px 45px;
+        width: auto;
     }
 
-    .slidevar .toggle-button {
-        display: block; /* Muestra el botón */
-        position: absolute;
-        cursor: pointer; /* Agrega un cursor de puntero al pasar sobre el botón */
-        font-size: 25px; /* Aumenta el tamaño del texto */
+    .consumo_general{
+        width: 202px;
+        height: 150px;
+
     }
-    
 }   
 
+/*aqui voy a empezar el modo oscuro, no se 
+asusten si esta muy largo solo es repetir
+las etiquetas con otros colores*/
 
+.switch{
+    display: flex;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    padding: 0 5px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 100px;
+    border: #fff solid 2px;
+    background-color: #132b41;
+}
+
+
+.switch i{
+    font-size: 1rem;
+    color: #fdc21c;
+}
+
+.listado li:last-child::before{
+    content: "";
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: solid thin #000;
+    left: 0;
+    right: unset;
+}
+
+.listado li:last-child.active::before{
+    left: unset;
+    right: 0;
+    border: solid thin #fff;
+}
+
+.listado li:last-child.active i:first-child{
+    color: #000;
+}
+
+.listado li:last-child.active{
+    background-color: #ffc800;
+}
+
+
+/*fin de la estructura del boton*/
+
+body.dark{
+    background-color:  #82e95b;
+}
+
+body.dark .header{
+    color: #132b41;
+    border-bottom: 3px solid #132b41;
+}
+
+body.dark .presentation .description h1{
+    color: #132b41;
+}
+
+body.dark .nav ul li a{
+    color: #132b41;
+}
+
+body.dark .nav ul li a i{
+    color: #132b41;
+}
+
+body.dark .background{
+    background-color: #eaeaea;
+}
+
+body.dark .box{
+    background-color: #82e95b;
+    border: 3px solid #132b41;
+}
+
+body.dark .contenedor_botones div{
+    border: 2px solid #132b41;
+    color: #132b41;
+    background-color: #2dba78;
+    box-shadow: inset 0px 0px 10px 0 #132b41;
+}
+
+body.dark .contenedor_botones div a{
+    color: #132b41;
+}
+
+body.dark .contenedor_botones div a i{
+    color: #132b41;
+}
 
