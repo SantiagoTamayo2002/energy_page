@@ -1,11 +1,363 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Proyecto: Estimación de Consumo Energético</title>
+    <link rel="stylesheet" href="informativa.css">
 </head>
+<style>
+    body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    background-color: #FFA500; /* Detalles en naranja */
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+
+  h2 {
+    color: #FFA500;
+  }
+  h3 {
+    color: #8810c0;
+  }
+
+  main {
+    padding: 20px;
+  }
+  
+  .content {
+    border: 1px solid #FFA500; /* Detalles en naranja */
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .content2 {
+     /* Detalles en naranja */
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .saltoLinea {
+    color: #000000;
+  }
+
+  .neon {text-align: left; 
+    font-family: monospace; 
+    font-size: 30px; 
+    COLOR: #8012bf; 
+    text-shadow: 0px 0px 9px #ad26e2;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #FFA500; /* Detalles en naranja */
+  }
+  
+  * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif
+}
+
+
+
+ul {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -312%);
+  display: flex;
+
+  @media screen and (max-width: 1259px) {
+  transform: translate(-50%, -252%);
+  }
+
+  @media screen and (max-width: 837px) {
+  transform: translate(-50%, -212%);
+  }
+
+  li {
+    list-style: none;
+    a {
+      position: relative;
+      display: block;
+      text-transform: uppercase;
+      margin: 20px 0;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #5c25b4;
+      font-family: sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      transition: .5s;
+      z-index: 1;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-top: 2px solid #7b3ddf;
+        border-bottom: 2px solid #7b3ddf;
+        transform: scaleY(2);
+        opacity: 0;
+        transition: .3s;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #7b3ddf;
+        transform: scale(0);
+        opacity: 0;
+        transition: .3s;
+        z-index: -1;
+      }
+      &:hover {
+        color: #000000;
+        &:before {
+          transform: scaleY(1);
+          opacity: 1;
+        }
+        &:after {
+          transform: scaleY(1);
+          opacity: 1;
+        }
+      }
+
+    }
+  }
+}
+
+</style>
 <body>
-    <p>aqui agregamos el contacto de linkendin, github o whatsapp</p>
+  <header>
+    <h1>Proyecto Integrador de Saberes: Consumo Energético</h1>
+    
+  </header>
+
+  <main>
+    <section class="content2">
+      <ul id="myList"></ul>
+    </section>
+
+    <script>
+      var myList = [
+        { text: 'Inicio', link: "{% url 'home' %}" },
+        { text: 'Iniciar Sesión', link: "{% url 'login' %}" },
+        { text: 'Registro', link: "{% url 'registro' %}" },
+        { text: 'Sobre Nosotros', link: "{% url 'nosotros' %}" },
+      ];
+    
+      var ul = document.getElementById('myList');
+    
+      myList.forEach(function(item) {
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = item.link; // Establece el enlace según el elemento actual
+        a.textContent = item.text;
+    
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+    </script>
+    
+    
+      <section class="content">
+      <h2>Proposito</h2>
+      <p class="saltoLinea">
+          a                    
+      </p>
+      <p>La aplicación web que ha desarrollado el grupo FORANIX sobre el consumo energético tiene como propósito fundamental capacitar a los usuarios para tomar decisiones informadas. 
+        Al visualizar sus hábitos de consumo eléctrico en forma de gráficos y cifras tangibles, los usuarios pueden identificar de manera rápida y sencilla qué dispositivos contribuyen más al consumo total. 
+      </p>
+      <p class="saltoLinea">
+        a
+      </p> 
+      <p>
+        Esta información les ayuda a ajustar su comportamiento y tomar medidas específicas para reducir el consumo energético, lo que a su vez puede conducir a ahorros económicos significativos a nivel personal. 
+        Esto permite entender mejor el impacto ambiental y económico, al calcular y estimar el consumo semanal y mensual.
+      </p>
+
+    </section>
+
+    <section class="content">
+        <h2>Importancia de nuestra aplicación</h2>
+        <p class="saltoLinea">
+          a
+      </p>
+        <p>
+            La importancia de nuestra aplicación web radica en la información que brinda, ya que proporciona a los usuarios su consumo detallado y visual de todos los artefactos añadidos.
+        </p>  
+        <p class="saltoLinea">
+          a
+      </p>
+        <p>
+            A nivel más amplio, nuestra aplicación alienta hábitos de consumo energético más eficientes que no solo beneficia a los usuarios individualmente, sino que también contribuye a la sostenibilidad a nivel global. 
+            Reducir el consumo de energía tiene un impacto positivo en la preservación de recursos y en la mitigación del cambio climático.
+        </p>
+
+      </section>
+
+      <section class="content2">
+        <h2>Fase de diseño</h2>
+        <p class="saltoLinea">
+          a
+      </p>
+        <p>
+            Siguiendo el paradigama de programación orientada a objetos, se diseño un diagrama UML, donde se describen las diversas clases utilizadas, cada una de ellas con sus respectivos atributos y métodos, además de las relaciones entre las clases.
+        </p> 
+        <p class="saltoLinea">
+          a
+        </p>
+        <p>
+            A continuación se muestra el diagrama UML de nuestra aplicación web en el siguiente enlace: 
+            <a href="{% url 'diagramaUML' %}">DIAGRAMA UML</a>
+        </p> 
+          
+      </section>
+
+
+      <section class="content2">
+        <h2>Lenguajes y herramientas seleccionadas</h2>
+        <p class="saltoLinea">
+          a
+        </p>
+        
+        <p class="neon">PYTHON</p>
+        <p class="saltoLinea">a</p>
+        <img src="{% static 'energy/img/LogoPython.svg.png' %}" alt="" style="width: 100px; height: auto;">
+        <p class="saltoLinea">a</p>
+        <p>
+          Se empleó para el desarrollo del backend de la aplicación web. Python es conocido por su simplicidad y versatilidad, lo que facilitó la implementación de la lógica de negocio y la gestión de datos.
+        </p>
+        <p class="saltoLinea">a</p>
+
+        <p class="neon">HTML</p>
+        
+        <img src="{% static 'energy/img/HTML5_logo.svg.png' %}" alt="" style="width: 100px; height: auto;">
+        <p class="saltoLinea">a</p>
+        <p>
+          Fundamento esencial para la estructura y el contenido de la página web. HTML se utilizó para crear la interfaz de usuario y definir la estructura de los diferentes elementos en la aplicación.
+        </p>
+        <p class="saltoLinea">a</p>
+        
+        <p class="neon">CSS</p>
+        
+        <img src="{% static 'energy/img/CSS3_logo.svg.png' %}" alt="" style="width: 100px; height: auto;">
+        <p class="saltoLinea">a</p>
+        <p>
+          Utilizado para el diseño y la presentación visual de la aplicación. CSS permitió la personalización de la apariencia de los elementos HTML, proporcionando estilos, diseños y animaciones para mejorar la experiencia del usuario.
+        </p>
+        <p class="saltoLinea">a</p>
+        
+        <p class="neon">JavaScript</p>
+        <p class="saltoLinea">a</p>        
+        <img src="{% static 'energy/img/JavaScript_logo.svg.png' %}" alt="" style="width: 100px; height: auto;">
+        <p class="saltoLinea">a</p>
+        <p>
+          Fundamental para el desarrollo del frontend interactivo. JavaScript se empleó para agregar dinamismo y funcionalidades a la interfaz de usuario, permitiendo interacciones en tiempo real.
+        </p>
+        <p class="saltoLinea">a</p>
+      </section>
+
+      <section class="content2">
+        <h2>Backend de la Aplicación - Lógica y Funcionalidades</h3>
+        <p class="saltoLinea">a</p>
+        <h3>Framework y Tecnologías Utilizadas</h3>
+        <p class="saltoLinea">a</p>
+        <p>
+          El backend de esta aplicación se ha desarrollado utilizando el framework Django, aprovechando su robustez y facilidad para la construcción de aplicaciones web. Se ha hecho uso de Python, junto con Django ORM para interactuar con la base de datos y simplificar las operaciones CRUD (Crear, Leer, Actualizar y Borrar).
+        </p>
+        <p class="saltoLinea">a</p>
+        <h3>Arquitectura y estructura</h3>
+        <p class="saltoLinea">a</p>
+        <p>
+          La arquitectura del backend sigue un patrón MVC (Modelo-Vista-Controlador) proporcionado por Django. Los modelos han sido creados para representar entidades como usuarios, artefactos, registros de consumo, entre otros. Las vistas contienen la lógica de la aplicación, respondiendo a las solicitudes del cliente y coordinando la lógica de la web. Los controladores, representados por las vistas en Django, interactúan con los modelos y renderizan las respuestas apropiadas.
+        </p>
+        <p class="saltoLinea">a</p>
+        <h3>Gestión de Usuarios:</h3>
+        <p class="saltoLinea">a</p>
+        <li>Se ha implementado un sistema de registro e inicio de sesión que autentica a los usuarios y les proporciona acceso a sus funcionalidades correspondientes.</li>
+        <li>Se ha implementado un sistema de registro por redes sociales como facebook y twitter.</li>
+        
+        <p class="saltoLinea">a</p>
+        <h3>Gestión de Artefactos:</h3>
+        <p class="saltoLinea">a</p>
+        <li>Funciones para agregar, modificar y eliminar artefactos, cada uno asociado con información detallada, como su nombre, tipo, consumo energético, etc.</li>
+        <li>Se han implementado validaciones para asegurar la integridad de los datos ingresados, quedando guardados para poder hacer calculos cualquier otro día</li>
+        
+        <p class="saltoLinea">a</p>
+        <h3>Cálculo de consumo:</h3>
+        <p class="saltoLinea">a</p>
+        <li>Utilizando los datos de los artefactos y patrones de uso, se ha implementado un sistema que calcula el consumo energético estimado.</li>
+        <li>Se han aplicado funciones para realizar estimaciones precisas, considerando factores como la cantidad de artefactos y el su valor de consumo.</li>
+
+        <p class="saltoLinea">a</p>
+        <h3>Generación de Gráficas:</h3>
+        <p class="saltoLinea">a</p>
+        <li>Funciones para generar gráficas visuales basadas en los datos de consumo, proporcionando una representación visual del patrón de consumo para los usuarios.</li>
+        <li>Se ha utilizado una biblioteca de gráficos para presentar estos datos de manera comprensible y amigable.</li>
+      </section>
+
+      <section class="content2">
+        <h2>Frontend de la Aplicación - Enfoque en Diseño Responsivo</h2>
+        <p class="saltoLinea">a</p>
+        <h3>Tecnologías y Herraminetas Utilizadas</h3>
+        <p class="saltoLinea">a</p>
+        <p>El frontend de esta aplicación se ha construido utilizando HTML, CSS y JavaScript, aprovechando la potencia y versatilidad de estas tecnologías para crear una experiencia de usuario dinámica y atractiva 
+        </p>
+
+        <p class="saltoLinea">a</p>
+        <h3>Adaptabilidad a Diferentes Dispositivos</h3>
+        <p class="saltoLinea">a</p>
+        <p>Se ha prestado especial atención al diseño para garantizar que la aplicación sea accesible y utilizable en una variedad de dispositivos, incluyendo celulares, laptops, computadoras de escritorio, etc.
+        </p>
+
+        <p class="saltoLinea">a</p>
+        <h3>Componentes Interactivos:</h3>
+        <p class="saltoLinea">a</p>
+        <p>Se han implementado elementos interactivos, como formularios, botones y elementos de navegación, que responden a las acciones del usuario de manera intuitiva y fluida.
+        </p>
+
+        <p class="saltoLinea">a</p>
+        <h3>Usabilidad y Navegación Intuitiva:</h3>
+        <p class="saltoLinea">a</p>
+        <p>La disposición de los elementos y la navegación se han diseñado considerando la facilidad de uso y la intuición del usuario
+          agregando elementos visuales, como íconos y etiquetas, para mejorar la comprensión y la navegación.
+        </p>
+      </section>
+
+
+      <section class="content2">
+        <h2>Clases Base.</h2>
+      </section>
+
+
+  </main>
+
+  <footer>
+    <p>&copy; 2023 - Universidad Nacional de Loja</p>
+  </footer>
 </body>
 </html>

@@ -1,5 +1,6 @@
 
 from django.urls import path
+<<<<<<< HEAD
 
 from .metodoList.metodoListInventario.inventario import eliminar_inventario, eliminar_artefacto_inventario
 from .metodoList.metodoListArtefactos.artefacto import eliminar_artefacto
@@ -10,6 +11,14 @@ from .calculadora import grafico_consumo_actual, \
 urlpatterns = [
     path('', home, name="home"),
     path('login/', inicio_sesion, name="login"),
+=======
+from .views import home, registro, contactos, nosotros, paginaUsuario, inicioSesion, cerrarSesion, inventario, artefacto, informe, imprimirPDF, proyecciones, diagramaUML
+from .calculadora import eliminarDiaEnInventario, eliminarArtefacto, eliminarInventario,graficoConsumoActual, graficoProyeccionMensual, graficoArtefactoMasUsado, graficoProyeccionSemanal
+urlpatterns = [
+    path('', home, name="home"),
+    path('login/', inicioSesion, name="login"),
+    path('diagramaUML/', diagramaUML, name='diagramaUML'),
+>>>>>>> 9f62899f56696220cb6f2fc053cbf59d998e8360
     path('registro/', registro, name="registro"),
     path('contactos/', contactos, name="contactos"),
     path('nosotros/', nosotros, name="nosotros"),

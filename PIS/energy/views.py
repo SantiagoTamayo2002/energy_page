@@ -31,6 +31,8 @@ def cerrar_sesion(request):
 
     return render(request, 'energy/home/index.html', {'cS': logout(request)})
 
+def diagramaUML(request):
+    return render(request, 'energy/home/diagramaUML.html')
 
 def registro(request):
     if request.user.is_authenticated:
