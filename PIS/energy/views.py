@@ -22,6 +22,8 @@ def contactos(request):
 def nosotros(request):
     return render(request, 'energy/home/sobreNosotros.html')
 def pagina_usuario(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     return render(request, 'energy/home/paginaUsuario.html')
 
 def cerrar_sesion(request):
@@ -68,6 +70,8 @@ def inicio_sesion(request):
             return render(request, 'energy/home/paginaUsuario.html')
 
 def artefacto(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     if request.user.is_authenticated:
         artefacto = Artefacto.objects.filter(user=request.user)
         if request.method == 'GET':
@@ -95,6 +99,8 @@ def artefacto(request):
 
 
 def inventario(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     if request.user.is_authenticated:
         inventario_artefacto = Inventario.objects.filter(user=request.user)
         consumo_diario_del_mes = Informe.objects.filter(user=request.user)
@@ -130,6 +136,8 @@ def inventario(request):
 
 
 def informe(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     if request.user.is_authenticated:
         consumo_diario_del_mes = Informe.objects.filter(user=request.user)
         total_mensual = calcular_consumo_total_mensual(request.user)
@@ -143,6 +151,8 @@ def informe(request):
 
 
 def imprimir_pdf(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     context = {
         'consumoDiario': Informe.objects.filter(user=request.user),
         'user': request.user,
@@ -166,7 +176,9 @@ def imprimir_pdf(request):
 
 
 def proyecciones(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     if request.user.is_authenticated:
         return render(request, 'energy/home/proyecciones.html')
-    else:
-      return render(request, 'energy/home/paginaUsuario.html')
+
+
