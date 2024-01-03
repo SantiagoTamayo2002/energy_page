@@ -38,6 +38,8 @@ def eliminar_artefacto_inventario(request, inventario_id):
 
 
 def eliminar_inventario(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     inventario = Inventario.objects.filter(user=request.user)
     consumo = Informe.objects.filter(user=request.user)
     consumo.delete()

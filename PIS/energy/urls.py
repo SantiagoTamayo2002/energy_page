@@ -27,5 +27,4 @@ urlpatterns = [
     path('paginaUsuario/proyecciones/graficoProyeccionSemanal', grafico_proyeccion_semanal, name="grafico_proyeccion_semanal"),
     path('paginaUsuario/proyecciones/graficoProyeccionMensual', grafico_proyeccion_mensual, name="grafico_proyeccion_semanal"),
     path('paginaUsuario/proyecciones/graficoArtefactoMasUsado', grafico_artefacto_list_mayor_consumo, name="grafico_proyeccion_semanal"),
-
 ]
