@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'energy/css/registro.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'energy/css/registroForanix.css' %}">
     <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
     <title>Registro</title>
 </head>
@@ -32,13 +32,9 @@
             <div class="form-information">
                 <div class="form-information-childs">
                     <h1>Crear una cuenta</h1>
-                    <div class="icons">
-                        <i class="fa-brands fa-google"></i>
-                        <i class="fa-brands fa-facebook"></i>
-                        <i class="fa-brands fa-twitter"></i>
-                    </div>
+                   
 
-                    <p class="usar">o usa tu email para registrarte</p>
+                  
                     
                     {{ error }}
                     <form method="POST">
