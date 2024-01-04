@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import redirect, render
 from energy.forms import InventarioForm
@@ -11,9 +12,7 @@ def guardar_inventario_artefacto(request, form):
     artefacto = InventarioForm(request.user, request.POST).data['artefacto']
     # Verifica si ya existe un inventario para el usuario, el día y el artefacto
     if Inventario.objects.filter(user=request.user, dia=inventario.dia, artefacto_id=artefacto).exists():
-        return render(request, 'energy/home/inventario.html', {
-            'error': 'El artefacto ya existe en el inventario, elimine el existente e ingreselos nuevamente'
-        })
+        return messages.error(request, 'El artefacto ya existe en el inventario')
     else:
         inventario.user = request.user
         inventario.artefacto = Artefacto.objects.get(id=artefacto)
@@ -22,8 +21,7 @@ def guardar_inventario_artefacto(request, form):
                                                               inventario.cantidad_artefacto)
         inventario.save()
         Informe.actualizar_consumo_diario(request.user, inventario.dia, inventario.consumo_artefacto)
-
-
+        return messages.success(request, 'El artefacto se agrego correctamente')
 
 def eliminar_artefacto_inventario(request, inventario_id):
     try:
@@ -40,6 +38,8 @@ def eliminar_artefacto_inventario(request, inventario_id):
 
 
 def eliminar_inventario(request):
+    if request.user.is_anonymous:
+        return redirect('home')
     inventario = Inventario.objects.filter(user=request.user)
     consumo = Informe.objects.filter(user=request.user)
     consumo.delete()

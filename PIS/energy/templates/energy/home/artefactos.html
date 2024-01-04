@@ -18,14 +18,13 @@
      </nav>
 <section class="formCrearArtefactos">
     <h2>Crear Nuevo Artefacto</h2>
-    <h3>{{ error }}</h3>
+
     <form method="post" action="{% url 'artefacto' %}">
       {% csrf_token %}
       {{ form.as_p }}
       <button type="submit">Guardar Artefacto</button>
     </form>
 </section>
-
 
 <section class="tablaDeLosArtefactos">
 <h2>Inventario de Artefactos</h2>
@@ -50,7 +49,40 @@
         </td>
   {% endfor %}
 </table>
-
 </section>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+{% if messages %}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        {% for message in messages %}
+          {% if message.tags == 'success' %}
+            Swal.fire({
+              title: 'Mensaje',
+              html: '{{ message|safe }}',
+              icon: 'success',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              confirmButtonText: 'Aceptar',
+                customClass: {
+                popup: 'warning-popup',
+                content: 'warning-content',
+                confirmButton: 'warning-confirm-button'
+              }
+            });
+          {% elif message.tags == 'error' %}
+            Swal.fire({
+
+              title: 'Mensaje',
+              html: '{{ message|safe }}',
+              icon: 'error',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              confirmButtonText: 'Aceptar'
+            });
+          {% endif %}
+        {% endfor %}
+      });
+    </script>
+
+
+{% endif %}
 </body>
 </html>
