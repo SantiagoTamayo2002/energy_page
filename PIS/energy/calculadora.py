@@ -16,7 +16,7 @@ def calcular_consumo_polinomio(request, dias):
 
 #############################No Topar
 
-def grafico_consumo_actual(request):
+def generar_grafico_consumo_actual(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
@@ -28,23 +28,23 @@ def grafico_consumo_actual(request):
             dia.append(counter + 1)
             counter += 1
 
-        return base_proyeccion(consumo, dia)
+        return proyeccion_base_grafico_consumo(consumo, dia)
     else:
         return render(request, 'energy/home/paginaUsuario.html')
 
 
 ##################
-def grafico_proyeccion_semanal(request):
+def generar_grafico_proyeccion_semanal(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
         dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
         consumo = calcular_consumo_polinomio(request, dias.__len__())
 
-        return base_proyeccion(consumo, dias)
+        return proyeccion_base_grafico_consumo(consumo, dias)
 
 
-def grafico_proyeccion_mensual(request):
+def generar_grafico_proyeccion_mensual(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
@@ -55,7 +55,7 @@ def grafico_proyeccion_mensual(request):
         for i in range(mes):
             dias.append(counter + 1)
             counter += 1
-        return base_proyeccion(consumo, dias)
+        return proyeccion_base_grafico_consumo(consumo, dias)
 
 
 def obtener_polinomio(request):
@@ -141,7 +141,7 @@ def obtener_polinomio(request):
     return resultado_actual
 
 
-def base_proyeccion(consumo, dia):
+def proyeccion_base_grafico_consumo(consumo, dia):
     proyeccion = {
         'tooltip': {
             'trigger': 'axis',
@@ -332,7 +332,7 @@ def base_proyeccion(consumo, dia):
     return JsonResponse(proyeccion)
 
 
-def grafico_artefacto_list_mayor_consumo(request):
+def generar_grafico_artefacto_list_mayor_consumo(request):
     if request.user.is_anonymous:
         return redirect('home')
 

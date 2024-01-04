@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
-from django.shortcuts import redirect
+from django.db.models import Sum
 
 
 class Artefacto(models.Model):
@@ -23,11 +23,9 @@ class Inventario(models.Model):
         return f'Inventario {self.user}'
 
 
-from django.db.models import Sum
 
 class Informe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    #relacion 1 a 1 con inventario
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, null=True, related_name="inventario_list")
     dia = models.DateField(auto_now_add=True)  # Cambiado a auto_now_add para obtener la fecha actual en la creación del objeto
     consumo_total = models.FloatField(default=0)  # Valor predeterminado actualizado a 0
