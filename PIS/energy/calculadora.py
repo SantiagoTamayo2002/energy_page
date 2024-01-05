@@ -16,7 +16,7 @@ def calcular_consumo_polinomio(request, dias):
 
 #############################No Topar
 
-def generar_grafico_consumo_actual(request):
+def generar_grafico_proyeccion_consumo_actual(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
@@ -28,7 +28,7 @@ def generar_grafico_consumo_actual(request):
             dia.append(counter + 1)
             counter += 1
 
-        return proyeccion_base_grafico_consumo(consumo, dia)
+        return base_grafico_proyeccion(consumo, dia)
     else:
         return render(request, 'energy/home/pagina_usuario.html')
 
@@ -41,7 +41,7 @@ def generar_grafico_proyeccion_semanal(request):
         dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
         consumo = calcular_consumo_polinomio(request, dias.__len__())
 
-        return proyeccion_base_grafico_consumo(consumo, dias)
+        return base_grafico_proyeccion(consumo, dias)
 
 
 def generar_grafico_proyeccion_mensual(request):
@@ -55,7 +55,7 @@ def generar_grafico_proyeccion_mensual(request):
         for i in range(mes):
             dias.append(counter + 1)
             counter += 1
-        return proyeccion_base_grafico_consumo(consumo, dias)
+        return base_grafico_proyeccion(consumo, dias)
 
 
 def obtener_polinomio(request):
@@ -141,7 +141,7 @@ def obtener_polinomio(request):
     return resultado_actual
 
 
-def proyeccion_base_grafico_consumo(consumo, dia):
+def base_grafico_proyeccion(consumo, dia):
     proyeccion = {
         'tooltip': {
             'trigger': 'axis',
