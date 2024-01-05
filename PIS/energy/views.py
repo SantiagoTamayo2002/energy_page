@@ -16,18 +16,18 @@ from .metodoList.metodoListArtefactos.artefacto import guardar_artefacto, elimin
 
 # Create your views here.
 def home(request):
-    return render(request, 'energy/home/index.html')
-def contactos(request):
+    return render(request, 'energy/home/home.html')
+def contacto(request):
     return render(request, 'energy/home/contactos.html')
-def nosotros(request):
-    return render(request, 'energy/home/sobreNosotros.html')
+def sobre_el_equipo(request):
+    return render(request, 'energy/home/sobre_el_equipo.html')
 def pagina_usuario(request):
     if request.user.is_anonymous:
         return redirect('home')
-    return render(request, 'energy/home/paginaUsuario.html')
+    return render(request, 'energy/home/pagina_usuario.html')
 
 def cerrar_sesion(request):
-    return render(request, 'energy/home/index.html', {'cS': logout(request)})
+    return render(request, 'energy/home/home.html', {'cS': logout(request)})
 
 
 def registro(request):
@@ -55,19 +55,19 @@ def inicio_sesion(request):
     if request.user.is_authenticated:
         return redirect('paginaUsuario')
     if request.method == 'GET':
-        return render(request, 'energy/home/login.html', {
+        return render(request, 'energy/home/inicio_sesion.html', {
             'form': AuthenticationForm
         })
     else:
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
-            return render(request, 'energy/home/login.html', {
+            return render(request, 'energy/home/inicio_sesion.html', {
                 'form': AuthenticationForm,
                 'error': 'El usuario es incorrecto',
             })
         else:
             login(request, user)
-            return render(request, 'energy/home/paginaUsuario.html')
+            return render(request, 'energy/home/pagina_usuario.html')
 
 def artefacto(request):
     if request.user.is_anonymous:
@@ -76,7 +76,7 @@ def artefacto(request):
         artefacto = Artefacto.objects.filter(user=request.user)
         if request.method == 'GET':
             form = ArtefactoForm()
-            return render(request, 'energy/home/artefactos.html', {
+            return render(request, 'energy/home/artefacto.html', {
                 'form': form,
                 'artefacto': artefacto
             })
@@ -88,11 +88,11 @@ def artefacto(request):
                 return redirect('artefacto')
             else:
                 # Manejar el caso de un formulario no válido
-                return render(request, 'energy/home/artefactos.html', {
+                return render(request, 'energy/home/artefacto.html', {
                     'form': form,
                     'artefacto': artefacto,
                 })
-    return render(request, 'energy/home/artefactos.html', {
+    return render(request, 'energy/home/artefacto.html', {
         'eliminar': eliminar_artefacto,
 
         })
@@ -175,10 +175,10 @@ def imprimir_pdf(request):
 
 
 
-def proyecciones(request):
+def proyeccion(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
-        return render(request, 'energy/home/proyecciones.html')
+        return render(request, 'energy/home/proyeccion.html')
 
 

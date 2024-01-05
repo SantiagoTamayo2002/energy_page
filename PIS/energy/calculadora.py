@@ -30,7 +30,7 @@ def generar_grafico_consumo_actual(request):
 
         return proyeccion_base_grafico_consumo(consumo, dia)
     else:
-        return render(request, 'energy/home/paginaUsuario.html')
+        return render(request, 'energy/home/pagina_usuario.html')
 
 
 ##################
