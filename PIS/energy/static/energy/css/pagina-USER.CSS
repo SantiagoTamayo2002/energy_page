@@ -76,6 +76,13 @@ body{
     display: flex;
     justify-content: center;
     width: 30%;
+    
+}
+
+@media screen and (max-width: 600px) {
+    .botones {
+        display: none; /* Oculta el div cuando la pantalla es más pequeña que 600px */
+    }
 }
 
 .contenedor_botones{
