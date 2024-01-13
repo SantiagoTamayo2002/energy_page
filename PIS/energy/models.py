@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
-from django.shortcuts import redirect
+from django.db.models import Sum
 
 
 class Artefacto(models.Model):
@@ -23,12 +23,15 @@ class Inventario(models.Model):
         return f'Inventario {self.user}'
 
 
-from django.db.models import Sum
 
 class Informe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+<<<<<<< HEAD
     #relacion 1  con inventario
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, null=True, related_name="inventario")
+=======
+    inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, null=True, related_name="inventario_list")
+>>>>>>> 265bfaa1cb52862024e3ab1fcd49d06bbeaad89a
     dia = models.DateField(auto_now_add=True)  # Cambiado a auto_now_add para obtener la fecha actual en la creación del objeto
     consumo_total = models.FloatField(default=0)  # Valor predeterminado actualizado a 0
     consumo_total_mensual = models.FloatField(default=0)
@@ -36,18 +39,12 @@ class Informe(models.Model):
     @classmethod
     def actualizar_consumo_diario(cls, user, dia, consumo_total_mensual):
         # Obtener la suma total de consumoArticulo para el usuario, inventario y día específicos
-        mes_actual = datetime.now().month
-        consumo_total = \
-        Inventario.objects.filter(user=user, dia=dia, dia__month=mes_actual).aggregate(Sum('consumo_artefacto'))[
-            'consumo_artefacto__sum']
+        consumo_total = Inventario.objects.filter(user=user, dia=dia).aggregate(Sum('consumo_artefacto'))['consumo_artefacto__sum']
 
         # Verificar si consumo_total es None y asignar 0 si es el caso
         consumo_total = consumo_total if consumo_total is not None else 0
 
         consumo_mensual = consumo_total_mensual
-
-        # Verificar si consumo_mensual es None y asignar 0 si es el caso
-        consumo_mensual = consumo_mensual if consumo_mensual is not None else 0
 
         # Actualizar el campo consumoTotal con la suma
         cls.objects.update_or_create(
