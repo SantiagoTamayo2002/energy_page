@@ -26,16 +26,15 @@ class Inventario(models.Model):
 
 class Informe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     #relacion 1  con inventario
-=======
+
     #relacion 1 a 1 con inventario
->>>>>>> parent of ed7201a (Cambio en la barra navegación)
+
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, null=True, related_name="inventario")
-=======
+
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, null=True, related_name="inventario_list")
->>>>>>> 265bfaa1cb52862024e3ab1fcd49d06bbeaad89a
+
     dia = models.DateField(auto_now_add=True)  # Cambiado a auto_now_add para obtener la fecha actual en la creación del objeto
     consumo_total = models.FloatField(default=0)  # Valor predeterminado actualizado a 0
     consumo_total_mensual = models.FloatField(default=0)
