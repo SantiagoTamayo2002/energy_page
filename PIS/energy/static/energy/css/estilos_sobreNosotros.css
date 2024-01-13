@@ -4,6 +4,44 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+.menu {
+    background-color: black;
+}
+.navigator{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 50px;
+	margin: 0px 50px 0px 0px;
+    background-color: #ff000001;
+    
+}
+.logo img{
+    position: absolute;
+    transform: translate(-40%, -35%);
+    height: 130px;
+}
+
+.navigator ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 20px;
+    transition: all 0.9s ease;
+}
+
+.navigator ul li:hover{
+    transform: scale(1.2);
+}
+
+.navigator ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    margin-right: 10px;
+    font-weight: 600;
+    transition: all 0.9s ease;
+}
+
 a {
 	text-decoration: none;
 	outline: none;
@@ -118,19 +156,19 @@ body {
     contain: content;
 }
 .perfil1{
-    background-image: url(..img/christian.jpg);
+    background-image: url(../img/christian.jpg);
 }
 .perfil2{
-	background-image: url(..img/esteban.jpg);
+	background-image: url(../img/esteban.jpg);
 }
 .perfil3{
-	background-image:url(..img/santiago.jpg);
+	background-image:url(../img/santiago.jpg);
 }
 .perfil4{
-    background-image:url(..img/bradley.jpg);
+    background-image:url(../img/bradley.jpg);
 }
 .perfil5{
-    background-image:url(..img/eber.jpg);
+    background-image:url(../img/eber.jpg);
 }
 .perfil1,.perfil2,.perfil3,.perfil4,.perfil5:hover{
     cursor: pointer;

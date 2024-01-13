@@ -27,7 +27,7 @@ from django.db.models import Sum
 
 class Informe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    #relacion 1 a 1 con inventario
+    #relacion 1  con inventario
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, null=True, related_name="inventario")
     dia = models.DateField(auto_now_add=True)  # Cambiado a auto_now_add para obtener la fecha actual en la creación del objeto
     consumo_total = models.FloatField(default=0)  # Valor predeterminado actualizado a 0
