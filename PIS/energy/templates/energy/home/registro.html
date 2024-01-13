@@ -11,7 +11,7 @@
 <body>
     <div class="navigator">
         <div class="logo">
-            <img src="{% static 'energy/img/foranix_SinFondo.png' %}"logo">
+            <img src="{% static 'energy/img/foranix_SinFondo.png' %}" alt="logo">
         </div>
         <div class="menu">
             <ul>
@@ -32,37 +32,28 @@
             <div class="form-information">
                 <div class="form-information-childs">
                     <h1>Crear una cuenta</h1>
-                   
 
-                  
-                    
                     {{ error }}
                     <form method="POST">
                         {% csrf_token %}
 
-                    <div class="lastname"  aria-placeholder="nombre de usuario">
-                        {{ form.username.label_tag }}
+                    <div class="lastname">
                         {{ form.username }}
                     </div>
 
-                    <div class="lastname" aria-placeholder="nombre">
-                        {{ form.first_name.label_tag }}
+                    <div class="lastname" >
                         {{ form.first_name }}
                     </div>
-                    <div class="lastname" aria-placeholder="apellido">
-                        {{ form.last_name.label_tag }}
+                    <div class="lastname">
                         {{ form.last_name }}
                     </div>
-                    <div class="lastname" aria-placeholder="email">
-                        {{ form.email.label_tag }}
+                    <div class="lastname" >
                         {{ form.email }}
                     </div>
-                    <div class="lastname" aria-placeholder="contrasenia">
-                        {{ form.password1.label_tag }}
+                    <div class="lastname" >
                         {{ form.password1 }}
                     </div>
-                    <div class="lastname" aria-placeholder="conformar constrasenia">
-                        {{ form.password2.label_tag }}
+                    <div class="lastname">
                         {{ form.password2 }}
                     </div>
                         <button>Registrarse</button>
@@ -71,5 +62,38 @@
             </div>
         </div>
     </div>
+
+
+{% if messages %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        {% for message in messages %}
+          {% if message.tags == 'success' %}
+            Swal.fire({
+              title: 'Mensaje',
+              html: '{{ message|safe }}',
+              icon: 'success',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              confirmButtonText: 'Aceptar'
+            });
+          {% elif message.tags == 'error' %}
+            Swal.fire({
+              title: 'Mensaje',
+              html: '{{ message|safe }}',
+              icon: 'error',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              confirmButtonText: 'Aceptar'
+            });
+          {% elif message.tags == 'warning' %}
+            Swal.fire({
+              title: 'Mensaje',
+              html: '{{ message|safe }}',
+              icon: 'warning',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              confirmButtonText: 'Aceptar'
+            });
+          {% endif %}
+        {% endfor %}
+      });
+    </script>
+{% endif %}
 </body>
 </html>
