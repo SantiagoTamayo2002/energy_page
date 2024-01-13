@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.http import Http404
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from energy.forms import InventarioForm
 from energy.metodoList.metodoListInforme.informe import calcular_consumo_total_mensual
 from energy.models import Inventario, Artefacto, Informe
@@ -45,6 +45,7 @@ def eliminar_inventario(request):
     consumo.delete()
     inventario.delete()
     return redirect('inventario')
+
 
 def calcular_consumo_total(consumo_wh, cantidadArtefacto, horasDeUso):
     consumo_total = (consumo_wh * cantidadArtefacto * horasDeUso).__round__(2)
