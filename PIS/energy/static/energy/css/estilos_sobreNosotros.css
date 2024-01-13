@@ -118,19 +118,19 @@ body {
     contain: content;
 }
 .perfil1{
-    background-image: url(../img/christian.jpg);
+    background-image: url(..img/christian.jpg);
 }
 .perfil2{
-	background-image: url(../img/esteban.jpg);
+	background-image: url(..img/esteban.jpg);
 }
 .perfil3{
-	background-image:url(../img/santiago.jpg);
+	background-image:url(..img/santiago.jpg);
 }
 .perfil4{
-    background-image:url(../img/bradley.jpg);
+    background-image:url(..img/bradley.jpg);
 }
 .perfil5{
-    background-image:url(../img/eber.jpg);
+    background-image:url(..img/eber.jpg);
 }
 .perfil1,.perfil2,.perfil3,.perfil4,.perfil5:hover{
     cursor: pointer;
