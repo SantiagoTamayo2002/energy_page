@@ -4,38 +4,6 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-.menu {
-    background-color: white;
-}
-.navigator{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    background-color: #ff000001;
-    height: 30px;
-}
-
-.navigator ul li{
-    list-style: none;
-    display: inline-block;
-    margin-left: 20px;
-    transition: all 0.9s ease;
-}
-
-.navigator ul li:hover{
-    transform: scale(1.2);
-}
-
-.navigator ul li a{
-    text-decoration: none;
-    color: #fff;
-    font-size: 20px;
-    margin-right: 10px;
-    font-weight: 600;
-    transition: all 0.9s ease;
-}
-
 a {
 	text-decoration: none;
 	outline: none;
