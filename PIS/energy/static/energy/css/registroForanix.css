@@ -171,9 +171,11 @@ body{
     margin: 15px 0;
 }
 .lastname input{
-    border: 2px solid #101010;
-    border-radius: 5px;
-    height: 20px;
+    border: 1px solid rgba(134, 120, 120, 0.84);
+    border-radius: 2px;
+    height: 30px;
+    padding: 0 10px;
+    font-size: 15px;
 }
 
 .form-information-childs form button{

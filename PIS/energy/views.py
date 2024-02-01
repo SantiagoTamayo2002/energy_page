@@ -6,6 +6,8 @@ from django.db import IntegrityError
 from .forms import ArtefactoForm, InventarioForm, CrearUsuario
 from .models import Artefacto, Inventario, Informe
 import datetime
+from django.contrib import messages
+
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint.text.fonts import FontConfiguration
@@ -43,13 +45,13 @@ def registro(request):
                 login(request, user)
                 return redirect('paginaUsuario')
             except IntegrityError:
+                messages.warning(request, 'El usuario ya existe')
                 return render(request, 'energy/home/registro.html', {
                     'form': CrearUsuario,
-                    'error': 'El usuario ya existe'
                 })
+        messages.error(request, 'Las contraseñas no coinciden')
         return render(request, 'energy/home/registro.html', {
             'form': CrearUsuario,
-            'error': 'Las contraseñas no coinciden'
         })
 def inicio_sesion(request):
     if request.user.is_authenticated:
@@ -61,10 +63,8 @@ def inicio_sesion(request):
     else:
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
-            return render(request, 'energy/home/inicio_sesion.html', {
-                'form': AuthenticationForm,
-                'error': 'El usuario es incorrecto',
-            })
+            messages.error(request, 'El usuario o la contraseña no son correctos')
+            return redirect('login')
         else:
             login(request, user)
             return render(request, 'energy/home/pagina_usuario.html')
