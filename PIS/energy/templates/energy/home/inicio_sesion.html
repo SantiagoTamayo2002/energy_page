@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
-  <link rel="stylesheet" type="text/css" href="{% static 'energy/css/loginStyle.css' %}"> <!-- Enlace a la hoja de estilos CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'energy/css/estiloLogin.css' %}"> <!-- Enlace a la hoja de estilos CSS -->
   <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
   <title>Login</title>
 </head>
@@ -32,8 +32,7 @@
       
       <form method="POST"> <!-- Inicio del formulario con método POST -->
         {% csrf_token %} <!-- Token de seguridad para proteger contra CSRF -->
-        
-        {{ form.as_p }} <!-- Renderizar el formulario como párrafos -->
+        {{ form }} <!-- Renderizar el formulario como párrafos -->
         
         <button type="submit">Iniciar Sesión</button> <!-- Botón de inicio de sesión -->
         <a href="{% url 'registro' %}">Registrarse</a> <!-- Enlace para dirigirse a la página de registro -->
@@ -41,6 +40,37 @@
     </div>
   </div>
 </body>
+{% if messages %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        {% for message in messages %}
+          {% if message.tags == 'success' %}
+            Swal.fire({
+              title: 'Mensaje',
+              html: '{{ message|safe }}',
+              icon: 'success',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              confirmButtonText: 'Aceptar'
+            });
+          {% elif message.tags == 'error' %}
+            Swal.fire({
+              title: 'Mensaje',
+              html: '{{ message|safe }}',
+              icon: 'error',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              confirmButtonText: 'Aceptar'
+            });
+          {% elif message.tags == 'warning' %}
+            Swal.fire({
+              title: 'Mensaje',
+              html: '{{ message|safe }}',
+              icon: 'warning',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              confirmButtonText: 'Aceptar'
+            });
+          {% endif %}
+        {% endfor %}
+      });
+    </script>
+{% endif %}
 </html>
 
 

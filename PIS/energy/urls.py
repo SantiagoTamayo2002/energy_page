@@ -1,14 +1,24 @@
-
-from django.urls import path
+from rest_framework import routers
+from django.urls import path, include
 
 from .metodoList.metodoListInventario.inventario import eliminar_inventario, eliminar_artefacto_inventario
 from .metodoList.metodoListArtefactos.artefacto import eliminar_artefacto
 from .views import home, registro, contacto, sobre_el_equipo, pagina_usuario, inicio_sesion, cerrar_sesion, inventario, artefacto, informe, imprimir_pdf, proyeccion
 from .calculadora import generar_grafico_proyeccion_consumo_actual, \
     generar_grafico_proyeccion_mensual, generar_grafico_artefacto_list_mayor_consumo, generar_grafico_proyeccion_semanal
+from .viewsets import UserViewSet, ArtefactoViewSet
+
+router = routers.DefaultRouter()
+router.register(r'Usuarios', UserViewSet)
+router.register(r'Artefactos', ArtefactoViewSet)
+
+
+
 
 urlpatterns = [
     path('', home, name="home"),
+    path('rout/', include(router.urls)),
+    path('rout/api/', include('rest_framework.urls', namespace='rest_framework')),
     path('login/', inicio_sesion, name="login"),
     path('registro/', registro, name="registro"),
     path('contactos/', contacto, name="contactos"),

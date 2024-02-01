@@ -26,7 +26,9 @@ class Inventario(models.Model):
 
 class Informe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, null=True, related_name="inventario_list")
+
     dia = models.DateField(auto_now_add=True)  # Cambiado a auto_now_add para obtener la fecha actual en la creación del objeto
     consumo_total = models.FloatField(default=0)  # Valor predeterminado actualizado a 0
     consumo_total_mensual = models.FloatField(default=0)

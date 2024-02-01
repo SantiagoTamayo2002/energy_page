@@ -37,9 +37,16 @@ body{
     color: #d3e2ff;
 }
 
-.nav ul li{
+.apoyo{
     display: inline-block;
     margin-right: 20px;
+}
+
+.listado{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 10px;
 }
 
 .nav ul li :hover{
@@ -50,12 +57,13 @@ body{
 .nav ul li a{
     text-decoration: none;
     color: #d3e2ff;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 600;
+    margin-right: 20px;
 }
 
 .nav ul li a i{
-    margin-right: 10px;
+    margin-left: 10px;
 }
 
 /*botones y grafica de consumo, pa no olvidarme*/ 
@@ -63,26 +71,23 @@ body{
 .background{
     display: flex;
     width: 100%;
+    height: 615px;
     justify-content: center;
+
 }
 
 .box{
     display: flex;
     margin-top: 30px;
     width: 90%;
+    height: 555px;
+    border-radius: 25px;
 }
 
 .botones{
     display: flex;
     justify-content: center;
     width: 30%;
-    
-}
-
-@media screen and (max-width: 600px) {
-    .botones {
-        display: none; /* Oculta el div cuando la pantalla es más pequeña que 600px */
-    }
 }
 
 .contenedor_botones{
@@ -145,25 +150,7 @@ body{
     border: 2px solid #0055ff;
     border-bottom-right-radius: 15px;
     border-top-left-radius: 15px;
-    padding: 4px;
-}
-
-/*aqui voy a empezar el modo oscuro, no se 
-asusten si esta muy largo solo es repetir
-las etiquetas con otros colores*/
-
-.switch{
-    width: 60px;
-    height: 30px;
-    padding: 0 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    border-radius: 100px;
-    border: #fff solid 2px;
-    background-color: #132b41;
-
+    contain: content;
 }
 
 
@@ -183,5 +170,100 @@ las etiquetas con otros colores*/
     }
 }   
 
+/*aqui voy a empezar el modo oscuro, no se 
+asusten si esta muy largo solo es repetir
+las etiquetas con otros colores*/
 
+.switch{
+    display: flex;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    padding: 0 5px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 100px;
+    border: #fff solid 2px;
+    background-color: #132b41;
+}
+
+
+.switch i{
+    font-size: 1rem;
+    color: #fdc21c;
+}
+
+.listado li:last-child::before{
+    content: "";
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: solid thin #000;
+    left: 0;
+    right: unset;
+}
+
+.listado li:last-child.active::before{
+    left: unset;
+    right: 0;
+    border: solid thin #fff;
+}
+
+.listado li:last-child.active i:first-child{
+    color: #000;
+}
+
+.listado li:last-child.active{
+    background-color: #ffc800;
+}
+
+
+/*fin de la estructura del boton*/
+
+body.dark{
+    background-color:  #82e95b;
+}
+
+body.dark .header{
+    color: #132b41;
+    border-bottom: 3px solid #132b41;
+}
+
+body.dark .presentation .description h1{
+    color: #132b41;
+}
+
+body.dark .nav ul li a{
+    color: #132b41;
+}
+
+body.dark .nav ul li a i{
+    color: #132b41;
+}
+
+body.dark .background{
+    background-color: #eaeaea;
+}
+
+body.dark .box{
+    background-color: #82e95b;
+    border: 3px solid #132b41;
+}
+
+body.dark .contenedor_botones div{
+    border: 2px solid #132b41;
+    color: #132b41;
+    background-color: #2dba78;
+    box-shadow: inset 0px 0px 10px 0 #132b41;
+}
+
+body.dark .contenedor_botones div a{
+    color: #132b41;
+}
+
+body.dark .contenedor_botones div a i{
+    color: #132b41;
+}
 
