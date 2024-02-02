@@ -90,12 +90,12 @@ WSGI_APPLICATION = 'PIS.wsgi.application'
 # DATABASES['default'] = dj_database_url.parse("postgres://esteban:I7UwZizP7IsuwYgeKFR4AqXu71jNThPZ@dpg-cmugbjed3nmc739bhglg-a.oregon-postgres.render.com/foranix_db")
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 REST_FRAMEWORK = {
