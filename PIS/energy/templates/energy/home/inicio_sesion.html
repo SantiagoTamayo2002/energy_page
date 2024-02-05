@@ -35,6 +35,7 @@
         {{ form }} <!-- Renderizar el formulario como párrafos -->
         
         <button type="submit">Iniciar Sesión</button> <!-- Botón de inicio de sesión -->
+        <a href="{% url 'reset_password' %}">¿Olvidaste tu contraseña?</a> <!-- Enlace para dirigirse a la página de restablecimiento de contraseña -->
         <a href="{% url 'registro' %}">Registrarse</a> <!-- Enlace para dirigirse a la página de registro -->
       </form>
     </div>
