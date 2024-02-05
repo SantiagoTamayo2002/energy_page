@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -73,23 +75,29 @@ WSGI_APPLICATION = 'PIS.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+#
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'prueba',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'foranix_db',
 #         'USER': 'esteban',
-#         'PASSWORD': 'esteban2005',
-#         'HOST': 'localhost',
+#         'PASSWORD': 'I7UwZizP7IsuwYgeKFR4AqXu71jNThPZ',
+#         'HOST': 'dpg-cmugbjed3nmc739bhglg-a',
 #         'PORT': '5432',
+#
 #     }
 # }
+# DATABASES['default'] = dj_database_url.parse("postgres://esteban:I7UwZizP7IsuwYgeKFR4AqXu71jNThPZ@dpg-cmugbjed3nmc739bhglg-a.oregon-postgres.render.com/foranix_db")
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
 REST_FRAMEWORK = {
 
     'DEFAULT_RENDERER_CLASSES': [
