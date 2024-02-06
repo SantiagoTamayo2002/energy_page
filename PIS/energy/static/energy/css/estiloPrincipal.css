@@ -267,3 +267,33 @@ body.dark .contenedor_botones div a i{
     color: #132b41;
 }
 
+/* ------------ FOOTER ----------------------*/
+footer {
+    background-color: #1DA1F2;
+    padding: 10px;
+    text-align: center;
+}
+.navbarContactos{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.navbarContactos a {
+    position: relative;
+    color: white;
+    display: inline-block;
+    font-size: 11px;
+    text-decoration: none;
+    transition: color .5s;   
+}
+.navbarContactos a:hover {
+    color: black;
+}
+.navbarContactos li{
+    padding: 0px 10px 10px;
+    display: inline-block;
+    /* Oculta el contenido del menú en pantallas más pequeñas */
+}
