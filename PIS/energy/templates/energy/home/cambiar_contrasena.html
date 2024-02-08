@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cambiar contrase;a</title>
+    <style>
+        body{
+            background-color: #f2f2f2;
+        }
+        .container{
+            width: 50%;
+            margin: 0 auto;
+            margin-top: 10%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);
+        }
+        .container h1{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container input{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .container button{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+        }
+        .container button:hover{
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+  <h1>Olvidaste tu contreasena?</h1>
+<p>Por favor, introduce tu correo electronico para que podamos enviarte un enlace para cambiar tu contrasena.</p>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Enviar Correo">
+  </form>
+</body>
+</html>

@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
@@ -76,6 +77,10 @@ def artefacto(request):
         artefacto = Artefacto.objects.filter(user=request.user)
         if request.method == 'GET':
             form = ArtefactoForm()
+            artefacto = artefacto.order_by('nombre_artefacto')
+            paginacion_artefacto = Paginator(artefacto, 5)
+            numero_pagina = request.GET.get('page')
+            artefacto = paginacion_artefacto.get_page(numero_pagina)
             return render(request, 'energy/home/artefacto.html', {
                 'form': form,
                 'artefacto': artefacto
@@ -107,6 +112,10 @@ def inventario(request):
 
         if request.method == 'GET':
             form = InventarioForm(user=request.user)
+            inventario_artefacto = inventario_artefacto.order_by('dia')
+            paginacion_inventario = Paginator(inventario_artefacto, 10)
+            numero_pagina = request.GET.get('page')
+            inventario_artefacto = paginacion_inventario.get_page(numero_pagina)
             return render(request, 'energy/home/inventario.html', {
                 'form': form,
                 'inventario_artefacto': inventario_artefacto,

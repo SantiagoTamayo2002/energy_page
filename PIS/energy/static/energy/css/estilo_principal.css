@@ -143,6 +143,36 @@ body{
     contain: content;
 }
 
+.btnGrafico{
+    position: absolute;
+    padding: 5px;
+    bottom: 10px;
+    right: 20px;
+    background-color: #060d21;
+    border-radius: 10px;
+    border: 2px solid #d3e2ff;
+    color: #d3e2ff;
+}
+
+.btnGrafico:hover{
+    background-color: #1f5fdf;
+    transition: 0.2s;
+}
+
+#infoBox {
+    display: none;
+    position: absolute;
+    bottom: 10%;
+    right: 2%;
+    height: 300px;
+    width: 300px;
+    color: #d3e2ff;
+    background-color: #060d21;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 .graficaProyeccion {
     width: 90%;
     height: 80%;
@@ -267,3 +297,33 @@ body.dark .contenedor_botones div a i{
     color: #132b41;
 }
 
+/* ------------ FOOTER ----------------------*/
+footer {
+    background-color: #1DA1F2;
+    padding: 10px;
+    text-align: center;
+}
+.navbarContactos{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.navbarContactos a {
+    position: relative;
+    color: white;
+    display: inline-block;
+    font-size: 11px;
+    text-decoration: none;
+    transition: color .5s;   
+}
+.navbarContactos a:hover {
+    color: black;
+}
+.navbarContactos li{
+    padding: 0px 10px 10px;
+    display: inline-block;
+    /* Oculta el contenido del menú en pantallas más pequeñas */
+}

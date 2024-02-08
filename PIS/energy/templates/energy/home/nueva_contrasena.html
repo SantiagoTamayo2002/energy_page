@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva contrasena</title>
+</head>
+<body>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Cambiar">
+  </form>
+</body>
+</html>

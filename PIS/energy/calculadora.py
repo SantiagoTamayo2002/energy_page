@@ -149,7 +149,7 @@ def base_grafico_proyeccion(consumo, dia):
                 'type': 'cross',
                 'label': {
                     'backgroundColor': '#1DA1F2',  # Color del fondo del tooltip
-                    'color': 'white',  # Color del texto del tooltip
+                    'color': '#1DA1F2',  # Color del texto del tooltip
                 }
             }
         },
@@ -163,12 +163,12 @@ def base_grafico_proyeccion(consumo, dia):
                         'color': '#1DA1F2',  # Color de la línea
                     }
                 },
-                'name': 'Días',  # Título del eje x
+                'name': 'Días de consumo',  # Título del eje x
                 'nameTextStyle': {
                     'fontSize': 12,
-                    'color': 'black',  # Color del texto
+                    'color': '#1DA1F2',  # Color del texto
                 },
-                'nameGap': 10,  # Espacio entre el nombre_artefacto y el eje
+                'nameGap': 30,  # Espacio entre el nombre_artefacto y el eje
                 'nameLocation': 'middle',  # Ubicación del nombre_artefacto del eje ('start', 'middle', 'end')
                 'boundaryGap': False,
                 'type': "category",
@@ -187,7 +187,7 @@ def base_grafico_proyeccion(consumo, dia):
                     'backgroundColor': 'black',
                     'color': '#1DA1F2'  # Color del texto
                 },
-                'name': 'Consumo (kWh)',  # Título del eje y
+                'name': 'Consumo (W/h)',  # Título del eje y
                 'textStyle': {
                     'nameGap': 20, 'nameLocation': 'middle', 'boundaryGap': False,
                 },
@@ -201,8 +201,8 @@ def base_grafico_proyeccion(consumo, dia):
         'title': {
             'left': 'center',
             'padding': 6,
-            'top': 10,
-            'text': 'Consumo de Energía',
+            #'top': 10,
+            # 'text': 'Proyección de consumo',
             'textStyle': {
                 'color': 'white',  # Color del texto del título
                 'fontSize': 25,  # Tamaño del texto del título
@@ -378,7 +378,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
 
         'title': {
             'left': 'center',
-            'text': 'Artefacto que más consumen',
+            'text': 'Artefactos con mayor consumo',
             'padding': 10,
             'margin': 0,
             'textStyle': {
@@ -388,12 +388,10 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
             },
         },
         'legend': {
-
             'top': 50,
             'itemGap': 10,  # Ajusta el espacio entre el circulo
             'textStyle': {
-
-                'color': 'white',
+                'color': 'black',
                 'fontSize': 14,
             },
         },
