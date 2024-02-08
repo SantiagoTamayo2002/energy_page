@@ -4,7 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import ArtefactoForm, InventarioForm, CrearUsuario
+from .forms import ArtefactoForm, InventarioForm, CrearUsuario, FiltrarInventarioForm, FiltrarArtefactoForm
 from .models import Artefacto, Inventario, Informe
 import datetime
 from django.contrib import messages
@@ -83,24 +83,36 @@ def artefacto(request):
             artefacto = paginacion_artefacto.get_page(numero_pagina)
             return render(request, 'energy/home/artefacto.html', {
                 'form': form,
-                'artefacto': artefacto
+                'artefacto': artefacto,
+                'filtrar_artefacto': FiltrarArtefactoForm
             })
 
         elif request.method == 'POST':
-            form = ArtefactoForm(request.POST)
-            if form.is_valid():
-                guardar_artefacto(request, form)
-                return redirect('artefacto')
-            else:
-                # Manejar el caso de un formulario no válido
-                return render(request, 'energy/home/artefacto.html', {
-                    'form': form,
-                    'artefacto': artefacto,
-                })
-    return render(request, 'energy/home/artefacto.html', {
-        'eliminar': eliminar_artefacto,
-
-        })
+            if all(key in request.POST for key in
+                   ['csrfmiddlewaretoken', 'nombre_artefacto', 'consumo_wh', 'horas_de_uso']):
+                form = ArtefactoForm(request.POST)
+                if form.is_valid():
+                    guardar_artefacto(request, form)
+                    return redirect('artefacto')
+                else:
+                    # Manejar el caso de un formulario no válido
+                    return render(request, 'energy/home/artefacto.html', {
+                        'form': form,
+                        'artefacto': artefacto,
+                    })
+            if all(key in request.POST for key in ['csrfmiddlewaretoken', 'nombre_artefacto']):
+                form = FiltrarArtefactoForm(request.POST)
+                if form.is_valid():
+                    artefacto = Artefacto.objects.filter(user=request.user, nombre_artefacto__icontains=request.POST['nombre_artefacto'])
+                    return render(request, 'energy/home/artefacto.html', {
+                        'form': ArtefactoForm,
+                        'artefacto': artefacto,
+                        'filtrar_artefacto': form
+                    })
+        return render(request, 'energy/home/artefacto.html', {
+            'eliminar': eliminar_artefacto,
+            'ver_todo': Artefacto.objects.filter(user=request.user),
+            })
 
 
 def inventario(request):
@@ -121,25 +133,38 @@ def inventario(request):
                 'inventario_artefacto': inventario_artefacto,
                 'consumo_diario': consumo_diario_del_mes,
                 'eliminar_inventario': eliminar_inventario,
+                'filtrar_inventario': FiltrarInventarioForm
             })
 
         elif request.method == 'POST':
-            form = InventarioForm(request.user, request.POST)
-            if form.is_valid():
-                guardar_inventario_artefacto(request, form)
-                return redirect('inventario')
-            else:
-                # Manejar el caso de un formulario no válido
-                return render(request, 'energy/home/inventario.html', {
-                    'form': form,
-                    'inventario_artefacto': inventario_artefacto,
-                    'consumo_diario': consumo_diario_del_mes,
-                    'eliminar_inventario': eliminar_inventario,
-                })
-    else:
-        # Manejar el caso en que el usuario no está autenticado
+            print(request.POST)
+            if all(key in request.POST for key in ['csrfmiddlewaretoken', 'artefacto', 'cantidad_artefacto']):
+                form = InventarioForm(request.user, request.POST)
+                if form.is_valid():
+                    guardar_inventario_artefacto(request, form)
+                    return redirect('inventario')
+                else:
+                    # Manejar el caso de un formulario no válido
+                    return render(request, 'energy/home/inventario.html', {
+                        'form': form,
+                        'inventario_artefacto': inventario_artefacto,
+                        'consumo_diario': consumo_diario_del_mes,
+                        'eliminar_inventario': eliminar_inventario,
+                    })
+            if all(key in request.POST for key in ['csrfmiddlewaretoken', 'dia', 'initial-dia']):
+                form = FiltrarInventarioForm(request.POST)
+                if form.is_valid():
+                    inventario_artefacto = Inventario.objects.filter(user=request.user, dia=request.POST['dia'])
+                    return render(request, 'energy/home/inventario.html', {
+                        'form': InventarioForm(user=request.user),
+                        'inventario_artefacto': inventario_artefacto,
+                        'consumo_diario': consumo_diario_del_mes,
+                        'filtrar_inventario': form,
+                        'eliminar_inventario': eliminar_inventario,
+                    })
         return render(request, 'energy/home/inventario.html', {
             'eliminar': eliminar_artefacto_inventario,
+            'ver_todo': Inventario.objects.filter(user=request.user),
         })
 
 

@@ -79,3 +79,19 @@ class CrearUsuario(UserCreationForm):
             'password1': forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'minlength': 8, 'maxlength': 20, 'required': True}),
             'password2': forms.PasswordInput(attrs={'placeholder': 'Confirmar Contraseña', 'minlength': 8, 'maxlength': 20, 'required': True}),
         }
+
+class FiltrarArtefactoForm(forms.ModelForm):
+    class Meta:
+        model = Artefacto
+        fields = ['nombre_artefacto']
+        widgets = {
+            'nombre_artefacto': forms.TextInput(attrs={'placeholder': 'Buscar artefacto'}),
+        }
+
+class FiltrarInventarioForm(forms.ModelForm):
+    class Meta:
+        model = Inventario
+        fields = ['dia']
+        widgets = {
+            'dia': forms.DateInput(attrs={'placeholder': 'Fecha', 'type': 'date', 'format': 'yyyy-mm-dd'}),
+        }
