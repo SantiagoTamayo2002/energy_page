@@ -7,7 +7,55 @@
 
     <link rel="stylesheet" href="{% static 'energy/css/artefacto2.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
-    <title>artefactos</title>
+    <title>Artefactos</title>
+    <style>
+        .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.pagination a {
+    color: #ffffff;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: rgb(42, 229, 203);
+    color: black;
+}
+.step-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.step-links a {
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+.step-links a:hover {
+    background-color: #ddd;
+}
+.step-links a:active {
+    background-color: #000;
+    color: white;
+}
+.current {
+    color: #ffffff;
+    margin-top: 5px;
+    
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    background-color: #000;
+}
+    </style>
 </head>
 <body>
      <nav class="menu">
@@ -28,6 +76,9 @@
 
 <section class="tablaDeLosArtefactos">
 <h2>Inventario de Artefactos</h2>
+ <span class="current">
+            Page {{ artefacto.number }} of {{ artefacto.paginator.num_pages }}.
+ </span>
 <table>
   <tr>
     <th>Nombre del artefacto</th>
@@ -47,8 +98,31 @@
           <button type="submit">Eliminar</button>
         </form>
         </td>
+    </tr>
+    
   {% endfor %}
+
 </table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if artefacto.has_previous %}
+            <a href="?page=1">&laquo; primero</a>
+            <a href="?page={{ artefacto.previous_page_number }}">atras</a>
+        {% endif %}
+    
+        {% if artefacto.has_next %}
+            <a href="?page={{ artefacto.next_page_number }}">siguiente</a>
+            <a href="?page={{ artefacto.paginator.num_pages }}">ultimo &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+
+
 </section>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

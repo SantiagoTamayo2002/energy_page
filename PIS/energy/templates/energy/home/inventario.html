@@ -13,7 +13,54 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.pagination a {
+    color: #ffffff;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
 
+.pagination a:hover:not(.active) {
+    background-color: rgb(42, 229, 203);
+    color: black;
+}
+.step-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.step-links a {
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+.step-links a:hover {
+    background-color: #ddd;
+}
+.step-links a:active {
+    background-color: #000;
+    color: white;
+}
+/* center current*/
+.current {
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    
+}
+    </style>
 </head>
 
 <body>
@@ -49,6 +96,9 @@
 
 <section class="section">
     <h1>Datos Consumo Diario</h1>
+ <span class="current">
+            Page {{ inventario_artefacto.number }} of {{ inventario_artefacto.paginator.num_pages }}.
+ </span>
 <table>
   <tr>
       <th>Dia</th>
@@ -77,7 +127,19 @@
     </tr>
   {% endfor %}
 </table>
-
+<div class="pagination">
+    <span class="step-links">
+        {% if inventario_artefacto.has_previous %}
+            <a href="?page=1">&laquo; primero</a>
+            <a href="?page={{ inventario_artefacto.previous_page_number }}">atras</a>
+        {% endif %}
+    
+        {% if inventario_artefacto.has_next %}
+            <a href="?page={{ inventario_artefacto.next_page_number }}">siguiente</a>
+            <a href="?page={{ inventario_artefacto.paginator.num_pages }}">ultimo &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 </section>
 
 {% if messages %}
