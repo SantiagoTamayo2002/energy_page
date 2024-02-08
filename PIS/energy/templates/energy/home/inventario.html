@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Inventario</title>
-    <link rel="stylesheet" href="{% static 'energy/css/inventario2.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/inventario.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap" rel="stylesheet">
@@ -14,7 +14,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
     <style>
-        .pagination {
+      
+    .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,7 +71,6 @@
         <a href="{% url 'proyecciones' %}">Ver Consumo</a>
         <a href="{% url 'informe' %}">Generar Informe</a>
         <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
-        
         <span></span>
     </nav>
 
@@ -95,14 +95,10 @@
     
 
 <section class="section">
-<<<<<<< HEAD
-    <h1> Tabla consumo eléctrico diario</h1>
-=======
     <h1>Datos Consumo Diario</h1>
  <span class="current">
             Page {{ inventario_artefacto.number }} of {{ inventario_artefacto.paginator.num_pages }}.
  </span>
->>>>>>> 2579d9c16ae677dd659dec5edd88eeca48666114
 <table>
   <tr>
       <th>Dia</th>
