@@ -1,4 +1,5 @@
-body {
+
+        body {
     background-color: #050d18;
     font-family:sans-serif;
     background-size: cover;
@@ -14,7 +15,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-    height: 45px;
+    height: 50px;
 }
 
 .logo{
@@ -35,12 +36,12 @@ body {
 }
 
 .navigator ul li:hover{
-    transform: scale(1.2);
+    transform: scale(2.2);
 }
 
 .navigator ul li a{
     text-decoration: none;
-    color: rgba(45, 192, 250, 0.69);
+    color: #e8e6e6;
     font-size: 20px;
     margin-right: 10px;
     font-weight: 600;
@@ -61,16 +62,16 @@ body {
   .login-box {
     width: 380px;
     padding: 20px;
-    background-color: rgba(59, 99, 150, 0.29); /* Color de fondo del contenedor */
+    background-color: #e8e6e6; /* Color de fondo del contenedor */
 
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(63, 187, 183, 0.65); /* Sombra ligera */
+    /*box-shadow: 0 0 20px rgb(255, 255, 255); *//* Sombra ligera */
     text-align: center;
   }
 
   /* Estilo del encabezado */
   .login-box h1 {
-    color: #ffffff; /* Color del texto del encabezado */
+    color: black; /* Color del texto del encabezado */
     font-weight: 600;
   }
 
@@ -84,7 +85,7 @@ body {
  .login-box label {
     margin-bottom: 8px;
     font-weight: 600;
-     color: white;
+     color: black;
   }
 
   /* Estilo de las etiquetas del formulario */
@@ -107,8 +108,8 @@ body {
 
   /* Estilo del botón de envío del formulario */
   .login-box button {
-    background-color: #177194; /* Color de fondo del botón */
-    color: #fff; /* Color del texto del botón */
+    background-color: #75d6d6; /* Color de fondo del botón */
+    color: black; /* Color del texto del botón */
     padding: 20px;
     border: 1px solid #050d18;
     border-radius: 40px;
@@ -138,7 +139,7 @@ body {
   /* Cambio de estilo del enlace al pasar el ratón sobre él */
   .login-box a:hover {
     text-decoration: underline;
-      color: rgba(226, 214, 238, 0.62);
+      color: rgba(141, 80, 201, 0.62);
   }
 
   .imagen_presentacion{
