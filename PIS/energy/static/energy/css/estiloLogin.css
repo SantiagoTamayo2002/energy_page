@@ -60,10 +60,11 @@ body {
   /* Estilo del contenedor principal */
   .login-box {
     width: 380px;
-    background-color: rgba(109, 155, 215, 0.09); /* Color de fondo del contenedor */
     padding: 20px;
+    background-color: rgba(59, 99, 150, 0.29); /* Color de fondo del contenedor */
+
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(63, 187, 183, 0.29); /* Sombra ligera */
+    box-shadow: 0 0 20px rgba(63, 187, 183, 0.65); /* Sombra ligera */
     text-align: center;
   }
 
