@@ -22,6 +22,8 @@ body{
             z-index: 999; /* Aseguramos que esté por encima de otros elementos */
             box-shadow: 0 0 10px rgba(135, 71, 213, 0.9); /* Agregamos una sombra al icono */
         }
+
+
 .contenedor{
     position: relative;
     width: 96%;
