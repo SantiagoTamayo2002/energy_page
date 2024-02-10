@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from .models import Artefacto, Inventario
 
+
 class ArtefactoForm(forms.ModelForm):
     class Meta:
         model = Artefacto
@@ -34,11 +35,6 @@ class ArtefactoForm(forms.ModelForm):
         }
 
 
-
-
-
-
-
 class InventarioForm(forms.ModelForm):
     artefacto = forms.ModelChoiceField(
         widget=forms.Select(attrs={'placeholder': 'Artefacto'}),
@@ -65,20 +61,28 @@ class InventarioForm(forms.ModelForm):
         self.fields['artefacto'].queryset = Artefacto.objects.filter(user=user)
 
 
-#crear usuario
+# crear usuario
 
 class CrearUsuario(UserCreationForm):
+    latitud = forms.FloatField(widget=forms.HiddenInput())
+    longitud = forms.FloatField(widget=forms.HiddenInput())
+
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
         widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Nombre de Usuario', 'autofocus': True, 'minlength': 5, 'maxlength': 20, 'pattern': '[a-zA-Z0-9]+'}),
+            'username': forms.TextInput(
+                attrs={'placeholder': 'Nombre de Usuario', 'autofocus': True, 'minlength': 5, 'maxlength': 20,
+                       'pattern': '[a-zA-Z0-9]+'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Correo Electrónico', 'required': True}),
-            'first_name': forms.TextInput(attrs={'placeholder': 'Nombre', 'pattern': '[a-zA-Z]+', 'required': True}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Apellidos', 'pattern': '[a-zA-Z]+', 'required': True}),
-            'password1': forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'minlength': 8, 'maxlength': 20, 'required': True}),
-            'password2': forms.PasswordInput(attrs={'placeholder': 'Confirmar Contraseña', 'minlength': 8, 'maxlength': 20, 'required': True}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Nombre', 'pattern': '[a-zA-Z ]+', 'required': True}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Apellidos', 'pattern': '[a-zA-Z ]+', 'required': True}),
+            'password1': forms.PasswordInput(
+                attrs={'placeholder': 'Contraseña', 'minlength': 8, 'maxlength': 20, 'required': True}),
+            'password2': forms.PasswordInput(
+                attrs={'placeholder': 'Confirmar Contraseña', 'minlength': 8, 'maxlength': 20, 'required': True}),
         }
+
 
 class FiltrarArtefactoForm(forms.ModelForm):
     class Meta:
@@ -87,6 +91,7 @@ class FiltrarArtefactoForm(forms.ModelForm):
         widgets = {
             'nombre_artefacto': forms.TextInput(attrs={'placeholder': 'Buscar artefacto'}),
         }
+
 
 class FiltrarInventarioForm(forms.ModelForm):
     class Meta:
