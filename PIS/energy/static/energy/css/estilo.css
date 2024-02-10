@@ -5,9 +5,23 @@
 }
 
 body{
-    background-color: black;
+    background-color: #050d18;
+}
+.contenido img{
+    max-width: 100%;
+    height: auto;
 }
 
+#imagen {
+            width: 50px;
+            height: auto;
+            position: fixed; /* Establecemos la posición fija para que esté siempre visible */
+            bottom: 5%; /* Alineamos el icono a la parte inferior de la página */
+            right: 40px; /* Alineamos el icono a la derecha de la página */
+            border-radius: 50%; /* Damos forma circular al icono */
+            z-index: 999; /* Aseguramos que esté por encima de otros elementos */
+            box-shadow: 0 0 10px rgba(135, 71, 213, 0.9); /* Agregamos una sombra al icono */
+        }
 .contenedor{
     position: relative;
     width: 96%;
@@ -36,15 +50,7 @@ body{
     height: 100%;
 }
 
-@media screen and (max-width: 468px) {
-    .contenido img{
-        height: 100%;
-        max-width: 100%;
-        height: auto; 
-        display: block; 
-        margin: auto; 
-    }
-  }
+
 
 .contenido p{
     position: absolute;
@@ -106,7 +112,15 @@ body{
     font-size: 25px;
     color: #d4e3ff;
 }
-
+@media screen and (max-width: 468px) {
+    .contenido img{
+        height: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: auto;
+    }
+  }
 @media only screen and (max-width: 768px) {
     .boton p {
         font-size: 22px; 
@@ -115,6 +129,7 @@ body{
 }
 
 @media only screen and (max-width: 480px) {
+
     .boton p {
         font-size: 17px; 
         color: #d4e3ff;
@@ -125,6 +140,15 @@ body{
     .boton p {
         font-size: 12px; 
         color: #d4e3ff;
+    }
+}
+@media only screen and (max-width: 540px) {
+    #imagen {
+            bottom: 2%; /* Alineamos el icono a la parte inferior de la página */
+            right: 10%; /* Alineamos el icono a la derecha de la página */
+            border-radius: 50%; /* Damos forma circular al icono */
+            z-index: 999; /* Aseguramos que esté por encima de otros elementos */
+            box-shadow: 0 0 10px rgba(135, 71, 213, 0.9); /* Agregamos una sombra al icono */
     }
 }
 
@@ -186,7 +210,6 @@ body{
 }
 
 .descripcion-footer {
-    display: relative;
     align-items: center;
     justify-content: center;
     width: 700px;
@@ -237,7 +260,13 @@ body{
       padding-right: 20px;
       font-size: 13px; 
     }
-
+    #imagen {
+            bottom: 13%; /* Alineamos el icono a la parte inferior de la página */
+            right: 15%; /* Alineamos el icono a la derecha de la página */
+            border-radius: 50%; /* Damos forma circular al icono */
+            z-index: 999; /* Aseguramos que esté por encima de otros elementos */
+            box-shadow: 0 0 10px rgba(135, 71, 213, 0.9); /* Agregamos una sombra al icono */
+    }
     .redes-footer ul li{
         
         display: flex;
