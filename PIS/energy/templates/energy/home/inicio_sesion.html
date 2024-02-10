@@ -11,9 +11,6 @@
 </head>
 <body>
   <div class="navigator">
-        <div class="logo">
-            <img src="{% static 'energy/img/foranix_SinFondo.png' %}" alt="logo">
-        </div>
         <div class="menu">
             <ul>
                 <li><a href="{% url 'home' %}"><i class="fa-solid fa-right-from-bracket"></i>Salir</a></li>
@@ -23,9 +20,6 @@
   
   <div class="contenedor-padre">
     <div class="login-box">
-      <div class="imagen_presentacion">
-          <img src="{% static 'energy/img/logo.jpeg' %}" alt="">
-      </div>
       <h1>Iniciar sesión</h1> <!-- Encabezado del formulario de inicio de sesión -->
       
       {{ error }} <!-- Mostrar mensajes de error, si los hay -->

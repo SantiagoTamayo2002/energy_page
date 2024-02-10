@@ -4,8 +4,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import ArtefactoForm, InventarioForm, CrearUsuario
-from .models import Artefacto, Inventario, Informe
+from .forms import ArtefactoForm, InventarioForm, CrearUsuario, FiltrarInventarioForm, FiltrarArtefactoForm
+from .models import Artefacto, Inventario, Informe, UbicacionUsuario
+from django.http import HttpResponse, JsonResponse
 import datetime
 from django.contrib import messages
 
@@ -31,9 +32,13 @@ def pagina_usuario(request):
 
 def cerrar_sesion(request):
     return render(request, 'energy/home/home.html', {'cS': logout(request)})
+def ubicaciones_de_usuarios(request):
+    return render(request, 'energy/home/ubicaciones_de_usuarios.html')
 
 
 def registro(request):
+    if request.user.is_authenticated:
+        return redirect('paginaUsuario')
     if request.method == 'GET':
         return render(request, 'energy/home/registro.html', {
             'form': CrearUsuario
@@ -43,6 +48,22 @@ def registro(request):
             try:
                 user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'], first_name=request.POST['first_name'], last_name=request.POST['last_name'])
                 user.save()
+                if request.POST['latitud'] == '' or request.POST['longitud'] == '':
+                    messages.warning(request, 'No se ha proporcionado la ubicación')
+                    return render(request, 'energy/home/registro.html', {
+                        'form': CrearUsuario,
+                    })
+
+                # obtener ubicacion
+                latitud = request.POST['latitud']
+                longitud = request.POST['longitud']
+
+                # Crear una instancia de UbicacionUsuario y guardarla en la base de datos
+                UbicacionUsuario.objects.create(
+                    user=user,
+                    latitud=latitud,
+                    longitud=longitud,
+                )
                 login(request, user)
                 return redirect('paginaUsuario')
             except IntegrityError:
@@ -54,6 +75,8 @@ def registro(request):
         return render(request, 'energy/home/registro.html', {
             'form': CrearUsuario,
         })
+
+
 def inicio_sesion(request):
     if request.user.is_authenticated:
         return redirect('paginaUsuario')
@@ -83,24 +106,36 @@ def artefacto(request):
             artefacto = paginacion_artefacto.get_page(numero_pagina)
             return render(request, 'energy/home/artefacto.html', {
                 'form': form,
-                'artefacto': artefacto
+                'artefacto': artefacto,
+                'filtrar_artefacto': FiltrarArtefactoForm
             })
 
         elif request.method == 'POST':
-            form = ArtefactoForm(request.POST)
-            if form.is_valid():
-                guardar_artefacto(request, form)
-                return redirect('artefacto')
-            else:
-                # Manejar el caso de un formulario no válido
-                return render(request, 'energy/home/artefacto.html', {
-                    'form': form,
-                    'artefacto': artefacto,
-                })
-    return render(request, 'energy/home/artefacto.html', {
-        'eliminar': eliminar_artefacto,
-
-        })
+            if all(key in request.POST for key in
+                   ['csrfmiddlewaretoken', 'nombre_artefacto', 'consumo_wh', 'horas_de_uso']):
+                form = ArtefactoForm(request.POST)
+                if form.is_valid():
+                    guardar_artefacto(request, form)
+                    return redirect('artefacto')
+                else:
+                    # Manejar el caso de un formulario no válido
+                    return render(request, 'energy/home/artefacto.html', {
+                        'form': form,
+                        'artefacto': artefacto,
+                    })
+            if all(key in request.POST for key in ['csrfmiddlewaretoken', 'nombre_artefacto']):
+                form = FiltrarArtefactoForm(request.POST)
+                if form.is_valid():
+                    artefacto = Artefacto.objects.filter(user=request.user, nombre_artefacto__icontains=request.POST['nombre_artefacto'])
+                    return render(request, 'energy/home/artefacto.html', {
+                        'form': ArtefactoForm,
+                        'artefacto': artefacto,
+                        'filtrar_artefacto': form
+                    })
+        return render(request, 'energy/home/artefacto.html', {
+            'eliminar': eliminar_artefacto,
+            'ver_todo': Artefacto.objects.filter(user=request.user),
+            })
 
 
 def inventario(request):
@@ -121,25 +156,38 @@ def inventario(request):
                 'inventario_artefacto': inventario_artefacto,
                 'consumo_diario': consumo_diario_del_mes,
                 'eliminar_inventario': eliminar_inventario,
+                'filtrar_inventario': FiltrarInventarioForm
             })
 
         elif request.method == 'POST':
-            form = InventarioForm(request.user, request.POST)
-            if form.is_valid():
-                guardar_inventario_artefacto(request, form)
-                return redirect('inventario')
-            else:
-                # Manejar el caso de un formulario no válido
-                return render(request, 'energy/home/inventario.html', {
-                    'form': form,
-                    'inventario_artefacto': inventario_artefacto,
-                    'consumo_diario': consumo_diario_del_mes,
-                    'eliminar_inventario': eliminar_inventario,
-                })
-    else:
-        # Manejar el caso en que el usuario no está autenticado
+            print(request.POST)
+            if all(key in request.POST for key in ['csrfmiddlewaretoken', 'artefacto', 'cantidad_artefacto']):
+                form = InventarioForm(request.user, request.POST)
+                if form.is_valid():
+                    guardar_inventario_artefacto(request, form)
+                    return redirect('inventario')
+                else:
+                    # Manejar el caso de un formulario no válido
+                    return render(request, 'energy/home/inventario.html', {
+                        'form': form,
+                        'inventario_artefacto': inventario_artefacto,
+                        'consumo_diario': consumo_diario_del_mes,
+                        'eliminar_inventario': eliminar_inventario,
+                    })
+            if all(key in request.POST for key in ['csrfmiddlewaretoken', 'dia', 'initial-dia']):
+                form = FiltrarInventarioForm(request.POST)
+                if form.is_valid():
+                    inventario_artefacto = Inventario.objects.filter(user=request.user, dia=request.POST['dia'])
+                    return render(request, 'energy/home/inventario.html', {
+                        'form': InventarioForm(user=request.user),
+                        'inventario_artefacto': inventario_artefacto,
+                        'consumo_diario': consumo_diario_del_mes,
+                        'filtrar_inventario': form,
+                        'eliminar_inventario': eliminar_inventario,
+                    })
         return render(request, 'energy/home/inventario.html', {
             'eliminar': eliminar_artefacto_inventario,
+            'ver_todo': Inventario.objects.filter(user=request.user),
         })
 
 
@@ -191,3 +239,12 @@ def proyeccion(request):
         return render(request, 'energy/home/proyeccion.html')
 
 
+def api_leaflet(request):
+    ubicaciones = UbicacionUsuario.objects.all()
+    data = []
+    for ubicacion in ubicaciones:
+        data.append({
+            'latitud': ubicacion.latitud,
+            'longitud': ubicacion.longitud,
+        })
+    return JsonResponse(data, safe=False)
