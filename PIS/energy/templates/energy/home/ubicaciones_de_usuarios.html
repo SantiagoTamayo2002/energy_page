@@ -27,9 +27,18 @@
         fetch('/api_leaflet/ubicaciones')
             .then(response => response.json())
             .then(data => {
-                // Crear mapa centrado en la primera ubicación
-                var map = L.map('map').setView([data[0].latitud, data[0].longitud], 15);
-                
+                // Crear mapa
+                var map = L.map('map');
+
+                // Crear grupo de capas para los marcadores
+                var markers = L.layerGroup().addTo(map);
+
+                // Array de coordenadas
+                var coordinates = data.map(location => [location.latitud, location.longitud]);
+
+                // Ajustar el mapa para que muestre todas las ubicaciones
+                map.fitBounds(coordinates);
+
                 // Añadir capa de mapa base
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -37,7 +46,7 @@
 
                 // Añadir marcadores para cada ubicación
                 data.forEach(function(location) {
-                    L.marker([location.latitud, location.longitud]).addTo(map);
+                    L.marker([location.latitud, location.longitud]).addTo(markers);
                 });
             })
             .catch(error => console.error('Error fetching ubicaciones:', error));
