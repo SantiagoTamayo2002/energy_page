@@ -31,7 +31,7 @@ urlpatterns = [
     path('login/', inicio_sesion, name="login"),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='energy/home/cambiar_contrasena.html'), name="reset_password"),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='energy/home/contrasena_enviada.html'), name="password_reset_done"),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='energy/home/nueva_contrasena.html'), name="password_reset_confirm"),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='energy/home/cambio_nueva_contraseña.html'), name="password_reset_confirm"),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='energy/home/contrasena_cambiada.html'), name="password_reset_complete"),
     path('registro/', registro, name="registro"),
     path('contactos/', contacto, name="contactos"),
