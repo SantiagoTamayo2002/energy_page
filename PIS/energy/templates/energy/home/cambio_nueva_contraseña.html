@@ -15,14 +15,13 @@
     <div class="content"> 
         <h1>Cambio de contraseña</h1> 
         
-        <form method="POST"> 
-            {% csrf_token %} 
-            {{ form.as_p }}
-            
-            <input type="submit" value="Enviar Correo"> 
-        </form> 
+          <form method="POST">
+            {% csrf_token %}
+              {{ form.as_p }}
+             <input type="submit" value="Cambiar">
+          </form>
     </div> 
-    <button class="volver">volver</button> 
+    <button class="volver" href="{% url 'home'%}">volver</button>
 </div> 
  
 </body> 
