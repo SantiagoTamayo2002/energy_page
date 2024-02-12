@@ -74,10 +74,16 @@ body{
     font-weight: bold;
     cursor: pointer;
     transition: 0.5s;
+    text-decoration: none;
 }
 
 .volver:hover{
     background-color: #18305c;
     color: #d4e3ff;
+}
+
+.volver a{
+    text-decoration: none;
+    color: #050d18;
 }
 
