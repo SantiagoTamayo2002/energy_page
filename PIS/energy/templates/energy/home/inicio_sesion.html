@@ -1,41 +1,40 @@
-{% load static %} <!-- Cargar archivos estáticos -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-  <link rel="stylesheet" type="text/css" href="{% static 'energy/css/estiloLogin.css' %}"> <!-- Enlace a la hoja de estilos CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'energy/css/inicio_sesion.css' %}">
   <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
   <title>Login</title>
 </head>
 <body>
   <div class="navigator">
-        <div class="menu">
-            <ul>
-                <li><a href="{% url 'home' %}"><i class="fa-solid fa-right-from-bracket"></i>Salir</a></li>
-            </ul>
-        </div>
+    <div class="menu">
+      <ul>
+        <li><a href="{% url 'home' %}"><i class="fa-solid fa-right-from-bracket"></i>Salir</a></li>
+      </ul>
+    </div>
   </div>
   
   <div class="contenedor-padre">
     <div class="login-box">
-      <h1>Iniciar sesión</h1> <!-- Encabezado del formulario de inicio de sesión -->
-      
-      {{ error }} <!-- Mostrar mensajes de error, si los hay -->
-      
-      <form method="POST"> <!-- Inicio del formulario con método POST -->
-        {% csrf_token %} <!-- Token de seguridad para proteger contra CSRF -->
-        {{ form }} <!-- Renderizar el formulario como párrafos -->
-        
-        <button type="submit">Iniciar Sesión</button> <!-- Botón de inicio de sesión -->
-        <a href="{% url 'reset_password' %}">¿Olvidaste tu contraseña?</a> <!-- Enlace para dirigirse a la página de restablecimiento de contraseña -->
-        <a href="{% url 'registro' %}">Registrarse</a> <!-- Enlace para dirigirse a la página de registro -->
+      <div class="imagen_presentacion">
+        <img src="{% static 'energy/img/logo.jpeg' %}" alt="Logo">
+      </div>
+      <h1>Iniciar sesión</h1>
+      {{ error }}
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Iniciar Sesión</button>
+        <a href="{% url 'reset_password' %}">¿Olvidaste tu contraseña?</a>
+        <a href="{% url 'registro' %}">Registrarse</a>
       </form>
     </div>
   </div>
-</body>
-{% if messages %}
+
+  {% if messages %}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function () {
@@ -44,28 +43,27 @@
             Swal.fire({
               title: 'Mensaje',
               html: '{{ message|safe }}',
-              icon: 'success',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              icon: 'success',
               confirmButtonText: 'Aceptar'
             });
           {% elif message.tags == 'error' %}
             Swal.fire({
               title: 'Mensaje',
               html: '{{ message|safe }}',
-              icon: 'error',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              icon: 'error',
               confirmButtonText: 'Aceptar'
             });
           {% elif message.tags == 'warning' %}
             Swal.fire({
               title: 'Mensaje',
               html: '{{ message|safe }}',
-              icon: 'warning',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              icon: 'warning',
               confirmButtonText: 'Aceptar'
             });
           {% endif %}
         {% endfor %}
       });
     </script>
-{% endif %}
+  {% endif %}
+</body>
 </html>
-
-

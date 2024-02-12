@@ -46,26 +46,28 @@ def registro(request):
     else:
         if request.POST['password1'] == request.POST['password2']:
             try:
-                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'], first_name=request.POST['first_name'], last_name=request.POST['last_name'])
-                user.save()
                 if request.POST['latitud'] == '' or request.POST['longitud'] == '':
                     messages.warning(request, 'No se ha proporcionado la ubicación')
-                    return render(request, 'energy/home/registro.html', {
-                        'form': CrearUsuario,
-                    })
+                    return redirect('registro')
+                else:
+                    user = User.objects.create_user(username=request.POST['username'],
+                                                    password=request.POST['password1'], email=request.POST['email'],
+                                                    first_name=request.POST['first_name'],
+                                                    last_name=request.POST['last_name'])
 
-                # obtener ubicacion
-                latitud = request.POST['latitud']
-                longitud = request.POST['longitud']
+                    user.save()
+                    # obtener ubicacion
+                    latitud = request.POST['latitud']
+                    longitud = request.POST['longitud']
 
-                # Crear una instancia de UbicacionUsuario y guardarla en la base de datos
-                UbicacionUsuario.objects.create(
-                    user=user,
-                    latitud=latitud,
-                    longitud=longitud,
-                )
-                login(request, user)
-                return redirect('paginaUsuario')
+                    # Crear una instancia de UbicacionUsuario y guardarla en la base de datos
+                    UbicacionUsuario.objects.create(
+                        user=user,
+                        latitud=latitud,
+                        longitud=longitud,
+                    )
+                    login(request, user)
+                    return redirect('paginaUsuario')
             except IntegrityError:
                 messages.warning(request, 'El usuario ya existe')
                 return render(request, 'energy/home/registro.html', {
@@ -239,12 +241,4 @@ def proyeccion(request):
         return render(request, 'energy/home/proyeccion.html')
 
 
-def api_leaflet(request):
-    ubicaciones = UbicacionUsuario.objects.all()
-    data = []
-    for ubicacion in ubicaciones:
-        data.append({
-            'latitud': ubicacion.latitud,
-            'longitud': ubicacion.longitud,
-        })
-    return JsonResponse(data, safe=False)
+

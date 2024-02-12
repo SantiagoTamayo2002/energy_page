@@ -2,9 +2,18 @@ import sympy as sym
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 import numpy as np
-from .models import Inventario, Informe
+from .models import Inventario, Informe, UbicacionUsuario
 
 
+def api_leaflet(request):
+    ubicaciones = UbicacionUsuario.objects.all()
+    data = []
+    for ubicacion in ubicaciones:
+        data.append({
+            'latitud': ubicacion.latitud,
+            'longitud': ubicacion.longitud,
+        })
+    return JsonResponse(data, safe=False)
 def calcular_consumo_polinomio(request, dias):
     resultado_actual = obtener_polinomio(request)
     funcion = resultado_actual['funcion_polinomio']
