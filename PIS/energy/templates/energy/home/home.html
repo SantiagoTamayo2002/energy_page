@@ -28,7 +28,7 @@
                         login
                         </span>
                     </a>
-                    <a href="login" class="boton"><p>Iniciar Sesión</p></a>
+                    <a class="boton"><p>Iniciar Sesión</p></a>
                 </div>
                 <div class="registrate">
                     <a href="{% url 'registro' %}" >
@@ -36,7 +36,7 @@
                             how_to_reg
                         </span>
                     </a>
-                    <a href="registro" class="boton"><p>Registrate</p></a>
+                    <a class="boton"><p>Registrate</p></a>
                 </div> 
             </div>
         </div>
@@ -54,7 +54,7 @@
                 <a href="https://bradley-alexander.github.io/index.html">
                     <i class="fa-solid fa-circle-info"></i> pagina de información
                 </a>
-                <a href="#">
+                <a href="https://foranix.pythonanywhere.com/api">
                     <i class="fas fa-life-ring"></i> nuesta API
                 </a>
                 <a href="{% url 'nosotros' %}">
@@ -73,7 +73,7 @@
               para la materia de programación orientada a objetos de la carrera de ingeniería
             </p>
             <p><b>Correo: </b>foranix2023@gmail.com</p>
-            <p><b>Copyright 2023.</b> todos los derechos reservados</p>
+            <p><b>Copyright 2023.</b> Todos los derechos reservados</p>
         </div>
 
         <div class="redes-footer">
@@ -91,7 +91,7 @@
   
   <script>
     function toggleDropdown() {
-      var dropdown = document.getElementsByClassName('dropdown')[0];
+      const dropdown = document.getElementsByClassName('dropdown')[0];
       dropdown.classList.toggle('active');
     }
   </script>
