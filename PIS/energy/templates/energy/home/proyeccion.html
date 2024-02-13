@@ -26,21 +26,23 @@
             <span></span>
         </nav>
 
-        <div id="listaOculta" style="display: none;">
+        <div id="listaOculta" class="opcionesLista">
             <ul id="listaNumeros">
                 <li><a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a></li>
-                <li>.</li>
+                
                 <li><a href="{% url 'paginaUsuario' %}">Inicio</a></li>
-                <li>.</li>
+                
                 <li><a href="{% url 'proyecciones' %}">Ver Consumo</a></li>
-                <li>.</li>
+                
                 <li><a href="{% url 'inventario' %}">Inventario</a></li>
-                <li>.</li>
+                
                 <li><a href="{% url 'informe' %}">Generar Informe</a></li>
-                <li>.</li>
+                
             </ul>
         </div>
 
+        <!--Este script es para mostrar y ocultar el menu en pantallas pequeñas-->
+        <!--no quitar-->
         <script>
             document.getElementById('mostrarLista').addEventListener('click', function() {
             var lista = document.getElementById('listaOculta');
@@ -50,6 +52,17 @@
                 lista.style.display = 'none';
             }
             });
+
+
+            function hideListOnLargeScreen() {
+            var lista = document.getElementById('listaOculta');
+                if (window.innerWidth > 768) {
+                    lista.style.display = 'none';
+                }
+            }
+
+            hideListOnLargeScreen();
+            window.addEventListener('resize', hideListOnLargeScreen);
         </script>
         
 {##}
