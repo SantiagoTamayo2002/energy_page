@@ -11,7 +11,7 @@ body {
     align-items: center;
     justify-content: center;
 }
-nav{
+.menu{
     position: relative;
     width: 100%;
     height: 50px;
@@ -23,19 +23,19 @@ nav{
     z-index: 2;
 }
 
-nav a {
+.menu a {
     position: relative;
     display: inline-block;
-    font-size: 19px;
+    font-size: 15px;
     font-weight: 500;
     color: #1da0f2c2;
     text-decoration: none;
     padding: 13px 35px;
     margin: 5px;
     z-index: 2;
-    transition: color .5s;
+    transition: color .5s;   
 }
-nav a::after {
+.menu a::after {
     content: '';
     background: linear-gradient(10deg, #222222ab, #1da0f2c2);
     width: 100%;
@@ -49,10 +49,10 @@ nav a::after {
     opacity: 0;
     transition: top .5s, opacity .5s;
 }
-nav a:hover {
+.menu a:hover {
     color: #fff;
 }
-nav a:hover::after{
+.menu a:hover::after{
     top: 50%;
     opacity: 1;
 }
@@ -179,4 +179,36 @@ footer {
     tbody tr:nth-child(2n){
     color: black;
      }
+}
+
+/*-------------------------------FOOTER---------------------------------*/
+footer {
+    background-color: #1DA1F2;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 0;
+}
+.contactos{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.contactos a {
+    position: relative;
+    color: white;
+    display: inline-block;
+    font-size: 11px;
+    text-decoration: none;
+    transition: color .5s;   
+}
+.contactos a:hover {
+    color: black;
+}
+.contactos li{
+    padding: 0px 10px 10px;
+    display: inline-block;
+    /* Oculta el contenido del menú en pantallas más pequeñas */
 }

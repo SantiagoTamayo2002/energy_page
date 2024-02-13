@@ -5,12 +5,12 @@
 <head>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="{% static 'energy/css/artefacto.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/artefacto3.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
     
     <title>Artefactos</title>
     <style>
-        .pagination {
+.pagination {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,7 +101,8 @@
     color: black;
     
 }
-    </style>
+</style>
+
 </head>
 <body>
      <nav class="menu">
@@ -110,6 +111,7 @@
                 <a href="{% url 'proyecciones' %}">Ver Consumo</a>
                 <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
      </nav>
+
 <section class="formCrearArtefactos">
     <h2>Crear Nuevo Artefacto</h2>
 
@@ -212,7 +214,15 @@
 
 {% endif %}
 <footer>
-        <p>&copy; 2023 - Todos los derechos reservados</p>
-    </footer>
+    <nav class="navbarContactos">
+        <ul class="contactos">
+            <li><a href="{% url 'nosotros' %}">Sobre nosotros</a></li>
+            <li><a href="https://www.instagram.com/foranix/">Instagram</a></li>
+            <li><a href="https://github.com/SantiagoTamayo2002/energy_page#energy_page">Github</a></li>
+            <li><a href="https://www.unl.edu.ec/">Universidad Nacional de loja</a></li>
+        </ul>
+    </nav>
+    <p>&copy; 2023 - Todos los derechos reservados</p>
+</footer>
 </body>
 </html>

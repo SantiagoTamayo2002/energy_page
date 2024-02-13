@@ -196,7 +196,7 @@ footer {
     padding: 10px;
     text-align: center;
 }
-.navbarContactos{
+.contactos{
     position: relative;
     display: flex;
     justify-content: center;
@@ -204,7 +204,7 @@ footer {
     
 }
 
-.navbarContactos a {
+.contactos a {
     position: relative;
     color: white;
     display: inline-block;
@@ -212,10 +212,10 @@ footer {
     text-decoration: none;
     transition: color .5s;   
 }
-.navbarContactos a:hover {
+.contactos a:hover {
     color: black;
 }
-.navbarContactos li{
+.contactos li{
     padding: 0px 10px 10px;
     display: inline-block;
     /* Oculta el contenido del menú en pantallas más pequeñas */
