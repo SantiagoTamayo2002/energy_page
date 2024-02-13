@@ -14,6 +14,8 @@ def api_leaflet(request):
             'longitud': ubicacion.longitud,
         })
     return JsonResponse(data, safe=False)
+
+
 def calcular_consumo_polinomio(request, dias):
     resultado_actual = obtener_polinomio(request)
     funcion = resultado_actual['funcion_polinomio']
@@ -210,7 +212,7 @@ def base_grafico_proyeccion(consumo, dia):
         'title': {
             'left': 'center',
             'padding': 6,
-            #'top': 10,
+            # 'top': 10,
             # 'text': 'Proyección de consumo',
             'textStyle': {
                 'color': 'white',  # Color del texto del título
@@ -276,7 +278,12 @@ def base_grafico_proyeccion(consumo, dia):
             "showTitle": True,
             "feature": {
                 "mark": {"show": True},
-                "dataView": {"show": True, "readOnly": False},
+                "dataView": {"show": True, "readOnly": True, "title": "Vista de datos",
+                             "lang": ["Vista de datos", "Cerrar"],
+                             'textareaBorderColor': 'green',
+
+                             },
+
                 "magicType": {
                     "side": "top",
                     "show": True,
@@ -400,7 +407,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
             'top': 50,
             'itemGap': 10,  # Ajusta el espacio entre el circulo
             'textStyle': {
-                'color': 'black',
+                'color': 'white',
                 'fontSize': 14,
             },
         },
