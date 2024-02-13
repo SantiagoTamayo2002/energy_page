@@ -5,8 +5,81 @@
 }
 
 body{
-    background-color: black;
+    background-color: #050d18;
 }
+.contenido img{
+    max-width: 100%;
+    height: auto;
+}
+/*boton de navegacion en la pagina principal*/
+
+.dropdown {
+    position: absolute;
+    display: flex;
+    left: 35px;
+    top: 45%;
+    cursor: pointer;
+    user-select: none;
+    border: #d4e3ff 3px solid;
+    border-radius: 100px;
+    width: 45px;
+    height: 45px;
+    color: #d4e3ff;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .dropdown-down i{
+    color: #d4e3ff;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    font-family: 'Livvic', sans-serif;
+    font-weight: 600;
+    min-width: 150px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+  
+  .dropdown.active .dropdown-content {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      transform: translateX(110px);
+    }
+  }
+  
+  .dropdown-content a {
+    color: #d4e3ff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    size: 45px;
+  }
+
+    .dropdown-content a:hover {
+        background-color: #d4e3ff;
+        color: #050d18;
+        border-bottom: 2px solid #050d18;
+    }
+
+  .dropdown-content a i{
+    margin-right: 10px;
+    size: 15px;
+  }
+/*/////////////////////////////////////////////////*/
+
 
 .contenedor{
     position: relative;
@@ -28,11 +101,15 @@ body{
     height: 450px;
     top: 5%;
     text-align: center;
+    max-width: 100%; 
+    overflow: hidden;
 }
 
 .contenido img{
     height: 100%;
 }
+
+
 
 .contenido p{
     position: absolute;
@@ -94,6 +171,45 @@ body{
     font-size: 25px;
     color: #d4e3ff;
 }
+@media screen and (max-width: 468px) {
+    .contenido img{
+        height: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: auto;
+    }
+  }
+@media only screen and (max-width: 768px) {
+    .boton p {
+        font-size: 22px; 
+        color: #d4e3ff;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    .boton p {
+        font-size: 17px; 
+        color: #d4e3ff;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .boton p {
+        font-size: 12px; 
+        color: #d4e3ff;
+    }
+}
+@media only screen and (max-width: 540px) {
+    #imagen {
+            bottom: 2%; /* Alineamos el icono a la parte inferior de la página */
+            right: 10%; /* Alineamos el icono a la derecha de la página */
+            border-radius: 50%; /* Damos forma circular al icono */
+            z-index: 999; /* Aseguramos que esté por encima de otros elementos */
+            box-shadow: 0 0 10px rgba(135, 71, 213, 0.9); /* Agregamos una sombra al icono */
+    }
+}
 
 .separacion{
     height: 40px;
@@ -128,54 +244,40 @@ body{
 
 .footer{
     position: relative;
+    display: flex;
     width: 100%;
     height: 150px;
     background-color: #050d18;
-    text-align: center;
-    justify-content: space-between;
     border-top: 10px;
     border-bottom: 10px;
+    justify-content: space-between;
     filter: drop-shadow(0 0 0.75rem #cdc2c2);
-
-
 }
-
-.footer div{
+.logo-footer{
+    width: 13%;
     height: 100%;
-    display: inline-block;
-    contain: content;
 }
 
 .logo-footer img{
     width: 100%;
     height: 100%;
-    max-width: 100%;; 
 }
 
-.descripcion-footer {
-    display: relative;
-    align-items: center;
-    justify-content: center;
-    width: 700px;
-    font-family: 'Livvic', sans-serif;
-    font-weight: 600;
+.descripcion-footer{
+    display: grid;
+    width: 55%;
+    height: 100%;
     color: #d4e3ff;
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  
-  .descripcion-footer p {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-
-  
+    text-align: center;
+    font-family: 'Livvic', sans-serif;
+    padding-top: 3px;
+}
 
 .redes-footer{
     width: 80px;
 
 }
+
 .redes-footer ul{
     position: relative;
     width: 100%;
@@ -204,7 +306,13 @@ body{
       padding-right: 20px;
       font-size: 13px; 
     }
-
+    #imagen {
+            bottom: 13%; /* Alineamos el icono a la parte inferior de la página */
+            right: 15%; /* Alineamos el icono a la derecha de la página */
+            border-radius: 50%; /* Damos forma circular al icono */
+            z-index: 999; /* Aseguramos que esté por encima de otros elementos */
+            box-shadow: 0 0 10px rgba(135, 71, 213, 0.9); /* Agregamos una sombra al icono */
+    }
     .redes-footer ul li{
         
         display: flex;
@@ -249,4 +357,7 @@ body{
     color:#4dc247;
     transition: all 0.5s ease; 
 }
+
+
+
 

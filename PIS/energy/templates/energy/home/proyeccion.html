@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecciones de Consumo</title>
-    <link rel="stylesheet" href="{% static 'energy/css/graficaStyle2.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/proyecciones_menu.css' %}">
     <!-- Bootstrap CSS -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'energy/css/proyecciones.css' %}">
 </head>
 
 <body>
@@ -26,21 +26,23 @@
             <span></span>
         </nav>
 
-        <div id="listaOculta" style="display: none;">
+        <div id="listaOculta" class="opcionesLista">
             <ul id="listaNumeros">
                 <li><a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a></li>
-                <li>.</li>
+                
                 <li><a href="{% url 'paginaUsuario' %}">Inicio</a></li>
-                <li>.</li>
+                
                 <li><a href="{% url 'proyecciones' %}">Ver Consumo</a></li>
-                <li>.</li>
+                
                 <li><a href="{% url 'inventario' %}">Inventario</a></li>
-                <li>.</li>
+                
                 <li><a href="{% url 'informe' %}">Generar Informe</a></li>
-                <li>.</li>
+                
             </ul>
         </div>
 
+        <!--Este script es para mostrar y ocultar el menu en pantallas pequeñas-->
+        <!--no quitar-->
         <script>
             document.getElementById('mostrarLista').addEventListener('click', function() {
             var lista = document.getElementById('listaOculta');
@@ -50,6 +52,17 @@
                 lista.style.display = 'none';
             }
             });
+
+
+            function hideListOnLargeScreen() {
+            var lista = document.getElementById('listaOculta');
+                if (window.innerWidth > 768) {
+                    lista.style.display = 'none';
+                }
+            }
+
+            hideListOnLargeScreen();
+            window.addEventListener('resize', hideListOnLargeScreen);
         </script>
         
 {##}

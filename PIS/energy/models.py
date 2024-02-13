@@ -55,3 +55,12 @@ class Informe(models.Model):
 
     def __str__(self):
         return f'Consumo Diario {self.user}: {self.dia}'
+
+
+class UbicacionUsuario(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    latitud = models.FloatField()
+    longitud = models.FloatField()
+
+    def __str__(self):
+        return f'Ubicación de {self.user}'

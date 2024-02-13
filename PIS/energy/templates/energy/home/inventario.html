@@ -61,6 +61,53 @@
     margin-top: 20px;
     
 }
+.filtrar_artefacto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.filtrar_artefacto input {
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+.filtrar_artefacto button {
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    background-color: #000;
+    color: #ffffff;
+    cursor: pointer;
+}
+.filtrar_artefacto button:hover {
+    background-color: rgb(42, 229, 203);
+    color: black;
+}
+
+.ver_todo {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.ver_todo a {
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    background-color: #000;
+    color: #ffffff;
+    cursor: pointer;
+}
+.ver_todo a:hover {
+    background-color: rgb(42, 229, 203);
+    color: black;
+    
+}
     </style>
 </head>
 
@@ -99,6 +146,13 @@
  <span class="current">
             Page {{ inventario_artefacto.number }} of {{ inventario_artefacto.paginator.num_pages }}.
  </span>
+<form method="post" class="filtrar_artefacto">
+    {% csrf_token %}
+    {{ filtrar_inventario }}
+    <button type="submit"> Buscar</button>
+</form>
+<button type="submit" class="ver_todo"><a href="{% url 'inventario' %}">Limpiar</a></button>
+
 <table>
   <tr>
       <th>Dia</th>

@@ -1,7 +1,8 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'energy/css/registroForanix.css' %}">
@@ -10,9 +11,6 @@
 </head>
 <body>
     <div class="navigator">
-        <div class="logo">
-            <img src="{% static 'energy/img/foranix_SinFondo.png' %}" alt="logo">
-        </div>
         <div class="menu">
             <ul>
                 <li><a href="{% url 'home' %}"><i class="fa-solid fa-right-from-bracket"></i>Salir</a></li>
@@ -56,13 +54,30 @@
                     <div class="lastname">
                         {{ form.password2 }}
                     </div>
+                        <input type="hidden" id="latitud" name="latitud">
+                        <input type="hidden" id="longitud" name="longitud">
                         <button>Registrarse</button>
                     </form>
                 </div>   
             </div>
         </div>
     </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
 
+                // Llenar los campos ocultos con los datos de ubicación
+                document.getElementById('latitud').value = latitude;
+                document.getElementById('longitud').value = longitude;
+            });
+        } else {
+            console.log("Geolocalización no es compatible en este navegador.");
+        }
+    });
+</script>
 
 {% if messages %}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
