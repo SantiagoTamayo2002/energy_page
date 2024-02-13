@@ -5,110 +5,7 @@
     <meta charset="UTF-8">
     <title>Inventario</title>
     <link rel="stylesheet" href="{% static 'energy/css/inventario.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap" rel="stylesheet">
-    <!--<link rel="stylesheet" type="text/css" href="styles.css"-->>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
-    <style>
-      
-    .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-.pagination a {
-    color: #ffffff;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-}
-
-.pagination a:hover:not(.active) {
-    background-color: rgb(42, 229, 203);
-    color: black;
-}
-.step-links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.step-links a {
-    padding: 8px 16px;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    margin: 0 4px;
-}
-.step-links a:hover {
-    background-color: #ddd;
-}
-.step-links a:active {
-    background-color: #000;
-    color: white;
-}
-/* center current*/
-.current {
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    
-}
-.filtrar_artefacto {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-.filtrar_artefacto input {
-    padding: 8px 16px;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    margin: 0 4px;
-}
-.filtrar_artefacto button {
-    padding: 8px 16px;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    margin: 0 4px;
-    background-color: #000;
-    color: #ffffff;
-    cursor: pointer;
-}
-.filtrar_artefacto button:hover {
-    background-color: rgb(42, 229, 203);
-    color: black;
-}
-
-.ver_todo {
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-.ver_todo a {
-    padding: 8px 16px;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    margin: 0 4px;
-    background-color: #000;
-    color: #ffffff;
-    cursor: pointer;
-}
-.ver_todo a:hover {
-    background-color: rgb(42, 229, 203);
-    color: black;
-    
-}
-    </style>
 </head>
 
 <body>
@@ -143,15 +40,18 @@
 
 <section class="section">
     <h1>Datos Consumo Diario</h1>
- <span class="current">
-            Page {{ inventario_artefacto.number }} of {{ inventario_artefacto.paginator.num_pages }}.
- </span>
+
 <form method="post" class="filtrar_artefacto">
     {% csrf_token %}
     {{ filtrar_inventario }}
     <button type="submit"> Buscar</button>
+    <a type="button"  class="ver_todo" href="{% url 'inventario' %}">Limpiar</a>
+
 </form>
-<button type="submit" class="ver_todo"><a href="{% url 'inventario' %}">Limpiar</a></button>
+ <span class="current">
+            Page {{ inventario_artefacto.number }} of {{ inventario_artefacto.paginator.num_pages }}.
+ </span>
+
 
 <table>
   <tr>
