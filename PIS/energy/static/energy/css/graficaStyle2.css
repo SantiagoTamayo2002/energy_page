@@ -147,7 +147,7 @@ main {
 
 .menu li {
     position: relative;
-    display: inline-block;
+    display: none;
     font-size: 15px;
     font-weight: 500;
     color: #1da0f2c2;
@@ -219,4 +219,74 @@ footer {
     padding: 0px 10px 10px;
     display: inline-block;
     /* Oculta el contenido del menú en pantallas más pequeñas */
+}
+
+
+/*-----------------------------------------------------------*/
+/*boton mostrar lista*/
+
+/* NO ELIMINAR ESTE BLOQUE DE CÓDIGO - MUY IMPORTANTE PARA EL RESPONSIVE DESING*/
+  
+  
+  @media only screen and (max-width: 768px) {
+    .menu li {
+      display: block;
+    }
+  }
+
+ .opcionesLista li{
+    list-style-type: none; 
+    margin-bottom: 25px; 
+    justify-content: center;
+    color: #1da0f2c2; /* Color de texto */
+    text-decoration: none;  
+    }
+
+
+.opcionesLista li a{
+    text-decoration: none; /* Sin subrayado */
+    color: #1da0f2c2; /* Color de los enlaces */
+    justify-content: center;
+    padding: 13px 35px;
+    margin: 5px;
+    z-index: 2;
+    transition: color .5s;
+    margin-bottom: 10px;
+}
+
+/*---------CSS PARA LOS BOTÓNES DE LA LISTA GENERADA EN PANTALLAS PEQUEÑAS----------*/
+
+.opcionesLista li {
+    position: relative;
+    
+    font-size: 15px;
+    font-weight: 500;
+    color: #1da0f2c2;
+    text-decoration: none;
+    padding: 13px 35px;
+    margin: 5px;
+    z-index: 2;
+    transition: color .5s;   
+}
+.opcionesLista li::after {
+    content: '';
+    background: linear-gradient(10deg, #222222ab, #082d44c2);
+    
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    transition: top .5s, opacity .5s;
+}
+.opcionesLista li:hover {
+    color: #fff;
+}
+.opcionesLista li:hover::after{
+    top: 50%;
+    opacity: 1;
 }
