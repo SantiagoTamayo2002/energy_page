@@ -1,55 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
-    <title>Cambiar contrase;a</title>
-    <style>
-        body{
-            background-color: #f2f2f2;
-        }
-        .container{
-            width: 50%;
-            margin: 0 auto;
-            margin-top: 10%;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);
-        }
-        .container h1{
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .container input{
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .container button{
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            color: #fff;
-            cursor: pointer;
-        }
-        .container button:hover{
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'energy/css/estilo_cambio_contrasenia.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
+    <title>Cambiar contraseña</title>
 </head>
 <body>
-  <h1>Olvidaste tu contreasena?</h1>
-<p>Por favor, introduce tu correo electronico para que podamos enviarte un enlace para cambiar tu contrasena.</p>
+<div class="container">
+    <div class="content">
+        <h1>Olvidaste tu contreaseña?</h1>
+        <div class="texto">
+            <p>Para poder restablecer la contraseña se requeriere
+                que ingreses el correo electrónico con el que te registraste.<br>
+                Se te enviará un correo con un enlace para restablecer la contraseña.
+                antes de continuar toma en cuenta lo siguiente:<br><br>
+                - una vez que ingreses el correo electrónico y envíes la solicitud no podrás enviar otra solicitud <br>
+                    hasta que hayas restablecido la contraseña.<br>
+                - el enlace que se te enviará solo será válido por 24 horas.<br>
+                - si no recibes el correo electrónico revisa la carpeta de spam o correo no deseado.<br>
+                - no podras volver a usar tu antigua contraseña.<br>
+            </p>
+        </div>
 
-  <form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Enviar Correo">
-  </form>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Enviar Correo">
+        </form>
+    </div>
+    <button class="volver">
+        <a href="{% url 'login' %}">volver</a>
+    </button>
+</div>
+
 </body>
 </html>
