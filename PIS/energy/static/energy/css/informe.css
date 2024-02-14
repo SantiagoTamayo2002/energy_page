@@ -193,7 +193,6 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .contactos a {
@@ -202,7 +201,6 @@ footer {
     display: inline-block;
     font-size: 11px;
     text-decoration: none;
-    transition: color .5s;   
 }
 .contactos a:hover {
     color: black;
