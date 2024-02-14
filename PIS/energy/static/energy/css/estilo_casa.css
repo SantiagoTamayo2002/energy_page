@@ -133,7 +133,6 @@ body{
 .botones a span{
     color: #d4e3ff;
     font-size: 60px;
-
 }
 
 .botones a span:hover{
@@ -211,6 +210,33 @@ body{
         size: 45px;
         backdrop-filter: blur(20px);
       }
+
+    .botones{
+        display: flex;
+        justify-content: space-between;
+        width: 60%;
+        margin-left: 17%;
+    }
+
+    .login{
+        display: inline-block;
+        width: 55%;
+        justify-content: center;
+    }
+
+    .login span{
+        margin-right: 35px;
+    }
+
+    .registrate{
+        display: inline-block;
+        width: 30%;
+        justify-content: center;
+    }
+
+    .registrate span{
+        margin-left: 15px;
+    }
 }
 
 @media only screen and (max-width: 280px) {
