@@ -11,14 +11,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'energy/css/proyecciones.css' %}">
 </head>
 
 <body>
         
         <nav class="menu"> 
             <a href="{% url 'paginaUsuario' %}">Inicio</a>
-            <a href="{% url 'proyecciones' %}">Ver Consumo</a>
             <a href="{% url 'inventario' %}">Inventario</a>
             <a href="{% url 'informe' %}">Generar Informe</a>
             <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
@@ -28,15 +26,11 @@
 
         <div id="listaOculta" class="opcionesLista">
             <ul id="listaNumeros">
-                <li><a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a></li>
-                
                 <li><a href="{% url 'paginaUsuario' %}">Inicio</a></li>
-                
                 <li><a href="{% url 'proyecciones' %}">Ver Consumo</a></li>
-                
                 <li><a href="{% url 'inventario' %}">Inventario</a></li>
-                
                 <li><a href="{% url 'informe' %}">Generar Informe</a></li>
+                <li><a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a></li>
                 
             </ul>
         </div>

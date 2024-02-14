@@ -93,7 +93,7 @@ def inicio_sesion(request):
             return redirect('login')
         else:
             login(request, user)
-            return render(request, 'energy/home/pagina_usuario.html')
+            return redirect('paginaUsuario')
 
 def artefacto(request):
     if request.user.is_anonymous:
