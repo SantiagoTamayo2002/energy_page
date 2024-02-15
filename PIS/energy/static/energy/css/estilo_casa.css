@@ -290,7 +290,7 @@ body{
     position: relative;
     display: flex;
     width: 100%;
-    height: 150px;
+    height: 100px;
     background-color: #050d18;
     border-top: 10px;
     border-bottom: 10px;
@@ -298,23 +298,22 @@ body{
     filter: drop-shadow(0 0 0.75rem #cdc2c2);
 }
 .logo-footer{
+    position: relative;
     width: 13%;
     height: 100%;
 }
 
 .logo-footer img{
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 110%;
 }
 
 .descripcion-footer{
     display: grid;
-    width: 55%;
-    height: 100%;
     color: #d4e3ff;
     text-align: center;
     font-family: 'Livvic', sans-serif;
-    padding-top: 3px;
+    padding-top: 15px;
 }
 
 .redes-footer{
@@ -335,8 +334,7 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 10px;
-    margin-left: 20px;
+    margin-top: 20px;
     margin-right: 20px;
     color: #18305c;
     border-radius: 100%;
@@ -370,17 +368,6 @@ body{
     transition: all 0.5s ease; 
 }
 
-.redes-footer ul li:hover.facebook{
-    border: #3B5998 2px solid;
-    box-shadow: 0 0 5px #3B5998;
-    transition: all 0.5s ease; 
-}
-
-.redes-footer ul li:hover .fa-facebook{
-    color: #3B5998;
-    transition: all 0.5s ease; 
-}
-
 .redes-footer ul li:hover.instagram{
     border: #bc2a8d 2px solid;
     box-shadow: 0 0 5px #bc2a8d;
@@ -392,15 +379,7 @@ body{
     transition: all 0.5s ease; 
 }
 
-.redes-footer ul li:hover.whatsapp{
-    box-shadow: 0 0 5px #4dc247;
-    transition: all 0.5s ease; 
-}
 
-.redes-footer ul li:hover .fa-whatsapp{
-    color:#4dc247;
-    transition: all 0.5s ease; 
-}
 
 
 
