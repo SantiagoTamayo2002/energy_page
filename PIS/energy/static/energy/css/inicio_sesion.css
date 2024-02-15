@@ -156,68 +156,53 @@
     height: 65PX;
     border-radius: 100%;
   }
-
   @media only screen and (max-width: 768px) {
     .navigator {
-        padding: 10px;
-        height: auto;
-    }
-
-    .navigator ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        padding: 10px; /* Ajusta el padding para pantallas más pequeñas */
+        height: 20px; /* Ajusta la altura del contenedor navigator */
     }
 
     .navigator ul li {
-        margin: 5px 0;
+        margin-left: 5px; /* Ajusta el margen para los elementos de la lista */
     }
 
     .navigator ul li a {
-        font-size: 16px;
+        font-size: 16px; /* Ajusta el tamaño del texto "Iniciar Sesión" */
     }
 
     .login-box {
-        width: 80%;
-        margin: 20px auto;
+        width: 80%; /* Ajusta el ancho de la caja de inicio de sesión */
+        margin: 20px auto; /* Agrega margen en la parte superior e inferior */
     }
 
     #id_password {
-        margin-left: 0;
+        margin-left: 30px; /* Ajusta el margen del campo de contraseña */
     }
 
     .login-box button {
         width: 100%;
         transform: translateX(0%);
-        padding: 10px;
-        font-size: 12px;
-        margin-top: 20px;
+        padding: 10px; /* Ajusta el padding del botón */
+        font-size: 12px; /* Ajusta el tamaño de fuente del botón */
     }
 
     .imagen_presentacion {
         left: 50%;
-        margin-top: 10px;
-        transform: translateX(-50%);
+        margin-top: 10px; /* Agrega margen en la parte superior */
+        transform: translateX(-50%); /* Centra el div horizontalmente */
+        margin-top: 10px; /* Agrega margen en la parte superior */
     }
-
     .login-box form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 20px;
-    }
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Alinea los elementos al centro */
+      margin-top: 20px;
+  }
 
-    .login-box label {
-        margin-bottom: 8px;
-        font-weight: 600;
-        text-align: center;
-        width: 80%;
-        margin: 10px auto 5px auto; /* Agrega margen inferior al campo de usuario y superior al campo de contraseña */
-    }
+  .login-box label {
+      margin-bottom: 8px;
+      font-weight: 600;
+      text-align: center; /* Alinea el texto al centro */
+  }
 
-    .login-box input {
-        width: 80%;
-        margin: 0 auto;
-        margin-bottom: 10px; /* Agrega margen inferior al campo de usuario */
-    }
 }
