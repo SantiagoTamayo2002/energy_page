@@ -244,6 +244,14 @@ body{
         font-size: 12px; 
         color: #d4e3ff;
     }
+    .dropdown-content a {
+        color: #d4e3ff;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        size: 45px;
+        backdrop-filter: blur(20px);
+      }
 }
 @media only screen and (max-width: 540px) {
     #imagen {
@@ -253,6 +261,15 @@ body{
             z-index: 999; /* Aseguramos que esté por encima de otros elementos */
             box-shadow: 0 0 10px rgba(135, 71, 213, 0.9); /* Agregamos una sombra al icono */
     }
+    
+    .dropdown-content a {
+        color: #d4e3ff;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        size: 45px;
+        backdrop-filter: blur(20px);
+      }
 }
 
 .separacion{
