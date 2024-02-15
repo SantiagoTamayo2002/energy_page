@@ -67,6 +67,7 @@ body{
     display: block;
     size: 45px;
     backdrop-filter: blur(20px);
+    background-color: #050d18;
   }
 
     .dropdown-content a:hover {
