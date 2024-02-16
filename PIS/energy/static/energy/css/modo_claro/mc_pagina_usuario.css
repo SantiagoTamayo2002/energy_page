@@ -6,7 +6,7 @@
 }
 
 body{
-    background-color: #dadee5;
+    background-color: #637081;
 }
 
 .header{
@@ -308,7 +308,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .navbarContactos a {
@@ -317,7 +317,7 @@ footer {
     display: inline-block;
     font-size: 11px;
     text-decoration: none;
-    transition: color .5s;   
+    transition: color .5s;
 }
 .navbarContactos a:hover {
     color: black;

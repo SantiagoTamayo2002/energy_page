@@ -5,7 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Artefactos</title>
-    <link rel="stylesheet" href="{% static 'energy/css/artefacto.css' %}">
+    {% if  request.user.modoclaro.modo_claro %}
+    <link rel="stylesheet" href="{% static 'energy/css/modo_claro/mc_artefacto.css' %}">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_artefacto.css' %}">
+    {% endif %}
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>

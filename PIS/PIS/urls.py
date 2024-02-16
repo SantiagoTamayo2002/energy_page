@@ -4,7 +4,8 @@ from django.urls import path, include
 
 from energy.metodoList.metodoListInventario.inventario import eliminar_inventario, eliminar_artefacto_inventario
 from energy.metodoList.metodoListArtefactos.artefacto import eliminar_artefacto
-from energy.views import home, registro, contacto, sobre_el_equipo, pagina_usuario, inicio_sesion, cerrar_sesion, inventario, \
+from energy.views import home, registro, contacto, sobre_el_equipo, pagina_usuario, inicio_sesion, cerrar_sesion, \
+    inventario, \
     artefacto, informe, imprimir_pdf, proyeccion, ubicaciones_de_usuarios
 from energy.calculadora import generar_grafico_proyeccion_consumo_actual, api_leaflet, \
     generar_grafico_proyeccion_mensual, generar_grafico_artefacto_list_mayor_consumo, generar_grafico_proyeccion_semanal

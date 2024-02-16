@@ -1,11 +1,17 @@
+import json
+
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import ArtefactoForm, InventarioForm, CrearUsuario, FiltrarInventarioForm, FiltrarArtefactoForm
-from .models import Artefacto, Inventario, Informe, UbicacionUsuario
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+
+from .forms import ArtefactoForm, InventarioForm, CrearUsuario, FiltrarInventarioForm, FiltrarArtefactoForm, \
+    ModoClaroForm
+from .models import Artefacto, Inventario, Informe, UbicacionUsuario, ModoClaro
 from django.http import HttpResponse, JsonResponse
 import datetime
 from django.contrib import messages
@@ -25,10 +31,24 @@ def contacto(request):
     return render(request, 'energy/home/contactos.html')
 def sobre_el_equipo(request):
     return render(request, 'energy/home/sobre_el_equipo.html')
+
+
+
+
 def pagina_usuario(request):
     if request.user.is_anonymous:
         return redirect('home')
-    return render(request, 'energy/home/pagina_usuario.html')
+    if request.user.is_authenticated:
+        modo_claro_obj, created = ModoClaro.objects.get_or_create(user=request.user)
+        print(request.user.modoclaro.modo_claro)  # Corregir esta línea
+        if request.method == 'POST':
+            form = ModoClaroForm(request.POST, instance=modo_claro_obj)
+            if form.is_valid():
+                form.save()
+                return redirect('paginaUsuario')
+        else:
+            form = ModoClaroForm(instance=modo_claro_obj)
+        return render(request, 'energy/home/pagina_usuario.html', {'modo_claro_form': form})
 
 def cerrar_sesion(request):
     return render(request, 'energy/home/home.html', {'cS': logout(request)})
@@ -99,6 +119,8 @@ def artefacto(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
+        print(request.user.modoclaro.modo_claro)  # Corregir esta línea
+
         artefacto = Artefacto.objects.filter(user=request.user)
         if request.method == 'GET':
             form = ArtefactoForm()
@@ -144,6 +166,8 @@ def inventario(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
+        print(request.user.modoclaro.modo_claro)  # Corregir esta línea
+
         inventario_artefacto = Inventario.objects.filter(user=request.user)
         consumo_diario_del_mes = Informe.objects.filter(user=request.user)
 
@@ -195,6 +219,8 @@ def inventario(request):
 
 
 def informe(request):
+    print(request.user.modoclaro.modo_claro)  # Corregir esta línea
+
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
@@ -235,6 +261,8 @@ def imprimir_pdf(request):
 
 
 def proyeccion(request):
+    print(request.user.modoclaro.modo_claro)  # Corregir esta línea
+
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
