@@ -198,6 +198,9 @@ body{
         height: 150px;
 
     }
+
+    
+    
 }   
 
 /*aqui voy a empezar el modo oscuro, no se 
@@ -297,37 +300,6 @@ body.dark .contenedor_botones div a i{
     color: #132b41;
 }
 
-/* ------------ FOOTER ----------------------*/
-footer {
-    background-color: #1DA1F2;
-    padding: 10px;
-    text-align: center;
-}
-.navbarContactos{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-
-.navbarContactos a {
-    position: relative;
-    color: white;
-    display: inline-block;
-    font-size: 11px;
-    text-decoration: none;
-    transition: color .5s;   
-}
-.navbarContactos a:hover {
-    color: black;
-}
-.navbarContactos li{
-    padding: 0px 10px 10px;
-    display: inline-block;
-    /* Oculta el contenido del menú en pantallas más pequeñas */
-}
-
 /* Estilos para el cuadro */
         #cuadroLista {
           position: absolute;
@@ -415,39 +387,7 @@ footer {
                 contain: content;
             }
         }
-/*-------------------------------FOOTER---------------------------------*/
-footer {
-    background-color: #1DA1F2;
-    color: white;
-    padding: 10px; /* Incrementa el espacio interno para mejorar la legibilidad */
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
-}
-
-.contactos{
-    display: flex; /* Usa flexbox para alinear los elementos */
-    justify-content: center;
-    align-items: center;
-    list-style: none; /* Elimina los estilos de la lista */
-    padding: 0; /* Elimina el padding por defecto de la lista */
-}
-
-.contactos li{
-    margin: 0 10px; /* Añade un margen entre los elementos */
-}
-
-.contactos a {
-    color: white;
-    text-decoration: none;
-    transition: color .5s;
-}
-
-.contactos a:hover {
-    color: black;
-}
+/* -------------------------------FOOTER---------------------------------*/
 
 /* Agrega esta regla al final de tu archivo CSS */
 @media screen and (min-width: 480px) {
@@ -459,4 +399,4 @@ footer {
     }
 }
 
-/*-----------------------------------------------------------*/
+/*----------------------------------------------------------- */

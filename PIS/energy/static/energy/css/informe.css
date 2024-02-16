@@ -151,11 +151,11 @@ tbody tr:nth-child(odd){
     background-color: #0a324ac2;
 }
 
-footer {
+/* footer {
     background-color: #1DA1F2;
     padding: 10px;
     text-align: center;
-}
+} */
 /* Estilos específicos para la impresión */
 @media print {
     body{
