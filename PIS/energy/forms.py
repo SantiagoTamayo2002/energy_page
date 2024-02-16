@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import Artefacto, Inventario
+from .models import Artefacto, Inventario, ModoClaro
 
 
 class ArtefactoForm(forms.ModelForm):
@@ -100,3 +100,13 @@ class FiltrarInventarioForm(forms.ModelForm):
         widgets = {
             'dia': forms.DateInput(attrs={'placeholder': 'Fecha', 'type': 'date', 'format': 'yyyy-mm-dd'}),
         }
+
+
+class ModoClaroForm(forms.ModelForm):
+    class Meta:
+        model = ModoClaro
+        fields = ['modo_claro']
+        widgets = {
+            'modo_claro': forms.CheckboxInput(),
+        }
+

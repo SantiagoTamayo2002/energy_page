@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Inventario</title>
-    <link rel="stylesheet" href="{% static 'energy/css/inventario.css' %}">
+    {% if  request.user.modoclaro.modo_claro %}
+    <link rel="stylesheet" href="{% static 'energy/css/modo_claro/mcl_inventario.css' %}">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_inventario.css' %}">
+    {% endif %}
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap" rel="stylesheet">
 </head>
 

@@ -8,9 +8,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'energy/css/pagina_usuario.css' %}">
+    {% if  request.user.modoclaro.modo_claro %}
+    <link rel="stylesheet" href="{% static 'energy/css/modo_claro/mc_pagina_usuario.css' %}">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_pagina_usuario.css' %}">
+    {% endif %}
     <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
     <title>Inicio</title>
+<<<<<<< HEAD
+=======
+    <style>
+        #cambiarModo {
+            border: none;
+            padding: 10px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+>>>>>>> origin/main
 
 
 </head>
@@ -26,9 +41,12 @@
         </div>
         <div class="nav">
             <ul class="listado">
-                <li class="apoyo"><a href="{% url 'cerrarSesion' %}">salir<i class="fa-solid fa-right-from-bracket"></i></a></li>
+                <li class="apoyo"><a href="{% url 'cerrarSesion' %}">Salir<i class="fa-solid fa-right-from-bracket"></i></a></li>
                 <li class="switch">
                     <i class="fa-solid fa-sun"></i>
+                    <!-- Botón visible para cambiar el modo claro -->
+                    <button type="button" id="cambiarModo"></button>
+
                     <i class="fa-solid fa-moon"></i>
                 </li>
             </ul>
@@ -36,7 +54,14 @@
     </div>
     <div id="hamburguesa">&#9776;</div>
 
+    <!-- Formulario oculto para cambiar el modo claro -->
+    <form id="modoClaroForm" method="post" style="display: none;">
+        {% csrf_token %}
+        {{ modo_claro_form }}
+        <button type="submit">Guardar Modo Claro</button>
+    </form>
 
+    
     <div id="menu">
         <div class="contenedor_botones">
             <div class="loco_1">
@@ -52,25 +77,15 @@
     </div>
 
     <script>
-        document.getElementById("hamburguesa").addEventListener("click", function() {
-            var menu = document.getElementById("menu");
-            if (getComputedStyle(menu).display === "none") {
-                menu.style.display = "block";
-            } else {
-                menu.style.display = "none";
-            }
+        document.getElementById('cambiarModo').addEventListener('click', function() {
+            // Cambiar el estado del checkbox
+            var checkbox = document.querySelector('input[name="modo_claro"]');
+            checkbox.checked = !checkbox.checked;
+
+            // Enviar el formulario
+            var form = document.getElementById('modoClaroForm');
+            form.submit();
         });
-
-        window.addEventListener("resize", function() {
-            var menu = document.getElementById("menu");
-            var hamburguesa = document.getElementById("hamburguesa");
-
-            // Si la pantalla es más grande que 600px y el menú está visible, lo ocultamos
-            if (window.innerWidth > 600 && getComputedStyle(menu).display === "block") {
-                menu.style.display = "none";
-            }
-        });
-
     </script>
 
 
@@ -103,7 +118,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
     <!-- Tu archivo de script para las gráficas -->
     <script src="{% static 'energy/js/grafica.js' %}"></script>
-    <script src="{% static 'energy/js/app.js' %}"></script>
     <script src="{% static 'energy/js/btnInformation.js' %}"></script>
 </body>
 </html>
