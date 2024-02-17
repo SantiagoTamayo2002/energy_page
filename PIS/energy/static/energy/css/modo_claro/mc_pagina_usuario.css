@@ -6,17 +6,17 @@
 }
 
 body{
-    background-color: #637081;
+    background-color: #256D85;
 }
 
 .header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #e0daf7;
+    color: #DFF6FF;
     width: 100%;
     height: 100px;
-    border-bottom: 3px solid #d3e2ff;
+    border-bottom: 3px solid #DFF6FF
 }
 
 .presentation{
@@ -34,7 +34,7 @@ body{
 
 .presentation .description h1{
     display: inline-block;
-    color: #d3e2ff;
+    color: #DFF6FF;
 }
 
 .apoyo{
@@ -50,13 +50,13 @@ body{
 }
 
 .nav ul li :hover{
-    color: #1f5fdf;
+    color: #47B5FF;
     transition: 0.2s;
 }
 
 .nav ul li a{
     text-decoration: none;
-    color: #d3e2ff;
+    color: #DFF6FF;
     font-size: 30px;
     font-weight: 600;
     margin-right: 20px;
@@ -98,29 +98,29 @@ body{
 .botones .contenedor_botones div{
     width: 100%;
     height: 100px;
-    border: 2px solid #d3e2ff;
+    border: 2px solid #DFF6FF;
     margin: 70px 0;
 }
 
 .contenedor_botones div{
     display: flex;
-    border: 2px solid #fafafa01;
+    border: 2px solid #DFF6FF;
     padding: 10px;
     width: 100%;
     height: 100px;
     text-align: center;
-    color: #d3e2ff;
+    color: #DFF6FF;
     font-weight: 600;
     border-radius: 15px;
     align-items: center;
     justify-content: center;
-    background-color: #060d21;
-    box-shadow: inset 0px 0px 10px 0 #d3e2ff;
+    background-color: #06283D;
+    box-shadow: inset 0px 0px 10px 0 #DFF6FF
 }
 
 .contenedor_botones div a{
     text-decoration: none;
-    color: #d3e2ff;
+    color: #DFF6FF;
 }
 
 .contenedor_botones div i{
@@ -128,7 +128,7 @@ body{
 }
 
 .contenedor_botones div a:hover{
-    color: #1f5fdf;
+    color: #47B5FF;
     font-size: 18px;
     transition: 0.2s;
 }
@@ -148,14 +148,14 @@ body{
     padding: 5px;
     bottom: 10px;
     right: 20px;
-    background-color: #060d21;
+    background-color: #06283D;
     border-radius: 10px;
-    border: 2px solid #d3e2ff;
-    color: #d3e2ff;
+    border: 2px solid #DFF6FF;
+    color: #DFF6FF;
 }
 
 .btnGrafico:hover{
-    background-color: #1f5fdf;
+    color: #47B5FF;
     transition: 0.2s;
 }
 
@@ -166,10 +166,10 @@ body{
     right: 2%;
     height: 300px;
     width: 300px;
-    color: #d3e2ff;
-    background-color: #060d21;
+    color: #DFF6FF;
+    background-color: #06283D;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #256D85;
     border-radius: 5px;
 }
 
@@ -177,7 +177,7 @@ body{
     width: 90%;
     height: 80%;
     margin-right: 20px;
-    border: 2px solid #0055ff;
+    border: 2px solid #DFF6FF;
     border-bottom-right-radius: 15px;
     border-top-left-radius: 15px;
     contain: content;
@@ -213,14 +213,14 @@ las etiquetas con otros colores*/
     align-items: center;
     justify-content: space-between;
     border-radius: 100px;
-    border: #fff solid 2px;
-    background-color: #132b41;
+    border: #256D85 solid 2px;
+    background-color: #06283D
 }
 
 
 .switch i{
     font-size: 1rem;
-    color: #fdc21c;
+    color: #DFF6FF;
 }
 
 .listado li:last-child::before{
@@ -229,8 +229,8 @@ las etiquetas con otros colores*/
     height: 25px;
     width: 25px;
     border-radius: 50%;
-    background-color: #fff;
-    border: solid thin #000;
+    background-color: #DFF6FF;
+    border: solid thin #06283D;
     left: 0;
     right: unset;
 }
@@ -242,11 +242,11 @@ las etiquetas con otros colores*/
 }
 
 .listado li:last-child.active i:first-child{
-    color: #000;
+    color: #06283D;
 }
 
 .listado li:last-child.active{
-    background-color: #ffc800;
+    background-color: #DFF6FF;
 }
 
 
@@ -295,37 +295,6 @@ body.dark .contenedor_botones div a{
 
 body.dark .contenedor_botones div a i{
     color: #132b41;
-}
-
-/* ------------ FOOTER ----------------------*/
-footer {
-    background-color: #1DA1F2;
-    padding: 10px;
-    text-align: center;
-}
-.navbarContactos{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.navbarContactos a {
-    position: relative;
-    color: white;
-    display: inline-block;
-    font-size: 11px;
-    text-decoration: none;
-    transition: color .5s;
-}
-.navbarContactos a:hover {
-    color: black;
-}
-.navbarContactos li{
-    padding: 0px 10px 10px;
-    display: inline-block;
-    /* Oculta el contenido del menú en pantallas más pequeñas */
 }
 
 /* Estilos para el cuadro */

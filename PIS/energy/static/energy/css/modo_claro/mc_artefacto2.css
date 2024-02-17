@@ -7,13 +7,13 @@
 body {
     min-height: 100vh;
     background-color: #DFF6FF;
-    color: #256D85;
+    color: #DFF6FF;
 }
 .menu{
     position: relative;
     width: 100%;
     height: 50px;
-    background: #222222ab;
+    background: #06283D;
     border-radius:8px;
     display: flex;
     justify-content: center;
@@ -26,7 +26,7 @@ body {
     display: inline-block;
     font-size: 15px;
     font-weight: 500;
-    color: #1da0f2c2;
+    color: #DFF6FF;
     text-decoration: none;
     padding: 13px 35px;
     margin: 5px;
@@ -35,7 +35,7 @@ body {
 }
 .menu a::after {
     content: '';
-    background: linear-gradient(10deg, #222222ab, #1da0f2c2);
+    background: linear-gradient(10deg, #256D85, #256D85);
     width: 100%;
     height: 100%;
     border-radius: 8px;
@@ -48,7 +48,7 @@ body {
     transition: top .5s, opacity .5s;
 }
 .menu a:hover {
-    color: #fff;
+    color: #DFF6FF;
 }
 .menu a:hover::after{
     top: 50%;
@@ -56,7 +56,7 @@ body {
 }
 h1{text-align: center;
     margin-top: 25px;
-    color: white;
+    color: #DFF6FF;
 
 }
 
@@ -72,16 +72,16 @@ table {
     margin: 20px;
 }
 table button{
-    background-color: #1da0f2c2;
+    background-color: #47B5FF;
     padding: 2px;
     border-radius: 5px;
-    color: #fff;
+    color: white;
     cursor: pointer;
 }
 
 table button:hover{
-    background-color: #222222ab;
-    color: #fff;
+    background-color: #47B5FF;
+    color: white;
 }
 th{
     font-weight: bolder;
@@ -98,14 +98,14 @@ tr {
 }
 
 tr:hover td {
-    background-color: #1DA1F2;
-    box-shadow: 0 0 5px #1DA1F2,
-				0 0 10px #1DA1F2,
-				0 0 15px #1DA1F2,
-				0 0 25px #1DA1F2;
+    background-color: #47B5FF;
+    box-shadow: 0 0 5px #47B5FF,
+				0 0 10px #47B5FF,
+				0 0 15px #47B5FF,
+				0 0 25px #47B5FF;
 }
 tbody tr:nth-child(odd){
-    background-color: #0a324ac2;
+    background-color: #256D85
 }
 
 th{
@@ -129,7 +129,7 @@ td{
     align-items: center;
     padding: 25px;
     border-radius: 10px;
-    background-color: #222222ab;
+    background-color: #06283D;
     width: 50%;
     margin: auto;
     margin-top: 10px;
@@ -154,14 +154,14 @@ td{
 
 }
 .formCrearArtefactos button{
-    color: white;
+    color: #DFF6FF;
     padding: 10px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     height: 30px;
     font-size: 15px;
-    background-color: #1da0f2c2;
+    background-color: #47B5FF;
     margin: 10px;
 }
 .formCrearArtefactos button:hover{
@@ -182,7 +182,7 @@ td{
     margin: 10%;
     padding: 20px;
     border-radius: 10px;
-    background-color: #222222ab;
+    background-color: #06283D;
     width: 98%;
     margin: auto;
     margin-top: 50px;
@@ -210,13 +210,14 @@ td{
     align-items: center;
     background: rgba(11,51,255,0);
     padding: 5px;
-    color: #ffffff;
+    color: white;
     font-size: 15px;
     border-style: none;
 }
 .acciones:hover{
     background-color: #1da0f2c2;
 }
+
 /*------------------FILTROS-------------------*/
 .pagination {
     display: flex;
@@ -225,7 +226,7 @@ td{
     margin-top: 20px;
 }
 .pagination a {
-    color: #ffffff;
+    color: white;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
@@ -235,7 +236,7 @@ td{
 
 .pagination a:hover:not(.active) {
     background-color: rgb(42, 229, 203);
-    color: black;
+    color: white;
 }
 .step-links {
     display: flex;
@@ -261,7 +262,7 @@ td{
     padding: 8px 16px;
     text-decoration: none;
     border: 1px solid #ddd;
-    background-color: #000;
+    background-color: #06283D;
     display: block; /* Convertir el elemento en un bloque para que ocupe todo el ancho disponible */
     text-align: center; /* Centrar el texto horizontalmente */
 }
@@ -282,31 +283,31 @@ td{
 .filtrar_artefacto button {
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid #ddd;
+    border: 1px solid white;
     margin: 0 4px;
-    background-color: #000;
-    color: #ffffff;
+    background-color: #47B5FF;
+    color: white;
     cursor: pointer;
 }
 .filtrar_artefacto button:hover {
     background-color: rgb(42, 229, 203);
-    color: black;
+    color: white;
 }
 .ver_todo {
     display: inline-block;
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid #ddd;
+    border: 1px solid white;
     margin: 0 4px;
-    background-color: #000;
-    color: #ffffff;
+    background-color: #47B5FF;
+    color: white;
     cursor: pointer;
-    border-radius: 5px; /* Añade bordes redondeados */
+     /* Añade bordes redondeados */
 }
 
 .ver_todo:hover {
     background-color: rgb(42, 229, 203);
-    color: black;
+    color: white;
 }
 
 
