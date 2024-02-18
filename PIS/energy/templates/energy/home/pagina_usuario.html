@@ -15,15 +15,7 @@
     {% endif %}
     <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
     <title>Inicio</title>
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 3745605ad52dc5c0cf8c1919111f8cbd7d1f2eae
->>>>>>> christian_enginner
     <style>
         #cambiarModo {
             border: none;
@@ -32,14 +24,6 @@
             cursor: pointer;
         }
     </style>
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
->>>>>>> main
->>>>>>> 3745605ad52dc5c0cf8c1919111f8cbd7d1f2eae
->>>>>>> christian_enginner
 
 
 </head>
@@ -66,7 +50,29 @@
             </ul>
         </div>
     </div>
-    <div id="hamburguesa">&#9776;</div>
+
+
+    <!------------------------------ Menu responsive ----------------------------->
+    
+    <div id="menuResponsive">
+        <div class="contenedor_botones">
+            
+                <div class="margenArriba">
+                    <a href="{% url 'artefacto' %}"><i class="fa-solid fa-circle-plus"></i>Agregar artefacto</a>
+                </div>
+                <div class="margen">
+                    <a href="{% url 'inventario' %}"><i class="fa-solid fa-list-check"></i>Gestionar consumo</a>
+                </div>
+                <div>
+                    <a href="{% url 'informe' %}"><i class="fa-solid fa-file-export"></i>Generar reporte</a>
+                </div>
+                
+        </div>
+    </div>
+    <!------------------------------------------------------------------------------>
+    
+
+
 
     <!-- Formulario oculto para cambiar el modo claro -->
     <form id="modoClaroForm" method="post" style="display: none;">
