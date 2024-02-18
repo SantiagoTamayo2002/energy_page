@@ -6,17 +6,17 @@
 }
 
 body{
-    background-color: #637081;
+    background-color: #023E73;
 }
 
 .header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #e0daf7;
+    color: #F2F2F2;
     width: 100%;
     height: 100px;
-    border-bottom: 3px solid #d3e2ff;
+    border-bottom: 3px solid #F2F2F2
 }
 
 .presentation{
@@ -34,7 +34,7 @@ body{
 
 .presentation .description h1{
     display: inline-block;
-    color: #d3e2ff;
+    color: #F2F2F2;
 }
 
 .apoyo{
@@ -50,13 +50,13 @@ body{
 }
 
 .nav ul li :hover{
-    color: #1f5fdf;
+    color: #F2F2F2;
     transition: 0.2s;
 }
 
 .nav ul li a{
     text-decoration: none;
-    color: #d3e2ff;
+    color: #F2F2F2;
     font-size: 30px;
     font-weight: 600;
     margin-right: 20px;
@@ -98,29 +98,29 @@ body{
 .botones .contenedor_botones div{
     width: 100%;
     height: 100px;
-    border: 2px solid #d3e2ff;
+    border: 2px solid #F2F2F2;
     margin: 70px 0;
 }
 
 .contenedor_botones div{
     display: flex;
-    border: 2px solid #fafafa01;
+    border: 2px solid #F2F2F2;
     padding: 10px;
     width: 100%;
     height: 100px;
     text-align: center;
-    color: #d3e2ff;
+    color: #DFF6FF;
     font-weight: 600;
     border-radius: 15px;
     align-items: center;
     justify-content: center;
-    background-color: #060d21;
-    box-shadow: inset 0px 0px 10px 0 #d3e2ff;
+    background-color: #03588C;
+    box-shadow: inset 0px 0px 10px 0 #F2F2F2;
 }
 
 .contenedor_botones div a{
     text-decoration: none;
-    color: #d3e2ff;
+    color: #F2F2F2;
 }
 
 .contenedor_botones div i{
@@ -128,7 +128,7 @@ body{
 }
 
 .contenedor_botones div a:hover{
-    color: #1f5fdf;
+    color: #F2F2F2;
     font-size: 18px;
     transition: 0.2s;
 }
@@ -148,14 +148,14 @@ body{
     padding: 5px;
     bottom: 10px;
     right: 20px;
-    background-color: #060d21;
-    border-radius: 10px;
-    border: 2px solid #d3e2ff;
-    color: #d3e2ff;
+    background-color: #038C8C;
+    border-radius: 7px;
+    border: 2px solid #038C8C;
+    color: #F2F2F2;
 }
 
 .btnGrafico:hover{
-    background-color: #1f5fdf;
+    color: #ffffff;
     transition: 0.2s;
 }
 
@@ -164,12 +164,12 @@ body{
     position: absolute;
     bottom: 10%;
     right: 2%;
-    height: 300px;
+    height: 150px;
     width: 300px;
-    color: #d3e2ff;
-    background-color: #060d21;
+    color: #DFF6FF;
+    background-color: #13c3c3;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #13c3c3;
     border-radius: 5px;
 }
 
@@ -177,7 +177,7 @@ body{
     width: 90%;
     height: 80%;
     margin-right: 20px;
-    border: 2px solid #0055ff;
+    border: 2px solid #F2F2F2;
     border-bottom-right-radius: 15px;
     border-top-left-radius: 15px;
     contain: content;
@@ -213,14 +213,14 @@ las etiquetas con otros colores*/
     align-items: center;
     justify-content: space-between;
     border-radius: 100px;
-    border: #fff solid 2px;
-    background-color: #132b41;
+    border: #038C8C solid 2px;
+    background-color: #072540;
 }
 
 
 .switch i{
     font-size: 1rem;
-    color: #fdc21c;
+    color: #038C8C;
 }
 
 .listado li:last-child::before{
@@ -229,8 +229,8 @@ las etiquetas con otros colores*/
     height: 25px;
     width: 25px;
     border-radius: 50%;
-    background-color: #fff;
-    border: solid thin #000;
+    background-color: #F2F2F2;
+    border: solid thin #038C8C;
     left: 0;
     right: unset;
 }
@@ -238,15 +238,15 @@ las etiquetas con otros colores*/
 .listado li:last-child.active::before{
     left: unset;
     right: 0;
-    border: solid thin #fff;
+    border: solid thin #F2F2F2;
 }
 
 .listado li:last-child.active i:first-child{
-    color: #000;
+    color: #072540;
 }
 
 .listado li:last-child.active{
-    background-color: #ffc800;
+    background-color: #F2F2F2;
 }
 
 
@@ -295,37 +295,6 @@ body.dark .contenedor_botones div a{
 
 body.dark .contenedor_botones div a i{
     color: #132b41;
-}
-
-/* ------------ FOOTER ----------------------*/
-footer {
-    background-color: #1DA1F2;
-    padding: 10px;
-    text-align: center;
-}
-.navbarContactos{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.navbarContactos a {
-    position: relative;
-    color: white;
-    display: inline-block;
-    font-size: 11px;
-    text-decoration: none;
-    transition: color .5s;
-}
-.navbarContactos a:hover {
-    color: black;
-}
-.navbarContactos li{
-    padding: 0px 10px 10px;
-    display: inline-block;
-    /* Oculta el contenido del menú en pantallas más pequeñas */
 }
 
 /* Estilos para el cuadro */
@@ -415,48 +384,4 @@ footer {
                 contain: content;
             }
         }
-/*-------------------------------FOOTER---------------------------------*/
-footer {
-    background-color: #1DA1F2;
-    color: white;
-    padding: 10px; /* Incrementa el espacio interno para mejorar la legibilidad */
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
-}
 
-.contactos{
-    display: flex; /* Usa flexbox para alinear los elementos */
-    justify-content: center;
-    align-items: center;
-    list-style: none; /* Elimina los estilos de la lista */
-    padding: 0; /* Elimina el padding por defecto de la lista */
-}
-
-.contactos li{
-    margin: 0 10px; /* Añade un margen entre los elementos */
-}
-
-.contactos a {
-    color: white;
-    text-decoration: none;
-    transition: color .5s;
-}
-
-.contactos a:hover {
-    color: black;
-}
-
-/* Agrega esta regla al final de tu archivo CSS */
-@media screen and (min-width: 480px) {
-    footer {
-        position: relative;
-        bottom: 0;
-        margin-top: 100%;
-        width: 100%;
-    }
-}
-
-/*-----------------------------------------------------------*/
