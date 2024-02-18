@@ -9,12 +9,12 @@
 body {
     min-height: 100vh;
     background: black;
-    color: white;
+    color: #ffffff;
 }
 h2 {
     text-align: center;
-    color: white;
-    font-size: 1.5em;
+    color: #ffffff;
+    font-size: 28px;
     font-weight: bold;
     }
 .contenedor {
@@ -24,8 +24,7 @@ h2 {
     position: relative;
     width: 100%;
     height: 50px;
-    background: #222222ab;
-    border-radius:8px;
+    background: #072540;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,7 +36,7 @@ h2 {
     display: inline-block;
     font-size: 15px;
     font-weight: 500;
-    color: #1da0f2c2;
+    color: #F2F2F2;
     text-decoration: none;
     padding: 13px 35px;
     margin: 5px;
@@ -46,7 +45,7 @@ h2 {
 }
 .menu a::after {
     content: '';
-    background: linear-gradient(10deg, #222222ab, #1da0f2c2);
+    background: linear-gradient(10deg, #256D85, #038C8C);
     width: 100%;
     height: 100%;
     border-radius: 8px;
@@ -150,7 +149,7 @@ main {
     display: none;
     font-size: 15px;
     font-weight: 500;
-    color: #1da0f2c2;
+    color: #072540;
     text-decoration: none;
     padding: 13px 35px;
     margin: 5px;
@@ -159,7 +158,7 @@ main {
 }
 .menu li::after {
     content: '';
-    background: linear-gradient(10deg, #222222ab, #1da0f2c2);
+    background: linear-gradient(10deg,  #256D85, #038C8C);
     width: 100%;
     height: 100%;
     border-radius: 8px;
@@ -192,33 +191,46 @@ main {
 }
 /*-------------------------------FOOTER---------------------------------*/
 footer {
-    background-color: #1DA1F2;
-    padding: 10px;
+    background-color: #03588C;
+    color: #ffffff;
+    padding: 20px; /* Incrementa el espacio interno para mejorar la legibilidad */
     text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
+
 .contactos{
-    position: relative;
-    display: flex;
+    display: flex; /* Usa flexbox para alinear los elementos */
     justify-content: center;
     align-items: center;
-    
+    list-style: none; /* Elimina los estilos de la lista */
+    padding: 0; /* Elimina el padding por defecto de la lista */
+}
+
+.contactos li{
+    margin: 0 10px; /* Añade un margen entre los elementos */
 }
 
 .contactos a {
-    position: relative;
-    color: white;
-    display: inline-block;
-    font-size: 11px;
+    color: #ffffff;
     text-decoration: none;
-    transition: color .5s;   
+    transition: color .5s;
 }
+
 .contactos a:hover {
-    color: black;
+    color:#06b1b1;
 }
-.contactos li{
-    padding: 0px 10px 10px;
-    display: inline-block;
-    /* Oculta el contenido del menú en pantallas más pequeñas */
+
+/* Agrega esta regla al final de tu archivo CSS */
+@media screen and (min-width: 480px) {
+    footer {
+        position: relative;
+        bottom: 0;
+        margin-top: 100%;
+        width: 100%;
+    }
 }
 
 

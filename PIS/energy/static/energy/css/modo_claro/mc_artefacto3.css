@@ -1,20 +1,20 @@
 * {
-    padding: 0;
-    margin-bottom: 0;
     font-family: 'livvic', sans-serif;
+    margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
-
-
 body {
-    background-color: #758375;
+    min-height: 100vh;
+    background-color: #F2F2F2;
+    color: #FFFFFF;
 }
-
 .menu{
     position: relative;
     width: 100%;
     height: 50px;
-    background: #222222ab;
-    border-radius:8px;
+    background: #072540;
+    border-radius:0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +26,7 @@ body {
     display: inline-block;
     font-size: 15px;
     font-weight: 500;
-    color: #1da0f2c2;
+    color: #DFF6FF;
     text-decoration: none;
     padding: 13px 35px;
     margin: 5px;
@@ -35,7 +35,7 @@ body {
 }
 .menu a::after {
     content: '';
-    background: linear-gradient(10deg, #222222ab, #1da0f2c2);
+    background: linear-gradient(10deg, #256D85, #038C8C);
     width: 100%;
     height: 100%;
     border-radius: 8px;
@@ -48,165 +48,173 @@ body {
     transition: top .5s, opacity .5s;
 }
 .menu a:hover {
-    color: #fff;
+    color: #ffffff;
 }
 .menu a:hover::after{
     top: 50%;
     opacity: 1;
 }
+h1{text-align: center;
+    margin-top: 25px;
+    color: #DFF6FF;
 
-h1 {
-    color: white;
-    text-align: center;
 }
-
-.contenedor{
-    display: flex;
-    justify-content: center;
-}
-
-.formulario {
-    display: flex;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    padding: 0 20px;
-    width: 80%;
-    border-radius: 4px;
-    background-color: #222222ab;
-}
-.form_content {
-    padding: 10px;
-    width: 60%;
-    height: 170px;
-}
-
-.form_content input {
-    width: 90%;
-    height: 30px;
-    border-radius: 5px;
-    margin-top: 10px;
-    margin-left: 5px;
-    background-color: black;
-    color: white;
-}
-
-.form_content input::placeholder {
-    color: white;
-}
-
-.form_content select {
-    width: 90%;
-    height: 30px;
-    border-radius: 5px;
-    margin: 10px 0;
-    margin-left: 5px;
-    background-color: black;
-    color: white;
-    cursor: pointer;
-}
-
-.form_content label {
-    color: grey;;
-    font-size: 15px;
-    margin-left: 10px;
-}
-
-.form_content button {
-    margin-top: 10px;
-    margin-left: 5px;
-    color: white;
-    background-color: #1da0f2c2;
-    padding: 3px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.form_buttons {
-    width: 40%;
-    flex-direction: column;
-    text-align: center;
-}
-
-.form_buttons button {
-    display: inline;
-    width: 140px;
-    height: 40px;
-    margin: 10px 80px;
-    margin-top: 30px;
-    background-color: #1da0f2c2;
-    border-radius: 5px;
-}
-
-.form_buttons button a {
-    text-decoration: none;
-    color: #fff;
-    width: 600px;
+h2{
+    font-size: 28px;
 }
 
 /* Tabla*/
-.section {
-    margin-top: 70px;
-}
-
 table {
     font-family: 'Livvic', Courier, monospace;
     width: 100%;
-    height: 50vh;
     font-size: 15px;
     text-align: left;
-    color: white;
+    color: #ffffff;
     border-collapse: collapse;
-    margin-top: 30px;
+    margin: 20px;
 }
 table button{
-    background-color: #1da0f2c2;
+    background-color: #038C8C;
     padding: 2px;
     border-radius: 5px;
-    color: #fff;
+    color: #ffffff;
     cursor: pointer;
 }
 
 table button:hover{
-    background-color: #222222ab;
-    color: #fff;
+    background-color: #06b1b1;
+    color: #ffffff;
 }
-
-th {
+th{
     font-weight: bolder;
     text-align: left;
-    background-color: #1da0f2c2;
+    background-color: #03588C;
 
 
 }
 
 tr {
-    border: 2px solid #1da0f2c2;
-    /*lineas de la tabla*/
+    border: 2px solid #03588C; /*lineas de la tabla*/
     text-align: center;
     padding: 8px;
 }
 
 tr:hover td {
-    background-color: #1DA1F2;
-    box-shadow: 0 0 5px #1DA1F2,
-        0 0 10px #1DA1F2,
-        0 0 15px #1DA1F2,
-        0 0 25px #1DA1F2;
+    background-color: #0e74b3;
+    box-shadow: 0 0 5px #0e74b3,
+				0 0 10px #0e74b3,
+				0 0 15px #0e74b3,
+				0 0 25px #0e74b3;
+}
+tbody tr:nth-child(odd){
+    background-color: #03588C;
 }
 
-tbody tr:nth-child(odd) {
-    background-color: #0a324ac2;
-}
-
-th {
+th{
     text-align: center;
     align-content: center;
     padding: 10px;
 }
 
-td {
+td{
     text-align: center;
     padding: 10px;
+}
+
+
+/* form */
+
+.formCrearArtefactos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: #023E73;
+    width: 50%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.formCrearArtefactos input{
+    margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    font-size: 15px;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+
+}
+.formCrearArtefactos label{
+    margin: 20px;
+
+
+}
+.formCrearArtefactos button{
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 15px;
+    background-color: #038C8C;
+    margin: 10px;
+}
+.formCrearArtefactos button:hover{
+    background-color: #06b1b1;
+}
+
+
+
+
+
+
+/* tabla de los artefactos*/
+.tablaDeLosArtefactos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #023E73;
+    width: 98%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+
+
+
+
+
+.acciones{
+  contain: content;
+  align-content: center;
+  text-align: center;
+  padding: 0px;
+  cursor: pointer;
+}
+.acciones form button {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    background: rgba(11,51,255,0);
+    padding: 5px;
+    color: #ffffff;
+    font-size: 15px;
+    border-style: none;
 }
 
 /*------------------FILTROS-------------------*/
@@ -221,13 +229,14 @@ td {
     float: left;
     padding: 8px 16px;
     text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
+    transition: .3s;
+    background-color: #038C8C;
+    border: 1px solid #038C8C;
 }
 
 .pagination a:hover:not(.active) {
-    background-color: rgb(42, 229, 203);
-    color: black;
+    background-color: #06b1b1;
+    color: #ffffff;
 }
 .step-links {
     display: flex;
@@ -237,26 +246,27 @@ td {
 .step-links a {
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid #ddd;
+    border: 1px solid #038C8C;
     margin: 0 4px;
 }
 .step-links a:hover {
-    background-color: #ddd;
+    background-color: #ffffff;
 }
 .step-links a:active {
     background-color: #000;
-    color: white;
+    color: #ffffff;
 }
 .current {
     color: #ffffff;
-    margin: 5px auto; /* Margen superior e inferior de 5px y centrar horizontalmente */
+    margin-top: 15px; /* Margen superior e inferior de 5px y centrar horizontalmente */
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid #ddd;
-    background-color: #000;
+    border: 1px solid #03588C;
+    background-color: #03588C;
     display: block; /* Convertir el elemento en un bloque para que ocupe todo el ancho disponible */
     text-align: center; /* Centrar el texto horizontalmente */
 }
+
 
 .filtrar_artefacto {
     display: flex;
@@ -267,43 +277,45 @@ td {
 .filtrar_artefacto input {
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid #ddd;
+    border: 1px solid #038C8C;
     margin: 0 4px;
 }
 .filtrar_artefacto button {
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid #ddd;
+    border: 1px solid #038C8C;
     margin: 0 4px;
-    background-color: #000;
+    background-color: #038C8C;
     color: #ffffff;
     cursor: pointer;
 }
 .filtrar_artefacto button:hover {
-    background-color: rgb(42, 229, 203);
-    color: black;
+    background-color: #06b1b1;
+    color: #ffffff;
 }
 .ver_todo {
     display: inline-block;
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid #ddd;
+    border: 1px solid white;
     margin: 0 4px;
-    background-color: #000;
-    color: #ffffff;
+    background-color: #47B5FF;
+    color: white;
     cursor: pointer;
-    border-radius: 5px; /* Añade bordes redondeados */
+     /* Añade bordes redondeados */
 }
 
 .ver_todo:hover {
-    background-color: rgb(42, 229, 203);
-    color: black;
+    background-color: #06b1b1;
+    color: #ffffff;
 }
+
+
 
 /*-------------------------------FOOTER---------------------------------*/
 footer {
-    background-color: #1DA1F2;
-    color: white;
+    background-color: #03588C;
+    color: #ffffff;
     padding: 20px; /* Incrementa el espacio interno para mejorar la legibilidad */
     text-align: center;
     position: fixed;
@@ -325,13 +337,13 @@ footer {
 }
 
 .contactos a {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     transition: color .5s;
 }
 
 .contactos a:hover {
-    color: black;
+    color:#06b1b1;
 }
 
 /* Agrega esta regla al final de tu archivo CSS */
