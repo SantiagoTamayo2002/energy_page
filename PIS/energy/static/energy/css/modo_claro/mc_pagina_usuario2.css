@@ -365,11 +365,6 @@ body.dark .contenedor_botones div a i{
         }
 
         @media screen and (max-width: 600px) {
-
-            #hamburguesa {
-                display: block; /* Muestra el botón solo en pantallas más pequeñas */
-            }
-
              .botones {
                  display: none; /* Oculta el div cuando la pantalla es más pequeña que 600px */
              }
@@ -385,3 +380,38 @@ body.dark .contenedor_botones div a i{
             }
         }
 
+        /*MENÚ RESPONSIVE --------------------------- NO BORRAR*/
+        #menuResponsive {
+            justify-content: center;
+            width: 50%;
+            display: none;
+            margin: auto; 
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .margen {
+            margin-bottom: 20px; /* o padding-bottom: 20px; */
+        }
+        
+        .margenArriba {
+            margin-bottom: 20px;
+            margin-top: 20px; /* ajusta el valor según el espacio deseado */
+        }
+
+        @media screen and (max-width: 600px) {
+            #menu {
+                display: 1;
+            }
+
+            #menuResponsive {
+                display: flex;
+            }
+
+            .botones {
+                display: none; 
+            }
+            
+        }
+
+        /*-----------------------------------------------------*/
