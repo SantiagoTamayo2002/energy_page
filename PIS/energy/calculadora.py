@@ -1,4 +1,5 @@
 import sympy as sym
+from django.contrib.sites import requests
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 import numpy as np
@@ -22,6 +23,7 @@ def calcular_consumo_polinomio(request, dias):
     consumo = []
     for i in range(dias):
         consumo.append(round(funcion(i + 1), 2))
+
     return consumo
 
 
@@ -39,7 +41,7 @@ def generar_grafico_proyeccion_consumo_actual(request):
             dia.append(counter + 1)
             counter += 1
 
-        return base_grafico_proyeccion(consumo, dia)
+        return base_grafico_proyeccion(consumo, dia, request)
     else:
         return render(request, 'energy/home/pagina_usuario.html')
 
@@ -52,7 +54,7 @@ def generar_grafico_proyeccion_semanal(request):
         dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
         consumo = calcular_consumo_polinomio(request, dias.__len__())
 
-        return base_grafico_proyeccion(consumo, dias)
+        return base_grafico_proyeccion(consumo, dias, request)
 
 
 def generar_grafico_proyeccion_mensual(request):
@@ -66,32 +68,37 @@ def generar_grafico_proyeccion_mensual(request):
         for i in range(mes):
             dias.append(counter + 1)
             counter += 1
-        return base_grafico_proyeccion(consumo, dias)
+        return base_grafico_proyeccion(consumo, dias, request)
 
 
 def obtener_polinomio(request):
+    # Inicialización de variables
     consumo = []
     dias = []
     counter = 0
-    funciondelPolinomio = 0
     r2_porcentaje = 0
     ym = 0
     r2 = 0
-    funcion_polinomio = 0
     grado_del_polinomio = 0
-    fx = 0
-
+    variable = sym.Symbol('x')
+    coeficiente = [0, 1]
+    funcion_polinomio = sum(coeficiente[i] * (variable ** i) for i in range(len(coeficiente)))
+    fx = sym.lambdify(variable, funcion_polinomio)
+    # Obtener datos de consumo y días
     for i in Informe.objects.filter(user=request.user):
         consumo.append(i.consumo_total)
         dias.append(counter + 1)
         counter += 1
 
+    # Bucle para ajustar el polinomio
     while grado_del_polinomio < 10:
         # PROCEDIMIENTO
+
+        # Convertir listas a arrays NumPy
         dias = np.array(dias)
         consumo = np.array(consumo)
 
-        # Llenar matriz A y vector B
+        # Llenar matriz A y vector B para el sistema de ecuaciones
         k = grado_del_polinomio + 1
         MatrizA = np.zeros(shape=(k, k), dtype=float)
         vectorB = np.zeros(k, dtype=float)
@@ -108,7 +115,6 @@ def obtener_polinomio(request):
             coeficiente = np.linalg.solve(MatrizA, vectorB)
 
             # Polinomio
-            variable = sym.Symbol('x')
             funcion_polinomio = sum(coeficiente[i] * (variable ** i) for i in range(len(coeficiente)))
 
             # Errores
@@ -117,7 +123,7 @@ def obtener_polinomio(request):
             sr = np.sum((consumo - fx(dias)) ** 2)
             st = np.sum((consumo - ym) ** 2)
 
-            # Coeficiente de determinacion
+            # Coeficiente de determinación
             r2 = (st - sr) / st
             r2_porcentaje = np.around(r2 * 100, 2)
 
@@ -129,17 +135,18 @@ def obtener_polinomio(request):
             break
         grado_del_polinomio += 1
 
-        # SALIDA
     # SALIDA
+    # Imprimir resultados
     print('------------------------\n Tabla de datos')
     print('--------------------------------------')
     print(f'ymedia = {ym}\n')
-    print(f'grado del polinomio = {grado_del_polinomio}\n')
+    print(f'grado del polinomio = {grado_del_polinomio + 1}\n')
     print(f'f(x) = {funcion_polinomio.__str__()}\n')
     print(f'coef_determinacion r2 = {r2}\n')
     print(str(r2_porcentaje) + '% de los datos se describe con el modelo')
     print('--------------------------------------')
 
+    # Crear diccionario con resultados
     resultado_actual = {
         'dias': dias,
         'ymedia': float(ym),
@@ -152,15 +159,42 @@ def obtener_polinomio(request):
     return resultado_actual
 
 
-def base_grafico_proyeccion(consumo, dia):
+def base_grafico_proyeccion(consumo, dia, request):
+    if request.user.modoclaro.modo_claro:
+        backgroundColor = '#0d72b0'
+        borderColor = 'black'
+        color_1DA1F2 = 'black'
+        colo_titulo = 'white'
+        color_Linea = 'black'
+        color_texto = 'white'
+        color_item = 'orange'
+        color_icono_border = 'black'
+        color_icono = 'blue'
+        color_icono_hover = 'orange'
+        colorStops_1 = '#3300FF'
+        colorStops_2 = 'red'
+    else:
+        color_item = 'orange'
+        backgroundColor = 'black'
+        borderColor = 'black'
+        color_1DA1F2 = '#1DA1F2'
+        colo_titulo = 'white'
+        color_Linea = 'white'
+        color_texto = 'white'
+        color_icono_border = 'orange'
+        color_icono = 'black'
+        color_icono_hover = 'white'
+        colorStops_1 = '#3300FF'
+        colorStops_2 = 'black'
+
     proyeccion = {
         'tooltip': {
             'trigger': 'axis',
             'axisPointer': {
                 'type': 'cross',
                 'label': {
-                    'backgroundColor': '#1DA1F2',  # Color del fondo del tooltip
-                    'color': '#1DA1F2',  # Color del texto del tooltip
+                    'backgroundColor': color_1DA1F2,  # Color del fondo del tooltip
+                    'color': color_1DA1F2,  # Color del texto del tooltip
                 }
             }
         },
@@ -171,13 +205,13 @@ def base_grafico_proyeccion(consumo, dia):
                 },
                 'axisLine': {
                     'lineStyle': {
-                        'color': '#1DA1F2',  # Color de la línea
+                        'color': color_1DA1F2,  # Color de la línea
                     }
                 },
                 'name': 'Días de consumo',  # Título del eje x
                 'nameTextStyle': {
                     'fontSize': 12,
-                    'color': '#1DA1F2',  # Color del texto
+                    'color': color_1DA1F2,  # Color del texto
                 },
                 'nameGap': 30,  # Espacio entre el nombre_artefacto y el eje
                 'nameLocation': 'middle',  # Ubicación del nombre_artefacto del eje ('start', 'middle', 'end')
@@ -191,12 +225,12 @@ def base_grafico_proyeccion(consumo, dia):
                 'type': 'value',
                 'axisLine': {
                     'lineStyle': {
-                        'color': '#1DA1F2',  # Color de la línea
+                        'color': color_1DA1F2,  # Color de la línea
                     }
                 },
                 'axisLabel': {
-                    'backgroundColor': 'black',
-                    'color': '#1DA1F2'  # Color del texto
+                    'backgroundColor': backgroundColor,
+                    'color': color_1DA1F2  # Color del texto
                 },
                 'name': 'Consumo (W/h)',  # Título del eje y
                 'textStyle': {
@@ -204,7 +238,7 @@ def base_grafico_proyeccion(consumo, dia):
                 },
                 'nameTextStyle': {
                     'fontSize': 12,
-                    'color': '#1DA1F2',  # Color del texto
+                    'color': color_1DA1F2,  # Color del texto
                 },
                 'min': 0,  # Establecer el mínimo en 0 o en otro valor adecuado
             }
@@ -215,7 +249,7 @@ def base_grafico_proyeccion(consumo, dia):
             # 'top': 10,
             # 'text': 'Proyección de consumo',
             'textStyle': {
-                'color': 'white',  # Color del texto del título
+                'color': colo_titulo,  # Color del texto del título
                 'fontSize': 25,  # Tamaño del texto del título
             },
         },
@@ -227,15 +261,15 @@ def base_grafico_proyeccion(consumo, dia):
                 'smooth': True,
                 'data': consumo,
                 'itemStyle': {
-                    'color': '#1DA1F2',  # Color del título
-                    'borderColor': '#1DA1F2',
+                    'color': color_item,  # Color del título
+                    'borderColor': colorStops_1,
                     'borderWidth': 2,
-                    'shadowColor': '#1DA1F2',
+                    'shadowColor': colorStops_2,
                 },
                 'type': 'line',
                 'lineStyle': {
                     'width': 3,  # Ancho de la línea
-                    'color': 'white',
+                    'color': color_Linea,  # Color de la línea
                 },
                 "areaStyle": {
                     "color": {
@@ -245,11 +279,11 @@ def base_grafico_proyeccion(consumo, dia):
                         "colorStops": [
                             {
                                 "offset": 0,
-                                "color": "#3300FF"
+                                "color": colorStops_1
                             },
                             {
                                 "offset": 1,
-                                "color": "black"
+                                "color": colorStops_2
                             }
                         ]
                     }
@@ -268,18 +302,18 @@ def base_grafico_proyeccion(consumo, dia):
             "top": "center",
             "iconStyle": {
                 "normal": {
-                    "color": "black",
-                    "borderColor": "orange"
+                    "color": color_icono,
+                    "borderColor": color_icono_border,
                 },
                 "emphasis": {
-                    "borderColor": "white"
+                    "borderColor": color_icono_hover,
                 }
             },
             "showTitle": True,
             "feature": {
                 "mark": {"show": True},
-                "dataView": {"show": True, "readOnly": True, "title": "Vista de datos",
-                             "lang": ["Vista de datos", "Cerrar"],
+                "dataView": {"show": True, "readOnly": True, "title": "Datos",
+                             "lang": ["Datos", "Cerrar"],
                              'textareaBorderColor': 'green',
 
                              },
@@ -289,7 +323,7 @@ def base_grafico_proyeccion(consumo, dia):
                     "show": True,
                     "type": ["line", "bar", "stack"],
                     "title": {
-                        "data": "Vista de datos",
+                        "data": "Datos",
                         "line": "Linea",
                         "bar": "Barra",
                         "stack": "Apilado",
@@ -319,7 +353,7 @@ def base_grafico_proyeccion(consumo, dia):
                 },
                 "saveAsImage": {
                     "title": {
-                        "saveAsImage": "Guardar Imagen",
+                        "saveAsImage": "Guardar",
                     },
                     "iconStyle": {
                         "fontSize": 16  # Ajusta el tamaño del texto del botón "Guardar como imagen",
@@ -342,13 +376,41 @@ def base_grafico_proyeccion(consumo, dia):
                 'end': 100,
             },
         ],
-        'backgroundColor': 'black',
+        'backgroundColor': backgroundColor,
     }
 
     return JsonResponse(proyeccion)
 
 
 def generar_grafico_artefacto_list_mayor_consumo(request):
+    if request.user.modoclaro.modo_claro:
+        backgroundColor = '#0d72b0'
+        color='black'
+        borderColor = 'black'
+        color_1DA1F2 = 'black'
+        colo_titulo = 'white'
+        color_Linea = 'black'
+        color_texto = 'white'
+        color_item = 'orange'
+        color_icono_border = 'black'
+        color_icono = 'blue'
+        color_icono_hover = 'orange'
+        colorStops_1 = '#3300FF'
+        colorStops_2 = 'red'
+    else:
+        color_item = 'orange'
+        backgroundColor = 'black'
+        borderColor = 'black'
+        color_1DA1F2 = '#1DA1F2'
+        colo_titulo = 'white'
+        color_Linea = 'white'
+        color_texto = 'white'
+        color_icono_border = 'orange'
+        color_icono = 'black'
+        color_icono_hover = 'white'
+        colorStops_1 = '#3300FF'
+        colorStops_2 = 'black'
+
     if request.user.is_anonymous:
         return redirect('home')
 
@@ -390,7 +452,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
     grafica = {
         'max_width': '100%',
         'max_height': '100%',
-        'backgroundColor': 'black',
+        'backgroundColor': backgroundColor,
 
         'title': {
             'left': 'center',
@@ -398,7 +460,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
             'padding': 10,
             'margin': 0,
             'textStyle': {
-                'color': 'white',
+                'color': color,
                 'fontSize': 25,
                 'fontWeight': 'bold'
             },
