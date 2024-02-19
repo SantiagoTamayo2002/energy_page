@@ -98,7 +98,7 @@ class FiltrarInventarioForm(forms.ModelForm):
         model = Inventario
         fields = ['dia']
         widgets = {
-            'dia': forms.DateInput(attrs={'placeholder': 'Fecha', 'type': 'date', 'format': 'yyyy-mm-dd'}),
+            'dia': forms.DateInput(attrs={'placeholder': 'dd/mm/yyyy', 'type': 'date', 'format': 'yyyy-mm-dd'}),
         }
 
 

@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_artefacto.css' %}">
     {% endif %}
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        .ver_todo a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
 </head>
 <body>
      <nav class="menu">
@@ -37,7 +43,7 @@
     {% csrf_token %}
     {{ filtrar_artefacto.nombre_artefacto }}
     <button type="submit"> Buscar</button>
-    <button type="button"  class="ver_todo" href="{% url 'artefacto' %}">Limpiar</button>
+    <button type="button"  class="ver_todo" ><a href="{% url 'artefacto' %}">Limpiar</a></button>
 
 </form>
  <span class="current">
