@@ -9,3 +9,4 @@ weasyprint==61.0
 whitenoise==6.6.0
 markdown==3.5.2
 django-filter==23.5
+pillow==10.2.0

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 from rest_framework import routers
 from django.urls import path, include
@@ -6,11 +7,12 @@ from energy.metodoList.metodoListInventario.inventario import eliminar_inventari
 from energy.metodoList.metodoListArtefactos.artefacto import eliminar_artefacto
 from energy.views import home, registro, contacto, sobre_el_equipo, pagina_usuario, inicio_sesion, cerrar_sesion, \
     inventario, \
-    artefacto, informe, imprimir_pdf, proyeccion, ubicaciones_de_usuarios
+    artefacto, informe, imprimir_pdf, proyeccion, ubicaciones_de_usuarios, actualizar_perfil_usuario
 from energy.calculadora import generar_grafico_proyeccion_consumo_actual, api_leaflet, \
     generar_grafico_proyeccion_mensual, generar_grafico_artefacto_list_mayor_consumo, generar_grafico_proyeccion_semanal
 from energy.viewsets import UserViewSet, ArtefactoViewSet, UbicacionUsuarioViewSet
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
 
 
 
@@ -25,6 +27,7 @@ router.register(r'Ubicaciones_Usuarios', UbicacionUsuarioViewSet, basename='ubic
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('', home, name="home"),
     path('api/', include(router.urls)),
     path('api_leaflet/ubicaciones', api_leaflet, name="api_leaflet"),
@@ -38,6 +41,7 @@ urlpatterns = [
     path('contactos/', contacto, name="contactos"),
     path('nosotros/', sobre_el_equipo, name="nosotros"),
     path('paginaUsuario/', pagina_usuario, name="paginaUsuario"),
+    path('paginaUsuario/perfil/', actualizar_perfil_usuario, name="perfil"),
     path('c/', cerrar_sesion, name="cerrarSesion"),
     path('paginaUsuario/inventario/', inventario, name="inventario"),
     path('paginaUsuario/inventario/<int:inventario_id>/', eliminar_artefacto_inventario, name='eliminarArtefactoInventario'),
@@ -51,4 +55,4 @@ urlpatterns = [
     path('paginaUsuario/proyecciones/graficoProyeccionSemanal', generar_grafico_proyeccion_semanal, name="grafico_proyeccion_semanal"),
     path('paginaUsuario/proyecciones/graficoProyeccionMensual', generar_grafico_proyeccion_mensual, name="grafico_proyeccion_semanal"),
     path('paginaUsuario/proyecciones/graficoArtefactoMasUsado', generar_grafico_artefacto_list_mayor_consumo, name="grafico_proyeccion_semanal"),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
