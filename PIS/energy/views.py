@@ -64,6 +64,7 @@ def registro(request):
             'form': CrearUsuario
         })
     else:
+        print(request.POST)
         if request.POST['password1'] == request.POST['password2']:
             try:
                 if request.POST['latitud'] == '' or request.POST['longitud'] == '':
