@@ -10,10 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Data Analyzer</title>
+    <title>Generar Informe</title>
 </head>
 
 <body>
+
+
+
+
 <style>
         * {
 	font-family: 'Livvic', Courier, monospace;
@@ -203,72 +207,72 @@ tbody tr:nth-child(odd){
     }
 }
 
-/* Media queries para pantallas pequeñas */
+
 @media only screen and (max-width: 785px) {
     .navegar {
-        max-width: 100%; /* Evitar que se salga del ancho de la pantalla */
-        overflow-x: auto; /* Agregar barra de desplazamiento horizontal si es necesario */
+        max-width: 100%; 
+        overflow-x: auto;
     }
 
     nav a:first-child {
         display: flex;
-        flex-direction: column; /* Asegura que los enlaces estén en columna */
-        align-items: center; /* Centra los enlaces */
-        margin-right: 10px; /* Ajusta el margen derecho del primer enlace (botón de inicio) */
+        flex-direction: column; 
+        align-items: center; 
+        margin-right: 10px; 
     }
 
     nav a {
-        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-        margin: 5px 0; /* Agrega espacio entre los enlaces */
-        padding: 13px 5px; /* Ajusta el padding para pantallas pequeñas */
+        font-size: 14px; 
+        margin: 5px 0; 
+        padding: 13px 5px; 
     }
 
     h1,
     h2 {
-        font-size: 16px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+        font-size: 16px; 
     }
 
     .datosUsuario {
         overflow: auto;
-        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+        font-size: 14px; 
     }
     datosUsuario .description h2 p {
-        padding-left: 10px; /* Ajusta el espacio a la izquierda del párrafo */
+        padding-left: 10px; 
     }
 
     img {
-        width: 50px; /* Ajusta el tamaño de la imagen para pantallas pequeñas */
+        width: 50px; 
     }
 
     i {
-        font-size: 16px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-        width: 150px; /* Ajusta el ancho para pantallas pequeñas */
-        padding: 10px; /* Ajusta el padding para pantallas pequeñas */
+        font-size: 16px; 
+        width: 150px; 
+        padding: 10px;
     }
 
     table {
-        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-        margin: 20px; /* Ajusta el margen para pantallas pequeñas */
+        font-size: 14px;
+        margin: 20px; 
     }
 
     th {
-        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
+        font-size: 14px;
     }
 
     td,
     th,
     .datosConsumo,
     tr {
-        padding: 5px; /* Ajusta el padding para pantallas pequeñas */
+        padding: 5px; 
     }
 
     .datosConsumo {
-        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-        margin: 10px; /* Ajusta el margen para pantallas pequeñas */
+        font-size: 14px;
+        margin: 10px; 
     }
 
     footer {
-        padding: 5px; /* Ajusta el padding para pantallas pequeñas */
+        padding: 5px; 
     }
 }
 
@@ -278,24 +282,24 @@ tbody tr:nth-child(odd){
 footer {
     background-color: #1DA1F2;
     color: white;
-    padding: 20px; /* Incrementa el espacio interno para mejorar la legibilidad */
+    padding: 20px; 
     text-align: center;
     position: fixed;
     bottom: 0;
     width: 100%;
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    box-sizing: border-box; 
 }
 
 .contactos{
-    display: flex; /* Usa flexbox para alinear los elementos */
+    display: flex; 
     justify-content: center;
     align-items: center;
-    list-style: none; /* Elimina los estilos de la lista */
-    padding: 0; /* Elimina el padding por defecto de la lista */
+    list-style: none;
+    padding: 0; 
 }
 
 .contactos li{
-    margin: 0 10px; /* Añade un margen entre los elementos */
+    margin: 0 10px; 
 }
 
 .contactos a {
@@ -308,7 +312,7 @@ footer {
     color: black;
 }
 
-/* Agrega esta regla al final de tu archivo CSS */
+
 @media screen and (min-width: 480px) {
     footer {
         position: relative;
@@ -317,15 +321,14 @@ footer {
         width: 100%;
     }
 }
-
-/*-----------------------------------------------------------*/
-
 </style>
+
+
     <nav class="menu">
         <a href="{% url 'paginaUsuario' %}">Inicio</a>
         <a href="{% url 'inventario' %}">Inventario</a>
         <a href="{% url 'proyecciones' %}">Ver Consumo</a>
-        <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
+        <a href="{% url 'cerrarSesion' %}">Cerrar Sesión</a>
     </nav>
 
     <div class="datosUsuario">
