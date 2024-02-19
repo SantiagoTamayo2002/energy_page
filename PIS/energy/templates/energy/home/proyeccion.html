@@ -24,14 +24,13 @@
             <a href="{% url 'inventario' %}">Inventario</a>
             <a href="{% url 'informe' %}">Generar Informe</a>
             <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
-            <li id="mostrarLista"> Mostrar Menu </li>
+            <li id="mostrarLista"> Mostrar Menú </li>
             <span></span>
         </nav>
 
-        <div id="listaOculta" class="opcionesLista">
+        <div id="listaOculta" class="opcionesLista" style="display: none;">
             <ul id="listaNumeros">
                 <li><a href="{% url 'paginaUsuario' %}">Inicio</a></li>
-                <li><a href="{% url 'proyecciones' %}">Ver Consumo</a></li>
                 <li><a href="{% url 'inventario' %}">Inventario</a></li>
                 <li><a href="{% url 'informe' %}">Generar Informe</a></li>
                 <li><a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a></li>
@@ -46,8 +45,12 @@
             var lista = document.getElementById('listaOculta');
             if (lista.style.display === 'none') {
                 lista.style.display = 'block';
+                
+                
+                
             } else {
                 lista.style.display = 'none';
+                
             }
             });
 

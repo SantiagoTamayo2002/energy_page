@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'energy/css/modo_oscuro/mo_registroForanix.css' %}">
     <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
     <title>Registro</title>
+   
 </head>
 <body>
     <div class="navigator">
@@ -35,10 +36,10 @@
                     <form method="POST">
                         {% csrf_token %}
 
-                    <div class="lastname">
-                        {{ form.username }}
-                    </div>
-
+                        <div class="lastname">
+                            <input type="text" name="username" placeholder="Nombre de Usuario" autofocus="" minlength="5" maxlength="150" pattern="[a-zA-Z0-9]+" required="" id="id_username" data-listener-added_bae381fc="true">
+                            
+                        </div>
                     <div class="lastname" >
                         {{ form.first_name }}
                     </div>
@@ -49,10 +50,12 @@
                         {{ form.email }}
                     </div>
                     <div class="lastname" >
-                        {{ form.password1 }}
+                        
+                        <input type="password" name="password1" placeholder="Contraseña" minlength="5" maxlength="150" pattern="[a-zA-Z0-9]+" required="" id="id_password" data-listener-added_bae381fc="true">
                     </div>
                     <div class="lastname">
-                        {{ form.password2 }}
+                        <input type="password" name="password2" placeholder="Confirme la contraseña" minlength="5" maxlength="150" pattern="[a-zA-Z0-9]+" required="" id="id_password" data-listener-added_bae381fc="true">
+                        
                     </div>
                         <input type="hidden" id="latitud" name="latitud">
                         <input type="hidden" id="longitud" name="longitud">

@@ -22,7 +22,7 @@ const graficoConsumoActual = async () => {
         console.log(data);  // Añade esto para depurar
         return data;
     } catch (ex) {
-        alert(ex);
+        alert('Error al cargar el gráfico de consumo actual, para corregir esto ingrese un producto al inventario.');
     }
 };
 const graficoProyeccionSemanal = async () => {
@@ -32,7 +32,7 @@ const graficoProyeccionSemanal = async () => {
         console.log(data);  // Añade esto para depurar
         return data;
     } catch (ex) {
-        alert(ex);
+        alert('Error al cargar el gráfico de proyección semanal, para corregir esto ingrese un producto al inventario.');
     }
 }
 const graficoProyeccionMensual = async () => {
@@ -42,7 +42,7 @@ const graficoProyeccionMensual = async () => {
         console.log(data);  // Añade esto para depurar
         return data;
     } catch (ex) {
-        alert(ex);
+        alert('Error al cargar el gráfico de proyección mensual, para corregir esto ingrese un producto al inventario.');
     }
 }
 const graficoArtefactoMasUsado = async () => {
@@ -52,7 +52,7 @@ const graficoArtefactoMasUsado = async () => {
         console.log(data);  // Añade esto para depurar
         return data;
     } catch (ex) {
-        alert(ex);
+        alert('Error al cargar el gráfico de artefacto más usado, para corregir utilice al menos un artefacto, ni no los tiene cree uno.');
     }
 }
 // Inicializar gráficas al cargar la página en el navegador
