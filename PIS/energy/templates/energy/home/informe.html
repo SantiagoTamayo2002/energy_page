@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     {% load static %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'energy/css/modo_oscuro/mo_informe.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"
@@ -14,327 +15,28 @@
 </head>
 
 <body>
-<style>
-        * {
-	font-family: 'Livvic', Courier, monospace;
-    margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
 
-body {
-    min-height: 100vh;
-    background: #050d18;
-    align-items: center;
-    justify-content: center;
-}
-.menu{
-    position: relative;
-    width: 100%;
-    height: 50px;
-    background: #222222ab;
-    border-radius:8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-}
-
-.menu a {
-    position: relative;
-    display: inline-block;
-    font-size: 15px;
-    font-weight: 500;
-    color: #1da0f2c2;
-    text-decoration: none;
-    padding: 13px 35px;
-    margin: 5px;
-    z-index: 2;
-    transition: color .5s;   
-}
-.menu a::after {
-    content: '';
-    background: linear-gradient(10deg, #222222ab, #1da0f2c2);
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    opacity: 0;
-    transition: top .5s, opacity .5s;
-}
-.menu a:hover {
-    color: #fff;
-}
-.menu a:hover::after{
-    top: 50%;
-    opacity: 1;
-}
-
-h1, h2 {
-    color: white;
-    font-size: 19px;
-}
-.datosUsuario {
-    text-align: left;
-    background-color: #1DA1F2;
-    opacity: 0.8;
-    width: 100%;
-    padding: 20px;
-    border-radius: 0 0 30px 30px;
-    font-size: 12px;
-    display: flex;
-}
-img {
-    display: flex;
-    margin-right: 10px;
-    width: 100px;
-    height: 100%;
-}
-.datosUsuario .description h2 p {
-    display: inline-block;
-    padding-left: 20px;
-}
-
-i{
-	margin: 20px;
-	font-size: 20px;
-	color: white;
-    width: 220px;
-	border-radius: 10%;
-	padding: 15px;
-	box-shadow: 0px 10px 15px #0a324ac2;
-	transition: .3s ease;
-    display: inline-block;
-    cursor: pointer;
-}
-a{
-    color: white;
-	font-size: 15px;
-    text-decoration: none;
-}
-.fa-file-export:hover{
-	background-color: #1DA1F2;
-	color: white;
-	box-shadow: 0 0 5px #1DA1F2,
-				0 0 15px #1DA1F2,
-				0 0 25px #1DA1F2,
-				0 0 45px #1DA1F2;
-}
-
-table {
-    font-family: 'Livvic', Courier, monospace;
-    color: white;
-    border-collapse: collapse;
-    width: 90%;
-    margin: 20px;
-}
-th{
-    font-weight: bolder;
-    text-align: left;
-    background-color: #0a324ac2;
-
-
-}
-
-td,
-th,
-.datosConsumo,
-
-tr {
-    border: 2px solid #1da0f2c2; /*lineas de la tabla*/
-    text-align: center;
-    padding: 8px;
-}
-.datosConsumo{
-    color: #fff;
-    background-color:#1DA1F2;
-    opacity: 0.8;
-    font-size: 20px;
-    width: 90%;
-    margin: 20px;
-}
-tr:hover td {
-    background-color: #1DA1F2;
-    box-shadow: 0 0 5px #1DA1F2,
-				0 0 10px #1DA1F2,
-				0 0 15px #1DA1F2,
-				0 0 25px #1DA1F2;
-}
-tbody tr:nth-child(odd){
-    background-color: #0a324ac2;
-}
-
-
-/* Estilos específicos para la impresión */
-/* Estilos específicos para la impresión */
-@media print {
-    body {
-        background-color: rgba(255, 255, 255, 0);
-    }
-
-    a,
-    i {
-        display: none;
-        /* Oculta los enlaces al imprimir */
-    }
-
-    button {
-        display: none;
-        /* Oculta los botones al imprimir */
-    }
-
-    .navegar {
-        display: none;
-    }
-
-    tbody tr:nth-child(odd) {
-        color: white;
-    }
-
-    tbody tr:nth-child(2n) {
-        color: black;
-    }
-    .menu{
-        display: none;
-    }
-}
-
-/* Media queries para pantallas pequeñas */
-@media only screen and (max-width: 785px) {
-    .navegar {
-        max-width: 100%; /* Evitar que se salga del ancho de la pantalla */
-        overflow-x: auto; /* Agregar barra de desplazamiento horizontal si es necesario */
-    }
-
-    nav a:first-child {
-        display: flex;
-        flex-direction: column; /* Asegura que los enlaces estén en columna */
-        align-items: center; /* Centra los enlaces */
-        margin-right: 10px; /* Ajusta el margen derecho del primer enlace (botón de inicio) */
-    }
-
-    nav a {
-        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-        margin: 5px 0; /* Agrega espacio entre los enlaces */
-        padding: 13px 5px; /* Ajusta el padding para pantallas pequeñas */
-    }
-
-    h1,
-    h2 {
-        font-size: 16px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-    }
-
-    .datosUsuario {
-        overflow: auto;
-        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-    }
-    datosUsuario .description h2 p {
-        padding-left: 10px; /* Ajusta el espacio a la izquierda del párrafo */
-    }
-
-    img {
-        width: 50px; /* Ajusta el tamaño de la imagen para pantallas pequeñas */
-    }
-
-    i {
-        font-size: 16px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-        width: 150px; /* Ajusta el ancho para pantallas pequeñas */
-        padding: 10px; /* Ajusta el padding para pantallas pequeñas */
-    }
-
-    table {
-        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-        margin: 20px; /* Ajusta el margen para pantallas pequeñas */
-    }
-
-    th {
-        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-    }
-
-    td,
-    th,
-    .datosConsumo,
-    tr {
-        padding: 5px; /* Ajusta el padding para pantallas pequeñas */
-    }
-
-    .datosConsumo {
-        font-size: 14px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-        margin: 10px; /* Ajusta el margen para pantallas pequeñas */
-    }
-
-    footer {
-        padding: 5px; /* Ajusta el padding para pantallas pequeñas */
-    }
-}
-
-
-
-/*-------------------------------FOOTER---------------------------------*/
-footer {
-    background-color: #1DA1F2;
-    color: white;
-    padding: 20px; /* Incrementa el espacio interno para mejorar la legibilidad */
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
-}
-
-.contactos{
-    display: flex; /* Usa flexbox para alinear los elementos */
-    justify-content: center;
-    align-items: center;
-    list-style: none; /* Elimina los estilos de la lista */
-    padding: 0; /* Elimina el padding por defecto de la lista */
-}
-
-.contactos li{
-    margin: 0 10px; /* Añade un margen entre los elementos */
-}
-
-.contactos a {
-    color: white;
-    text-decoration: none;
-    transition: color .5s;
-}
-
-.contactos a:hover {
-    color: black;
-}
-
-/* Agrega esta regla al final de tu archivo CSS */
-@media screen and (min-width: 480px) {
-    footer {
-        position: relative;
-        bottom: 0;
-        margin-top: 100%;
-        width: 100%;
-    }
-}
-
-/*-----------------------------------------------------------*/
-
-</style>
     <nav class="menu">
         <a href="{% url 'paginaUsuario' %}">Inicio</a>
         <a href="{% url 'inventario' %}">Inventario</a>
         <a href="{% url 'proyecciones' %}">Ver Consumo</a>
-        <a href="{% url 'cerrarSesion' %}">Cerrar Sesion</a>
+        <a href="{% url 'cerrarSesion' %}">Cerrar Sesión</a>
     </nav>
+
+    <!-- Botón Hamburguesa -->
+    <div class="menu-toggle">
+        <button class="hamburger" aria-label="Toggle Menu">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </button>
+    </div>
 
     <div class="datosUsuario">
         <img src="{% static 'energy/img/FORANIX-sinFondo2.png' %}" alt="">
         <div class="description">
-            <h2>Cliente:<p>{{user.first_name}} {{user.last_name}}</p>
-            </h2>
-            <h2>Correo:<p>{{user.email}}</p>
-            </h2>
+            <h2>Cliente: <p>{{ user.first_name }} {{ user.last_name }}</p></h2>
+            <h2>Correo: <p>{{ user.email }}</p></h2>
         </div>
     </div>
 
@@ -350,25 +52,42 @@ footer {
                 <td>{{ consumo.dia }}</td>
                 <td>{{ consumo.consumo_total }} W</td>
             </tr>
-
             {% endfor %}
-            <th>TOTAL CONSUMO </th>
-            <th>{{ consumoTotalMensual }} Kw</th>
+            <tr>
+                <th>TOTAL CONSUMO</th>
+                <th>{{ consumoTotalMensual }} Kw</th>
+            </tr>
         </table>
     </div>
-    <i class="fa-solid fa-file-export"> <a href="{% url 'imprimirPDF' %}">Exportar el informe</a></i>
-    
+
+    <a href="{% url 'imprimirPDF' %}" class="export-button">
+        <i class="fas fa-file-export"></i> Exportar el informe
+    </a>
+
     <footer>
         <nav class="navbarContactos">
             <ul class="contactos">
                 <li><a href="{% url 'nosotros' %}">Sobre nosotros</a></li>
                 <li><a href="https://www.instagram.com/foranix/">Instagram</a></li>
                 <li><a href="https://github.com/SantiagoTamayo2002/energy_page#energy_page">Github</a></li>
-                <li><a href="https://www.unl.edu.ec/">Universidad Nacional de loja</a></li>
+                <li><a href="https://www.unl.edu.ec/">Universidad Nacional de Loja</a></li>
             </ul>
         </nav>
         <p>&copy; 2023 - Todos los derechos reservados</p>
     </footer>
+
+    <!-- Incluir tu archivo JavaScript al final del cuerpo del documento -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.querySelector('.menu');
+
+            hamburger.addEventListener('click', function () {
+                menu.classList.toggle('open');
+                hamburger.classList.toggle('menu-open');
+            });
+        });
+    </script>
 </body>
 
 </html>
