@@ -11,12 +11,12 @@ body {
     background: #050d18;
 }
 
-.menu {
+.menu{
     position: relative;
     width: 100%;
     height: 50px;
     background: #222222ab;
-    border-radius: 8px;
+    border-radius:8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,12 +30,11 @@ body {
     font-weight: 500;
     color: #1da0f2c2;
     text-decoration: none;
-    padding: 13px 15px;
+    padding: 13px 35px;
     margin: 5px;
     z-index: 2;
-    transition: color .5s;
+    transition: color .5s;   
 }
-
 .menu a::after {
     content: '';
     background: linear-gradient(10deg, #222222ab, #1da0f2c2);
@@ -50,70 +49,73 @@ body {
     opacity: 0;
     transition: top .5s, opacity .5s;
 }
-
 .menu a:hover {
     color: #fff;
 }
-
-.menu a:hover::after {
+.menu a:hover::after{
     top: 50%;
     opacity: 1;
 }
 
-h1,
-h2 {
-    color: white;
-    font-size: 19px;
+h1, h2 {
+    color: #ffffff;
+    font-size: 20px;
+    padding-top: 8px;
 }
-
 .datosUsuario {
     text-align: left;
     background-color: #1da1f2;
     opacity: 0.8;
+    margin:0 0 0 0px;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     border-radius: 0 0 30px 30px;
     font-size: 12px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow: hidden; /* Evita barras de desplazamiento */
 }
-
-.datosUsuario img {
-    width: 100px;
-    height: auto;
+img {
+    display: flex;
     margin-right: 10px;
+    width: 100px;
+    height: 100%;
 }
-
 .datosUsuario .description h2 p {
     display: inline-block;
     padding-left: 20px;
 }
-
-i {
-    margin: 10px;
-    font-size: 20px;
-    color: white;
-    width: auto;
-    border-radius: 10%;
-    padding: 10px;
-    box-shadow: 0px 10px 15px #0a324ac2;
-    transition: .3s ease;
+i{
+	margin: 20px;
+	font-size: 20px;
+	color: white;
+    width: 220px;
+	border-radius: 10%;
+	padding: 15px;
+    background-color: #1da1f2;
+	box-shadow: 0px 10px 15px #0a324ac2;
+	transition: .3s ease;
+    display: inline-block;
     cursor: pointer;
+    display: inline-block;
 }
-
-a {
-    color: white;
+p {
+    margin-left: 8px;
     font-size: 15px;
+    display: inline-block;
+}
+a{
+    color: #ffffff;
+	font-size: 15px;
     text-decoration: none;
 }
-
-.fa-file-export:hover {
-    background-color: #1da1f2;
-    color: white;
-    box-shadow: 0 0 5px #1da1f2, 0 0 15px #1da1f2, 0 0 25px #1da1f2, 0 0 45px #1da1f2;
+.fa-file-export:hover{
+	background-color: #1da1f2;
+	color: white;
+	box-shadow: 0 0 5px #1da1f2,
+				0 0 15px #1da1f2,
+				0 0 25px #1da1f2,
+				0 0 45px #1da1f2;
 }
+
 
 table {
     font-family: 'Livvic', Courier, monospace;
@@ -155,37 +157,41 @@ tr:hover td {
 tbody tr:nth-child(odd) {
     background-color: #0a324ac2;
 }
-
+/*-------------------------------FOOTER---------------------------------*/
 footer {
     background-color: #1da1f2;
-    padding: 10px;
+    color: #ffffff;
+    padding: 20px; /* Incrementa el espacio interno para mejorar la legibilidad */
     text-align: center;
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    left: 0;
     width: 100%;
+    height: 100px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
-.contactos {
-    display: flex;
+.contactos{
+    display: flex; /* Usa flexbox para alinear los elementos */
     justify-content: center;
     align-items: center;
+    list-style: none; /* Elimina los estilos de la lista */
+    padding: 0; /* Elimina el padding por defecto de la lista */
+}
+
+.contactos li{
+    margin: 0 10px; /* Añade un margen entre los elementos */
 }
 
 .contactos a {
-    color: white;
-    font-size: 11px;
+    color: #ffffff;
     text-decoration: none;
+    transition: color .5s;
 }
 
 .contactos a:hover {
-    color: black;
+    color:black;
 }
 
-.contactos li {
-    padding: 0px 10px 10px;
-    display: inline-block;
-}
 .menu-toggle {
     display: none; /* Ocultar por defecto en pantallas grandes */
 }
