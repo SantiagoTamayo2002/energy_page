@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_inventario.css' %}">
     {% endif %}
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        .ver_todo a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,8 +55,7 @@
     {% csrf_token %}
     {{ filtrar_inventario }}
     <button type="submit"> Buscar</button>
-    <button type="button"  class="ver_todo" href="{% url 'inventario' %}">Limpiar</button>
-
+    <button type="button" class="ver_todo"><a href="{% url 'inventario' %}">Limpiar</a></button>
 </form>
  <span class="current">
             Page {{ inventario_artefacto.number }} of {{ inventario_artefacto.paginator.num_pages }}.
