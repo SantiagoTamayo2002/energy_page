@@ -130,7 +130,14 @@ main {
 }
 .menu li {
     display: none;
+    color: white;
 }
+
+.estiloEnResponsive{
+    color: white;
+}
+
+
 @media screen and (max-width: 768px) {
     .menu a{
         display: none;
@@ -149,7 +156,7 @@ main {
     display: none;
     font-size: 15px;
     font-weight: 500;
-    color: #072540;
+    color: #ffffff;
     text-decoration: none;
     padding: 13px 35px;
     margin: 5px;

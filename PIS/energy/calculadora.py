@@ -22,6 +22,7 @@ def calcular_consumo_polinomio(request, dias):
     consumo = []
     for i in range(dias):
         consumo.append(round(funcion(i + 1), 2))
+
     return consumo
 
 
