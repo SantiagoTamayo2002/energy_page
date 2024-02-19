@@ -5,12 +5,17 @@
 	box-sizing: border-box;
 }
 
-body {
+body{
     min-height: 100vh;
     background: #F2F2F2;
     align-items: center;
     justify-content: center;
 }
+
+.menu-toggle{
+    display: none;
+}
+
 .menu{
     position: relative;
     width: 100%;
@@ -62,6 +67,7 @@ h1, h2 {
     font-size: 20px;
     padding-top: 8px;
 }
+
 .datosUsuario {
     text-align: left;
     background-color: #038C8C;
@@ -73,12 +79,14 @@ h1, h2 {
     font-size: 12px;
     display: flex;
 }
+
 img {
     display: flex;
     margin-right: 10px;
     width: 100px;
     height: 100%;
 }
+
 .datosUsuario .description h2 p {
     display: inline-block;
     padding-left: 20px;
@@ -98,16 +106,19 @@ i{
     cursor: pointer;
     display: inline-block;
 }
+
 p {
     margin-left: 8px;
     font-size: 15px;
     display: inline-block;
 }
+
 a{
     color: #ffffff;
 	font-size: 15px;
     text-decoration: none;
 }
+
 .fa-file-export:hover{
 	background-color: #06b1b1;
 	color: white;
@@ -115,6 +126,12 @@ a{
 				0 0 15px #06b1b1,
 				0 0 25px #06b1b1,
 				0 0 45px #06b1b1;
+}
+
+.contenedorTabla{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 table {
@@ -128,14 +145,12 @@ table {
     border-collapse: collapse;
     background-color: #023E73;
 }
+
 th{
     font-weight: bolder;
     text-align: left;
     background-color: #03588C;
-
-
 }
-
 
 td,
 th,
@@ -153,9 +168,11 @@ tr:hover td {
 				0 0 15px #0e74b3,
 				0 0 25px #0e74b3;
 }
+
 tbody tr:nth-child(odd){
     background-color: #03588C;
 }
+
 th {
     text-align: center;
     align-content: center;
