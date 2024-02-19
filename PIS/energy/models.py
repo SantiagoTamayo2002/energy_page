@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
 
+from django.contrib.auth.models import AbstractUser
 
 class Artefacto(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -75,3 +76,14 @@ class ModoClaro(models.Model):
 
     def __str__(self):
         return f'Modo Claro de {self.user}'
+
+
+class Perfil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil')
+    imagen = models.ImageField(upload_to='energy/static/media/profile_images/', default='media/default.jpg')
+
+    class Meta:
+        unique_together = ('user',)
+
+    def __str__(self):
+        return f'Perfil de {self.user}'

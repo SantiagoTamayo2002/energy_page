@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import Artefacto, Inventario, ModoClaro
+from .models import Artefacto, Inventario, ModoClaro, Perfil
 
 
 class ArtefactoForm(forms.ModelForm):
@@ -110,3 +110,26 @@ class ModoClaroForm(forms.ModelForm):
             'modo_claro': forms.CheckboxInput(),
         }
 
+
+class ActualizarUsuarioForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']
+        widgets = {
+            'username': forms.TextInput(
+                attrs={'placeholder': 'Nombre de Usuario', 'autofocus': True, 'minlength': 5, 'maxlength': 20,
+                       'pattern': '[a-zA-Z0-9]+'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Correo Electrónico', 'required': True}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Nombre', 'pattern': '[a-zA-Z ]+', 'required': True}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Apellidos', 'pattern': '[a-zA-Z ]+', 'required': True}),
+        }
+
+
+class ActualizarPerfilForm(forms.ModelForm):
+    class Meta:
+        model = Perfil
+        fields = ['imagen', 'user']
+        widgets = {
+            'imagen': forms.FileInput(attrs={'accept': 'image/*'}),
+            'user': forms.HiddenInput(),
+        }
