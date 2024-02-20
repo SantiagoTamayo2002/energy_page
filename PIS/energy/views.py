@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
@@ -10,8 +11,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from .forms import ArtefactoForm, InventarioForm, CrearUsuario, FiltrarInventarioForm, FiltrarArtefactoForm, \
-    ModoClaroForm
-from .models import Artefacto, Inventario, Informe, UbicacionUsuario, ModoClaro
+    ModoClaroForm, ActualizarUsuarioForm, ActualizarPerfilForm
+from .models import Artefacto, Inventario, Informe, UbicacionUsuario, ModoClaro, Perfil
 from django.http import HttpResponse, JsonResponse
 import datetime
 from django.contrib import messages
@@ -21,19 +22,67 @@ from django.template.loader import render_to_string
 from weasyprint.text.fonts import FontConfiguration
 from weasyprint import HTML
 from .metodoList.metodoListInforme.informe import calcular_consumo_total_mensual
-from .metodoList.metodoListInventario.inventario import guardar_inventario_artefacto, eliminar_inventario, eliminar_artefacto_inventario
+from .metodoList.metodoListInventario.inventario import guardar_inventario_artefacto, eliminar_inventario, \
+    eliminar_artefacto_inventario
 from .metodoList.metodoListArtefactos.artefacto import guardar_artefacto, eliminar_artefacto
+
 
 # Create your views here.
 def home(request):
     return render(request, 'energy/home/home.html')
+
+
 def contacto(request):
     return render(request, 'energy/home/contactos.html')
+
+
 def sobre_el_equipo(request):
     return render(request, 'energy/home/sobre_el_equipo.html')
 
 
+@login_required
+def actualizar_perfil_usuario(request):
+    if request.user.is_authenticated:
+        form = ActualizarUsuarioForm(instance=request.user)
+        perfil_form = ActualizarPerfilForm(instance=request.user.perfil)
+        if request.method == 'POST':
+            form = ActualizarUsuarioForm(request.POST, instance=request.user)
+            perfil_form = ActualizarPerfilForm(request.POST, request.FILES, instance=request.user.perfil)
+            if form.is_valid() and perfil_form.is_valid():
 
+                if None not in request.FILES and request.user.perfil.imagen is not None:
+                    print('imagen' not in request.POST)
+                    if 'imagen' not in request.POST:
+                        Perfil.objects.get(user=request.user).imagen.delete()
+
+                if request.POST['username'] == request.user.username and request.POST['email'] == request.user.email:
+                    form.save()
+                    perfil_form.save()
+                    messages.success(request, 'Perfil actualizado correctamente')
+                    return redirect('perfil')
+                elif request.POST['username'] != request.user.username or request.POST['email'] != request.user.email:
+                    if User.objects.filter(username=request.POST['username']).exists():
+                        messages.error(request, 'El nombre de usuario ya está en uso')
+                        return render(request, 'energy/home/administrar_perfil_user.html', {
+                            'form': form,
+                            'perfil_form': perfil_form,
+                            'imagen': request.user.perfil.imagen.url.replace('energy/static/', ''),
+                        })
+                    else:
+                        form.save()
+                        perfil_form.save()
+                        messages.success(request, 'Perfil actualizado correctamente')
+                        return redirect('perfil')
+            else:
+                messages.error(request, 'Error al actualizar el perfil. Verifique los campos ingresados sean '
+                                        'correctos, tambien es posible que el Usuario que esta ingresando ya exista')
+                return redirect('perfil')
+        return render(request, 'energy/home/administrar_perfil_user.html', {
+            'form': form,
+            'perfil_form': perfil_form,
+            'imagen': request.user.perfil.imagen.url.replace('energy/static/', ''),
+        })
+    return redirect('home')
 
 def pagina_usuario(request):
     if request.user.is_anonymous:
@@ -50,8 +99,11 @@ def pagina_usuario(request):
             form = ModoClaroForm(instance=modo_claro_obj)
         return render(request, 'energy/home/pagina_usuario.html', {'modo_claro_form': form})
 
+
 def cerrar_sesion(request):
     return render(request, 'energy/home/home.html', {'cS': logout(request)})
+
+
 def ubicaciones_de_usuarios(request):
     return render(request, 'energy/home/ubicaciones_de_usuarios.html')
 
@@ -71,22 +123,24 @@ def registro(request):
                     messages.warning(request, 'No se ha proporcionado la ubicación')
                     return redirect('registro')
                 else:
+                    # obtener ubicacion
+                    latitud = request.POST['latitud']
+                    longitud = request.POST['longitud']
                     user = User.objects.create_user(username=request.POST['username'],
                                                     password=request.POST['password1'], email=request.POST['email'],
                                                     first_name=request.POST['first_name'],
                                                     last_name=request.POST['last_name'])
-
-                    user.save()
-                    # obtener ubicacion
-                    latitud = request.POST['latitud']
-                    longitud = request.POST['longitud']
-
-                    # Crear una instancia de UbicacionUsuario y guardarla en la base de datos
-                    UbicacionUsuario.objects.create(
+                    user_perfil = Perfil.objects.create(user=user)
+                    # Crear una instancia de Ubicacion Usuario y guardarla en la base de datos
+                    ubucacion_usuario = UbicacionUsuario.objects.create(
                         user=user,
                         latitud=latitud,
                         longitud=longitud,
                     )
+
+                    user.save()
+                    user_perfil.save()
+                    ubucacion_usuario.save()
                     login(request, user)
                     return redirect('paginaUsuario')
             except IntegrityError:
@@ -115,6 +169,7 @@ def inicio_sesion(request):
         else:
             login(request, user)
             return redirect('paginaUsuario')
+
 
 def artefacto(request):
     if request.user.is_anonymous:
@@ -151,7 +206,8 @@ def artefacto(request):
             if all(key in request.POST for key in ['csrfmiddlewaretoken', 'nombre_artefacto']):
                 form = FiltrarArtefactoForm(request.POST)
                 if form.is_valid():
-                    artefacto = Artefacto.objects.filter(user=request.user, nombre_artefacto__icontains=request.POST['nombre_artefacto'])
+                    artefacto = Artefacto.objects.filter(user=request.user,
+                                                         nombre_artefacto__icontains=request.POST['nombre_artefacto'])
                     return render(request, 'energy/home/artefacto.html', {
                         'form': ArtefactoForm,
                         'artefacto': artefacto,
@@ -160,7 +216,7 @@ def artefacto(request):
         return render(request, 'energy/home/artefacto.html', {
             'eliminar': eliminar_artefacto,
             'ver_todo': Artefacto.objects.filter(user=request.user),
-            })
+        })
 
 
 def inventario(request):
@@ -218,7 +274,6 @@ def inventario(request):
         })
 
 
-
 def informe(request):
     print(request.user.modoclaro.modo_claro)  # Corregir esta línea
 
@@ -233,7 +288,6 @@ def informe(request):
             'consumoTotalMensual': total_mensual
         })
     return render(request, 'energy/home/informe.html')
-
 
 
 def imprimir_pdf(request):
@@ -260,7 +314,6 @@ def imprimir_pdf(request):
     return response
 
 
-
 def proyeccion(request):
     print(request.user.modoclaro.modo_claro)  # Corregir esta línea
 
@@ -268,7 +321,3 @@ def proyeccion(request):
         return redirect('home')
     if request.user.is_authenticated:
         return render(request, 'energy/home/proyeccion.html')
-
-
-
-

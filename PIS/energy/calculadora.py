@@ -161,20 +161,20 @@ def obtener_polinomio(request):
 
 def base_grafico_proyeccion(consumo, dia, request):
     if request.user.modoclaro.modo_claro:
-        backgroundColor = '#0d72b0'
+        backgroundColor = '#03588C'
         borderColor = 'black'
-        color_1DA1F2 = 'black'
-        colo_titulo = 'white'
-        color_Linea = 'black'
-        color_texto = 'white'
-        color_item = 'orange'
-        color_icono_border = 'black'
-        color_icono = 'blue'
-        color_icono_hover = 'orange'
-        colorStops_1 = '#3300FF'
-        colorStops_2 = 'red'
+        color_1DA1F2 = '#ffffff'
+        colo_titulo = '#03588C'
+        color_Linea = '#06b1b1'
+        color_texto = '#038C8C'
+        color_item = '#038C8C'
+        color_icono_border = '#06b1b1'
+        color_icono = '#03588C'
+        color_icono_hover = '#ffffff'
+        colorStops_1 = '#038C8C'
+        colorStops_2 = '#038C8C'
     else:
-        color_item = 'orange'
+        color_item = '#1DA1F2'
         backgroundColor = 'black'
         borderColor = 'black'
         color_1DA1F2 = '#1DA1F2'
@@ -186,6 +186,7 @@ def base_grafico_proyeccion(consumo, dia, request):
         color_icono_hover = 'white'
         colorStops_1 = '#3300FF'
         colorStops_2 = 'black'
+        
 
     proyeccion = {
         'tooltip': {
@@ -194,7 +195,7 @@ def base_grafico_proyeccion(consumo, dia, request):
                 'type': 'cross',
                 'label': {
                     'backgroundColor': color_1DA1F2,  # Color del fondo del tooltip
-                    'color': color_1DA1F2,  # Color del texto del tooltip
+                    'color': color_texto,  # Color del texto del tooltip
                 }
             }
         },
@@ -210,7 +211,7 @@ def base_grafico_proyeccion(consumo, dia, request):
                 },
                 'name': 'Días de consumo',  # Título del eje x
                 'nameTextStyle': {
-                    'fontSize': 12,
+                    'fontSize': 15,
                     'color': color_1DA1F2,  # Color del texto
                 },
                 'nameGap': 30,  # Espacio entre el nombre_artefacto y el eje
@@ -237,7 +238,7 @@ def base_grafico_proyeccion(consumo, dia, request):
                     'nameGap': 20, 'nameLocation': 'middle', 'boundaryGap': False,
                 },
                 'nameTextStyle': {
-                    'fontSize': 12,
+                    'fontSize': 15,
                     'color': color_1DA1F2,  # Color del texto
                 },
                 'min': 0,  # Establecer el mínimo en 0 o en otro valor adecuado
@@ -250,7 +251,7 @@ def base_grafico_proyeccion(consumo, dia, request):
             # 'text': 'Proyección de consumo',
             'textStyle': {
                 'color': colo_titulo,  # Color del texto del título
-                'fontSize': 25,  # Tamaño del texto del título
+                'fontSize': 30,  # Tamaño del texto del título
             },
         },
         'series': [
@@ -284,7 +285,7 @@ def base_grafico_proyeccion(consumo, dia, request):
                             {
                                 "offset": 1,
                                 "color": colorStops_2
-                            }
+                            },
                         ]
                     }
                 }
@@ -384,32 +385,21 @@ def base_grafico_proyeccion(consumo, dia, request):
 
 def generar_grafico_artefacto_list_mayor_consumo(request):
     if request.user.modoclaro.modo_claro:
-        backgroundColor = '#0d72b0'
-        color='black'
-        borderColor = 'black'
-        color_1DA1F2 = 'black'
-        colo_titulo = 'white'
-        color_Linea = 'black'
-        color_texto = 'white'
-        color_item = 'orange'
-        color_icono_border = 'black'
-        color_icono = 'blue'
-        color_icono_hover = 'orange'
-        colorStops_1 = '#3300FF'
-        colorStops_2 = 'red'
+        backgroundColor = '#F2F2F2'
+        color='#03588C'
+        colo_titulo = '#03588C'
+        color_Linea = '#023E73'
+        color_texto = '#023E73'
+        color_item = '#023E73'
+        color_icono_border = '#F2F2F2'
     else:
-        color_item = 'orange'
+        color='white'
+        color_item = 'white'
         backgroundColor = 'black'
-        borderColor = 'black'
-        color_1DA1F2 = '#1DA1F2'
         colo_titulo = 'white'
         color_Linea = 'white'
         color_texto = 'white'
-        color_icono_border = 'orange'
-        color_icono = 'black'
-        color_icono_hover = 'white'
-        colorStops_1 = '#3300FF'
-        colorStops_2 = 'black'
+        color_icono_border = 'white'
 
     if request.user.is_anonymous:
         return redirect('home')
@@ -438,16 +428,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
     artefactoList.sort(key=lambda x: sum(x[1:]), reverse=True)
     lista.extend(artefactoList)
     print(lista)
-    # artefactoList = [
-    #     ['Dias'] + dia,
-    #     ['Lavadora', 10, 20, 30, 40, 50, 51],
-    #     ['Nevera', 20, 30, 45, 50],
-    #     ['Televisor', 30, 40, 50, 60],
-    #     ['Computadora', 40, 50, 60],
-    #     ['Microondas', 50, 60, 70],
-    # ]
-    # print(lista)
-    # print(artefactoList)
+    
 
     grafica = {
         'max_width': '100%',
@@ -461,7 +442,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
             'margin': 0,
             'textStyle': {
                 'color': color,
-                'fontSize': 25,
+                'fontSize': 30,
                 'fontWeight': 'bold'
             },
         },
@@ -469,8 +450,8 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
             'top': 50,
             'itemGap': 10,  # Ajusta el espacio entre el circulo
             'textStyle': {
-                'color': 'white',
-                'fontSize': 14,
+                'color': colo_titulo,
+                'fontSize': 17,
             },
         },
         'tooltip': {
@@ -480,19 +461,58 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
         'dataset': {
             'source': lista,
             'properties': {
-                'pading': 60,
+                'pading': 60,   
             }
         },
-        'xAxis': {
-            'type': 'category',
-        },
-        'yAxis': {'gridIndex': 0},
+        'xAxis': [
+            { 
+                'axisTick': {
+                    'alignWithLabel': True
+                },
+                'type': 'category',
+                'axisLine': {
+                     'lineStyle': {
+                         'color': color_Linea,  # Color de la línea
+                     }
+                 },
+                'name': 'Días de consumo',  # Título del eje x
+                 'nameTextStyle': {
+                     'fontSize': 15,
+                     'color': colo_titulo,  # Color del texto
+                 },
+                'nameGap': 30,  # Espacio entre el nombre_artefacto y el eje
+                'nameLocation': 'middle',  # Ubicación del nombre_artefacto del eje ('start', 'middle', 'end')
+                'boundaryGap': False,
+            }
+        ],
+        'yAxis': [
+            { 
+                'type': 'value',
+                'axisLine': {
+                    'lineStyle': {
+                        'color': color_Linea,  # Color de la línea
+                    }
+                },
+                'axisLabel': {
+                    'color': color_item 
+                },
+                'name': 'Consumo (W/h)',  # Título del eje y
+                'textStyle': {
+                    'nameGap': 20, 'nameLocation': 'middle', 'boundaryGap': False,
+                },
+                'nameTextStyle': {
+                    'fontSize': 15,
+                    'color': color_texto,
+                },
+                'min': 0,
+                'gridIndex': 0
+            },
+        ],
         'grid': {
             'position': 'top',
             'top': '60%',  # Ajusta la posición del gráfico principal ('line')
             'bottom': '15%',  # Ajusta la posición del gráfico circular ('pie')
-        },
-
+        },  
         'series': [
             {
                 'type': 'line',
@@ -538,15 +558,15 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
                 'center': ['50%', '36%'],  # Ajusta la posición del gráfico circular ('pie')
                 'emphasis': {'focus': 'self'},
                 'label': {
-                    'color': 'white',
+                    'color': color_texto,
                     'formatter': '{b}: {@2023} ({d}%)',
                 },
                 'itemStyle': {
-                    'borderColor': 'white',
+                    'borderColor': color_icono_border,
                     'borderWidth': 1,
                 },
-
             },
         ]
     }
+
     return JsonResponse(grafica)

@@ -4,8 +4,12 @@
 <head>
     <meta charset="UTF-8">
     {% load static %}
+    {% if  request.user.modoclaro.modo_claro %}
+    <link rel="stylesheet" href="{% static 'energy/css/modo_claro/mc_informe2.css' %}">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_informe.css' %}">
+    {% endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'energy/css/modo_oscuro/mo_informe.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500&family=Rosarivo:ital@0;1&display=swap"
@@ -41,7 +45,6 @@
     </div>
 
     <div class="contenedorTabla">
-        <h1 class="datosConsumo">INFORME CONSUMO POR MES</h1>
         <table>
             <tr>
                 <th>FECHA</th>
@@ -61,7 +64,7 @@
     </div>
 
     <a href="{% url 'imprimirPDF' %}" class="export-button">
-        <i class="fas fa-file-export"></i> Exportar el informe
+        <i class="fas fa-file-export"><p>Exportar el informe</p></i> 
     </a>
 
     <footer>
