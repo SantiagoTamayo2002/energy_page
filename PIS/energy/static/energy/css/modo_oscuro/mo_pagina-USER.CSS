@@ -184,4 +184,102 @@ las etiquetas con otros colores*/
 }   
 
 
+@media screen and (max-width: 680px) {
+    .information div{
+        margin: 5px 22px;
+    }
+    .secondaries{
+        margin: 10px 45px;
+        width: auto;
+    }
 
+    .consumo_general{
+        width: 202px;
+        height: 150px;
+
+    }
+}   
+
+
+@media screen and (max-width: 580px) {
+    .information div{
+        margin: 5px 22px;
+    }
+    .secondaries{
+        margin: 10px 45px;
+        width: auto;
+    }
+
+    .consumo_general{
+        width: 202px;
+        height: 150px;
+
+    }
+}   
+
+@media screen and (max-width: 480px) {
+    .information div{
+        margin: 5px 22px;
+    }
+    .secondaries{
+        margin: 10px 45px;
+        width: auto;
+    }
+
+    .consumo_general{
+        width: 202px;
+        height: 150px;
+
+    }
+}   
+
+
+@media screen and (max-width: 380px) {
+    .information div{
+        margin: 5px 22px;
+    }
+    .secondaries{
+        margin: 10px 45px;
+        width: auto;
+    }
+
+    .consumo_general{
+        width: 202px;
+        height: 150px;
+
+    }
+}   
+
+@media screen and (max-width: 280px) {
+    .information div{
+        margin: 5px 22px;
+    }
+    .secondaries{
+        margin: 10px 45px;
+        width: auto;
+    }
+
+    .consumo_general{
+        width: 202px;
+        height: 150px;
+
+    }
+}   
+
+
+
+@media screen and (max-width: 180px) {
+    .information div{
+        margin: 5px 22px;
+    }
+    .secondaries{
+        margin: 10px 45px;
+        width: auto;
+    }
+
+    .consumo_general{
+        width: 202px;
+        height: 150px;
+
+    }
+}   
