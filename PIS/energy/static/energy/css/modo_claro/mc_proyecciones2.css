@@ -253,6 +253,48 @@ footer {
     }
   }
 
+  @media only screen and (max-width: 758px) {
+    .menu li {
+      display: block;
+    }
+  }
+
+  @media only screen and (max-width: 748px) {
+    .menu li {
+      display: block;
+    }
+  }
+
+  @media only screen and (max-width: 738px) {
+    .menu li {
+      display: block;
+    }
+  }
+
+  @media only screen and (max-width: 728px) {
+    .menu li {
+      display: block;
+    }
+  }
+
+  @media only screen and (max-width: 718px) {
+    .menu li {
+      display: block;
+    }
+  }
+
+  @media only screen and (max-width: 708px) {
+    .menu li {
+      display: block;
+    }
+  }
+
+  @media only screen and (max-width: 698px) {
+    .menu li {
+      display: block;
+    }
+  }
+
  .opcionesLista li{
     list-style-type: none; 
     margin-bottom: 25px; 
@@ -274,6 +316,8 @@ footer {
 }
 
 /*---------CSS PARA LOS BOTÓNES DE LA LISTA GENERADA EN PANTALLAS PEQUEÑAS----------*/
+
+
 
 .opcionesLista li {
     position: relative;
