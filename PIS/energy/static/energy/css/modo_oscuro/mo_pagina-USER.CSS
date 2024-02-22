@@ -283,3 +283,19 @@ las etiquetas con otros colores*/
 
     }
 }   
+
+@media screen and (max-width: 250px) {
+    .information div{
+        margin: 5px 22px;
+    }
+    .secondaries{
+        margin: 10px 45px;
+        width: auto;
+    }
+
+    .consumo_general{
+        width: 202px;
+        height: 150px;
+
+    }
+}   
