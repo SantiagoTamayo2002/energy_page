@@ -1,8 +1,10 @@
+# Importar las configuraciones del proyecto Django y los módulos necesarios
 from django.conf import settings
 from django.contrib import admin
 from rest_framework import routers
 from django.urls import path, include
 
+# Importar vistas y funciones desde la aplicación energy
 from energy.metodoList.metodoListInventario.inventario import eliminar_inventario, eliminar_artefacto_inventario
 from energy.metodoList.metodoListArtefactos.artefacto import eliminar_artefacto
 from energy.views import home, registro, contacto, sobre_el_equipo, pagina_usuario, inicio_sesion, cerrar_sesion, \
@@ -15,7 +17,7 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 
 
-
+# Definir un enrutador para las vistas basadas en ViewSet de Django REST Framework
 router = routers.DefaultRouter()
 router.register(r'Usuarios', UserViewSet, basename='user')
 router.register(r'Artefactos', ArtefactoViewSet, basename='artefacto')
@@ -24,10 +26,10 @@ router.register(r'Ubicaciones_Usuarios', UbicacionUsuarioViewSet, basename='ubic
 
 
 
-
+# Definir las URL del proyecto Django
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    # URLs para las vistas de la aplicación energy
     path('', home, name="home"),
     path('api/', include(router.urls)),
     path('api_leaflet/ubicaciones', api_leaflet, name="api_leaflet"),
