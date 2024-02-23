@@ -7,7 +7,7 @@
     {% if  request.user.modoclaro.modo_claro %}
     <link rel="stylesheet" href="{% static 'energy/css/modo_claro/mc_informe2.css' %}">
     {% else %}
-    <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_informe2.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_informe.css' %}">
     {% endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,16 +25,48 @@
         <a href="{% url 'inventario' %}">Inventario</a>
         <a href="{% url 'proyecciones' %}">Ver Consumo</a>
         <a href="{% url 'cerrarSesion' %}">Cerrar Sesión</a>
+        <li id="mostrarLista"> Mostrar Menú </li>
     </nav>
 
-    <!-- Botón Hamburguesa -->
-    <div class="menu-toggle">
-        <button class="hamburger" aria-label="Toggle Menu">
-            <span class="line"></span>
-            <span class="line"></span>
-            <span class="line"></span>
-        </button>
+    <div id="listaOculta" class="opcionesLista" style="display: none;">
+        <ul id="listaNumeros">
+            <li><a href="{% url 'paginaUsuario' %}">Inicio</a></li>
+            <li><a href="{% url 'inventario' %}">Inventario</a></li>
+            <li><a href="{% url 'proyecciones' %}">Ver Consumo</a></li>
+            <li><a href="{% url 'cerrarSesion' %}">Cerrar Sesión</a></li>
+            
+        </ul>
     </div>
+
+
+    <!--Este script es para mostrar y ocultar el menu en pantallas pequeñas-->
+        <!--no quitar-->
+
+    <script>
+        document.getElementById('mostrarLista').addEventListener('click', function() {
+        var lista = document.getElementById('listaOculta');
+        if (lista.style.display === 'none') {
+            lista.style.display = 'block';
+            
+            
+            
+        } else {
+            lista.style.display = 'none';
+            
+        }
+        });
+
+
+        function hideListOnLargeScreen() {
+        var lista = document.getElementById('listaOculta');
+            if (window.innerWidth > 768) {
+                lista.style.display = 'none';
+            }
+        }
+
+        hideListOnLargeScreen();
+        window.addEventListener('resize', hideListOnLargeScreen);
+    </script>
 
     <div class="datosUsuario">
         <img src="{% static 'energy/img/FORANIX-sinFondo2.png' %}" alt="">

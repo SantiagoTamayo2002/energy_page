@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 
 from django.contrib.auth.models import AbstractUser
-
+# Definición del modelo Artefacto
 class Artefacto(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     nombre_artefacto = models.CharField(max_length=20)
@@ -14,7 +14,7 @@ class Artefacto(models.Model):
     def __str__(self):
         return f"{self.nombre_artefacto}"
 
-
+# Definición del modelo Inventario
 class Inventario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     artefacto = models.ForeignKey(Artefacto, on_delete=models.SET_NULL, null=True, related_name="artefacto_list")
@@ -25,17 +25,16 @@ class Inventario(models.Model):
     def __str__(self):
         return f'Inventario {self.user}'
 
-
+# Definición del modelo Informe
 class Informe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
     inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, null=True, related_name="inventario_list")
-
     dia = models.DateField(
         auto_now_add=True)  # Cambiado a auto_now_add para obtener la fecha actual en la creación del objeto
     consumo_total = models.FloatField(default=0)  # Valor predeterminado actualizado a 0
     consumo_total_mensual = models.FloatField(default=0)
 
+    # Método de clase para actualizar el consumo diario
     @classmethod
     def actualizar_consumo_diario(cls, user, dia, consumo_total_mensual):
         # Obtener la suma total de consumoArticulo para el usuario, inventario y día específicos
@@ -60,7 +59,7 @@ class Informe(models.Model):
     def __str__(self):
         return f'Consumo Diario {self.user}: {self.dia}'
 
-
+# Definición del modelo UbicacionUsuario
 class UbicacionUsuario(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     latitud = models.FloatField()
@@ -69,7 +68,7 @@ class UbicacionUsuario(models.Model):
     def __str__(self):
         return f'Ubicación de {self.user}'
 
-
+# Definición del modelo ModoClaro
 class ModoClaro(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     modo_claro = models.BooleanField(default=False)
@@ -77,7 +76,7 @@ class ModoClaro(models.Model):
     def __str__(self):
         return f'Modo Claro de {self.user}'
 
-
+# Definición del modelo Perfil
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil')
     imagen = models.ImageField(upload_to='energy/static/media/profile_images/', default='media/default.jpg')

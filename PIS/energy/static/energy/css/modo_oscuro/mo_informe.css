@@ -1,27 +1,27 @@
+/* Estilos generales */
 * {
-	font-family: 'Livvic', Courier, monospace;
-    margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-} 
+    font-family: 'Livvic', Courier, monospace;
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+}
 
-body{
+body {
     min-height: 100vh;
-    background: #F2F2F2;
-    align-items: center;
-    justify-content: center;
+    background: #050d18;
 }
 
 .menu-toggle{
     display: none;
+    border: red 3px solid;
 }
 
 .menu{
     position: relative;
     width: 100%;
     height: 50px;
-    background: #072540;
-    border-radius:0px;
+    background: #222222ab;
+    border-radius:8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +33,7 @@ body{
     display: inline-block;
     font-size: 15px;
     font-weight: 500;
-    color: #DFF6FF;
+    color: #1da0f2c2;
     text-decoration: none;
     padding: 13px 35px;
     margin: 5px;
@@ -42,7 +42,7 @@ body{
 }
 .menu a::after {
     content: '';
-    background: linear-gradient(10deg, #256D85, #038C8C);
+    background: linear-gradient(10deg, #222222ab, #1da0f2c2);
     width: 100%;
     height: 100%;
     border-radius: 8px;
@@ -55,7 +55,7 @@ body{
     transition: top .5s, opacity .5s;
 }
 .menu a:hover {
-    color: #ffffff;
+    color: #fff;
 }
 .menu a:hover::after{
     top: 50%;
@@ -152,7 +152,6 @@ body{
 
 
 
-
 h1, h2 {
     color: #ffffff;
     font-size: 20px;
@@ -161,15 +160,16 @@ h1, h2 {
 
 .datosUsuario {
     text-align: left;
-    background-color: #038C8C;
+    background-color: #1da1f2;
     opacity: 0.8;
-    margin:0 0 0 0px;
     width: 100%;
     padding: 10px;
     border-radius: 0 0 30px 30px;
     font-size: 12px;
     display: flex;
+    margin-top: 0px;
 }
+
 
 img {
     display: flex;
@@ -177,7 +177,6 @@ img {
     width: 100px;
     height: 100%;
 }
-
 .datosUsuario .description h2 p {
     display: inline-block;
     padding-left: 20px;
@@ -190,33 +189,30 @@ i{
     width: 220px;
 	border-radius: 10%;
 	padding: 15px;
-    background-color: #06b1b1;
+    background-color: #1da1f2;
 	box-shadow: 0px 10px 15px #0a324ac2;
 	transition: .3s ease;
     display: inline-block;
     cursor: pointer;
     display: inline-block;
 }
-
 p {
     margin-left: 8px;
     font-size: 15px;
     display: inline-block;
 }
-
 a{
     color: #ffffff;
 	font-size: 15px;
     text-decoration: none;
 }
-
 .fa-file-export:hover{
-	background-color: #06b1b1;
+	background-color: #1da1f2;
 	color: white;
-	box-shadow: 0 0 5px #06b1b1,
-				0 0 15px #06b1b1,
-				0 0 25px #06b1b1,
-				0 0 45px #06b1b1;
+	box-shadow: 0 0 5px #1da1f2,
+				0 0 15px #1da1f2,
+				0 0 25px #1da1f2,
+				0 0 45px #1da1f2;
 }
 
 .contenedorTabla{
@@ -225,89 +221,50 @@ a{
     margin-top: 30px;
 }
 
+
 table {
     font-family: 'Livvic', Courier, monospace;
+    color: white;
     border-collapse: collapse;
-    width: 90%;
-    margin: 20px;
-    font-size: 15px;
-    text-align: left;
-    color: #ffffff;
-    border-collapse: collapse;
-    background-color: #023E73;
+    width: 100%;
+    margin: 20px auto;
 }
 
-th{
+th {
     font-weight: bolder;
     text-align: left;
-    background-color: #03588C;
+    background-color: #0a324ac2;
 }
 
 td,
 th,
-
+.datosConsumo,
 tr {
-    border: 2px solid #03588C; /*lineas de la tabla*/
+    border: 2px solid #1da0f2c2;
     text-align: center;
     padding: 8px;
 }
 
+.datosConsumo {
+    color: #fff;
+    background-color: #1da1f2;
+    opacity: 0.8;
+    font-size: 20px;
+    width: 100%;
+    margin: 20px auto;
+}
+
 tr:hover td {
-    background-color: #0e74b3;
-    box-shadow: 0 0 5px #0e74b3,
-				0 0 10px #0e74b3,
-				0 0 15px #0e74b3,
-				0 0 25px #0e74b3;
+    background-color: #1da1f2;
+    box-shadow: 0 0 5px #1da1f2, 0 0 10px #1da1f2, 0 0 15px #1da1f2, 0 0 25px #1da1f2;
 }
 
-tbody tr:nth-child(odd){
-    background-color: #03588C;
+tbody tr:nth-child(odd) {
+    background-color: #0a324ac2;
 }
-
-th {
-    text-align: center;
-    align-content: center;
-    padding: 10px;
-}
-
-td {
-    text-align: center;
-    padding: 10px;
-}
-
-/* footer {
-    background-color: #1DA1F2;
-    padding: 10px;
-    text-align: center;
-} */
-/* Estilos específicos para la impresión */
-@media print {
-    body{
-        background-color: rgba(255, 255, 255, 0);
-    }
-    a,i {
-        display: none;
-        /* Oculta los enlaces al imprimir */
-    }
-
-    button {
-        display: none;
-        /* Oculta los botones al imprimir */
-    }
-    .navegar{
-        display: none;
-    }
-    tbody tr:nth-child(odd){
-    color: white;
-    }
-    tbody tr:nth-child(2n){
-    color: black;
-     }
-}
-
 /*-------------------------------FOOTER---------------------------------*/
 footer {
-    background-color: #03588C;
+    background-color: #1da1f2;
     color: #ffffff;
     padding: 20px; /* Incrementa el espacio interno para mejorar la legibilidad */
     text-align: center;
@@ -337,5 +294,132 @@ footer {
 }
 
 .contactos a:hover {
-    color:#06b1b1;
+    color:black;
 }
+
+.menu-toggle {
+    display: none; /* Ocultar por defecto en pantallas grandes */
+}
+/* Estilos para el botón hamburguesa */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.line {
+    width: 100%;
+    height: 3px;
+    background: #fff; /* Color blanco */
+    transition: all 0.3s ease;
+}
+
+/* Rotación de líneas al abrir/cerrar */
+.menu-open .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-open .line:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-open .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* Media queries para pantallas pequeñas */
+@media only screen and (max-width: 768px) {
+    .datosUsuario {
+        padding: 10px; /* Reducir el padding en pantallas pequeñas */
+    }
+
+    .datosUsuario img {
+        width: 80px; /* Reducir el tamaño de la imagen en pantallas pequeñas */
+    }
+
+    .datosUsuario .description h2 p {
+        padding-left: 10px; /* Ajustar el espacio a la izquierda del párrafo en pantallas pequeñas */
+    }
+
+    i {
+        font-size: 16px; /* Reducir el tamaño de fuente de los iconos en pantallas pequeñas */
+        padding: 8px; /* Reducir el padding de los iconos en pantallas pequeñas */
+    }
+
+    table {
+        margin: 10px auto; /* Reducir el margen de la tabla en pantallas pequeñas */
+    }
+
+    th,
+    td {
+        padding: 6px; /* Reducir el padding de las celdas en pantallas pequeñas */
+    }
+
+    .datosConsumo {
+        font-size: 16px; /* Ajustar el tamaño de fuente en pantallas pequeñas */
+        margin: 10px auto; /* Reducir el margen de datos de consumo en pantallas pequeñas */
+    }
+
+    footer {
+        padding: 5px; /* Reducir el padding del pie de página en pantallas pequeñas */
+        font-size: 12px; /* Reducir el tamaño de fuente del footer */
+    }
+
+footer .export-button {
+font-size: 12px; /* Reducir el tamaño de fuente del botón */
+padding: 5px 10px; /* Reducir el padding del botón */
+}
+    .contactos a {
+        font-size: 10px; /* Ajustar el tamaño de fuente de los enlaces de contacto en pantallas pequeñas */
+    }
+
+    .contactos li {
+        margin: 0 5px; /* Ajustar el margen entre los elementos de contacto en pantallas pequeñas */
+    }
+    .menu {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto; /* Permite desplazamiento horizontal si el contenido es demasiado ancho */
+        white-space: nowrap; /* Evita que los elementos del menú se envuelvan */
+    }
+    .menu-item {
+        display: inline-block; /* Muestra los elementos del menú en línea */
+        margin-right: 10px; /* Espacio entre elementos del menú */
+        margin-bottom: 0; /* Asegura que no haya margen inferior */
+    }
+}
+ /* Ajustar margen derecho del botón de inicio */
+ .menu a:first-child {
+    margin-right: 20px; /* Por ejemplo, ajusta este valor según lo necesites */
+}
+
+    /* Ajuste para el div de información de usuario */
+    .datosUsuario {
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Ajuste para las tablas */
+    table {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    /* Ajuste para el footer */
+    footer {
+        width: 100%;
+        max-width: 100%;
+    }
+    .datosConsumo, footer {
+        margin-top: 20px;
+    }
