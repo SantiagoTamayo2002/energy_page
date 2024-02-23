@@ -1,5 +1,5 @@
 import json
-
+# Importaciones de Django
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
@@ -10,6 +10,7 @@ from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
+# Importaciones de la aplicación energy
 from .forms import ArtefactoForm, InventarioForm, CrearUsuario, FiltrarInventarioForm, FiltrarArtefactoForm, \
     ModoClaroForm, ActualizarUsuarioForm, ActualizarPerfilForm
 from .models import Artefacto, Inventario, Informe, UbicacionUsuario, ModoClaro, Perfil
@@ -31,15 +32,15 @@ from .metodoList.metodoListArtefactos.artefacto import guardar_artefacto, elimin
 def home(request):
     return render(request, 'energy/home/home.html')
 
-
+# Vista de la página de contacto
 def contacto(request):
     return render(request, 'energy/home/contactos.html')
 
-
+# Vista de la página sobre el equipo
 def sobre_el_equipo(request):
     return render(request, 'energy/home/sobre_el_equipo.html')
 
-
+# Vista para actualizar el perfil del usuario
 @login_required
 def actualizar_perfil_usuario(request):
     if request.user.is_authenticated:
@@ -84,6 +85,7 @@ def actualizar_perfil_usuario(request):
         })
     return redirect('home')
 
+# Vista de la página del usuario
 def pagina_usuario(request):
     if request.user.is_anonymous:
         return redirect('home')
@@ -99,15 +101,15 @@ def pagina_usuario(request):
             form = ModoClaroForm(instance=modo_claro_obj)
         return render(request, 'energy/home/pagina_usuario.html', {'modo_claro_form': form})
 
-
+# Vista para cerrar sesión
 def cerrar_sesion(request):
     return render(request, 'energy/home/home.html', {'cS': logout(request)})
 
-
+# Vista de la página de ubicaciones de usuarios
 def ubicaciones_de_usuarios(request):
     return render(request, 'energy/home/ubicaciones_de_usuarios.html')
 
-
+# Vista para el registro de usuarios
 def registro(request):
     if request.user.is_authenticated:
         return redirect('paginaUsuario')
@@ -153,7 +155,7 @@ def registro(request):
             'form': CrearUsuario,
         })
 
-
+# Vista para iniciar sesión
 def inicio_sesion(request):
     if request.user.is_authenticated:
         return redirect('paginaUsuario')

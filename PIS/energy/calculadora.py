@@ -5,10 +5,12 @@ from django.shortcuts import render, redirect
 import numpy as np
 from .models import Inventario, Informe, UbicacionUsuario
 
-
+# Vista para generar datos JSON utilizados en Leaflet
 def api_leaflet(request):
+    # Obtener todas las ubicaciones de usuario
     ubicaciones = UbicacionUsuario.objects.all()
     data = []
+    # Construir datos en formato JSON
     for ubicacion in ubicaciones:
         data.append({
             'latitud': ubicacion.latitud,
@@ -16,7 +18,7 @@ def api_leaflet(request):
         })
     return JsonResponse(data, safe=False)
 
-
+# Función para calcular el consumo basado en un polinomio
 def calcular_consumo_polinomio(request, dias):
     resultado_actual = obtener_polinomio(request)
     funcion = resultado_actual['funcion_polinomio']
@@ -28,11 +30,13 @@ def calcular_consumo_polinomio(request, dias):
 
 
 #############################No Topar
-
+# Función para generar un gráfico de proyección de consumo actual
 def generar_grafico_proyeccion_consumo_actual(request):
+    # Se verifica si el usuario está autenticado
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
+        # Obtener datos de consumo
         consumo = []
         dia = []
         counter = 0
@@ -40,14 +44,16 @@ def generar_grafico_proyeccion_consumo_actual(request):
             consumo.append(i.consumo_total)
             dia.append(counter + 1)
             counter += 1
-
+        # Generar gráfico
         return base_grafico_proyeccion(consumo, dia, request)
     else:
         return render(request, 'energy/home/pagina_usuario.html')
 
 
 ##################
+    # Función para generar un gráfico de proyección semanal
 def generar_grafico_proyeccion_semanal(request):
+    # Se verifica si el usuario está autenticado
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
@@ -56,8 +62,9 @@ def generar_grafico_proyeccion_semanal(request):
 
         return base_grafico_proyeccion(consumo, dias, request)
 
-
+# Función para generar un gráfico de proyección mensual
 def generar_grafico_proyeccion_mensual(request):
+    # Se verifica si el usuario está autenticado
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
@@ -70,7 +77,7 @@ def generar_grafico_proyeccion_mensual(request):
             counter += 1
         return base_grafico_proyeccion(consumo, dias, request)
 
-
+# Función para obtener el polinomio de consumo
 def obtener_polinomio(request):
     # Inicialización de variables
     consumo = []
@@ -158,8 +165,9 @@ def obtener_polinomio(request):
 
     return resultado_actual
 
-
+# Función base para generar gráfico de proyección
 def base_grafico_proyeccion(consumo, dia, request):
+    # Configuración de colores basada en el modo claro o oscuro
     if request.user.modoclaro.modo_claro:
         backgroundColor = '#03588C'
         borderColor = 'black'
