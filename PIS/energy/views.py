@@ -22,11 +22,11 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint.text.fonts import FontConfiguration
 from weasyprint import HTML
-from .metodoList.metodoListInforme.informe import calcular_consumo_total_mensual
+from .metodoList.metodoListInforme.informe import calcular_consumo_total_mensual, obtener_consumo_ultima_semana
 from .metodoList.metodoListInventario.inventario import guardar_inventario_artefacto, eliminar_inventario, \
     eliminar_artefacto_inventario
 from .metodoList.metodoListArtefactos.artefacto import guardar_artefacto, eliminar_artefacto
-
+from .calculadora import enviar_correo
 
 # Create your views here.
 def home(request):
@@ -90,6 +90,9 @@ def pagina_usuario(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
+        if obtener_consumo_ultima_semana(request.user) > 219.25:
+            enviar_correo(request, obtener_consumo_ultima_semana(request.user))
+
         modo_claro_obj, created = ModoClaro.objects.get_or_create(user=request.user)
         print(request.user.modoclaro.modo_claro)  # Corregir esta línea
         if request.method == 'POST':
