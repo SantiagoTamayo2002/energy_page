@@ -90,8 +90,10 @@ def pagina_usuario(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
-        if obtener_consumo_ultima_semana(request.user) > 219.25:
-            enviar_correo(request, obtener_consumo_ultima_semana(request.user))
+        consumo_ultima_semana = obtener_consumo_ultima_semana(request.user)
+        print(consumo_ultima_semana)
+        if consumo_ultima_semana > 30:
+            enviar_correo(request, consumo_ultima_semana)
 
         modo_claro_obj, created = ModoClaro.objects.get_or_create(user=request.user)
         print(request.user.modoclaro.modo_claro)  # Corregir esta línea
