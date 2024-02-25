@@ -40,13 +40,19 @@
             </div>
             <div class="nav">
                 <ul class="listado">
-                    <li class="apoyo"><a href="{% url 'cerrarSesion' %}">Salir<i class="fa-solid fa-right-from-bracket"></i></a></li>
-                    <li class="switch">
-                        <i class="fa-solid fa-sun"></i>
-                        <!-- Botón visible para cambiar el modo claro -->
+                    <li class="btnModClaro"> <!-- Botón visible para cambiar el modo claro -->
                         <button type="button" id="cambiarModo"></button>
-
-                        <i class="fa-solid fa-moon"></i>
+                    </li>
+                    <li>
+                        <form id="modoClaroForm" method="post" style="display: none;">
+                            {% csrf_token %}
+                            {{ modo_claro_form }}
+                            <button type="submit">Guardar Modo Claro</button>
+                        </form>
+                    
+                        <button class="perfil">
+                            <a href="{% url 'perfil' %}">Perfil</a>
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -76,15 +82,6 @@
 
 
     <!-- Formulario oculto para cambiar el modo claro -->
-    <form id="modoClaroForm" method="post" style="display: none;">
-        {% csrf_token %}
-        {{ modo_claro_form }}
-        <button type="submit">Guardar Modo Claro</button>
-    </form>
-
-    <button>
-        <a href="{% url 'perfil' %}">perfil</a>
-    </button>
     <div id="menu">
         <div class="contenedor_botones">
             <div class="loco_1">
