@@ -43,11 +43,6 @@ body{
     margin-right: 20px;
 }
 
-.nav ul li :hover{
-    color: #F2F2F2;
-    transition: 0.2s;
-}
-
 .nav ul li a{
     text-decoration: none;
     color: #F2F2F2;
@@ -169,7 +164,7 @@ body{
 .btnModClaro{
     display: flex;
     background-color: #101010;
-    color: #101010;
+    color: #072540;
     margin-right: 10px;
 }
 
