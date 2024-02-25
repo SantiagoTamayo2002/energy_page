@@ -92,7 +92,7 @@ def obtener_polinomio(request):
     funcion_polinomio = sum(coeficiente[i] * (variable ** i) for i in range(len(coeficiente)))
     fx = sym.lambdify(variable, funcion_polinomio)
     # Obtener datos de consumo y días
-    for i in Informe.objects.filter(user=request.user):
+    for i in Informe.objects.filter(user=request.user): #filtramos todos los objetos del usuario, e ikteramos en ellos
         consumo.append(i.consumo_total)
         dias.append(counter + 1)
         counter += 1
@@ -106,11 +106,11 @@ def obtener_polinomio(request):
         consumo = np.array(consumo)
 
         # Llenar matriz A y vector B para el sistema de ecuaciones
-        k = grado_del_polinomio + 1
+        k = grado_del_polinomio + 1 
         MatrizA = np.zeros(shape=(k, k), dtype=float)
         vectorB = np.zeros(k, dtype=float)
 
-        for i in range(k):
+        for i in range(k):#esto realiza una sola iteracion
             for j in range(i + 1):
                 coeficiente = np.sum(dias ** (i + j))
                 MatrizA[i, j] = coeficiente
