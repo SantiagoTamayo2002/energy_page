@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 import numpy as np
 from .models import Inventario, Informe, UbicacionUsuario
+from django.core.mail import send_mail
+
 
 # Vista para generar datos JSON utilizados en Leaflet
 def api_leaflet(request):
@@ -17,6 +19,18 @@ def api_leaflet(request):
             'longitud': ubicacion.longitud,
         })
     return JsonResponse(data, safe=False)
+
+
+# enviar correo
+def enviar_correo(request, consumo):
+    send_mail(
+        'Notificación de consumo',
+        'Hola, su consumo ha superado el promedio de consumo standard de los últimos 7 días, el cual fue de, '
+        f'{consumo} Kwh por favor revise su consumo. Atentamente, Foranix2023',
+        'foranix2023@gmail.com',
+        [f'{request.user.email}'],
+        fail_silently=False,
+    )
 
 # Función para calcular el consumo basado en un polinomio
 def calcular_consumo_polinomio(request, dias):
