@@ -64,7 +64,7 @@ def actualizar_perfil_usuario(request):
                 elif request.POST['username'] != request.user.username or request.POST['email'] != request.user.email:
                     if User.objects.filter(username=request.POST['username']).exists():
                         messages.error(request, 'El nombre de usuario ya está en uso')
-                        return render(request, 'energy/home/administrar_perfil_user.html', {
+                        return render(request, 'energy/home/actualizar_perfil_usuario.html', {
                             'form': form,
                             'perfil_form': perfil_form,
                             'imagen': request.user.perfil.imagen.url.replace('energy/static/', ''),
@@ -78,7 +78,7 @@ def actualizar_perfil_usuario(request):
                 messages.error(request, 'Error al actualizar el perfil. Verifique los campos ingresados sean '
                                         'correctos, tambien es posible que el Usuario que esta ingresando ya exista')
                 return redirect('perfil')
-        return render(request, 'energy/home/administrar_perfil_user.html', {
+        return render(request, 'energy/home/actualizar_perfil_usuario.html', {
             'form': form,
             'perfil_form': perfil_form,
             'imagen': request.user.perfil.imagen.url.replace('energy/static/', ''),
