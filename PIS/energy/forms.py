@@ -13,25 +13,29 @@ class ArtefactoForm(forms.ModelForm):
         widgets = {
             'nombre_artefacto': forms.TextInput(
                 attrs={
-                    'placeholder': '  nombre del Artefacto'
+                    'placeholder': '  nombre del Artefacto',
+
                 }
             ),
             'consumo_wh': forms.NumberInput(
                 attrs={
-                    'placeholder': 'Consumo en Whatts cada hora'
+                    'placeholder': 'Consumo en Whatts cada hora',
+                    'min': '1',
+
                 }
             ),
             'horas_de_uso': forms.NumberInput(
                 attrs={
-                    'placeholder': 'Horas de uso del artefacto'
+                    'placeholder': 'Horas de uso del artefacto',
+                    'min': '1',
                 }
             )
         }
         # Definir etiquetas personalizadas para los campos
         labels = {
             'nombre_artefacto': 'Nombre del Artefacto',
-            'consumo_wh':       'Consumo en W/h      ',
-            'horas_de_uso':     'Horas de uso        ',
+            'consumo_wh': 'Consumo en W/h      ',
+            'horas_de_uso': 'Horas de uso        ',
         }
 
 
@@ -55,8 +59,10 @@ class InventarioForm(forms.ModelForm):
         labels = {
             'artefacto': 'Artefacto',
             'cantidad_artefacto': 'Cantidad de Artefacto',
+            'min': '1',
         }
         # Filtrar el conjunto de datos basado en el usuario pasado como argumento
+
     def __init__(self, user, *args, **kwargs):
         super(InventarioForm, self).__init__(*args, **kwargs)
         self.fields['artefacto'].queryset = Artefacto.objects.filter(user=user)
@@ -75,16 +81,17 @@ class CrearUsuario(UserCreationForm):
         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
         widgets = {
             'username': forms.TextInput(
-                attrs={'placeholder': 'Nombre de Usuario', 'autofocus': True, 'minlength': 5, 'maxlength': 20,
+                attrs={'placeholder': 'Nombre de Usuario', 'minlength': 5, 'maxlength': 20,
                        'pattern': '[a-zA-Z0-9]+'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Correo Electrónico', 'required': True}),
-            'first_name': forms.TextInput(attrs={'placeholder': 'Nombre', 'pattern': '[a-zA-Z ]+', 'required': True}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Nombres', 'pattern': '[a-zA-Z ]+', 'required': True}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Apellidos', 'pattern': '[a-zA-Z ]+', 'required': True}),
             'password1': forms.PasswordInput(
                 attrs={'placeholder': 'Contraseña', 'minlength': 8, 'maxlength': 20, 'required': True}),
             'password2': forms.PasswordInput(
                 attrs={'placeholder': 'Confirmar Contraseña', 'minlength': 8, 'maxlength': 20, 'required': True}),
         }
+
 
 
 class FiltrarArtefactoForm(forms.ModelForm):
