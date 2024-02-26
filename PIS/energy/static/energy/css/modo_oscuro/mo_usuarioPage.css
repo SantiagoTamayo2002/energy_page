@@ -49,13 +49,6 @@ body{
     margin-right: 10px;
 }
 
-.nav ul li a{
-    text-decoration: none;
-    color: #d3e2ff;
-    font-size: 30px;
-    font-weight: 600;
-}
-
 .nav ul li a i{
     margin-left: 10px;
 }
@@ -155,6 +148,13 @@ body{
 
 
 /* boton desplegable para el usuario */
+
+.nav ul li a{
+    text-decoration: none;
+    color: #d3e2ff;
+    font-weight: 600;
+}
+
 .listado{
     list-style: none;
 }
@@ -184,7 +184,7 @@ body{
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    transform: translateX(-8%);
+    transform: translateX(-5%);
     padding: 8px;
 }
 
@@ -196,7 +196,7 @@ body{
     border: none;
     text-align: center;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 #cambiarModo{
@@ -204,11 +204,13 @@ body{
     font-family: 'Livvic', sans-serif;
     color: #d3e2ff;
     border: none;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 600;
-    margin-left: 40px;
+    margin-left: 50px;
 
 }
+
+
 
 
 /*aqui termina jijijijij*/

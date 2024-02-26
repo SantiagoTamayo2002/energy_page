@@ -42,12 +42,6 @@ body{
     margin-right: 20px;
 }
 
-.nav ul li a{
-    text-decoration: none;
-    font-size: 30px;
-    font-weight: 600;
-}
-
 .nav ul li a i{
     margin-left: 10px;
 }
@@ -192,7 +186,7 @@ body{
     border: none;
     text-align: center;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 20px;
     color: #F2F2F2;
 }
 
@@ -201,10 +195,16 @@ body{
     font-family: 'Livvic', sans-serif;
     color: #f2f2f2;
     border: none;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 600;
-    margin-left: 40px;
+    margin-left: 50px;
 
+}
+
+
+.nav ul li a{
+    text-decoration: none;
+    font-weight: 600;
 }
 
 /*aqui termina jijijijij*/
