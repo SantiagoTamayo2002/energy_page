@@ -4,17 +4,19 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
 body {
     min-height: 100vh;
-    background-color: #F2F2F2;
-    color: #FFFFFF;
+    background-color: #000000;
+    color: white;
 }
+
 .menu{
     position: relative;
     width: 100%;
     height: 50px;
-    background: #072540;
-    border-radius:0px;
+    background: #222222ab;
+    border-radius:8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +28,7 @@ body {
     display: inline-block;
     font-size: 15px;
     font-weight: 500;
-    color: #DFF6FF;
+    color: #1da0f2c2;
     text-decoration: none;
     padding: 13px 35px;
     margin: 5px;
@@ -35,7 +37,7 @@ body {
 }
 .menu a::after {
     content: '';
-    background: linear-gradient(10deg, #256D85, #038C8C);
+    background: linear-gradient(10deg, #222222ab, #1da0f2c2);
     width: 100%;
     height: 100%;
     border-radius: 8px;
@@ -48,7 +50,7 @@ body {
     transition: top .5s, opacity .5s;
 }
 .menu a:hover {
-    color: #ffffff;
+    color: #fff;
 }
 .menu a:hover::after{
     top: 50%;
@@ -56,59 +58,56 @@ body {
 }
 h1{text-align: center;
     margin-top: 25px;
-    color: #DFF6FF;
+    color: white;
 
 }
-h2{
-    font-size: 28px;
-}
+
 
 /* Tabla*/
-
 table {
     font-family: 'Livvic', Courier, monospace;
     width: 100%;
     font-size: 15px;
     text-align: left;
-    color: #ffffff;
+    color: white;
     border-collapse: collapse;
     margin: 20px;
 }
 table button{
-    background-color: #038C8C;
+    background-color: #1da0f2c2;
     padding: 2px;
     border-radius: 5px;
-    color: #ffffff;
+    color: #fff;
     cursor: pointer;
 }
 
 table button:hover{
-    background-color: #06b1b1;
-    color: #ffffff;
+    background-color: #222222ab;
+    color: #fff;
 }
 th{
     font-weight: bolder;
     text-align: left;
-    background-color: #03588C;
+    background-color: #1da0f2c2;
 
 
 }
 
 tr {
-    border: 2px solid #03588C; /*lineas de la tabla*/
+    border: 2px solid #1da0f2c2; /*lineas de la tabla*/
     text-align: center;
     padding: 8px;
 }
 
 tr:hover td {
-    background-color: #0e74b3;
-    box-shadow: 0 0 5px #0e74b3,
-				0 0 10px #0e74b3,
-				0 0 15px #0e74b3,
-				0 0 25px #0e74b3;
+    background-color: #1DA1F2;
+    box-shadow: 0 0 5px #1DA1F2,
+				0 0 10px #1DA1F2,
+				0 0 15px #1DA1F2,
+				0 0 25px #1DA1F2;
 }
 tbody tr:nth-child(odd){
-    background-color: #03588C;
+    background-color: #0a324ac2;
 }
 
 th{
@@ -122,17 +121,23 @@ td{
     padding: 10px;
 }
 
+.god{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+}
 
 
 /* form */
 
-formCrearArtefactos{
+.formCrearArtefactos{
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 25px;
     border-radius: 10px;
-    background-color: #023E73;
+    background-color: #222222ab;
     width: 50%;
     margin: auto;
     margin-top: 20px;
@@ -150,20 +155,26 @@ formCrearArtefactos{
     margin-bottom: 10px; /* Espacio entre los inputs */
     margin-top: 10px;
 }
+
+.formCrearArtefactos label {
+    margin-right: 50px;
+    margin-bottom: 15px; /* Espacio entre los labels */
+}
+
 .formCrearArtefactos button{
-    color: #ffffff;
+    color: white;
     padding: 10px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     height: 30px;
     font-size: 15px;
-    background-color: #038C8C;
+    background-color: #1da0f2c2;
     margin: 10px;
 }
 
 .formCrearArtefactos button:hover{
-    background-color: #06b1b1;
+    background-color: #1DA1F2;;
 }
 
 
@@ -180,7 +191,7 @@ formCrearArtefactos{
     margin: 10%;
     padding: 20px;
     border-radius: 10px;
-    background-color: #023E73;
+    background-color: #222222ab;
     width: 98%;
     margin: auto;
     margin-top: 50px;
@@ -212,7 +223,9 @@ formCrearArtefactos{
     font-size: 15px;
     border-style: none;
 }
-
+.acciones:hover{
+    background-color: #1da0f2c2;
+}
 /*------------------FILTROS-------------------*/
 .pagination {
     display: flex;
@@ -225,14 +238,13 @@ formCrearArtefactos{
     float: left;
     padding: 8px 16px;
     text-decoration: none;
-    transition: .3s;
-    background-color: #038C8C;
-    border: 1px solid #038C8C;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
 }
 
 .pagination a:hover:not(.active) {
-    background-color: #06b1b1;
-    color: #ffffff;
+    background-color: rgb(42, 229, 203);
+    color: black;
 }
 .step-links {
     display: flex;
@@ -242,23 +254,23 @@ formCrearArtefactos{
 .step-links a {
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid #038C8C;
+    border: 1px solid #ddd;
     margin: 0 4px;
 }
 .step-links a:hover {
-    background-color: #ffffff;
+    background-color: #ddd;
 }
 .step-links a:active {
     background-color: #000;
-    color: #ffffff;
+    color: white;
 }
 .current {
     color: #ffffff;
-    margin-top: 15px; /* Margen superior e inferior de 5px y centrar horizontalmente */
+    margin: 5px auto; /* Margen superior e inferior de 5px y centrar horizontalmente */
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid #03588C;
-    background-color: #03588C;
+    border: 1px solid #ddd;
+    background-color: #000;
     display: block; /* Convertir el elemento en un bloque para que ocupe todo el ancho disponible */
     text-align: center; /* Centrar el texto horizontalmente */
 }
@@ -273,45 +285,45 @@ formCrearArtefactos{
 .filtrar_artefacto input {
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid #038C8C;
+    border: 1px solid #ddd;
     margin: 0 4px;
 }
 .filtrar_artefacto button {
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid #038C8C;
+    border: 1px solid #ddd;
     margin: 0 4px;
-    background-color: #038C8C;
+    background-color: #000;
     color: #ffffff;
     cursor: pointer;
 }
 .filtrar_artefacto button:hover {
-    background-color: #06b1b1;
-    color: #ffffff;
+    background-color: rgb(42, 229, 203);
+    color: black;
 }
 .ver_todo {
     display: inline-block;
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid white;
+    border: 1px solid #ddd;
     margin: 0 4px;
-    background-color: #47B5FF;
-    color: white;
+    background-color: #000;
+    color: #ffffff;
     cursor: pointer;
-     /* Añade bordes redondeados */
+    border-radius: 5px; /* Añade bordes redondeados */
 }
 
 .ver_todo:hover {
-    background-color: #06b1b1;
-    color: #ffffff;
+    background-color: rgb(42, 229, 203);
+    color: black;
 }
 
 
 
 /*-------------------------------FOOTER---------------------------------*/
 footer {
-    background-color: #03588C;
-    color: #ffffff;
+    background-color: #1DA1F2;
+    color: white;
     padding: 20px; /* Incrementa el espacio interno para mejorar la legibilidad */
     text-align: center;
     position: fixed;
@@ -333,13 +345,13 @@ footer {
 }
 
 .contactos a {
-    color: #ffffff;
+    color: white;
     text-decoration: none;
     transition: color .5s;
 }
 
 .contactos a:hover {
-    color:#06b1b1;
+    color: black;
 }
 
 /* Agrega esta regla al final de tu archivo CSS */

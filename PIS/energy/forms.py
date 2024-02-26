@@ -13,25 +13,25 @@ class ArtefactoForm(forms.ModelForm):
         widgets = {
             'nombre_artefacto': forms.TextInput(
                 attrs={
-                    'placeholder': 'Nombre del Artefacto'
+                    'placeholder': '  nombre del Artefacto'
                 }
             ),
             'consumo_wh': forms.NumberInput(
                 attrs={
-                    'placeholder': 'Consumo en W/h'
+                    'placeholder': 'Consumo en Whatts cada hora'
                 }
             ),
             'horas_de_uso': forms.NumberInput(
                 attrs={
-                    'placeholder': 'Horas de uso'
+                    'placeholder': 'Horas de uso del artefacto'
                 }
             )
         }
         # Definir etiquetas personalizadas para los campos
         labels = {
             'nombre_artefacto': 'Nombre del Artefacto',
-            'consumo_wh': 'Consumo en W/h',
-            'horas_de_uso': 'Horas de uso',
+            'consumo_wh':       'Consumo en W/h      ',
+            'horas_de_uso':     'Horas de uso        ',
         }
 
 
