@@ -126,7 +126,7 @@ td{
 
 /* form */
 
-formCrearArtefactos{
+.formCrearArtefactos{
     display: flex;
     justify-content: center;
     align-items: center;
