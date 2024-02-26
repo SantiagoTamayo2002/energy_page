@@ -16,17 +16,24 @@
     <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_descripcionPaginaInicio.css' %}">
 </head>
 <script>
-    window.embeddedChatbotConfig = {
-    chatbotId: "Dsy0leXKUJ_MKxmovT75T",
-    domain: "www.chatbase.co"
-    }
-    </script>
-    <script
-    src="https://www.chatbase.co/embed.min.js"
-    chatbotId="Dsy0leXKUJ_MKxmovT75T"
-    domain="www.chatbase.co"
-    defer>
-    </script>
+  (function (w, d, s, o, f, js, fjs) {
+    w["botsonic_widget"] = o;
+    w[o] =
+      w[o] ||
+      function () {
+        (w[o].q = w[o].q || []).push(arguments);
+      };
+    (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+    js.id = o;
+    js.src = f;
+    js.async = 1;
+    fjs.parentNode.insertBefore(js, fjs);
+  })(window, document, "script", "Botsonic", "https://widget.writesonic.com/CDN/botsonic.min.js");
+  Botsonic("init", {
+    serviceBaseUrl: "https://api.botsonic.ai",
+    token: "ee71585c-f946-497e-a348-279107974200",
+  });
+</script>
 <body>
         <div class="contenedor">
             <div class="contenido">
@@ -83,7 +90,7 @@
         <div class="descripcion-footer">
             <p>Proyecto de gestión energético elaborado por grupo FORANIX de la Universidad Nacional de Loja 
             </p>
-            <p><b>Correo: </b>foranix2023@gmail.com</p>
+            <p><b>Correo: </b><a href="mailto:foranix2023@gmail.com" style="text-decoration: none; color: white;">foranix2023@gmail.com</a></p>
             <p>&copy; 2023 - Todos los derechos reservados</p>
         </div>
 

@@ -8,8 +8,9 @@ from django.contrib.auth.models import AbstractUser
 class Artefacto(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     nombre_artefacto = models.CharField(max_length=20)
+    #flotantes solo positivos
     consumo_wh = models.FloatField(default=0)
-    horas_de_uso = models.PositiveIntegerField(default=0)
+    horas_de_uso = models.FloatField(default=0)
 
     def __str__(self):
         return f"{self.nombre_artefacto}"
