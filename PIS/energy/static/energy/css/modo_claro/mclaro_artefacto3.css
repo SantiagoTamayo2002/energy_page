@@ -1,0 +1,355 @@
+* {
+    font-family: 'livvic', sans-serif;
+    margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    background-color: #F2F2F2;
+    color: #FFFFFF;
+}
+.menu{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: #072540;
+    border-radius:0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.menu a {
+    position: relative;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    color: #DFF6FF;
+    text-decoration: none;
+    padding: 13px 35px;
+    margin: 5px;
+    z-index: 2;
+    transition: color .5s;   
+}
+.menu a::after {
+    content: '';
+    background: linear-gradient(10deg, #256D85, #038C8C);
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    transition: top .5s, opacity .5s;
+}
+.menu a:hover {
+    color: #ffffff;
+}
+.menu a:hover::after{
+    top: 50%;
+    opacity: 1;
+}
+h1{text-align: center;
+    margin-top: 25px;
+    color: #DFF6FF;
+
+}
+h2{
+    font-size: 28px;
+}
+
+/* Tabla*/
+
+table {
+    font-family: 'Livvic', Courier, monospace;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    color: #ffffff;
+    border-collapse: collapse;
+    margin: 20px;
+}
+table button{
+    background-color: #038C8C;
+    padding: 2px;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+table button:hover{
+    background-color: #06b1b1;
+    color: #ffffff;
+}
+th{
+    font-weight: bolder;
+    text-align: left;
+    background-color: #03588C;
+
+
+}
+
+tr {
+    border: 2px solid #03588C; /*lineas de la tabla*/
+    text-align: center;
+    padding: 8px;
+}
+
+tr:hover td {
+    background-color: #0e74b3;
+    box-shadow: 0 0 5px #0e74b3,
+				0 0 10px #0e74b3,
+				0 0 15px #0e74b3,
+				0 0 25px #0e74b3;
+}
+tbody tr:nth-child(odd){
+    background-color: #03588C;
+}
+
+th{
+    text-align: center;
+    align-content: center;
+    padding: 10px;
+}
+
+td{
+    text-align: center;
+    padding: 10px;
+}
+
+
+
+/* form */
+
+.formCrearArtefactos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: #023E73;
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.formCrearArtefactos input {
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    width: 80%;
+    font-size: 15px;
+    margin-bottom: 10px; /* Espacio entre los inputs */
+    margin-top: 10px;
+}
+.formCrearArtefactos button{
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 15px;
+    background-color: #038C8C;
+    margin: 10px;
+}
+
+.formCrearArtefactos button:hover{
+    background-color: #06b1b1;
+}
+
+
+
+
+
+
+/* tabla de los artefactos*/
+.tablaDeLosArtefactos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #023E73;
+    width: 98%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+
+
+
+
+
+.acciones{
+  contain: content;
+  align-content: center;
+  text-align: center;
+  padding: 0px;
+  cursor: pointer;
+}
+.acciones form button {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    background: rgba(11,51,255,0);
+    padding: 5px;
+    color: #ffffff;
+    font-size: 15px;
+    border-style: none;
+}
+
+/*------------------FILTROS-------------------*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.pagination a {
+    color: #ffffff;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: .3s;
+    background-color: #038C8C;
+    border: 1px solid #038C8C;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #06b1b1;
+    color: #ffffff;
+}
+.step-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.step-links a {
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #038C8C;
+    margin: 0 4px;
+}
+.step-links a:hover {
+    background-color: #ffffff;
+}
+.step-links a:active {
+    background-color: #000;
+    color: #ffffff;
+}
+.current {
+    color: #ffffff;
+    margin-top: 15px; /* Margen superior e inferior de 5px y centrar horizontalmente */
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #03588C;
+    background-color: #03588C;
+    display: block; /* Convertir el elemento en un bloque para que ocupe todo el ancho disponible */
+    text-align: center; /* Centrar el texto horizontalmente */
+}
+
+
+.filtrar_artefacto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.filtrar_artefacto input {
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #038C8C;
+    margin: 0 4px;
+}
+.filtrar_artefacto button {
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #038C8C;
+    margin: 0 4px;
+    background-color: #038C8C;
+    color: #ffffff;
+    cursor: pointer;
+}
+.filtrar_artefacto button:hover {
+    background-color: #06b1b1;
+    color: #ffffff;
+}
+.ver_todo {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid white;
+    margin: 0 4px;
+    background-color: #47B5FF;
+    color: white;
+    cursor: pointer;
+     /* Añade bordes redondeados */
+}
+
+.ver_todo:hover {
+    background-color: #06b1b1;
+    color: #ffffff;
+}
+
+
+
+/*-------------------------------FOOTER---------------------------------*/
+footer {
+    background-color: #03588C;
+    color: #ffffff;
+    padding: 20px; /* Incrementa el espacio interno para mejorar la legibilidad */
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.contactos{
+    display: flex; /* Usa flexbox para alinear los elementos */
+    justify-content: center;
+    align-items: center;
+    list-style: none; /* Elimina los estilos de la lista */
+    padding: 0; /* Elimina el padding por defecto de la lista */
+}
+
+.contactos li{
+    margin: 0 10px; /* Añade un margen entre los elementos */
+}
+
+.contactos a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color .5s;
+}
+
+.contactos a:hover {
+    color:#06b1b1;
+}
+
+/* Agrega esta regla al final de tu archivo CSS */
+@media screen and (min-width: 480px) {
+    footer {
+        position: relative;
+        bottom: 0;
+        margin-top: 100%;
+        width: 100%;
+    }
+}
+
+/*-----------------------------------------------------------*/

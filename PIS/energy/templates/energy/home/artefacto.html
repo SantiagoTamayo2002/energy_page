@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <title>Artefactos</title>
     {% if  request.user.modoclaro.modo_claro %}
-    <link rel="stylesheet" href="{% static 'energy/css/modo_claro/mc_artefacto3.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/modo_claro/mclaro_artefacto3.css' %}">
     {% else %}
-    <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_artefacto.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_artefacto3.css' %}">
     {% endif %}
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
     <style>
@@ -28,12 +28,13 @@
 
 <section class="formCrearArtefactos">
     <h2>Crear Nuevo Artefacto</h2>
-
-    <form method="post" action="{% url 'artefacto' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Guardar Artefacto</button>
-    </form>
+    <div class="god">
+      <form method="post" action="{% url 'artefacto' %}" class="formulario1">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Artefacto</button>
+      </form>
+    </div>
 </section>
 
 <section class="tablaDeLosArtefactos">

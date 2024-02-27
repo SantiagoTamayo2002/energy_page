@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-_z7o5++bp^+7a9sqed+-johyf)r$xq)_lzt+loho_ywn)pcn#3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['foranix.pythonanywhere.com']
 
 # Application definition
 
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'PIS.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'energy/templates/energy/home'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -37,23 +37,28 @@
                         {% csrf_token %}
 
                         <div class="lastname">
+                            <label for="username">Usuario:</label>
                             <input type="text" name="username" placeholder="Nombre de Usuario" autofocus="" minlength="5" maxlength="150" pattern="[a-zA-Z0-9]+" required="" id="id_username" data-listener-added_bae381fc="true">
                             
                         </div>
                     <div class="lastname" >
+                        <label for="first_name">Nombres:</label>
                         {{ form.first_name }}
                     </div>
                     <div class="lastname">
+                        <label for="last_name">Apellidos:</label>
                         {{ form.last_name }}
                     </div>
                     <div class="lastname" >
+                        <label for="email">Correo:</label>
                         {{ form.email }}
                     </div>
                     <div class="lastname" >
-                        
+                        <label for="password1">Contraseña:</label>
                         <input type="password" name="password1" placeholder="Contraseña" minlength="5" maxlength="150" pattern="[a-zA-Z0-9]+" required="" id="id_password" data-listener-added_bae381fc="true">
                     </div>
                     <div class="lastname">
+                        <label for="password2">Confirme Contraseña: </label>
                         <input type="password" name="password2" placeholder="Confirme la contraseña" minlength="5" maxlength="150" pattern="[a-zA-Z0-9]+" required="" id="id_password" data-listener-added_bae381fc="true">
                         
                     </div>
