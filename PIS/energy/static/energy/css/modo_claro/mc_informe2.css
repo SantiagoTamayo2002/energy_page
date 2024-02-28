@@ -281,29 +281,7 @@ td {
     text-align: center;
 } */
 /* Estilos específicos para la impresión */
-@media print {
-    body{
-        background-color: rgba(255, 255, 255, 0);
-    }
-    a,i {
-        display: none;
-        /* Oculta los enlaces al imprimir */
-    }
 
-    button {
-        display: none;
-        /* Oculta los botones al imprimir */
-    }
-    .navegar{
-        display: none;
-    }
-    tbody tr:nth-child(odd){
-    color: white;
-    }
-    tbody tr:nth-child(2n){
-    color: black;
-     }
-}
 
 /*-------------------------------FOOTER---------------------------------*/
 footer {
