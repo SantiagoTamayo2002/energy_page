@@ -20,7 +20,7 @@ class Inventario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     artefacto = models.ForeignKey(Artefacto, on_delete=models.SET_NULL, null=True, related_name="artefacto_list")
     dia = models.DateField(default=datetime.now)
-    cantidad_artefacto = models.PositiveIntegerField()
+    cantidad_artefacto = models.FloatField()
     consumo_artefacto = models.FloatField(default=0)
 
     def __str__(self):
