@@ -39,6 +39,13 @@ def calcular_consumo_polinomio(request, dias):
     consumo = []
     for i in range(dias):
         consumo.append(round(funcion(i + 1), 2))
+    c = 0
+    for i, valor in enumerate(consumo):
+        if valor > 10000:
+            consumo[i] = round(valor / 10000, 2)
+
+
+
 
     return consumo
 
@@ -286,6 +293,7 @@ def base_grafico_proyeccion(consumo, dia, request):
                     'color': color_1DA1F2,  # Color del texto
                 },
                 'min': 0,  # Establecer el mínimo en 0 o en otro valor adecuado
+
             }
         ],
         'title': {
