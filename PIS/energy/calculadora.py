@@ -93,6 +93,7 @@ def generar_grafico_proyeccion_mensual(request):
 
 # Función para obtener el polinomio de consumo
 def obtener_polinomio(request):
+
     # Inicialización de variables
     consumo = []
     dias = []
@@ -102,9 +103,17 @@ def obtener_polinomio(request):
     r2 = 0
     grado_del_polinomio = 0
     variable = sym.Symbol('x')
-    coeficiente = [0, 1]
+    coeficiente = [1, 2]
     funcion_polinomio = sum(coeficiente[i] * (variable ** i) for i in range(len(coeficiente)))
     fx = sym.lambdify(variable, funcion_polinomio)
+
+    # variables polinomio mejor ajustado
+    mejor_polinomio = funcion_polinomio
+    funcion_fx = fx
+    mejor_r2 = 0
+    grado_polinomio = 0
+    r2_cef_determinacion = 0
+    y_media = 0
     # Obtener datos de consumo y días
     for i in Informe.objects.filter(user=request.user):
         consumo.append(i.consumo_total)
@@ -146,10 +155,24 @@ def obtener_polinomio(request):
 
             # Coeficiente de determinación
             r2 = (st - sr) / st
-            r2_porcentaje = np.around(r2 * 100, 2)
+            if grado_polinomio == 0:
+                mejor_r2 = r2
+                mejor_polinomio = funcion_polinomio
+                funcion_fx = fx
+                grado_polinomio = grado_del_polinomio
+                r2_cef_determinacion = r2
+                r2_porcentaje = np.around(r2 * 100, 2)
+                y_media = ym
 
-            if r2_porcentaje >= 100 or r2_porcentaje >= 95 or r2_porcentaje >= 90:
-                break
+            if r2 > mejor_r2:
+                mejor_r2 = r2
+                mejor_polinomio = funcion_polinomio
+                funcion_fx = fx
+                grado_polinomio = grado_del_polinomio
+                r2_cef_determinacion = r2
+                r2_porcentaje = np.around(r2 * 100, 2)
+                y_media = ym
+
 
         except np.linalg.LinAlgError:
             # La matriz A es singular, manejar la excepción según sea necesario
@@ -160,20 +183,19 @@ def obtener_polinomio(request):
     # Imprimir resultados
     print('------------------------\n Tabla de datos')
     print('--------------------------------------')
-    print(f'ymedia = {ym}\n')
-    print(f'grado del polinomio = {grado_del_polinomio + 1}\n')
-    print(f'f(x) = {funcion_polinomio.__str__()}\n')
-    print(f'coef_determinacion r2 = {r2}\n')
+    print(f'ymedia = {y_media}\n')
+    print(f'grado del polinomio = {grado_polinomio + 1}\n')
+    print(f'f(x) = {mejor_polinomio.__str__()}\n')
+    print(f'coef_determinacion r2 = {r2_cef_determinacion}\n')
     print(str(r2_porcentaje) + '% de los datos se describe con el modelo')
     print('--------------------------------------')
 
     # Crear diccionario con resultados
     resultado_actual = {
-        'dias': dias,
-        'ymedia': float(ym),
-        'funcion_polinomioStr': str(funcion_polinomio),
-        'funcion_polinomio': fx,
-        'coef_determinacion_r2': float(r2),
+        'ymedia': float(y_media),
+        'funcion_polinomioStr': str(mejor_polinomio),
+        'funcion_polinomio': funcion_fx,
+        'coef_determinacion_r2': float(r2_cef_determinacion),
         'porcentaje_datos_modelo': float(r2_porcentaje),
     }
 
@@ -208,7 +230,7 @@ def base_grafico_proyeccion(consumo, dia, request):
         color_icono_hover = 'white'
         colorStops_1 = '#3300FF'
         colorStops_2 = 'black'
-        
+
 
     proyeccion = {
         'tooltip': {
@@ -450,7 +472,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
     artefactoList.sort(key=lambda x: sum(x[1:]), reverse=True)
     lista.extend(artefactoList)
     print(lista)
-    
+
 
     grafica = {
         'max_width': '100%',
@@ -483,11 +505,11 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
         'dataset': {
             'source': lista,
             'properties': {
-                'pading': 60,   
+                'pading': 60,
             }
         },
         'xAxis': [
-            { 
+            {
                 'axisTick': {
                     'alignWithLabel': True
                 },
@@ -508,7 +530,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
             }
         ],
         'yAxis': [
-            { 
+            {
                 'type': 'value',
                 'axisLine': {
                     'lineStyle': {
@@ -516,7 +538,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
                     }
                 },
                 'axisLabel': {
-                    'color': color_item 
+                    'color': color_item
                 },
                 'name': 'Consumo (W/h)',  # Título del eje y
                 'textStyle': {
@@ -534,7 +556,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
             'position': 'top',
             'top': '60%',  # Ajusta la posición del gráfico principal ('line')
             'bottom': '15%',  # Ajusta la posición del gráfico circular ('pie')
-        },  
+        },
         'series': [
             {
                 'type': 'line',

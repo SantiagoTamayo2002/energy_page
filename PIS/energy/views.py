@@ -87,11 +87,13 @@ def actualizar_perfil_usuario(request):
 
 # Vista de la página del usuario
 def pagina_usuario(request):
+
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
+        if not Informe.objects.filter(user=request.user).exists():
+            messages.info(request, 'Esta grafica es del consumo diario, aun no tiene datos en el inventario')
         consumo_ultima_semana = obtener_consumo_ultima_semana(request.user)
-        print(consumo_ultima_semana)
         if consumo_ultima_semana > 30:
             enviar_correo(request, consumo_ultima_semana)
 
@@ -104,7 +106,9 @@ def pagina_usuario(request):
                 return redirect('paginaUsuario')
         else:
             form = ModoClaroForm(instance=modo_claro_obj)
-        return render(request, 'energy/home/pagina_usuario.html', {'modo_claro_form': form})
+        return render(request, 'energy/home/pagina_usuario.html', {
+            'modo_claro_form': form,
+        })
 
 # Vista para cerrar sesión
 def cerrar_sesion(request):
@@ -287,6 +291,8 @@ def informe(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
+        if Inventario.objects.filter(user=request.user).exists() is False:
+            messages.info(request, 'Estos datos se actualizaran según lo proporcionado en el inventario')
         consumo_diario_del_mes = Informe.objects.filter(user=request.user)
         total_mensual = calcular_consumo_total_mensual(request.user)
         return render(request, 'energy/home/informe.html', {
@@ -327,4 +333,11 @@ def proyeccion(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
-        return render(request, 'energy/home/proyeccion.html')
+
+        if Informe.objects.filter(user=request.user).exists():
+            return render(request, 'energy/home/proyeccion.html')
+        else:
+            messages.info(request, 'Estas gráficas se generan a partir de los datos en el informe. Por ahora esta '
+                                   'viendo graficas por defecto')
+            return render(request, 'energy/home/proyeccion.html')
+

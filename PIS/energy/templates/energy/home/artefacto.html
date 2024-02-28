@@ -125,6 +125,13 @@
               icon: 'error',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
               confirmButtonText: 'Aceptar'
             });
+          {% elif message.tags == 'info' %}
+            Swal.fire({
+              title: 'Importante',
+              html: '{{ message|safe }}',
+              icon: 'info',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+              confirmButtonText: 'Aceptar'
+            });
           {% endif %}
         {% endfor %}
       });

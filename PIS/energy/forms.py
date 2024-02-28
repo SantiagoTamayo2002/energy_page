@@ -58,6 +58,7 @@ class InventarioForm(forms.ModelForm):
             'cantidad_artefacto': forms.NumberInput(attrs={
                 'placeholder': 'Cantidad de Artefacto',
                 'min': '1',
+                'max': '10000'
             }),
         }
 

@@ -112,25 +112,32 @@
         {% for message in messages %}
           {% if message.tags == 'success' %}
             Swal.fire({
-              title: 'Mensaje',
+              title: 'Correcto!',
               html: '{{ message|safe }}',
               icon: 'success',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
               confirmButtonText: 'Aceptar'
             });
           {% elif message.tags == 'error' %}
             Swal.fire({
-              title: 'Mensaje',
+              title: 'Cuidado!',
               html: '{{ message|safe }}',
               icon: 'error',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
               confirmButtonText: 'Aceptar'
             });
           {% elif message.tags == 'warning' %}
             Swal.fire({
-              title: 'Mensaje',
+              title: 'Advertencia',
               html: '{{ message|safe }}',
               icon: 'warning',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
               confirmButtonText: 'Aceptar'
             });
+          {% elif message.tags == 'info' %}
+            Swal.fire({
+                title: 'Importante',
+                html: '{{ message|safe }}',
+                icon: 'info',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+                confirmButtonText: 'Aceptar'
+                });
           {% endif %}
         {% endfor %}
       });
