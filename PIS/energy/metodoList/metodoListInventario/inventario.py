@@ -37,6 +37,7 @@ def eliminar_artefacto_inventario(request, inventario_id):
     # Actualizar el consumo diario mensual para el día eliminado
     total = calcular_consumo_total_mensual(request.user)
     Informe.actualizar_consumo_diario(request.user, dia_eliminado, total)
+    messages.info(request, 'El artefacto se eliminó correctamente del inventario')
     return redirect('inventario')
 
 # Función para eliminar todos los inventarios y consumos diarios del usuario
@@ -48,6 +49,7 @@ def eliminar_inventario(request):
     consumo = Informe.objects.filter(user=request.user)
     consumo.delete()
     inventario.delete()
+    messages.info(request, 'Todo el inventario fue eliminado correctamente')
     return redirect('inventario')
 
 # Función para calcular el consumo total de un artefacto
