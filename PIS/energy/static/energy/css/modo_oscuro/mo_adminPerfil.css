@@ -14,16 +14,19 @@ body {
 
 }
 
-.volver{
-    text-decoration: none;
-    color: #d3e2ff;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    position: absolute;
-    left: 30px;
-    top: 20px;
-    font-size: 40px;
-}
+
+    .volver{
+        text-decoration: none;
+        color: #d3e2ff;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        position: absolute;
+        left: 30px;
+        top: 20px;
+        transform: translate(-20px, -25px);
+        font-size: 40px;
+    }
+
 
 .container {
     display: flex;
@@ -127,4 +130,33 @@ box-shadow: inset 0px 0px 10px 0 #d3e2ff;
 
 .btnImagen label{
     color: #d3e2ff;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .container {
+        margin-top: 230px;
+        padding-top: 20px;
+        padding-bottom: 40px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile-box {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .changes{
+        margin-top: 30px;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .volver{
+        position: absolute;
+        left: 10px;
+        margin-top: 150px;
+        margin-left: 20px;
+
+    }
 }

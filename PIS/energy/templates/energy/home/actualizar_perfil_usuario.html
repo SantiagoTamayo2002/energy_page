@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil</title>
     {% if  request.user.modoclaro.modo_claro %}
-    <link rel="stylesheet" href="{% static 'energy/css/modo_claro/mc_perfil.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/modo_claro/mc_profile.css' %}">
     {% else %}
     <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_adminPerfil.css' %}">
     {% endif %}
@@ -16,8 +16,9 @@
     <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <a href="{% url 'paginaUsuario' %}" class="volver"><i class="fa-regular fa-circle-xmark"></i></a>
+    
     <div class="container">
+        <a href="{% url 'paginaUsuario' %}" class="volver"><i class="fa-regular fa-circle-xmark"></i></a>
         <div class="profile-box">
             <img src="{% static imagen %}" alt="Imagen de perfil" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 20px;">
             <h3>{{ user.perfil.user.username }}</h3>
