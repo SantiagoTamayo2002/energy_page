@@ -9,22 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600&family=Roboto:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     {% if  request.user.modoclaro.modo_claro %}
-    <link rel="stylesheet" href="{% static 'energy/css/modo_claro/mc_pagina_usuario.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/modo_claro/mc_paginaU.css' %}">
     {% else %}
-    <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_pagina_usuario.css' %}">
+    <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_usuarioPage.css' %}">
     {% endif %}
     <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
     <title>Inicio</title>
-
-    <style>
-        #cambiarModo {
-            border: none;
-            padding: 10px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
-
 
 </head>
 <body>
@@ -40,19 +30,24 @@
             </div>
             <div class="nav">
                 <ul class="listado">
-                    <li class="btnModClaro"> <!-- Botón visible para cambiar el modo claro -->
-                        <button type="button" id="cambiarModo"></button>
-                    </li>
                     <li>
-                        <form id="modoClaroForm" method="post" style="display: none;">
-                            {% csrf_token %}
-                            {{ modo_claro_form }}
-                            <button type="submit">Guardar Modo Claro</button>
-                        </form>
+                        <div class="contenedor-botones">
+                            <button class="perfil" id="boton-perfil">
+                                <i class="fa-solid fa-gear"></i>configuración
+                            </button>
+                            <div class="botones-secundarios" id="botones-secundarios">
+                                <a href="{% url 'perfil' %}" id="personalizar-perfil">Perfil</a>
+                                <button type="button" id="cambiarModo">Tema</button>
+                                <a href="{%url 'cerrarSesion'%}" id="cerrar-sesion">Cerrar sesión</a>
+                            </div>
+                            <form id="modoClaroForm" method="post" style="display: none;">
+                                {% csrf_token %}
+                                {{ modo_claro_form }}
+                                <button type="submit">Guardar Modo Claro</button>
+                            </form>
+                        </div>
                     
-                        <button class="perfil">
-                            <a href="{% url 'perfil' %}">Perfil</a>
-                        </button>
+                        
                     </li>
                 </ul>
             </div>
@@ -139,6 +134,59 @@
     <!-- Tu archivo de script para las gráficas -->
     <script src="{% static 'energy/js/grafica.js' %}"></script>
     <script src="{% static 'energy/js/btnInformation.js' %}"></script>
+    <script>
+        // Obtener referencias a los elementos del DOM
+        const botonPerfil = document.getElementById('boton-perfil');
+        const botonesSecundarios = document.getElementById('botones-secundarios');
+
+        // Función para mostrar/ocultar los botones secundarios
+        function toggleBotonesSecundarios() {
+            if (botonesSecundarios.style.display === 'none') {
+                botonesSecundarios.style.display = 'block';
+            } else {
+                botonesSecundarios.style.display = 'none';
+            }
+        }
+
+        // Event listener para el botón perfil
+        botonPerfil.addEventListener('click', function(event) {
+            // Detiene la propagación del evento para evitar que se cierre inmediatamente
+            event.stopPropagation();
+            toggleBotonesSecundarios();
+        });
+
+        // Event listener para cerrar los botones secundarios al hacer clic fuera de ellos
+        window.addEventListener('click', function(event) {
+            if (event.target !== botonPerfil) {
+                botonesSecundarios.style.display = 'none';
+            }
+        });
+
+        // Event listener para evitar que se cierre al hacer clic dentro de los botones secundarios
+        botonesSecundarios.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    </script>
+
+
+
+{% if messages %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        {% for message in messages %}
+          {% if message.tags == 'info' %}
+            Swal.fire({
+                title: 'Importante',
+                html: '{{ message|safe }}',
+                icon: 'info',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+                confirmButtonText: 'Aceptar'
+                });
+          {% endif %}
+        {% endfor %}
+      });
+    </script>
+{% endif %}
 </body>
 </html>
 

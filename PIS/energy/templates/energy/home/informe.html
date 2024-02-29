@@ -16,6 +16,189 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Data Analyzer</title>
+    
+    <style>
+        @media print {
+
+    a,i, footer, nav {
+        display: none;
+        /* Oculta los enlaces al imprimir */
+    }
+
+    button {
+        display: none;
+        /* Oculta los botones al imprimir */
+    }
+tbody tr:nth-child(odd){
+    color: white;
+}
+tbody tr:nth-child(2n){
+    color: black;
+}
+
+tr {
+    border: 2px solid rgba(0, 0, 0, 0.76); /*lineas de la tabla*/
+    text-align: center;
+    padding: 8px;
+}
+
+    * {
+	font-family: 'Livvic', Courier, monospace;
+    margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+} 
+
+body{
+    min-height: 100vh;
+    background: white;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+/*---------CSS PARA LOS BOTÓNES DE LA LISTA GENERADA EN PANTALLAS PEQUEÑAS----------*/
+
+.opcionesLista li {
+    position: relative;
+    background: linear-gradient(10deg, #222222ab, rgba(171, 201, 220, 0.76));
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.76);
+    text-decoration: none;
+    padding: 13px 35px;
+    margin: 5px;
+    z-index: 2;
+    transition: color .5s;   
+}
+.opcionesLista li::after {
+    content: '';
+    background: linear-gradient(10deg, #222222ab, #082d44c2);
+    
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    transition: top .5s, opacity .5s;
+}
+.opcionesLista li:hover {
+    color: #fff;
+}
+.opcionesLista li:hover::after{
+    top: 50%;
+    opacity: 1;
+}
+
+/*-------------------------*/
+
+
+
+
+h1, h2 {
+    color: #ffffff;
+    font-size: 20px;
+    padding-top: 8px;
+}
+
+.datosUsuario {
+    text-align: left;
+    background-color: #038C8C;
+    opacity: 0.8;
+    margin:0 0 0 0px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 0 0 30px 30px;
+    font-size: 12px;
+    display: flex;
+}
+
+
+
+.datosUsuario .description h2 p {
+    display: inline-block;
+    padding-left: 20px;
+}
+
+.fa-file-export:hover{
+	background-color: #06b1b1;
+	color: white;
+	box-shadow: 0 0 5px #06b1b1,
+				0 0 15px #06b1b1,
+				0 0 25px #06b1b1,
+				0 0 45px #06b1b1;
+}
+
+.contenedorTabla{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+table {
+    font-family: 'Livvic', Courier, monospace;
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px;
+    font-size: 15px;
+    text-align: left;
+    color: black;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+th{
+    font-weight: bolder;
+    text-align: left;
+    background-color: #0e74b3;
+}
+
+td,
+th,
+
+tr {
+    border: 2px solid rgba(0, 0, 0, 0.76); /*lineas de la tabla*/
+    text-align: center;
+    padding: 8px;
+}
+
+tr:hover td {
+    background-color: #b2d1e5;
+    box-shadow: 0 0 5px #0e74b3,
+				0 0 10px #0e74b3,
+				0 0 15px #0e74b3,
+				0 0 25px #0e74b3;
+}
+
+tbody tr:nth-child(odd){
+    background-color: #3ea6e78d;
+    color: black;
+}
+
+th {
+    text-align: center;
+    align-content: center;
+    background-color: #0e74b3;
+    color: #ffffff;
+    padding: 10px;
+}
+
+td {
+    text-align: center;
+    padding: 10px;
+}
+
+}
+        
+        
+        
+    </style>
 </head>
 
 <body>
@@ -99,17 +282,17 @@
         <i class="fas fa-file-export"><p>Exportar el informe</p></i> 
     </a>
 
-    <footer>
-        <nav class="navbarContactos">
-            <ul class="contactos">
-                <li><a href="{% url 'nosotros' %}">Sobre nosotros</a></li>
-                <li><a href="https://www.instagram.com/foranix/">Instagram</a></li>
-                <li><a href="https://github.com/SantiagoTamayo2002/energy_page#energy_page">Github</a></li>
-                <li><a href="https://www.unl.edu.ec/">Universidad Nacional de Loja</a></li>
-            </ul>
-        </nav>
-        <p>&copy; 2023 - Todos los derechos reservados</p>
-    </footer>
+{#    <footer>#}
+{#        <nav class="navbarContactos">#}
+{#            <ul class="contactos">#}
+{#                <li><a href="{% url 'nosotros' %}">Sobre nosotros</a></li>#}
+{#                <li><a href="https://www.instagram.com/foranix/">Instagram</a></li>#}
+{#                <li><a href="https://github.com/SantiagoTamayo2002/energy_page#energy_page">Github</a></li>#}
+{#                <li><a href="https://www.unl.edu.ec/">Universidad Nacional de Loja</a></li>#}
+{#            </ul>#}
+{#        </nav>#}
+{#        <p>&copy; 2023 - Todos los derechos reservados</p>#}
+{#    </footer>#}
 
     <!-- Incluir tu archivo JavaScript al final del cuerpo del documento -->
     <script>
@@ -125,4 +308,21 @@
     </script>
 </body>
 
+{% if messages %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        {% for message in messages %}
+          {% if message.tags == 'info' %}
+            Swal.fire({
+                title: 'Importante',
+                html: '{{ message|safe }}',
+                icon: 'info',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
+                confirmButtonText: 'Aceptar'
+                });
+          {% endif %}
+        {% endfor %}
+      });
+    </script>
+{% endif %}
 </html>

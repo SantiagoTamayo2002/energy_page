@@ -7,9 +7,10 @@ from django.contrib.auth.models import AbstractUser
 # Definición del modelo Artefacto
 class Artefacto(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    nombre_artefacto = models.CharField(max_length=20)
+    nombre_artefacto = models.CharField(max_length=50)
+    #flotantes solo positivos
     consumo_wh = models.FloatField(default=0)
-    horas_de_uso = models.PositiveIntegerField(default=0)
+    horas_de_uso = models.FloatField(default=0)
 
     def __str__(self):
         return f"{self.nombre_artefacto}"
@@ -19,7 +20,7 @@ class Inventario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     artefacto = models.ForeignKey(Artefacto, on_delete=models.SET_NULL, null=True, related_name="artefacto_list")
     dia = models.DateField(default=datetime.now)
-    cantidad_artefacto = models.PositiveIntegerField()
+    cantidad_artefacto = models.FloatField()
     consumo_artefacto = models.FloatField(default=0)
 
     def __str__(self):
