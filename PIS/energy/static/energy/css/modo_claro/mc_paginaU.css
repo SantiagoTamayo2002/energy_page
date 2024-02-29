@@ -188,6 +188,14 @@ body{
     cursor: pointer;
     font-size: 20px;
     color: #F2F2F2;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.botones-secundarios a:hover{
+    background-color: #d3e2ff;
+    color: #072540;
+    transition: 0.2s;
 }
 
 #cambiarModo{
@@ -197,8 +205,16 @@ body{
     border: none;
     font-size: 20px;
     font-weight: 600;
-    margin-left: 50px;
+    margin: 0 auto;
+    width: 100%;
+    transition: 0.2;
+}
 
+#cambiarModo:hover{
+    background-color: #d3e2ff;
+    color: #072540;
+    transition: 0.2s;
+    border-radius: 25px;
 }
 
 
