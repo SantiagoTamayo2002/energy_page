@@ -192,7 +192,7 @@ def artefacto(request):
         if request.method == 'GET':
             form = ArtefactoForm()
             artefacto = artefacto.order_by('nombre_artefacto')
-            paginacion_artefacto = Paginator(artefacto, 5)
+            paginacion_artefacto = Paginator(artefacto, 8)
             numero_pagina = request.GET.get('page')
             artefacto = paginacion_artefacto.get_page(numero_pagina)
             return render(request, 'energy/home/artefacto.html', {

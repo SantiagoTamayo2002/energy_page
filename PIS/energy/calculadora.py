@@ -41,7 +41,7 @@ def calcular_consumo_polinomio(request, dias):
         consumo.append(round(funcion(i + 1), 2))
     c = 0
     for i, valor in enumerate(consumo):
-        if valor > 10000:
+        if valor > 20000:
             consumo[i] = round(valor / 10000, 2)
 
 
@@ -466,7 +466,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
 
     artefactoList = []
     lista = [['Dias'] + dias, ]
-
+    lista_cinco_artefactos = []
     for i in Inventario.objects.filter(user=request.user):
         if i.artefacto.nombre_artefacto not in artefactoet:  # Verificar si el artefacto ya está en el conjunto
             artefactoet.add(i.artefacto.nombre_artefacto)
@@ -479,7 +479,11 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
             artefactoList.append(artefactoMasUsados)  # Agregar la lista a la lista de artefacto
     artefactoList.sort(key=lambda x: sum(x[1:]), reverse=True)
     lista.extend(artefactoList)
-    print(lista)
+
+    for i in range(6):
+        lista_cinco_artefactos.append(lista[i])
+
+    print(lista_cinco_artefactos)
 
 
     grafica = {
@@ -511,7 +515,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
             'showContent': False,
         },
         'dataset': {
-            'source': lista,
+            'source': lista_cinco_artefactos,
             'properties': {
                 'pading': 60,
             }
