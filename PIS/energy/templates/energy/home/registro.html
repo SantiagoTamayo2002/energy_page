@@ -1,5 +1,5 @@
-{% load static %}
 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,53 +70,61 @@
             </div>
         </div>
     </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
 
-                // Llenar los campos ocultos con los datos de ubicación
-                document.getElementById('latitud').value = latitude;
-                document.getElementById('longitud').value = longitude;
-            });
-        } else {
-            console.log("Geolocalización no es compatible en este navegador.");
-        }
-    });
-</script>
-
-{% if messages %}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        {% for message in messages %}
-          {% if message.tags == 'success' %}
+        document.addEventListener("DOMContentLoaded", function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+
+                    // Llenar los campos ocultos con los datos de ubicación
+                    document.getElementById('latitud').value = latitude;
+                    document.getElementById('longitud').value = longitude;
+                });
+            } else {
+                console.log("Geolocalización no es compatible en este navegador.");
+            }
+
             Swal.fire({
-              title: 'Mensaje',
-              html: '{{ message|safe }}',
-              icon: 'success',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
-              confirmButtonText: 'Aceptar'
-            });
-          {% elif message.tags == 'error' %}
-            Swal.fire({
-              title: 'Mensaje',
-              html: '{{ message|safe }}',
-              icon: 'error',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
-              confirmButtonText: 'Aceptar'
-            });
-          {% elif message.tags == 'warning' %}
-            Swal.fire({
-              title: 'Mensaje',
-              html: '{{ message|safe }}',
-              icon: 'warning',  // Puedes cambiar 'success' por 'info', 'warning', o 'error' según el tipo de mensaje que desees mostrar
-              confirmButtonText: 'Aceptar'
-            });
-          {% endif %}
-        {% endfor %}
-      });
+    title: 'Tu ubicación',
+    text: "No podemos acceder a tu ubicación sin tu permiso. Pero tu ubicación nos ayudará a ver cómo crece nuestra comunidad. No tomaremos información adicional aparte, la misma que podrás ver en las ubicaciones al inicio de nuestra página",
+    icon: 'info',
+    showCloseButton: true,
+});
+        });
     </script>
-{% endif %}
+
+    {% if messages %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            {% for message in messages %}
+            {% if message.tags == 'success' %}
+            Swal.fire({
+                title: 'Mensaje',
+                html: '{{ message|safe }}',
+                icon: 'success',  
+                confirmButtonText: 'Aceptar'
+            });
+            {% elif message.tags == 'error' %}
+            Swal.fire({
+                title: 'Mensaje',
+                html: '{{ message|safe }}',
+                icon: 'error',  
+                confirmButtonText: 'Aceptar'
+            });
+            {% elif message.tags == 'warning' %}
+            Swal.fire({
+                title: 'Mensaje',
+                html: '{{ message|safe }}',
+                icon: 'warning',  
+                confirmButtonText: 'Aceptar'
+            });
+            {% endif %}
+            {% endfor %}
+        });
+    </script>
+    {% endif %}
 </body>
 </html>

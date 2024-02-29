@@ -13,6 +13,7 @@ from django.views.decorators.http import require_POST
 # Importaciones de la aplicación energy
 from .forms import ArtefactoForm, InventarioForm, CrearUsuario, FiltrarInventarioForm, FiltrarArtefactoForm, \
     ModoClaroForm, ActualizarUsuarioForm, ActualizarPerfilForm
+from .metodoList.metodoRegistro.registro import crear_usuario
 from .models import Artefacto, Inventario, Informe, UbicacionUsuario, ModoClaro, Perfil
 from django.http import HttpResponse, JsonResponse
 import datetime
@@ -130,30 +131,9 @@ def registro(request):
         print(request.POST)
         if request.POST['password1'] == request.POST['password2']:
             try:
-                if request.POST['latitud'] == '' or request.POST['longitud'] == '':
-                    messages.warning(request, 'No se ha proporcionado la ubicación')
-                    return redirect('registro')
-                else:
-                    # obtener ubicacion
-                    latitud = request.POST['latitud']
-                    longitud = request.POST['longitud']
-                    user = User.objects.create_user(username=request.POST['username'],
-                                                    password=request.POST['password1'], email=request.POST['email'],
-                                                    first_name=request.POST['first_name'],
-                                                    last_name=request.POST['last_name'])
-                    user_perfil = Perfil.objects.create(user=user)
-                    # Crear una instancia de Ubicacion Usuario y guardarla en la base de datos
-                    ubucacion_usuario = UbicacionUsuario.objects.create(
-                        user=user,
-                        latitud=latitud,
-                        longitud=longitud,
-                    )
+                crear_usuario(request, request.POST['latitud'], request.POST['longitud'])
+                return redirect('paginaUsuario')
 
-                    user.save()
-                    user_perfil.save()
-                    ubucacion_usuario.save()
-                    login(request, user)
-                    return redirect('paginaUsuario')
             except IntegrityError:
                 messages.warning(request, 'El usuario ya existe')
                 return render(request, 'energy/home/registro.html', {
