@@ -28,7 +28,7 @@ class ArtefactoForm(forms.ModelForm):
             'horas_de_uso': forms.NumberInput(
                 attrs={
                     'placeholder': 'Horas de uso del artefacto',
-                    'min': '1',
+                    'min': '0.1',
                     'max': '24'
                 }
             )
@@ -58,6 +58,7 @@ class InventarioForm(forms.ModelForm):
             'cantidad_artefacto': forms.NumberInput(attrs={
                 'placeholder': 'Cantidad de Artefacto',
                 'min': '1',
+                'max': '10000'
             }),
         }
 
