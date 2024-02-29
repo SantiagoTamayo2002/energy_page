@@ -14,7 +14,7 @@ def crear_usuario(request, latitud, longitud):
                                     last_name=request.POST['last_name'])
     user_perfil = Perfil.objects.create(user=user)
     # Crear una instancia de Ubicacion Usuario y guardarla en la base de datos
-    if latitud or longitud is not '':
+    if latitud and longitud != '':
         ubucacion_usuario = UbicacionUsuario.objects.create(
             user=user,
             latitud=latitud,
