@@ -55,11 +55,11 @@
                     </div>
                     <div class="lastname" >
                         <label for="password1">Contraseña:</label>
-                        <input type="password" name="password1" placeholder="Contraseña" minlength="5" maxlength="150" pattern="[a-zA-Z0-9]+" required="" id="id_password" data-listener-added_bae381fc="true">
+                        <input type="password" name="password1" placeholder="Contraseña" minlength="5" maxlength="150" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" required="" id="id_password" data-listener-added_bae381fc="true" title="La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número.">
                     </div>
                     <div class="lastname">
                         <label for="password2">Confirme Contraseña: </label>
-                        <input type="password" name="password2" placeholder="Confirme la contraseña" minlength="5" maxlength="150" pattern="[a-zA-Z0-9]+" required="" id="id_password" data-listener-added_bae381fc="true">
+                        <input type="password" name="password2" placeholder="Confirme la contraseña" minlength="5" maxlength="150" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" required="" id="id_password" data-listener-added_bae381fc="true" title="La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número.">
                         
                     </div>
                         <input type="hidden" id="latitud" name="latitud">
