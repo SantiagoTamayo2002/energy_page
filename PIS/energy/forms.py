@@ -21,13 +21,15 @@ class ArtefactoForm(forms.ModelForm):
                 attrs={
                     'placeholder': 'Consumo en Whatts cada hora',
                     'min': '1',
+                    'max': '10000'
 
                 }
             ),
             'horas_de_uso': forms.NumberInput(
                 attrs={
                     'placeholder': 'Horas de uso del artefacto',
-                    'min': '1',
+                    'min': '0.1',
+                    'max': '24'
                 }
             )
         }
@@ -53,13 +55,16 @@ class InventarioForm(forms.ModelForm):
         fields = ('artefacto', 'cantidad_artefacto')
 
         widgets = {
-            'cantidad_artefacto': forms.NumberInput(attrs={'placeholder': 'Cantidad de Artefacto'}),
+            'cantidad_artefacto': forms.NumberInput(attrs={
+                'placeholder': 'Cantidad de Artefacto',
+                'min': '1',
+                'max': '10000'
+            }),
         }
 
         labels = {
             'artefacto': 'Artefacto',
-            'cantidad_artefacto': 'Cantidad de Artefacto',
-            'min': '1',
+            'cantidad_artefacto': 'Cantidad del Artefacto',
         }
         # Filtrar el conjunto de datos basado en el usuario pasado como argumento
 
@@ -91,7 +96,6 @@ class CrearUsuario(UserCreationForm):
             'password2': forms.PasswordInput(
                 attrs={'placeholder': 'Confirmar Contraseña', 'minlength': 8, 'maxlength': 20, 'required': True}),
         }
-
 
 
 class FiltrarArtefactoForm(forms.ModelForm):

@@ -58,7 +58,7 @@ ROOT_URLCONF = 'PIS.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'energy/templates/energy/home'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

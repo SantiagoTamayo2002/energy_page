@@ -29,4 +29,5 @@ def eliminar_artefacto(request, artefacto_id):
     # Eliminar el artefacto de la base de datos    
     artefacto.delete()
     # Redirigir al usuario a la página de artefactos después de eliminar exitosamente el artefacto
+    messages.info(request, 'El artefacto se eliminó correctamente')
     return redirect('artefacto')
