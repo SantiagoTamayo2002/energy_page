@@ -480,8 +480,8 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
     artefactoList.sort(key=lambda x: sum(x[1:]), reverse=True)
     lista.extend(artefactoList)
 
-    for i in range(6):
-        lista_cinco_artefactos.append(lista[i])
+    # for i in range(6):
+    #     lista_cinco_artefactos.append(lista[i])
 
     print(lista_cinco_artefactos)
 
@@ -515,7 +515,7 @@ def generar_grafico_artefacto_list_mayor_consumo(request):
             'showContent': False,
         },
         'dataset': {
-            'source': lista_cinco_artefactos,
+            'source': lista,
             'properties': {
                 'pading': 60,
             }
