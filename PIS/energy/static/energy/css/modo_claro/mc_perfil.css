@@ -1,0 +1,125 @@
+*{
+    font-family: 'livvic', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #03588C;
+
+}
+
+.volver{
+    text-decoration: none;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    font-size: 40px;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centra el contenido */
+    contain: content;
+}
+h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+h3{
+    font-size: 20px;
+    color: white;
+}
+
+.profile-box {
+    padding: 20px;
+    background-color: #03588C;
+    text-align: center;
+    width: 50%;
+    margin-right: 20px;
+    margin-left: 20px;
+    border-radius: 15px;
+}
+
+.changes{
+    width: 50%;
+    margin-left: 20px;
+}
+
+.strong{
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.profile-box img {
+    border: 3px solid black;
+}
+
+.content-box{
+    font-family: 'roboto', sans-serif;
+    display: grid;
+    text-align: left;
+    color: white;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.contenido{
+    display: grid;
+    grid-template-columns: 1fr 2.7fr;
+    margin-top: 20px;
+}
+
+.contenido p{
+    display: inline-block;
+}
+
+form {
+    margin-top: 20px;
+    text-align: left; /* Alinea el formulario a la izquierda */
+}
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #343232;
+    border-radius: 15px;
+    box-sizing: border-box;
+    font-weight: 400;
+}
+
+button {
+font-weight: 600;
+padding: 10px 20px;
+background-color: #03588C;
+color: #fff;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+margin: 0 auto; /* Centra el botón horizontalmente */
+display: block; /* Para que ocupe todo el ancho disponible */
+}

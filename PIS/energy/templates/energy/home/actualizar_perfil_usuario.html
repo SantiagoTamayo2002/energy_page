@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+    {% if  request.user.modoclaro.modo_claro %}
+    <link rel="stylesheet" href="{% static 'energy/css/modo_claro/mc_perfil.css' %}">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'energy/css/modo_oscuro/mo_adminPerfil.css' %}">
+    {% endif %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/420cfce002.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <a href="{% url 'paginaUsuario' %}" class="volver"><i class="fa-regular fa-circle-xmark"></i></a>
+    <div class="container">
+        <div class="profile-box">
+            <img src="{% static imagen %}" alt="Imagen de perfil" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 20px;">
+            <h3>{{ user.perfil.user.username }}</h3>
+            <div class="content-box">
+                <div class="contenido">
+                    <p class="strong"><strong>Email:</strong></p>
+                    <p>{{ user.perfil.user.email }}</p>
+                </div>
+                <div class="contenido">
+                    <p class="strong"><strong>Nombre:</strong></p>
+                    <p>{{ user.perfil.user.first_name }}</p> 
+                </div>
+                <div class="contenido">
+                    <p class="strong"><strong>Apellido:</strong></p>
+                    <p>{{ user.perfil.user.last_name }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="changes">
+            <h2>Editar Perfil</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Nombre de Usuario</label>
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electronico</label>
+                    {{ form.email }}
+                </div>
+                <div class="form-group">
+                    <label for="first_name">Nombres</label>
+                    {{ form.first_name }}
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Apellidos</label>
+                    {{ form.last_name }}
+                </div>
+                <div class="form-group" class="btnImagen">
+                    <label for="imagen">Imagen de Perfil</label>
+                    {{ perfil_form }}
+                </div>
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+    {% if messages %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            {% for message in messages %}
+            {% if message.tags == 'success' %}
+            Swal.fire({
+                title: 'Mensaje',
+                html: '{{ message|safe }}',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+                customClass: {
+                    popup: 'warning-popup',
+                    content: 'warning-content',
+                    confirmButton: 'warning-confirm-button'
+                }
+            });
+            {% elif message.tags == 'error' %}
+            Swal.fire({
+                title: 'Mensaje',
+                html: '{{ message|safe }}',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
+            {% endif %}
+            {% endfor %}
+        });
+    </script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,130 @@
+*{
+    font-family: 'livvic', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #050d18;
+
+}
+
+.volver{
+    text-decoration: none;
+    color: #d3e2ff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    font-size: 40px;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    padding: 40px;
+    background-color: #050d18;
+    border-radius: 5px;
+    text-align: center; /* Centra el contenido */
+    contain: content;
+    box-shadow: inset 0px 0px 10px 0 #d3e2ff;
+}
+h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #d3e2ff;
+}
+
+h3{
+    font-size: 20px;
+    color: #d3e2ff;
+}
+
+.profile-box {
+    padding: 20px;
+    background-color: #081425;
+    text-align: center;
+    width: 50%;
+    margin-right: 20px;
+    margin-left: 20px;
+    border-radius: 15px;
+    box-shadow: inset 0px 0px 10px 0 #d3e2ff;
+}
+
+.changes{
+    width: 50%;
+    margin-left: 20px;
+}
+
+.strong{
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.content-box{
+    font-family: 'roboto', sans-serif;
+    display: grid;
+    text-align: left;
+    color: #d3e2ff;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.contenido{
+    display: grid;
+    grid-template-columns: 1fr 2.7fr;
+    margin-top: 20px;
+}
+
+.contenido p{
+    display: inline-block;
+}
+
+form {
+    margin-top: 20px;
+    text-align: left; /* Alinea el formulario a la izquierda */
+}
+.form-group {
+    margin-bottom: 20px;
+    color: #d3e2ff;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    font-weight: 400;
+    background-color: #d3e2ff;
+}
+
+
+button {
+font-weight: 600;
+padding: 10px 20px;
+background-color: #050d18;
+color: #d3e2ff;
+border: none;
+border: 2px solid #d3e2ff;
+border-radius: 10px;
+cursor: pointer;
+margin: 0 auto; /* Centra el botón horizontalmente */
+display: block; /* Para que ocupe todo el ancho disponible */
+box-shadow: inset 0px 0px 10px 0 #d3e2ff;
+}
+
+.btnImagen label{
+    color: #d3e2ff;
+}

@@ -1,5 +1,5 @@
 import json
-
+# Importaciones de Django
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
@@ -10,6 +10,7 @@ from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
+# Importaciones de la aplicación energy
 from .forms import ArtefactoForm, InventarioForm, CrearUsuario, FiltrarInventarioForm, FiltrarArtefactoForm, \
     ModoClaroForm, ActualizarUsuarioForm, ActualizarPerfilForm
 from .models import Artefacto, Inventario, Informe, UbicacionUsuario, ModoClaro, Perfil
@@ -21,25 +22,25 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint.text.fonts import FontConfiguration
 from weasyprint import HTML
-from .metodoList.metodoListInforme.informe import calcular_consumo_total_mensual
+from .metodoList.metodoListInforme.informe import calcular_consumo_total_mensual, obtener_consumo_ultima_semana
 from .metodoList.metodoListInventario.inventario import guardar_inventario_artefacto, eliminar_inventario, \
     eliminar_artefacto_inventario
 from .metodoList.metodoListArtefactos.artefacto import guardar_artefacto, eliminar_artefacto
-
+from .calculadora import enviar_correo
 
 # Create your views here.
 def home(request):
     return render(request, 'energy/home/home.html')
 
-
+# Vista de la página de contacto
 def contacto(request):
     return render(request, 'energy/home/contactos.html')
 
-
+# Vista de la página sobre el equipo
 def sobre_el_equipo(request):
     return render(request, 'energy/home/sobre_el_equipo.html')
 
-
+# Vista para actualizar el perfil del usuario
 @login_required
 def actualizar_perfil_usuario(request):
     if request.user.is_authenticated:
@@ -63,7 +64,7 @@ def actualizar_perfil_usuario(request):
                 elif request.POST['username'] != request.user.username or request.POST['email'] != request.user.email:
                     if User.objects.filter(username=request.POST['username']).exists():
                         messages.error(request, 'El nombre de usuario ya está en uso')
-                        return render(request, 'energy/home/administrar_perfil_user.html', {
+                        return render(request, 'energy/home/actualizar_perfil_usuario.html', {
                             'form': form,
                             'perfil_form': perfil_form,
                             'imagen': request.user.perfil.imagen.url.replace('energy/static/', ''),
@@ -77,17 +78,25 @@ def actualizar_perfil_usuario(request):
                 messages.error(request, 'Error al actualizar el perfil. Verifique los campos ingresados sean '
                                         'correctos, tambien es posible que el Usuario que esta ingresando ya exista')
                 return redirect('perfil')
-        return render(request, 'energy/home/administrar_perfil_user.html', {
+        return render(request, 'energy/home/actualizar_perfil_usuario.html', {
             'form': form,
             'perfil_form': perfil_form,
             'imagen': request.user.perfil.imagen.url.replace('energy/static/', ''),
         })
     return redirect('home')
 
+# Vista de la página del usuario
 def pagina_usuario(request):
+
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
+        if not Informe.objects.filter(user=request.user).exists():
+            messages.info(request, 'Esta grafica es del consumo diario, aun no tiene datos en el inventario')
+        consumo_ultima_semana = obtener_consumo_ultima_semana(request.user)
+        if consumo_ultima_semana > 30:
+            enviar_correo(request, consumo_ultima_semana)
+
         modo_claro_obj, created = ModoClaro.objects.get_or_create(user=request.user)
         print(request.user.modoclaro.modo_claro)  # Corregir esta línea
         if request.method == 'POST':
@@ -97,17 +106,19 @@ def pagina_usuario(request):
                 return redirect('paginaUsuario')
         else:
             form = ModoClaroForm(instance=modo_claro_obj)
-        return render(request, 'energy/home/pagina_usuario.html', {'modo_claro_form': form})
+        return render(request, 'energy/home/pagina_usuario.html', {
+            'modo_claro_form': form,
+        })
 
-
+# Vista para cerrar sesión
 def cerrar_sesion(request):
     return render(request, 'energy/home/home.html', {'cS': logout(request)})
 
-
+# Vista de la página de ubicaciones de usuarios
 def ubicaciones_de_usuarios(request):
     return render(request, 'energy/home/ubicaciones_de_usuarios.html')
 
-
+# Vista para el registro de usuarios
 def registro(request):
     if request.user.is_authenticated:
         return redirect('paginaUsuario')
@@ -153,7 +164,7 @@ def registro(request):
             'form': CrearUsuario,
         })
 
-
+# Vista para iniciar sesión
 def inicio_sesion(request):
     if request.user.is_authenticated:
         return redirect('paginaUsuario')
@@ -181,7 +192,7 @@ def artefacto(request):
         if request.method == 'GET':
             form = ArtefactoForm()
             artefacto = artefacto.order_by('nombre_artefacto')
-            paginacion_artefacto = Paginator(artefacto, 5)
+            paginacion_artefacto = Paginator(artefacto, 8)
             numero_pagina = request.GET.get('page')
             artefacto = paginacion_artefacto.get_page(numero_pagina)
             return render(request, 'energy/home/artefacto.html', {
@@ -280,6 +291,8 @@ def informe(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
+        if Inventario.objects.filter(user=request.user).exists() is False:
+            messages.info(request, 'Estos datos se actualizaran según lo proporcionado en el inventario')
         consumo_diario_del_mes = Informe.objects.filter(user=request.user)
         total_mensual = calcular_consumo_total_mensual(request.user)
         return render(request, 'energy/home/informe.html', {
@@ -320,4 +333,11 @@ def proyeccion(request):
     if request.user.is_anonymous:
         return redirect('home')
     if request.user.is_authenticated:
-        return render(request, 'energy/home/proyeccion.html')
+
+        if Informe.objects.filter(user=request.user).exists():
+            return render(request, 'energy/home/proyeccion.html')
+        else:
+            messages.info(request, 'Estas gráficas se generan a partir de los datos en el informe. Por ahora esta '
+                                   'viendo graficas por defecto')
+            return render(request, 'energy/home/proyeccion.html')
+
